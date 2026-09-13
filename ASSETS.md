@@ -4,6 +4,15 @@ Le site est reconstruit à partir des **maquettes PNG** fournies. Aucune
 photographie source séparée n'a été livrée : le logo et toutes les
 photographies affichées sont donc **extraits des maquettes elles-mêmes**.
 
+## Bandeau de tête
+
+Le bandeau de navigation est posé **en surimpression sur la photographie**,
+qui monte jusqu'en haut de la page : il n'occupe aucune hauteur dans le flux
+(`position: absolute`) et son encre est blanche. Un dégradé sombre discret
+en haut du bandeau d'ouverture (`components/sections/Hero.module.css`)
+garantit la lisibilité sur les huit photographies, y compris les plus
+sombres (Cérémonies civiles, Anniversaires, Maternité).
+
 ## Références
 
 Les fichiers d'origine restent intacts dans `public/images/` (noms avec
@@ -33,22 +42,22 @@ node scripts/extract-assets.js
 Le script produit :
 
 - **`public/brand/em-logo-black.png` / `em-logo-white.png`** — le monogramme EM
-  est détouré de la planche d'identité, puis recadré sur sa boîte d'encre
-  (226 × 176). Le tracé, l'entrelacement des lettres et les proportions
-  d'origine sont conservés ; aucune police ne le remplace, aucune courbe n'est
-  revectorisée.
+  officiel (`public/brand/em-logo-source.png`, fourni par le client) est
+  détouré sur la luminance, puis recadré sur sa boîte d'encre. Le tracé,
+  l'entrelacement des lettres et les proportions d'origine sont conservés ;
+  aucune police ne le remplace, aucune courbe n'est revectorisée. Pour changer
+  de logo, remplacez `em-logo-source.png` et relancez
+  `node scripts/extract-assets.js`.
 
   Le détourage est une conversion **linéaire** — `alpha = (papier − luminance)
-  / papier` — et non un étalement de contraste : c'est ce qui décide de la
-  fidélité du lockup. La boucle calligraphique ne fait qu'un pixel sur la
-  planche et ne descend qu'à ~150 de luminance ; toute courbe qui ramène ce
-  gris à l'opacité pleine épaissit le délié, alourdit PHOTOGRAPHY et fait
-  perdre au monogramme son modelé plein/délié.
+  / papier` — et non un étalement de contraste : un seuil d'encre ramène à
+  l'opacité pleine des gris qui n'y sont pas, épaissit les déliés du M et
+  alourdit PHOTOGRAPHY, dont les fûts ne font que deux pixels. Le recadrage
+  imprime en console les proportions de la boîte d'encre : `Logo.tsx` les
+  reprend telles quelles, sinon le lockup est étiré.
 
-  Le lockup n'est jamais affiché à plus de 92 px de haut : la planche (176 px)
-  couvre déjà le rendu à 1×, l'export ×4 couvre les écrans à 2 et 3×. Une
-  vectorisation (potrace) a été essayée et écartée — un seuil binaire ne sait
-  pas rendre un délié d'épaisseur variable inférieure au pixel : la boucle s'y
+  Une vectorisation (potrace) a été essayée et écartée : un seuil binaire ne
+  sait pas rendre un délié d'épaisseur variable inférieure au pixel — il s'y
   coupe ou s'y épaissit, jamais autre chose.
 - **`public/images/<page>/*.jpg`** — chaque zone photographique des maquettes,
   recadrée aux coordonnées relevées, agrandie ×3 (lanczos) puis légèrement

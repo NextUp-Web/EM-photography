@@ -53,10 +53,11 @@
   --page-max: 1560px;
   --measure: 1180px; /* centred editorial text column */
 
-  --header-h: 110px;
-  /* Hauteur de la boîte d'encre du lockup, relevée sur la maquette (62 px
-     sur 971, soit 92 px à la largeur de référence). */
-  --logo-h: 92px;
+  /* Le bandeau est en surimpression : plus de hauteur réservée, seulement
+     un retrait haut et le décalage vertical de la navigation. */
+  --header-pad-top: 22px;
+  --nav-offset: 13px;
+  --logo-h: 109px;
   --logo-h-footer: 64px;
 
   --space-xs: 16px;
@@ -672,8 +673,9 @@ a:focus-visible .figure--zoom img {
     --gutter: 40px;
     --gutter-wide: 112px;
     --gutter-header: 128px;
-    --header-h: 100px;
-    --logo-h: 80px;
+    --header-pad-top: 20px;
+    --nav-offset: 11px;
+    --logo-h: 96px;
     --space-section: 34px;
     --space-section-end: 26px;
     --space-section-lg: 62px;
@@ -685,8 +687,9 @@ a:focus-visible .figure--zoom img {
     --gutter: 32px;
     --gutter-wide: 64px;
     --gutter-header: 48px;
-    --header-h: 92px;
-    --logo-h: 68px;
+    --header-pad-top: 18px;
+    --nav-offset: 9px;
+    --logo-h: 84px;
     --space-section: 40px;
     --space-section-end: 34px;
     --space-section-lg: 66px;
@@ -699,8 +702,9 @@ a:focus-visible .figure--zoom img {
     --gutter: 22px;
     --gutter-wide: 22px;
     --gutter-header: 22px;
-    --header-h: 76px;
-    --logo-h: 52px;
+    --header-pad-top: 16px;
+    --nav-offset: 4px;
+    --logo-h: 62px;
     --logo-h-footer: 58px;
     --space-section: 44px;
     --space-section-end: 40px;
@@ -715,5 +719,6 @@ a:focus-visible .figure--zoom img {
     --gutter: 18px;
     --gutter-wide: 18px;
     --gutter-header: 18px;
+    --logo-h: 54px;
   }
 }

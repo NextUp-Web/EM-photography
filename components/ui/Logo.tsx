@@ -1,8 +1,13 @@
 import Image from "next/image";
 import styles from "./Logo.module.css";
 
-/** Ratio du lockup original (largeur / hauteur), mesuré sur le fichier livré. */
-const RATIO = 226 / 176;
+/**
+ * Boîte d'encre du lockup livré, telle que `scripts/extract-assets.js`
+ * l'imprime en recadrant `em-logo-source.png`. Le composant dimensionne le
+ * monogramme par sa hauteur : ces deux nombres sont ce qui lui donne sa
+ * largeur, et un chiffre périmé l'étire.
+ */
+const LOCKUP = { width: 691, height: 647 };
 
 type LogoProps = {
   variant?: "black" | "white";
@@ -24,12 +29,11 @@ export default function Logo({ variant = "black", height, priority = false, clas
       <Image
         src={`/brand/em-logo-${variant}.png`}
         alt="EM Photography"
-        width={226}
-        height={176}
+        width={LOCKUP.width}
+        height={LOCKUP.height}
         priority={priority}
         className={styles.image}
-        sizes="220px"
-        style={{ aspectRatio: String(RATIO) }}
+        sizes="240px"
       />
     </span>
   );

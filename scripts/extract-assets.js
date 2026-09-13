@@ -240,40 +240,30 @@ async function extractPhotos() {
 }
 
 /**
- * Le monogramme EM est isolé de la planche d'identité par détourage sur la
- * luminance : le tracé original est conservé intact, seul le fond ivoire est
- * rendu transparent. Aucune police ne remplace le logo, et aucune courbe
- * n'est revectorisée.
+ * Le monogramme EM officiel est livré dans public/brand/em-logo-source.png
+ * (fond blanc, encre noire). Il est détouré sur la luminance — le tracé
+ * d'origine est conservé intact, seul le fond devient transparent — puis
+ * recadré sur sa boîte d'encre pour pouvoir être dimensionné par sa hauteur.
+ * Aucune police ne remplace le logo, aucune courbe n'est revectorisée.
  *
  * Le détourage est une conversion *linéaire* — alpha = (papier − luminance) /
- * papier — et non un étalement de contraste. C'est ce qui décide de la
- * fidélité du lockup : la boucle calligraphique ne fait qu'un pixel sur la
- * planche et ne descend qu'à ~150 de luminance. Toute courbe qui ramène ce
- * gris à l'opacité pleine épaissit le trait fin, alourdit PHOTOGRAPHY et fait
- * perdre au monogramme le modelé plein/délié de l'original.
- *
- * Le lockup n'est jamais affiché à plus de 88 px de haut : la planche (175 px)
- * couvre déjà le rendu à 1×, l'export ×4 couvre les écrans à 2 et 3×.
+ * papier — et non un étalement de contraste : un seuil d'encre ramènerait à
+ * l'opacité pleine des gris qui n'y sont pas, épaissirait les déliés du M et
+ * alourdirait PHOTOGRAPHY, dont les fûts ne font que deux pixels.
  */
 async function extractLogo() {
   await fs.mkdir(BRAND, { recursive: true });
-  // La capture porte un cadre sombre de quelques pixels : on l'écarte.
-  const plate = sharp(path.join(REF, "moodboard.png")).extract({
-    left: 4,
-    top: 8,
-    width: 298,
-    height: 315,
-  });
-  const { data, info } = await plate
-    .clone()
+  const source = path.join(BRAND, "em-logo-source.png");
+
+  const { data, info } = await sharp(source)
     .grayscale()
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  /** Niveau du papier de la planche (mode de l'histogramme). */
-  const PAPER = 231;
-  /** Le grain du papier oscille de ±3 : en deçà, ce n'est pas de l'encre. */
-  const FLOOR = 12 / 255;
+  /** Le fond du fichier livré est blanc. */
+  const PAPER = 255;
+  /** Le blanc du fichier oscille de quelques niveaux : en deçà, pas d'encre. */
+  const FLOOR = 8 / 255;
 
   const alpha = Buffer.alloc(info.width * info.height);
   for (let i = 0; i < alpha.length; i++) {
@@ -282,7 +272,7 @@ async function extractLogo() {
   }
 
   // Recadrage sur la boîte d'encre : le lockup doit pouvoir être dimensionné
-  // par sa hauteur sans marge parasite. Le tracé lui-même n'est pas touché.
+  // par sa hauteur sans marge parasite.
   let minX = info.width, maxX = 0, minY = info.height, maxY = 0;
   for (let y = 0; y < info.height; y++) {
     for (let x = 0; x < info.width; x++) {
@@ -317,7 +307,6 @@ async function extractLogo() {
       raw: { width: info.width, height: info.height, channels: 4 },
     })
       .extract(box)
-      .resize({ width: box.width * 4, kernel: sharp.kernel.lanczos3 })
       .png({ compressionLevel: 9 })
       .toFile(path.join(BRAND, file));
   }
