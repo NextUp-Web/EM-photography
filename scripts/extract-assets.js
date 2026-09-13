@@ -218,26 +218,23 @@ async function extractPhotos() {
 }
 
 /**
- * Le monogramme EM est isolé de la planche d'identité par détourage sur la
- * luminance : le tracé original est conservé intact, seul le fond ivoire est
- * rendu transparent. Aucune police ne remplace le logo.
+ * Le monogramme EM officiel est livré dans public/brand/em-logo-source.png
+ * (fond blanc, encre noire). Il est détouré sur la luminance — le tracé
+ * d'origine est conservé intact, seul le fond devient transparent — puis
+ * recadré sur sa boîte d'encre pour pouvoir être dimensionné par sa hauteur.
+ * Aucune police ne remplace le logo.
  */
 async function extractLogo() {
   await fs.mkdir(BRAND, { recursive: true });
-  const plate = sharp(path.join(REF, "moodboard.png")).extract({
-    left: 4,
-    top: 8,
-    width: 298,
-    height: 315,
-  });
-  const { data, info } = await plate
-    .clone()
+  const source = path.join(BRAND, "em-logo-source.png");
+
+  const { data, info } = await sharp(source)
     .grayscale()
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  const PAPER = 224;
-  const INK = 70;
+  const PAPER = 250;
+  const INK = 40;
   const alpha = Buffer.alloc(info.width * info.height);
   for (let i = 0; i < alpha.length; i++) {
     const l = data[i * info.channels];
@@ -246,7 +243,7 @@ async function extractLogo() {
   }
 
   // Recadrage sur la boîte d'encre : le lockup doit pouvoir être dimensionné
-  // par sa hauteur sans marge parasite. Le tracé lui-même n'est pas touché.
+  // par sa hauteur sans marge parasite.
   let minX = info.width, maxX = 0, minY = info.height, maxY = 0;
   for (let y = 0; y < info.height; y++) {
     for (let x = 0; x < info.width; x++) {
@@ -267,7 +264,7 @@ async function extractLogo() {
   console.log(`  lockup ${box.width}x${box.height} (ratio ${(box.width / box.height).toFixed(3)})`);
 
   for (const [file, ink] of [
-    ["em-logo-black.png", 17],
+    ["em-logo-black.png", 0],
     ["em-logo-white.png", 255],
   ]) {
     const rgba = Buffer.alloc(info.width * info.height * 4);
@@ -281,7 +278,6 @@ async function extractLogo() {
       raw: { width: info.width, height: info.height, channels: 4 },
     })
       .extract(box)
-      .resize({ width: box.width * 3, kernel: sharp.kernel.lanczos3 })
       .png({ compressionLevel: 9 })
       .toFile(path.join(BRAND, file));
   }

@@ -8,7 +8,10 @@
   background: none;
   border: 0;
   cursor: pointer;
-  color: var(--black);
+  /* Au-dessus du panneau pour rester cliquable une fois le menu ouvert. */
+  position: relative;
+  z-index: 130;
+  color: currentColor;
 }
 
 .bars {
@@ -35,6 +38,11 @@
   transform: translateY(-3.5px) rotate(-45deg);
 }
 
+/* Menu ouvert : le panneau est ivoire, la croix repasse en noir. */
+.barsOpen {
+  color: var(--black);
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
@@ -54,6 +62,9 @@
   justify-content: center;
   gap: 56px;
   background: var(--ivory);
+  /* Le panneau est ivoire : il reprend l'encre noire, alors que le bandeau
+     qui le contient est en blanc sur la photographie. */
+  color: var(--black);
   padding: 64px var(--gutter);
   opacity: 0;
   visibility: hidden;

@@ -4,6 +4,15 @@ Le site est reconstruit à partir des **maquettes PNG** fournies. Aucune
 photographie source séparée n'a été livrée : le logo et toutes les
 photographies affichées sont donc **extraits des maquettes elles-mêmes**.
 
+## Bandeau de tête
+
+Le bandeau de navigation est posé **en surimpression sur la photographie**,
+qui monte jusqu'en haut de la page : il n'occupe aucune hauteur dans le flux
+(`position: absolute`) et son encre est blanche. Un dégradé sombre discret
+en haut du bandeau d'ouverture (`components/sections/Hero.module.css`)
+garantit la lisibilité sur les huit photographies, y compris les plus
+sombres (Cérémonies civiles, Anniversaires, Maternité).
+
 ## Références
 
 Les fichiers d'origine restent intacts dans `public/images/` (noms avec
@@ -33,9 +42,11 @@ node scripts/extract-assets.js
 Le script produit :
 
 - **`public/brand/em-logo-black.png` / `em-logo-white.png`** — le monogramme EM
-  est détouré de la planche d'identité par seuillage sur la luminance, puis
-  recadré sur sa boîte d'encre. Le tracé, l'entrelacement des lettres et les
-  proportions d'origine sont conservés ; aucune police ne le remplace.
+  officiel (`public/brand/em-logo-source.png`, fourni par le client) est
+  détouré par seuillage sur la luminance, puis recadré sur sa boîte d'encre.
+  Le tracé, l'entrelacement des lettres et les proportions d'origine sont
+  conservés ; aucune police ne le remplace. Pour changer de logo, remplacez
+  `em-logo-source.png` et relancez `node scripts/extract-assets.js`.
 - **`public/images/<page>/*.jpg`** — chaque zone photographique des maquettes,
   recadrée aux coordonnées relevées, agrandie ×3 (lanczos) puis légèrement
   accentuée.
