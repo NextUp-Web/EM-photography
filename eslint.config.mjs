@@ -6,7 +6,9 @@ const compat = new FlatCompat({ baseDirectory: dirname(fileURLToPath(import.meta
 
 const config = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  { ignores: [".next/**", "node_modules/**"] },
+  // Les scripts de fabrication et de QA sont des outils Node en CommonJS,
+  // hors du périmètre de l’application.
+  { ignores: [".next/**", "node_modules/**", "scripts/**"] },
 ];
 
 export default config;

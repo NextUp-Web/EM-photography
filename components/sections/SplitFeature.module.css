@@ -13,7 +13,7 @@
 }
 
 .heading {
-  margin-top: 20px;
+  margin-top: 13px;
 }
 
 .body > .heading:first-child {
@@ -21,7 +21,8 @@
 }
 
 .paragraph {
-  margin-top: 24px;
+  margin-top: 8px;
+  max-width: 24em;
 }
 
 .signature {

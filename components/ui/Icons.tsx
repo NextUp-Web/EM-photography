@@ -76,3 +76,38 @@ export function StarIcon({ size = 20, className }: IconProps) {
     </svg>
   );
 }
+
+export function EyeIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M2.3 12c2.6-4 6-6 9.7-6s7.1 2 9.7 6c-2.6 4-6 6-9.7 6s-7.1-2-9.7-6Z" />
+      <circle cx="12" cy="12" r="2.6" />
+    </svg>
+  );
+}
+
+export function SunIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6" />
+    </svg>
+  );
+}
+
+export function HomeIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M3.4 10.6 12 3.6l8.6 7v9.8H3.4Z" />
+      <path d="M9.5 20.4v-6h5v6" />
+    </svg>
+  );
+}
+
+export function HeartIcon({ size = 20, className }: IconProps) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M12 20.3C6.9 16.8 3.8 13.9 3.8 10.6a4.2 4.2 0 0 1 8.2-1.3 4.2 4.2 0 0 1 8.2 1.3c0 3.3-3.1 6.2-8.2 9.7Z" />
+    </svg>
+  );
+}

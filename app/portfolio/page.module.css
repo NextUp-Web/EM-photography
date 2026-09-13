@@ -8,7 +8,7 @@
 }
 
 .rowTwo {
-  margin-top: clamp(34px, 4vw, 58px);
+  margin-top: clamp(24px, 2.1vw, 30px);
 }
 
 /* Washed photographic ground behind the experience block. The image is
@@ -16,7 +16,7 @@
 .experience {
   position: relative;
   background-color: var(--ivory-deep);
-  padding-block: clamp(48px, 5.4vw, 78px);
+  padding-block: clamp(32px, 2.9vw, 42px) clamp(44px, 4.3vw, 62px);
   isolation: isolate;
 }
 
@@ -26,9 +26,10 @@
   inset: 0;
   z-index: -1;
   background-image: var(--experience-bg, none);
-  background-size: cover;
-  background-position: center 38%;
-  opacity: 0.22;
+  background-size: 100% 40%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  opacity: 0.55;
 }
 
 .experienceInner {
@@ -47,7 +48,7 @@
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-indent: 0.15em;
-  font-size: clamp(0.9375rem, 1.5vw, 1.375rem);
+  font-size: clamp(0.9375rem, 1.63vw, 1.47rem);
   line-height: 1.5;
 }
 
@@ -57,7 +58,7 @@
 }
 
 .experienceSteps {
-  margin-top: clamp(30px, 3.4vw, 48px);
+  margin-top: clamp(28px, 2.85vw, 41px);
 }
 
 .bandInner {

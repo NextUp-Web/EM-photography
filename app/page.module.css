@@ -1,5 +1,5 @@
 .homeGrid {
-  margin-top: clamp(28px, 2.4vw, 34px);
+  margin-top: clamp(22px, 1.8vw, 25px);
 }
 
 .bandInner {
@@ -10,11 +10,16 @@
 }
 
 .aboutLink {
-  margin-top: 30px;
+  margin-top: 26px;
+}
+
+/* Le bloc image + texte de la maquette est plus serré que les autres sections. */
+.behindSection {
+  padding-block: 22px 31px;
 }
 
 .palette {
-  padding-block: clamp(34px, 3.2vw, 46px);
+  padding-block: 21px 36px;
 }
 
 .swatches {
@@ -22,7 +27,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(22px, 3vw, 44px);
-  margin-top: 26px;
+  margin-top: 16px;
 }
 
 .swatch {
@@ -34,7 +39,7 @@
 
 .chip {
   display: block;
-  width: clamp(48px, 4.9vw, 71px);
+  width: clamp(48px, 4.6vw, 67px);
   aspect-ratio: 1;
   border-radius: 50%;
 }

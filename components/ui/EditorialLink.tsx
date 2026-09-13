@@ -1,11 +1,12 @@
 import Link from "next/link";
 
-type Variant = "micro" | "serif" | "outline";
+type Variant = "micro" | "serif" | "outline" | "solid";
 
 const CLASSES: Record<Variant, { root: string; arrow: string }> = {
   micro: { root: "editorial-link", arrow: "editorial-link__arrow" },
   serif: { root: "editorial-cta", arrow: "editorial-cta__arrow" },
   outline: { root: "outline-cta", arrow: "outline-cta__arrow" },
+  solid: { root: "solid-cta", arrow: "solid-cta__arrow" },
 };
 
 type EditorialLinkProps = {

@@ -39,13 +39,14 @@ export default function ContactPage() {
       <Hero
         image="/images/contact/hero.jpg"
         alt="Mariés enlacés face au lac"
-        ratio={3.1}
+        ratio={3.092}
         title="Contact"
+        rule={false}
         subtitle={["Parlons de votre histoire."]}
       />
 
       <section className="section section--ivory">
-        <div className={`shell shell--wide ${styles.main}`}>
+        <div className={`shell ${styles.main}`}>
           <Reveal className={styles.intro}>
             <p className="eyebrow">Une connexion, une belle histoire</p>
             <h2 className={`h2 ${styles.introHeading}`}>
@@ -55,12 +56,16 @@ export default function ContactPage() {
             </h2>
             <hr className={`rule ${styles.introRule}`} />
             <p className={`body ${styles.introBody}`}>
-              Que vous prépariez votre mariage, une séance en couple, une séance maternité ou
-              tout autre moment précieux, je serais ravie d’en savoir plus sur votre projet.
+              Que vous prépariez votre mariage, une séance en couple,
+              <br />
+              une séance maternité ou tout autre moment précieux,
+              <br />
+              je serais ravie d’en savoir plus sur votre projet.
             </p>
             <p className={`body ${styles.introBody}`}>
-              Remplissez le formulaire ci-contre et je vous répondrai avec attention sous
-              48 heures.
+              Remplissez le formulaire ci-contre et je vous répondrai
+              <br />
+              avec attention sous 48 heures.
             </p>
             <p className={`script ${styles.signature}`}>À très bientôt,</p>
             <p className={`label ${styles.signatureName}`}>EM Photography</p>
@@ -73,7 +78,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section--ivory">
+      <section className="section section--white">
         <div className="shell">
           <SectionHeading
             eyebrow="Je photographie"
@@ -82,7 +87,7 @@ export default function ContactPage() {
           <CategoryGrid
             items={STRIP}
             columns={5}
-            ratio={1.23}
+            ratio={1.22}
             sizes="(max-width: 430px) 100vw, (max-width: 768px) 50vw, 20vw"
             className={styles.strip}
           />
@@ -154,9 +159,10 @@ export default function ContactPage() {
 
       <Gallery
         items={CLOSING}
-        heightRatio={0.146}
+        heightRatio={0.1452}
         minHeight={130}
         maxHeight={250}
+        gap="2px"
         label="Galerie de clôture"
       />
     </>

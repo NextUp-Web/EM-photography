@@ -3,36 +3,52 @@ import Hero from "@/components/sections/Hero";
 import SectionHeading from "@/components/sections/SectionHeading";
 import Gallery from "@/components/sections/Gallery";
 import FeatureColumns from "@/components/sections/FeatureColumns";
-import StepColumns from "@/components/sections/StepColumns";
 import DarkBand from "@/components/sections/DarkBand";
 import CTASection from "@/components/sections/CTASection";
-import styles from "../mariages/page.module.css";
+import Reveal from "@/components/ui/Reveal";
+import { HomeIcon, SunIcon, HeartIcon } from "@/components/ui/Icons";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Maternité & Naissance",
   description:
-    "Les premiers instants, une éternité d’émotions. Séances maternité et naissance, à domicile et en lumière naturelle.",
+    "Des débuts remplis de douceur, de calme et d’émotion. Séances maternité et naissance, à domicile et en lumière naturelle.",
   alternates: { canonical: "/maternite-naissance" },
 };
 
 const GALLERY = [
-  { src: "/images/maternity/gallery-01.jpg", alt: "Silhouette de future maman en contre-jour" },
-  { src: "/images/maternity/gallery-02.jpg", alt: "Pieds de nouveau-né dans une couverture" },
-  { src: "/images/maternity/gallery-03.jpg", alt: "Mère embrassant son nouveau-né", weight: 1.16 },
-  { src: "/images/maternity/gallery-04.jpg", alt: "Main du bébé dans celle de sa mère" },
-  { src: "/images/maternity/gallery-05.jpg", alt: "Nouveau-né endormi contre sa mère" },
+  {
+    src: "/images/maternity/gallery-01.jpg",
+    alt: "Future maman en contre-jour devant la fenêtre",
+    weight: 221,
+  },
+  {
+    src: "/images/maternity/gallery-02.jpg",
+    alt: "Pieds de nouveau-né dans une couverture de laine",
+    weight: 232,
+  },
+  {
+    src: "/images/maternity/gallery-03.jpg",
+    alt: "Mère embrassant son nouveau-né endormi",
+    weight: 236,
+  },
+  {
+    src: "/images/maternity/gallery-04.jpg",
+    alt: "Mains posées sur un ventre arrondi",
+    weight: 223,
+  },
 ];
 
 const VALUES = [
-  { number: "01", title: "Douceur", caption: ["Un rythme lent,", "des gestes calmes."] },
-  { number: "02", title: "Patience", caption: ["Le temps qu’il faut,", "jamais plus."] },
-  { number: "03", title: "Authenticité", caption: ["Vos habitudes,", "votre quotidien."] },
+  { title: "Douceur", caption: ["Une approche bienveillante", "et respectueuse."] },
+  { title: "Patience", caption: ["Le temps qu’il faut,", "sans pression."] },
+  { title: "Authenticité", caption: ["Des souvenirs vrais,", "pleins d’émotion."] },
 ];
 
 const EXPERIENCE = [
-  { title: "À domicile", caption: ["Chez vous, là où", "vous êtes le plus vous."] },
-  { title: "En lumière naturelle", caption: ["Aucun flash,", "rien que le jour."] },
-  { title: "À votre rythme", caption: ["Les pauses, les tétées,", "les câlins."] },
+  { title: "À domicile", icon: <HomeIcon size={34} /> },
+  { title: "En lumière naturelle", icon: <SunIcon size={34} /> },
+  { title: "À votre rythme", icon: <HeartIcon size={34} /> },
 ];
 
 export default function MaterniteNaissancePage() {
@@ -41,49 +57,70 @@ export default function MaterniteNaissancePage() {
       <Hero
         image="/images/maternity/hero.jpg"
         alt="Mère et nouveau-né dans une lumière douce"
-        ratio={2.8}
+        ratio={2.759}
         title="Maternité & Naissance"
-        subtitle={["Les premiers instants, une éternité d’émotions."]}
+        titleSize="40px"
+        rule="after"
+        subtitle={["Des débuts remplis de douceur, de calme et d’émotion."]}
       />
 
       <section className="section section--ivory">
         <div className="shell">
           <SectionHeading
-            eyebrow="Le début de tout"
+            eyebrow="EM Photography"
             heading="Des premiers instants, pour toujours."
-            rule
             lead={[
-              "Des images douces et sincères,",
-              "pour se souvenir de ces jours qui passent si vite.",
+              "Je capture la beauté de cette nouvelle étape, avec sensibilité et simplicité.",
+              "Des images vraies, douces et intemporelles, pour raconter votre histoire.",
             ]}
+          />
+        </div>
+
+        <Gallery
+          items={GALLERY}
+          heightRatio={0.2276}
+          maxHeight={420}
+          inset
+          gap="10px"
+          label="Galerie maternité & naissance"
+          className={styles.gallery}
+        />
+
+        <Reveal className={`shell ${styles.galleryNote}`}>
+          <hr className="rule rule--center" />
+          <p className="eyebrow centered">Des détails qui racontent l’essentiel</p>
+        </Reveal>
+      </section>
+
+      <DarkBand size="md" texture="/images/maternity/experience.jpg" textureOpacity={0.92}>
+        <SectionHeading eyebrow="L’expérience" heading="Plus qu’une séance, un moment pour vous." />
+        <FeatureColumns
+          items={VALUES}
+          columns={3}
+          rule
+          separators={false}
+          className={styles.values}
+        />
+      </DarkBand>
+
+      <section className="section section--ivory">
+        <div className="shell">
+          <SectionHeading eyebrow="En toute sérénité" heading="Une expérience pensée pour vous." />
+          <FeatureColumns
+            items={EXPERIENCE}
+            columns={3}
+            rule
+            separators={false}
+            className={styles.experience}
           />
         </div>
       </section>
 
-      <Gallery
-        items={GALLERY}
-        heightRatio={0.268}
-        maxHeight={420}
-        label="Galerie maternité & naissance"
-      />
-
-      <DarkBand size="md">
-        <SectionHeading eyebrow="Mes valeurs" heading="Douceur, patience, authenticité." tracked />
-        <StepColumns steps={VALUES} titleStyle="tracked" className={styles.steps} />
-      </DarkBand>
-
-      <section className="section section--ivory">
-        <div className={`shell ${styles.included}`}>
-          <SectionHeading eyebrow="L’expérience" heading="Une séance qui s’adapte à vous." />
-          <FeatureColumns items={EXPERIENCE} columns={3} className={styles.includedCols} />
-        </div>
-      </section>
-
       <CTASection
-        eyebrow="Prête à figer ces instants ?"
+        heading="Réserver votre séance"
         href="/contact"
-        label="Réserver une séance"
-        variant="serif"
+        label="Prendre rendez-vous"
+        variant="outline"
       />
     </>
   );

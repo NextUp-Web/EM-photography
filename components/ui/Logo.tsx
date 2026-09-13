@@ -1,45 +1,36 @@
-import { assetExists } from "@/lib/assets";
+import Image from "next/image";
 import styles from "./Logo.module.css";
 
-const EXTENSIONS = ["svg", "png", "webp"] as const;
-
-function resolve(variant: "black" | "white"): string | null {
-  for (const ext of EXTENSIONS) {
-    const src = `/brand/em-logo-${variant}.${ext}`;
-    if (assetExists(src)) return src;
-  }
-  return null;
-}
+/** Ratio du lockup original (largeur / hauteur), mesuré sur le fichier livré. */
+const RATIO = 226 / 176;
 
 type LogoProps = {
   variant?: "black" | "white";
-  /** CSS length, defaults to the header lockup height token */
+  /** hauteur CSS ; par défaut le jeton de hauteur du header */
   height?: string;
+  priority?: boolean;
   className?: string;
 };
 
 /**
- * Renders the supplied EM Photography lockup as-is. The monogram is never
- * reconstructed from a typeface: with no file present the exact lockup box is
- * reserved and labelled instead.
+ * Affiche le monogramme EM Photography tel quel. Le tracé n'est jamais
+ * reconstruit avec une police : le fichier d'origine est simplement détouré.
  */
-export default function Logo({ variant = "black", height, className }: LogoProps) {
-  const src = resolve(variant);
+export default function Logo({ variant = "black", height, priority = false, className }: LogoProps) {
   const style = height ? ({ "--logo-size": height } as React.CSSProperties) : undefined;
-  const classes = [styles.logo, className].filter(Boolean).join(" ");
-
-  if (!src) {
-    return (
-      <span className={`${classes} ${styles.pending}`} style={style} aria-label="EM Photography">
-        <span className={styles.pendingLabel}>em-logo-{variant}.svg</span>
-      </span>
-    );
-  }
 
   return (
-    <span className={classes} style={style}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="EM Photography" className={styles.image} />
+    <span className={[styles.logo, className].filter(Boolean).join(" ")} style={style}>
+      <Image
+        src={`/brand/em-logo-${variant}.png`}
+        alt="EM Photography"
+        width={226}
+        height={176}
+        priority={priority}
+        className={styles.image}
+        sizes="220px"
+        style={{ aspectRatio: String(RATIO) }}
+      />
     </span>
   );
 }

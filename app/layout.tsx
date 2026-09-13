@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Playfair_Display, Jost, Parisienne } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { assetExists } from "@/lib/assets";
 import { SITE_URL } from "@/lib/data";
 import "./globals.css";
 
@@ -28,7 +27,7 @@ const parisienne = Parisienne({
   variable: "--font-parisienne",
 });
 
-const FAVICON = "/brand/em-logo-black.svg";
+const FAVICON = "/brand/em-logo-black.png";
 
 export function generateMetadata(): Metadata {
   return {
@@ -49,8 +48,7 @@ export function generateMetadata(): Metadata {
       description:
         "Documenter l’amour dans sa forme la plus douce. Mariages, cérémonies civiles, anniversaires et naissances.",
     },
-    // Resolves as soon as the brand file is supplied.
-    ...(assetExists(FAVICON) ? { icons: { icon: FAVICON } } : {}),
+    icons: { icon: FAVICON },
   };
 }
 

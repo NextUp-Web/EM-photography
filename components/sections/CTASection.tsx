@@ -7,7 +7,7 @@ type CTASectionProps = {
   heading?: string;
   href: string;
   label: string;
-  variant?: "micro" | "serif";
+  variant?: "micro" | "serif" | "outline";
   className?: string;
 };
 

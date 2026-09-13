@@ -84,3 +84,8 @@
 .bandCta {
   margin-top: 30px;
 }
+
+/* Le bloc « Ma façon de travailler » est posé un peu plus large que la page. */
+.workingSection {
+  --gutter: 67px;
+}

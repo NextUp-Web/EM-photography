@@ -1,0 +1,29 @@
+.gallerySection {
+  padding-block: 22px 20px;
+}
+
+.qualitiesSection {
+  padding-block: 30px 44px;
+}
+
+.blocks {
+  margin-top: clamp(26px, 2.6vw, 37px);
+  column-gap: clamp(28px, 5.3vw, 77px);
+}
+
+.gallery {
+  margin-top: clamp(22px, 2.2vw, 32px);
+}
+
+.qualities {
+  margin-top: clamp(30px, 3.2vw, 46px);
+}
+
+.ctaSection {
+  padding-block: clamp(18px, 1.6vw, 23px);
+}
+
+.ctaInner {
+  display: flex;
+  justify-content: center;
+}

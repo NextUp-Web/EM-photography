@@ -1,60 +1,71 @@
-# Assets à fournir
+# Fabrication des visuels
 
-Le dépôt était vide : **aucune photographie ni logo n'a été livré**. Le site est
-complet et compile, mais chaque emplacement d'image est pour l'instant une
-réserve grise affichant le chemin attendu.
+Le site est reconstruit à partir des **maquettes PNG** fournies. Aucune
+photographie source séparée n'a été livrée : le logo et toutes les
+photographies affichées sont donc **extraits des maquettes elles-mêmes**.
 
-Déposez simplement les fichiers aux chemins ci-dessous : ils sont détectés
-automatiquement au chargement, **aucune modification de code n'est nécessaire**.
+## Références
 
-## Logo (prioritaire)
+Les fichiers d'origine restent intacts dans `public/images/` (noms avec
+espaces et accents). Des copies aux noms propres servent de référence de
+travail :
 
-Le monogramme EM n'est jamais recréé en typographie. Fournissez le fichier
-original — SVG de préférence (`.png` ou `.webp` acceptés) :
+```
+public/references/
+    moodboard.png   →  planche d'identité (logo)
+    home.png        →  /
+    portfolio.png   →  /portfolio
+    weddings.png    →  /mariages
+    civil.png       →  /ceremonies-civiles
+    birthdays.png   →  /anniversaires
+    maternity.png   →  /maternite-naissance
+    about.png       →  /a-propos
+    contact.png     →  /contact
+```
 
-- `public/brand/em-logo-black.svg` — logo noir, utilisé dans le header
-- `public/brand/em-logo-white.svg` — logo blanc, utilisé dans le footer
+## Extraction
 
-Si seule la version noire existe, elle peut être déclinée en blanc via le SVG
-sans toucher au tracé.
+```bash
+npm install -D sharp        # seule dépendance du script
+node scripts/extract-assets.js
+```
 
-## Photographies
+Le script produit :
 
-Toutes en noir et blanc, cadrage conforme aux maquettes.
+- **`public/brand/em-logo-black.png` / `em-logo-white.png`** — le monogramme EM
+  est détouré de la planche d'identité par seuillage sur la luminance, puis
+  recadré sur sa boîte d'encre. Le tracé, l'entrelacement des lettres et les
+  proportions d'origine sont conservés ; aucune police ne le remplace.
+- **`public/images/<page>/*.jpg`** — chaque zone photographique des maquettes,
+  recadrée aux coordonnées relevées, agrandie ×3 (lanczos) puis légèrement
+  accentuée.
+- **Les bandeaux d'ouverture** (`*/hero.jpg`) demandent un traitement à part :
+  les maquettes y incrustent le titre dans la photographie. Le texte est isolé
+  par ouverture morphologique (les fines structures claires de la zone de
+  titre), puis comblé par diffusion de Laplace. La composition complète du
+  bandeau est ainsi récupérée sans jamais dupliquer le texte à l'écran.
+- **Les voiles sombres** (`shared/dark-silk.jpg`, `maternity/experience.jpg`…)
+  sont découpés dans des zones de tulle sans texte, puis étirés en fond.
 
-### Accueil — `public/images/home/`
-`hero.jpg` · `mariages.jpg` · `ceremonies-civiles.jpg` · `anniversaires.jpg` ·
-`maternite-naissance.jpg` · `behind-the-lens.jpg`
+## Limite connue
 
-### Portfolio — `public/images/portfolio/`
-`hero.jpg` · `mariages.jpg` · `ceremonies-civiles.jpg` · `anniversaires.jpg` ·
-`maternite-naissance.jpg` · `couples.jpg`
+Les maquettes ne font que 971 px de large : les visuels extraits sont donc
+plus doux qu'une photographie d'origine, en particulier sur les bandeaux
+pleine largeur. Fournir les photographies d'origine (mêmes cadrages) aux
+mêmes chemins remplacerait les extractions sans toucher au code.
 
-### Mariages — `public/images/weddings/`
-`hero.jpg` · `gallery-01.jpg` → `gallery-05.jpg` · `inclus-preparatifs.jpg` ·
-`inclus-ceremonie.jpg` · `inclus-couple.jpg` · `inclus-details.jpg`
+## Contrôle visuel
 
-### Cérémonies civiles — `public/images/civil/`
-`hero.jpg` · `bloc-ceremonie.jpg` · `bloc-couple.jpg` · `bloc-reportage.jpg` ·
-`gallery-01.jpg` → `gallery-04.jpg`
+```bash
+npm run dev
+node scripts/shoot.js            # capture chaque page à 1440 px
+                                 # et la juxtapose à sa maquette
+node scripts/compare.js home     # géométrie des blocs, maquette vs rendu
+node scripts/bands.js home       # hauteurs de section
+node scripts/rows.js home 432 810  # lignes de texte d'une tranche
+node scripts/responsive.js       # débordements horizontaux, 1920 → 375
+```
 
-### Anniversaires — `public/images/birthdays/`
-`hero.jpg` · `mosaic-01.jpg` → `mosaic-06.jpg`
-
-### Maternité & Naissance — `public/images/maternity/`
-`hero.jpg` · `gallery-01.jpg` → `gallery-05.jpg`
-
-### À propos — `public/images/about/`
-`hero.jpg` · `portrait.jpg` · `working.jpg`
-
-### Contact — `public/images/contact/`
-`hero.jpg` · `mariages.jpg` · `ceremonies-civiles.jpg` · `anniversaires.jpg` ·
-`maternite-naissance.jpg` · `couples.jpg` · `closing-01.jpg` → `closing-05.jpg`
-
-## Optionnel
-
-Ces deux fichiers enrichissent des fonds déjà corrects sans eux :
-
-- `public/images/shared/dark-silk.jpg` — voile sombre derrière les bandeaux noirs
-- `public/images/portfolio/experience.jpg` — paysage délavé derrière le bloc
-  « Une expérience simple, élégante, intemporelle »
+Les scripts de capture demandent `npm install -D playwright` (volontairement
+hors `package.json` pour ne pas télécharger de navigateur au déploiement) et
+utilisent le Chromium déjà présent via `executablePath`.

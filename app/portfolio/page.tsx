@@ -5,7 +5,6 @@ import StepColumns from "@/components/sections/StepColumns";
 import DarkBand from "@/components/sections/DarkBand";
 import EditorialLink from "@/components/ui/EditorialLink";
 import Reveal from "@/components/ui/Reveal";
-import { assetExists } from "@/lib/assets";
 import { CATEGORIES } from "@/lib/data";
 import styles from "./page.module.css";
 
@@ -39,18 +38,15 @@ const STEPS = [
 ];
 
 export default function PortfolioPage() {
-  const experienceStyle = assetExists(EXPERIENCE_BG)
-    ? ({ "--experience-bg": `url(${EXPERIENCE_BG})` } as React.CSSProperties)
-    : undefined;
+  const experienceStyle = { "--experience-bg": `url(${EXPERIENCE_BG})` } as React.CSSProperties;
 
   return (
     <>
       <Hero
         image="/images/portfolio/hero.jpg"
         alt="Mariée de dos, voile porté par le vent face aux montagnes"
-        ratio={2.82}
+        ratio={2.682}
         title="Portfolio"
-        rule={false}
         subtitle={[
           "Wedding stories, civil ceremonies, anniversaries,",
           "motherhood & the in-between moments.",

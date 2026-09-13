@@ -1,3 +1,7 @@
+.wrap :global(.eyebrow) {
+  font-size: var(--fs-eyebrow-lg);
+}
+
 .wrap {
   display: flex;
   flex-direction: column;
@@ -6,7 +10,7 @@
 }
 
 .heading {
-  margin-top: 24px;
+  margin-top: 10px;
   max-width: 48ch;
 }
 
@@ -28,8 +32,10 @@
 }
 
 .lead {
-  margin-top: 18px;
-  max-width: 62ch;
+  margin-top: 8px;
+  max-width: min(100%, 1000px);
+  font-size: var(--fs-lead);
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {

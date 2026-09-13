@@ -53,7 +53,7 @@ export default function AProposPage() {
       <Hero
         image="/images/about/hero.jpg"
         alt="Emilie photographiant face aux montagnes"
-        ratio={3.4}
+        ratio={3.314}
         position="left center"
         title="À propos"
         subtitle={["Derrière l’objectif, une approche sensible et intemporelle."]}
@@ -106,15 +106,15 @@ export default function AProposPage() {
         </div>
       </section>
 
-      <section className="section section--ivory">
+      <section className={`section section--white ${styles.workingSection}`}>
         <div className="shell">
           <SplitFeature
             image="/images/about/working.jpg"
             alt="Emilie en reportage, appareil à la main"
-            ratio={2.6}
+            ratio={2.09}
             sizes="(max-width: 900px) 100vw, 42vw"
-            columns="minmax(0, 1.18fr) minmax(0, 1fr)"
-            gap="clamp(32px, 4vw, 60px)"
+            columns="minmax(0, 418fr) minmax(0, 400fr)"
+            gap="clamp(28px, 4.3vw, 62px)"
             eyebrow="Ma façon de travailler"
             heading={["Observer, guider, préserver."]}
             headingLevel="h2"

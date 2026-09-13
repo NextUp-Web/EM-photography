@@ -40,7 +40,7 @@ export default function HomePage() {
       <Hero
         image="/images/home/hero.jpg"
         alt="Mariés enlacés face à un lac de montagne"
-        ratio={2.74}
+        ratio={2.705}
         display={["Documenting love", "in its softest form"]}
         meta="Weddings · Civil ceremonies · Birthdays · Newborn"
       />
@@ -72,15 +72,15 @@ export default function HomePage() {
         </Reveal>
       </DarkBand>
 
-      <section className="section section--ivory">
+      <section className={`section section--ivory ${styles.behindSection}`}>
         <div className="shell shell--wide">
           <SplitFeature
             image="/images/home/behind-the-lens.jpg"
             alt="Emilie photographiant face aux montagnes"
-            ratio={1.84}
+            ratio={1.766}
             sizes="(max-width: 900px) 100vw, 40vw"
-            columns="minmax(0, 0.82fr) minmax(0, 1fr)"
-            gap="clamp(32px, 6vw, 92px)"
+            columns="minmax(0, 378fr) minmax(0, 325fr)"
+            gap="clamp(32px, 7.4vw, 107px)"
             eyebrow="Behind the lens"
             heading={["For the moments you", "never want to forget."]}
             paragraphs={["People, connections and the little in-betweens that make life beautiful."]}

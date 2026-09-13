@@ -25,7 +25,7 @@
 }
 
 .label {
-  margin-top: 16px;
+  margin-top: 14px;
   font-family: var(--font-sans);
   font-size: var(--fs-label);
   font-weight: 400;
@@ -37,9 +37,9 @@
 }
 
 .title {
-  margin-top: 20px;
+  margin-top: 13px;
   font-family: var(--font-serif);
-  font-size: clamp(0.9375rem, 1.45vw, 1.3125rem);
+  font-size: clamp(0.9375rem, 1.58vw, 1.425rem);
   font-weight: 400;
   letter-spacing: 0.14em;
   line-height: 1.4;
@@ -49,12 +49,12 @@
 }
 
 .rule {
-  margin-top: 12px;
+  margin-top: 14px;
   color: var(--stone);
 }
 
 .caption {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 @media (max-width: 1024px) {

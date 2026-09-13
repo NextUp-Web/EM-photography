@@ -114,7 +114,7 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
-          rows={5}
+          rows={3}
           required
           placeholder="Parlez-moi de votre projet, vos envies, vos idées..."
           className={`${styles.input} ${styles.textarea}`}

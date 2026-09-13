@@ -1,3 +1,5 @@
+@layer reset, base;
+
 /* ============================================================
    EM PHOTOGRAPHY — design tokens, reset, base type, primitives
    Reference viewport: 1440px
@@ -12,8 +14,9 @@
   --white: #ffffff;
 
   /* Neutral surfaces read off the reference boards */
-  --ivory: #f7f5f2;
+  --ivory: #f5f4f1;
   --ivory-deep: #efece8;
+  --paper: #faf9f7; /* bandes claires de la maquette */
   --hairline: #e2ded9;
   --hairline-dark: rgba(255, 255, 255, 0.16);
 
@@ -23,16 +26,19 @@
   --font-script: var(--font-parisienne), "Parisienne", cursive;
 
   --fs-micro: 0.625rem; /* 10px  — footer micro copy */
-  --fs-nav: 0.6875rem; /* 11px  — navigation */
-  --fs-eyebrow: 0.6875rem; /* 11px  — section eyebrows */
-  --fs-label: 0.75rem; /* 12px  — category labels */
-  --fs-caption: 0.8125rem; /* 13px */
+  --fs-nav: 0.7625rem; /* 12.2px — navigation */
+  --fs-eyebrow: 0.6875rem; /* 11px — surtitres en ligne */
+  --fs-eyebrow-lg: 0.79rem; /* 12.6px — surtitres de section centrés */
+  --fs-link: 0.9rem; /* 14.4px — micro-liens soulignés */
+  --fs-label: 0.925rem; /* 14.8px — category labels */
+  --fs-caption: 1rem; /* 16px */
   --fs-body: 0.9375rem; /* 15px */
+  --fs-lead: 1.0625rem; /* 17px — chapeau centré sous les titres */
   --fs-h4: clamp(1.125rem, 1.5vw, 1.375rem); /* 18 → 22 */
-  --fs-h3: clamp(1.5rem, 2.15vw, 1.9375rem); /* 24 → 31 */
+  --fs-h3: clamp(1.5rem, 2.4vw, 2.15rem); /* 24 → 34.5 */
   --fs-h2: clamp(1.625rem, 2.7vw, 2.375rem); /* 26 → 38 */
-  --fs-display: clamp(1.5rem, 2.9vw, 2.5rem); /* 24 → 40 — home hero */
-  --fs-title: clamp(2rem, 4.6vw, 4.125rem); /* 32 → 66 — page hero */
+  --fs-display: clamp(1.375rem, 2.36vw, 2.125rem); /* 22 → 34 — bandeau accueil */
+  --fs-title: clamp(2rem, 4.45vw, 4rem); /* 32 → 64 — bandeau de page */
 
   --ls-nav: 0.24em;
   --ls-eyebrow: 0.3em;
@@ -41,21 +47,22 @@
   --ls-display: 0.12em;
 
   /* ---- Layout ---- */
-  --gutter: 48px; /* full-bleed grids sit close to the edge */
-  --gutter-wide: 96px; /* footer + split features */
-  --gutter-header: 160px; /* the header is inset further than the page */
+  --gutter: 46px; /* les grilles pleine largeur affleurent le bord */
+  --gutter-wide: 145px; /* pied de page + blocs image/texte */
+  --gutter-header: 166px; /* le header est plus rentré que la page */
   --page-max: 1560px;
   --measure: 1180px; /* centred editorial text column */
 
-  --header-h: 112px;
-  --logo-h: 70px;
+  --header-h: 108px;
+  --logo-h: 88px;
   --logo-h-footer: 64px;
 
   --space-xs: 16px;
   --space-sm: 30px;
   --space-md: 48px;
   --space-lg: 56px;
-  --space-section: 50px;
+  --space-section: 36px;
+  --space-section-end: 27px;
   --space-section-lg: 68px;
 
   /* ---- Hero proportions (width / height) ---- */
@@ -69,6 +76,8 @@
   --dur-reveal: 820ms;
   --dur-hover: 900ms;
 }
+
+@layer reset {
 
 /* ============================================================
    Reset
@@ -161,6 +170,8 @@ textarea {
   left: 0;
 }
 
+}
+
 @layer base {
 
 /* ============================================================
@@ -183,7 +194,7 @@ textarea {
 }
 
 .section {
-  padding-block: var(--space-section);
+  padding-block: var(--space-section) var(--space-section-end);
 }
 
 .section--lg {
@@ -203,7 +214,11 @@ textarea {
 }
 
 .section--white {
-  background: var(--white);
+  background: var(--paper);
+}
+
+.section--bright {
+  background: #fdfdfc;
 }
 
 /* Black editorial band. The silk texture is an optional asset:
@@ -223,12 +238,16 @@ textarea {
   background-image: var(--dark-texture, none);
   background-size: cover;
   background-position: center;
-  opacity: 0.55;
+  opacity: var(--dark-texture-opacity, 0.55);
 }
 
 .section--dark .eyebrow,
 .section--dark .caption {
   color: var(--mist);
+}
+
+.section--dark .label {
+  color: var(--white);
 }
 
 /* ============================================================
@@ -257,7 +276,7 @@ textarea {
 
 .caption {
   font-size: var(--fs-caption);
-  line-height: 1.75;
+  line-height: 1.5;
   color: var(--charcoal);
 }
 
@@ -291,7 +310,7 @@ textarea {
   font-family: var(--font-serif);
   font-size: var(--fs-h3);
   font-weight: 400;
-  line-height: 1.32;
+  line-height: 1.45;
 }
 
 .h4 {
@@ -303,7 +322,7 @@ textarea {
 
 .body {
   font-size: var(--fs-body);
-  line-height: 1.85;
+  line-height: 1.5;
   color: var(--charcoal);
 }
 
@@ -342,7 +361,7 @@ textarea {
   height: 1px;
   border: 0;
   background: currentColor;
-  opacity: 0.45;
+  opacity: 0.55;
   margin: 0;
 }
 
@@ -372,7 +391,7 @@ textarea {
   align-items: center;
   gap: 12px;
   font-family: var(--font-sans);
-  font-size: var(--fs-nav);
+  font-size: var(--fs-link);
   letter-spacing: var(--ls-nav);
   text-transform: uppercase;
   padding-bottom: 9px;
@@ -421,19 +440,29 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  padding: 19px 34px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 15px 30px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   font-family: var(--font-sans);
   font-size: var(--fs-nav);
   letter-spacing: var(--ls-nav);
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--black);
   transition: background-color var(--dur-hover) var(--ease-premium),
     border-color var(--dur-hover) var(--ease-premium);
 }
 
 .outline-cta:hover,
 .outline-cta:focus-visible {
+  border-color: rgba(0, 0, 0, 0.6);
+}
+
+.section--dark .outline-cta {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: var(--white);
+}
+
+.section--dark .outline-cta:hover,
+.section--dark .outline-cta:focus-visible {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.75);
 }
@@ -451,6 +480,36 @@ textarea {
    Figure — real photography, or a reserved slot when the asset
    has not been supplied yet. Space is preserved either way.
    ============================================================ */
+
+/* CTA plein — rectangle noir de la page Cérémonies civiles */
+.solid-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-width: 347px;
+  padding: 18px 38px;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  letter-spacing: 0.01em;
+  transition: background-color var(--dur-hover) var(--ease-premium);
+}
+
+.solid-cta:hover,
+.solid-cta:focus-visible {
+  background: #1b1a18;
+}
+
+.solid-cta__arrow {
+  display: inline-block;
+  transition: transform var(--dur-hover) var(--ease-premium);
+}
+
+.solid-cta:hover .solid-cta__arrow {
+  transform: translateX(7px);
+}
 
 .figure {
   position: relative;
@@ -565,46 +624,7 @@ a:focus-visible .figure--zoom img {
    Responsive
    ============================================================ */
 
-@media (max-width: 1280px) {
-  :root {
-    --gutter: 40px;
-    --gutter-wide: 72px;
-    --gutter-header: 96px;
-    --header-h: 100px;
-    --logo-h: 62px;
-    --space-section: 48px;
-    --space-section-lg: 64px;
-  }
-}
-
-@media (max-width: 1024px) {
-  :root {
-    --gutter: 32px;
-    --gutter-wide: 48px;
-    --gutter-header: 48px;
-    --header-h: 92px;
-    --logo-h: 56px;
-    --space-section: 56px;
-    --space-section-lg: 70px;
-    --space-lg: 54px;
-  }
-}
-
 @media (max-width: 768px) {
-  :root {
-    --gutter: 22px;
-    --gutter-wide: 22px;
-    --gutter-header: 22px;
-    --header-h: 76px;
-    --logo-h: 46px;
-    --logo-h-footer: 58px;
-    --space-section: 52px;
-    --space-section-lg: 62px;
-    --space-lg: 46px;
-    --space-md: 36px;
-    --fs-body: 0.9375rem;
-  }
-
   .columns--3,
   .columns--4 {
     grid-template-columns: 1fr;
@@ -635,12 +655,59 @@ a:focus-visible .figure--zoom img {
   }
 }
 
+}
+
+/* ============================================================
+   Jetons responsives — hors @layer, comme le :root de tête
+   ============================================================ */
+
+@media (max-width: 1280px) {
+  :root {
+    --gutter: 40px;
+    --gutter-wide: 112px;
+    --gutter-header: 128px;
+    --header-h: 100px;
+    --logo-h: 80px;
+    --space-section: 34px;
+    --space-section-end: 26px;
+    --space-section-lg: 62px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 32px;
+    --gutter-wide: 64px;
+    --gutter-header: 48px;
+    --header-h: 92px;
+    --logo-h: 68px;
+    --space-section: 40px;
+    --space-section-end: 34px;
+    --space-section-lg: 66px;
+    --space-lg: 54px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 22px;
+    --gutter-wide: 22px;
+    --gutter-header: 22px;
+    --header-h: 76px;
+    --logo-h: 52px;
+    --logo-h-footer: 58px;
+    --space-section: 44px;
+    --space-section-end: 40px;
+    --space-section-lg: 58px;
+    --space-lg: 46px;
+    --space-md: 36px;
+  }
+}
+
 @media (max-width: 430px) {
   :root {
     --gutter: 18px;
     --gutter-wide: 18px;
     --gutter-header: 18px;
   }
-}
-
 }

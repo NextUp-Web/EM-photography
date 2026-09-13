@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 };
 
 const GALLERY = [
-  { src: "/images/weddings/gallery-01.jpg", alt: "Mariée de dos face au lac", weight: 1 },
-  { src: "/images/weddings/gallery-02.jpg", alt: "Alliances posées sur un livre", weight: 1 },
-  { src: "/images/weddings/gallery-03.jpg", alt: "Les mariés front contre front", weight: 1.16 },
-  { src: "/images/weddings/gallery-04.jpg", alt: "Table de réception aux chandelles", weight: 1 },
-  { src: "/images/weddings/gallery-05.jpg", alt: "Terrasse fleurie face aux montagnes", weight: 1 },
+  { src: "/images/weddings/gallery-01.jpg", alt: "Mariée de dos face au lac", weight: 187 },
+  { src: "/images/weddings/gallery-02.jpg", alt: "Alliances posées sur un livre", weight: 183 },
+  { src: "/images/weddings/gallery-03.jpg", alt: "Les mariés front contre front", weight: 222 },
+  { src: "/images/weddings/gallery-04.jpg", alt: "Table de réception aux chandelles", weight: 183 },
+  { src: "/images/weddings/gallery-05.jpg", alt: "Terrasse fleurie face aux montagnes", weight: 184 },
 ];
 
 const INCLUDED = [
@@ -71,7 +71,7 @@ export default function MariagesPage() {
       <Hero
         image="/images/weddings/hero.jpg"
         alt="Mariés enlacés sur une terrasse face au lac"
-        ratio={2.8}
+        ratio={2.639}
         title="Mariages"
         subtitle={["Des histoires d’amour documentées avec délicatesse."]}
       />
@@ -90,7 +90,7 @@ export default function MariagesPage() {
         </div>
       </section>
 
-      <Gallery items={GALLERY} heightRatio={0.268} maxHeight={420} label="Galerie mariages" />
+      <Gallery items={GALLERY} heightRatio={0.2554} maxHeight={480} label="Galerie mariages" />
 
       <section className="section section--ivory">
         <div className={`shell ${styles.included}`}>

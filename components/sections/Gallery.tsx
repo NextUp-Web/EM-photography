@@ -11,6 +11,9 @@ type GalleryProps = {
   heightRatio: number;
   minHeight?: number;
   maxHeight?: number;
+  /** la maquette pose parfois la bande dans la gouttière plutôt qu’à fond perdu */
+  inset?: boolean;
+  gap?: string;
   className?: string;
   label?: string;
 };
@@ -21,6 +24,8 @@ export default function Gallery({
   heightRatio,
   minHeight = 180,
   maxHeight = 420,
+  inset = false,
+  gap,
   className,
   label,
 }: GalleryProps) {
@@ -30,8 +35,8 @@ export default function Gallery({
   return (
     <section
       aria-label={label}
-      className={[styles.strip, className].filter(Boolean).join(" ")}
-      style={{ gridTemplateColumns: columns, height }}
+      className={[styles.strip, inset ? styles.inset : "", className].filter(Boolean).join(" ")}
+      style={{ gridTemplateColumns: columns, height, ...(gap ? { gap } : null) }}
     >
       {items.map((item, index) =>
         item.kind === "note" ? (

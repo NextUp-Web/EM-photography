@@ -3,11 +3,11 @@
 }
 
 .sm {
-  padding-block: clamp(38px, 3.9vw, 56px);
+  padding-block: clamp(26px, 2.4vw, 35px);
 }
 
 .md {
-  padding-block: clamp(52px, 5.6vw, 80px);
+  padding-block: clamp(34px, 3vw, 43px);
 }
 
 .lg {

@@ -13,10 +13,25 @@
   width: min(100%, 186px);
 }
 
+.plain > * {
+  border-left: 0;
+  padding-inline: 0;
+}
+
+.icon {
+  display: block;
+  color: var(--black);
+}
+
+.rule {
+  margin-top: 16px;
+  color: var(--stone);
+}
+
 .title {
-  margin-top: 22px;
-  text-indent: var(--ls-label);
-  font-size: var(--fs-micro);
+  margin-top: 11px;
+  text-indent: 0.2em;
+  font-size: var(--fs-label);
   letter-spacing: 0.2em;
 }
 

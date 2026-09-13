@@ -35,7 +35,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: clamp(26px, 3.6vw, 54px);
+  gap: clamp(26px, 4.7vw, 68px);
 }
 
 .navEnd {

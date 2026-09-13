@@ -20,7 +20,7 @@
 }
 
 .titleSerif {
-  margin-top: 16px;
+  margin-top: 7px;
   font-family: var(--font-serif);
   font-size: clamp(1.0625rem, 1.6vw, 1.4375rem);
   font-weight: 400;
@@ -39,7 +39,7 @@
 }
 
 .rule {
-  margin-top: 14px;
+  margin-top: 20px;
   color: var(--stone);
 }
 
@@ -49,4 +49,8 @@
 
 :global(.section--dark) .rule {
   color: var(--white);
+}
+
+:global(.section--dark) .number {
+  color: rgba(255, 255, 255, 0.78);
 }
