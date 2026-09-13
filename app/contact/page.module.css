@@ -1,0 +1,156 @@
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hairline divider between the editorial column and the form, as per the
+   reference. */
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 96px);
+  align-items: start;
+}
+
+.intro {
+  padding-right: clamp(0px, 2vw, 34px);
+}
+
+.introHeading {
+  margin-top: 22px;
+}
+
+.intro .introRule {
+  margin-top: 26px;
+  color: var(--charcoal);
+}
+
+.introBody {
+  margin-top: 26px;
+  max-width: 46ch;
+}
+
+.signature {
+  margin-top: 34px;
+}
+
+.signatureName {
+  margin-top: 10px;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.24em;
+  color: var(--charcoal);
+}
+
+.formWrap {
+  padding-left: clamp(0px, 4vw, 64px);
+  border-left: 1px solid var(--hairline);
+}
+
+.strip {
+  margin-top: clamp(28px, 2.8vw, 40px);
+}
+
+.bandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bandMeta {
+  margin-top: 18px;
+}
+
+.bandInner .bandRule {
+  margin-top: 20px;
+}
+
+.infos {
+  display: grid;
+  width: 100%;
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(16px, 1.6vw, 24px);
+}
+
+.infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: clamp(46px, 3.6vw, 52px);
+  aspect-ratio: 1;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  color: var(--charcoal);
+}
+
+.infoBody {
+  min-width: 0;
+}
+
+.infoTitle {
+  margin-top: 10px;
+}
+
+.infoTitleSmall {
+  margin-top: 10px;
+  font-size: var(--fs-body);
+  color: var(--black);
+}
+
+.infoLink {
+  transition: color 520ms var(--ease-premium);
+}
+
+.infoLink:hover,
+.infoLink:focus-visible {
+  color: var(--charcoal);
+}
+
+.infoMeta {
+  margin-top: 8px;
+}
+
+.infoBody .infoRule {
+  margin-top: 20px;
+  color: var(--stone);
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    padding-right: 0;
+  }
+
+  .formWrap {
+    padding-left: 0;
+    padding-top: 34px;
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+@media (max-width: 768px) {
+  .introHeading,
+  .introBody {
+    margin-top: 18px;
+  }
+
+  .intro .introRule {
+    margin-top: 20px;
+  }
+
+  .signature {
+    margin-top: 26px;
+  }
+}

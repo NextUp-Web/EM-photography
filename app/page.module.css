@@ -1,0 +1,80 @@
+.homeGrid {
+  margin-top: clamp(28px, 2.4vw, 34px);
+}
+
+.bandInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.aboutLink {
+  margin-top: 30px;
+}
+
+.palette {
+  padding-block: clamp(34px, 3.2vw, 46px);
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(22px, 3vw, 44px);
+  margin-top: 26px;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.chip {
+  display: block;
+  width: clamp(48px, 4.9vw, 71px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.swatchName {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  color: var(--charcoal);
+}
+
+@media (max-width: 768px) {
+  .aboutLink {
+    margin-top: 26px;
+  }
+
+  .swatches {
+    margin-top: 26px;
+  }
+}
+
+/* Keep all five swatches on one row at phone widths. */
+@media (max-width: 520px) {
+  .swatches {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .swatch {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .chip {
+    width: clamp(36px, 10vw, 48px);
+  }
+
+  .swatchName {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-indent: 0.12em;
+  }
+}

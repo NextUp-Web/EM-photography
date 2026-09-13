@@ -1,0 +1,28 @@
+.logo {
+  display: block;
+  height: var(--logo-size, var(--logo-h));
+}
+
+.image {
+  height: 100%;
+  width: auto;
+}
+
+.pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1.7;
+  padding-inline: 10px;
+  box-shadow: inset 0 0 0 1px currentColor;
+  opacity: 0.45;
+}
+
+.pendingLabel {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

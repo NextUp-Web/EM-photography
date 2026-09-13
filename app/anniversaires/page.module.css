@@ -1,0 +1,71 @@
+/* Editorial mosaic: alternating landscape, portrait and square crops on a
+   three-column grid. */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: clamp(120px, 11vw, 168px);
+  gap: clamp(14px, 1.5vw, 22px);
+  margin-top: clamp(30px, 3.4vw, 46px);
+}
+
+.cell {
+  min-width: 0;
+}
+
+.cellFigure {
+  height: 100%;
+}
+
+.wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.square {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.quoteWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quoteWrap .quoteRule {
+  margin-top: 28px;
+}
+
+@media (max-width: 768px) {
+  .mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 28vw;
+  }
+
+  .wide {
+    grid-column: span 2;
+  }
+
+  .tall {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 430px) {
+  .mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 56vw;
+  }
+
+  .wide,
+  .tall,
+  .square {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}

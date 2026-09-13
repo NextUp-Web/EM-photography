@@ -1,0 +1,39 @@
+.list {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.media {
+  width: min(100%, 186px);
+}
+
+.title {
+  margin-top: 22px;
+  text-indent: var(--ls-label);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+}
+
+.caption {
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .media {
+    width: min(100%, 220px);
+  }
+
+  .title {
+    margin-top: 16px;
+  }
+
+  .caption {
+    margin-top: 12px;
+  }
+}

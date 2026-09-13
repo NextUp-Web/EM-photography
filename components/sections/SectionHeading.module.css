@@ -1,0 +1,45 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  margin-top: 24px;
+  max-width: 48ch;
+}
+
+.wrap > .heading:first-child {
+  margin-top: 0;
+}
+
+.tracked {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  font-size: clamp(1.125rem, 1.95vw, 1.75rem);
+  max-width: none;
+}
+
+.rule {
+  margin-top: 22px;
+  color: var(--stone);
+}
+
+.lead {
+  margin-top: 18px;
+  max-width: 62ch;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    margin-top: 16px;
+    max-width: none;
+  }
+
+  .rule,
+  .lead {
+    margin-top: 18px;
+  }
+}

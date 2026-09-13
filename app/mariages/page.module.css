@@ -1,0 +1,24 @@
+.included {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.includedHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.includedHead .includedRule {
+  margin-top: 18px;
+  color: var(--charcoal);
+}
+
+.includedCols {
+  margin-top: clamp(30px, 3.4vw, 46px);
+}
+
+.steps {
+  margin-top: clamp(32px, 3.8vw, 52px);
+}

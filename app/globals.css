@@ -1,0 +1,646 @@
+/* ============================================================
+   EM PHOTOGRAPHY — design tokens, reset, base type, primitives
+   Reference viewport: 1440px
+   ============================================================ */
+
+:root {
+  /* ---- Palette (direction artistique) ---- */
+  --black: #000000;
+  --charcoal: #61605e;
+  --stone: #969592;
+  --mist: #cac6c1;
+  --white: #ffffff;
+
+  /* Neutral surfaces read off the reference boards */
+  --ivory: #f7f5f2;
+  --ivory-deep: #efece8;
+  --hairline: #e2ded9;
+  --hairline-dark: rgba(255, 255, 255, 0.16);
+
+  /* ---- Type ---- */
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-jost), "Jost", "Helvetica Neue", Arial, sans-serif;
+  --font-script: var(--font-parisienne), "Parisienne", cursive;
+
+  --fs-micro: 0.625rem; /* 10px  — footer micro copy */
+  --fs-nav: 0.6875rem; /* 11px  — navigation */
+  --fs-eyebrow: 0.6875rem; /* 11px  — section eyebrows */
+  --fs-label: 0.75rem; /* 12px  — category labels */
+  --fs-caption: 0.8125rem; /* 13px */
+  --fs-body: 0.9375rem; /* 15px */
+  --fs-h4: clamp(1.125rem, 1.5vw, 1.375rem); /* 18 → 22 */
+  --fs-h3: clamp(1.5rem, 2.15vw, 1.9375rem); /* 24 → 31 */
+  --fs-h2: clamp(1.625rem, 2.7vw, 2.375rem); /* 26 → 38 */
+  --fs-display: clamp(1.5rem, 2.9vw, 2.5rem); /* 24 → 40 — home hero */
+  --fs-title: clamp(2rem, 4.6vw, 4.125rem); /* 32 → 66 — page hero */
+
+  --ls-nav: 0.24em;
+  --ls-eyebrow: 0.3em;
+  --ls-label: 0.22em;
+  --ls-title: 0.18em;
+  --ls-display: 0.12em;
+
+  /* ---- Layout ---- */
+  --gutter: 48px; /* full-bleed grids sit close to the edge */
+  --gutter-wide: 96px; /* footer + split features */
+  --gutter-header: 160px; /* the header is inset further than the page */
+  --page-max: 1560px;
+  --measure: 1180px; /* centred editorial text column */
+
+  --header-h: 112px;
+  --logo-h: 70px;
+  --logo-h-footer: 64px;
+
+  --space-xs: 16px;
+  --space-sm: 30px;
+  --space-md: 48px;
+  --space-lg: 56px;
+  --space-section: 50px;
+  --space-section-lg: 68px;
+
+  /* ---- Hero proportions (width / height) ---- */
+  --hero-home: 2.74;
+  --hero-page: 2.8;
+  --hero-about: 3.4;
+  --hero-contact: 3.1;
+
+  /* ---- Motion ---- */
+  --ease-premium: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-reveal: 820ms;
+  --dur-hover: 900ms;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--black);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  line-height: 1.8;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--charcoal);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--mist);
+  color: var(--black);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--black);
+  color: var(--white);
+  padding: 14px 22px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-nav);
+  letter-spacing: var(--ls-nav);
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+@layer base {
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+
+.shell {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.shell--wide {
+  padding-inline: var(--gutter-wide);
+}
+
+.shell--measure {
+  max-width: calc(var(--measure) + var(--gutter) * 2);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section--lg {
+  padding-block: var(--space-section-lg);
+}
+
+.section--sm {
+  padding-block: var(--space-lg);
+}
+
+.section--ivory {
+  background: var(--ivory);
+}
+
+.section--deep {
+  background: var(--ivory-deep);
+}
+
+.section--white {
+  background: var(--white);
+}
+
+/* Black editorial band. The silk texture is an optional asset:
+   when absent the band renders as solid black, exactly as intended. */
+.section--dark {
+  position: relative;
+  background-color: var(--black);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.section--dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--dark-texture, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+}
+
+.section--dark .eyebrow,
+.section--dark .caption {
+  color: var(--mist);
+}
+
+/* ============================================================
+   Typography primitives
+   ============================================================ */
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--stone);
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--black);
+}
+
+.caption {
+  font-size: var(--fs-caption);
+  line-height: 1.75;
+  color: var(--charcoal);
+}
+
+.display {
+  font-family: var(--font-serif);
+  font-size: var(--fs-display);
+  font-weight: 400;
+  letter-spacing: var(--ls-display);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-title);
+  font-weight: 400;
+  letter-spacing: var(--ls-title);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.h2 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: 0.005em;
+}
+
+.h3 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.32;
+}
+
+.h4 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h4);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.body {
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  color: var(--charcoal);
+}
+
+.script {
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--black);
+}
+
+/* Trailing letter-spacing offsets optical centring — compensate. */
+.centered {
+  text-align: center;
+}
+
+.centered.eyebrow,
+.centered.label {
+  text-indent: var(--ls-eyebrow);
+}
+
+.centered.title {
+  text-indent: var(--ls-title);
+}
+
+.centered.display {
+  text-indent: var(--ls-display);
+}
+
+/* ============================================================
+   Rules & dividers
+   ============================================================ */
+
+.rule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  border: 0;
+  background: currentColor;
+  opacity: 0.45;
+  margin: 0;
+}
+
+.rule--center {
+  margin-inline: auto;
+}
+
+.rule--wide {
+  width: 64px;
+}
+
+.rule--short {
+  width: 28px;
+}
+
+.section--dark .rule {
+  background: var(--white);
+  opacity: 0.6;
+}
+
+/* ============================================================
+   Editorial link (underlined micro-CTA with travelling arrow)
+   ============================================================ */
+
+.editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-nav);
+  letter-spacing: var(--ls-nav);
+  text-transform: uppercase;
+  padding-bottom: 9px;
+  border-bottom: 1px solid currentColor;
+  color: var(--black);
+}
+
+.editorial-link__arrow {
+  display: inline-block;
+  transition: transform var(--dur-hover) var(--ease-premium);
+}
+
+.editorial-link:hover .editorial-link__arrow,
+.editorial-link:focus-visible .editorial-link__arrow {
+  transform: translateX(7px);
+}
+
+.section--dark .editorial-link {
+  color: var(--white);
+}
+
+/* Serif CTA — large editorial link used at the foot of pages */
+.editorial-cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 20px;
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  line-height: 1.25;
+  color: var(--black);
+}
+
+.editorial-cta__arrow {
+  display: inline-block;
+  font-size: 0.62em;
+  transition: transform var(--dur-hover) var(--ease-premium);
+}
+
+.editorial-cta:hover .editorial-cta__arrow,
+.editorial-cta:focus-visible .editorial-cta__arrow {
+  transform: translateX(9px);
+}
+
+/* Outlined rectangular CTA (À propos closing band) */
+.outline-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 19px 34px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  font-family: var(--font-sans);
+  font-size: var(--fs-nav);
+  letter-spacing: var(--ls-nav);
+  text-transform: uppercase;
+  color: var(--white);
+  transition: background-color var(--dur-hover) var(--ease-premium),
+    border-color var(--dur-hover) var(--ease-premium);
+}
+
+.outline-cta:hover,
+.outline-cta:focus-visible {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.outline-cta__arrow {
+  display: inline-block;
+  transition: transform var(--dur-hover) var(--ease-premium);
+}
+
+.outline-cta:hover .outline-cta__arrow {
+  transform: translateX(7px);
+}
+
+/* ============================================================
+   Figure — real photography, or a reserved slot when the asset
+   has not been supplied yet. Space is preserved either way.
+   ============================================================ */
+
+.figure {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--ivory-deep);
+}
+
+.figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure--zoom img {
+  transition: transform 1100ms var(--ease-premium);
+}
+
+.figure--zoom:hover img,
+a:hover .figure--zoom img,
+a:focus-visible .figure--zoom img {
+  transform: scale(1.025);
+}
+
+.figure__pending {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--ivory-deep);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.figure__pending span {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--stone);
+  word-break: break-word;
+}
+
+/* ============================================================
+   Reveal on scroll
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-reveal) var(--ease-premium),
+    transform var(--dur-reveal) var(--ease-premium);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Column sets with hairline separators (used on several pages)
+   ============================================================ */
+
+.columns {
+  display: grid;
+  gap: 0;
+}
+
+.columns > * {
+  padding-inline: clamp(20px, 3vw, 46px);
+  border-left: 1px solid var(--hairline);
+}
+
+.columns > *:first-child {
+  border-left: 0;
+}
+
+.section--dark .columns > * {
+  border-left-color: var(--hairline-dark);
+}
+
+.columns--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.columns--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 1280px) {
+  :root {
+    --gutter: 40px;
+    --gutter-wide: 72px;
+    --gutter-header: 96px;
+    --header-h: 100px;
+    --logo-h: 62px;
+    --space-section: 48px;
+    --space-section-lg: 64px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 32px;
+    --gutter-wide: 48px;
+    --gutter-header: 48px;
+    --header-h: 92px;
+    --logo-h: 56px;
+    --space-section: 56px;
+    --space-section-lg: 70px;
+    --space-lg: 54px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 22px;
+    --gutter-wide: 22px;
+    --gutter-header: 22px;
+    --header-h: 76px;
+    --logo-h: 46px;
+    --logo-h-footer: 58px;
+    --space-section: 52px;
+    --space-section-lg: 62px;
+    --space-lg: 46px;
+    --space-md: 36px;
+    --fs-body: 0.9375rem;
+  }
+
+  .columns--3,
+  .columns--4 {
+    grid-template-columns: 1fr;
+  }
+
+  .columns > * {
+    padding-inline: 0;
+    padding-block: 34px;
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .columns > *:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .columns > *:last-child {
+    padding-bottom: 0;
+  }
+
+  .section--dark .columns > * {
+    border-top-color: var(--hairline-dark);
+  }
+
+  .editorial-cta {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --gutter: 18px;
+    --gutter-wide: 18px;
+    --gutter-header: 18px;
+  }
+}
+
+}

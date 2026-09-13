@@ -1,0 +1,50 @@
+.split {
+  display: grid;
+  align-items: center;
+}
+
+.media {
+  min-width: 0;
+}
+
+.body {
+  min-width: 0;
+  max-width: 58ch;
+}
+
+.heading {
+  margin-top: 20px;
+}
+
+.body > .heading:first-child {
+  margin-top: 0;
+}
+
+.paragraph {
+  margin-top: 24px;
+}
+
+.signature {
+  margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  .body {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    margin-top: 14px;
+  }
+
+  .paragraph {
+    margin-top: 18px;
+  }
+}

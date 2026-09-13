@@ -1,0 +1,31 @@
+.cta {
+  background: var(--ivory);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  margin-top: 24px;
+}
+
+.inner > .heading:first-child {
+  margin-top: 0;
+}
+
+.link {
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    margin-top: 16px;
+  }
+
+  .link {
+    margin-top: 24px;
+  }
+}
