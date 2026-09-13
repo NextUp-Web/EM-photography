@@ -96,10 +96,16 @@ const SCALE = 3;
  * photographie : le texte est retiré par morphologie (les fines structures
  * claires de la zone indiquée sont détectées) puis comblé par diffusion, afin
  * de récupérer la composition entière sans dupliquer le texte à l'écran.
- * [source, x, y, w, h, [zones de texte y0..y1 dans le recadrage]]
+ * [source, x, y, w, h, [zones de texte y0..y1], [rectangles à combler]]
  */
 const HEROES = {
-  "home/hero": ["home", 0, 82, 971, 350, [[165, 290]]],
+  // Le bandeau d'accueil occupe les lignes 74 à 429 de la maquette : le
+  // recadrage doit les prendre toutes, faute de quoi le haut du ciel manque et
+  // la composition remonte d'autant une fois la bande remise à ses proportions.
+  // La maquette y laisse déborder le bas de son lockup (PHOTOGRAPHY mord de
+  // cinq lignes sur la photographie) : ce rectangle est comblé, le lockup étant
+  // affiché par l'en-tête et non par la photographie.
+  "home/hero": ["home", 0, 74, 971, 356, [[173, 298]], [[432, 0, 540, 7]]],
   "portfolio/hero": ["portfolio", 0, 82, 971, 353, [[135, 275]]],
   "weddings/hero": ["weddings", 0, 82, 971, 355, [[170, 290]]],
   "civil/hero": ["civil", 0, 82, 971, 349, [[148, 250]]],
@@ -131,7 +137,7 @@ function morphOpen(src, w, h, r) {
 }
 
 async function extractHeroes() {
-  for (const [dest, [name, left, top, width, height, zones]] of Object.entries(HEROES)) {
+  for (const [dest, [name, left, top, width, height, zones, rects = []]] of Object.entries(HEROES)) {
     const { data, info } = await sharp(path.join(REF, `${name}.png`))
       .extract({ left, top, width, height })
       .grayscale()
@@ -152,6 +158,14 @@ async function extractHeroes() {
         }
       }
     }
+    // Zones comblées telles quelles : contrairement au titre, l'élément à
+    // retirer y est sombre sur fond clair, donc invisible pour l'ouverture.
+    for (const [x0, y0, x1, y1] of rects) {
+      for (let y = Math.max(0, y0); y <= Math.min(h - 1, y1); y++) {
+        for (let x = Math.max(0, x0); x <= Math.min(w - 1, x1); x++) mask[y * w + x] = 1;
+      }
+    }
+
     const grown = new Uint8Array(w * h);
     const R = 2;
     for (let y = 0; y < h; y++) {
@@ -167,12 +181,20 @@ async function extractHeroes() {
       }
     }
 
+    // Diffusion de Laplace sur les seuls pixels masqués. Les voisins sont
+    // réfléchis aux bords, faute de quoi la première et la dernière ligne ne
+    // seraient jamais comblées.
     const f = Float32Array.from(src);
     for (let it = 0; it < 400; it++) {
-      for (let y = 1; y < h - 1; y++) {
-        for (let x = 1; x < w - 1; x++) {
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
           const i = y * w + x;
-          if (grown[i]) f[i] = (f[i - 1] + f[i + 1] + f[i - w] + f[i + w]) / 4;
+          if (!grown[i]) continue;
+          const up = y > 0 ? f[i - w] : f[i + w];
+          const down = y < h - 1 ? f[i + w] : f[i - w];
+          const leftPx = x > 0 ? f[i - 1] : f[i + 1];
+          const rightPx = x < w - 1 ? f[i + 1] : f[i - 1];
+          f[i] = (up + down + leftPx + rightPx) / 4;
         }
       }
     }
@@ -220,10 +242,22 @@ async function extractPhotos() {
 /**
  * Le monogramme EM est isolé de la planche d'identité par détourage sur la
  * luminance : le tracé original est conservé intact, seul le fond ivoire est
- * rendu transparent. Aucune police ne remplace le logo.
+ * rendu transparent. Aucune police ne remplace le logo, et aucune courbe
+ * n'est revectorisée.
+ *
+ * Le détourage est une conversion *linéaire* — alpha = (papier − luminance) /
+ * papier — et non un étalement de contraste. C'est ce qui décide de la
+ * fidélité du lockup : la boucle calligraphique ne fait qu'un pixel sur la
+ * planche et ne descend qu'à ~150 de luminance. Toute courbe qui ramène ce
+ * gris à l'opacité pleine épaissit le trait fin, alourdit PHOTOGRAPHY et fait
+ * perdre au monogramme le modelé plein/délié de l'original.
+ *
+ * Le lockup n'est jamais affiché à plus de 88 px de haut : la planche (175 px)
+ * couvre déjà le rendu à 1×, l'export ×4 couvre les écrans à 2 et 3×.
  */
 async function extractLogo() {
   await fs.mkdir(BRAND, { recursive: true });
+  // La capture porte un cadre sombre de quelques pixels : on l'écarte.
   const plate = sharp(path.join(REF, "moodboard.png")).extract({
     left: 4,
     top: 8,
@@ -236,13 +270,15 @@ async function extractLogo() {
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  const PAPER = 224;
-  const INK = 70;
+  /** Niveau du papier de la planche (mode de l'histogramme). */
+  const PAPER = 231;
+  /** Le grain du papier oscille de ±3 : en deçà, ce n'est pas de l'encre. */
+  const FLOOR = 12 / 255;
+
   const alpha = Buffer.alloc(info.width * info.height);
   for (let i = 0; i < alpha.length; i++) {
-    const l = data[i * info.channels];
-    const a = Math.round((255 * (PAPER - l)) / (PAPER - INK));
-    alpha[i] = Math.min(255, Math.max(0, a));
+    const a = (PAPER - data[i * info.channels]) / PAPER;
+    alpha[i] = a < FLOOR ? 0 : Math.min(255, Math.round(((a - FLOOR) / (1 - FLOOR)) * 255));
   }
 
   // Recadrage sur la boîte d'encre : le lockup doit pouvoir être dimensionné
@@ -267,7 +303,7 @@ async function extractLogo() {
   console.log(`  lockup ${box.width}x${box.height} (ratio ${(box.width / box.height).toFixed(3)})`);
 
   for (const [file, ink] of [
-    ["em-logo-black.png", 17],
+    ["em-logo-black.png", 0],
     ["em-logo-white.png", 255],
   ]) {
     const rgba = Buffer.alloc(info.width * info.height * 4);
@@ -281,7 +317,7 @@ async function extractLogo() {
       raw: { width: info.width, height: info.height, channels: 4 },
     })
       .extract(box)
-      .resize({ width: box.width * 3, kernel: sharp.kernel.lanczos3 })
+      .resize({ width: box.width * 4, kernel: sharp.kernel.lanczos3 })
       .png({ compressionLevel: 9 })
       .toFile(path.join(BRAND, file));
   }

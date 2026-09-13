@@ -7,7 +7,8 @@ import "./globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  // 600 : le surtitre du bandeau d'accueil, gras et empattés sur la maquette.
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-playfair",

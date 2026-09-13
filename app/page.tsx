@@ -40,7 +40,7 @@ export default function HomePage() {
       <Hero
         image="/images/home/hero.jpg"
         alt="Mariés enlacés face à un lac de montagne"
-        ratio={2.705}
+        ratio={2.727}
         display={["Documenting love", "in its softest form"]}
         meta="Weddings · Civil ceremonies · Birthdays · Newborn"
       />
