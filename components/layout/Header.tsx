@@ -15,7 +15,7 @@ export default function Header() {
         </div>
 
         <Link href="/" className={styles.logoLink} aria-label="EM Photography — accueil">
-          <Logo variant="white" priority />
+          <Logo variant="black" priority />
         </Link>
 
         <div className={`${styles.side} ${styles.sideEnd}`}>

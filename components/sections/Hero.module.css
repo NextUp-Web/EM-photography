@@ -21,23 +21,15 @@
   }
 }
 
-/* Les bandeaux extraits des maquettes portent déjà leur propre voile : on
-   n'ajoute qu'un dégradé haut, pour que le lockup blanc en surimpression
-   reste lisible sur toutes les photographies. Au milieu de la bande, là où se
-   pose le titre, le voile retombe à 4 % : la photographie y garde la valeur
-   de la maquette. */
+/* Les bandeaux extraits des maquettes portent déjà leur propre voile : en
+   superposer un second assombrissait la photographie de 9 % par rapport à la
+   référence. L'en-tête étant revenu sur sa bande ivoire, plus rien n'impose
+   d'éclaircir le haut de la photographie. Le voile n'est rétabli qu'en
+   dessous de 900 px, où le cadrage bascule sur la hauteur d'écran et où le
+   titre passe sur des zones claires. */
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.32) 0%,
-    rgba(0, 0, 0, 0.22) 9%,
-    rgba(0, 0, 0, 0.11) 20%,
-    rgba(0, 0, 0, 0.04) 34%,
-    rgba(0, 0, 0, 0.07) 70%,
-    rgba(0, 0, 0, 0.12) 100%
-  );
 }
 
 .overlay {
@@ -128,6 +120,17 @@
 @media (max-width: 900px) {
   .hero {
     min-height: 62vh;
+  }
+
+  /* Le recadrage en hauteur remonte des zones claires derrière le titre :
+     le voile redevient nécessaire à la lisibilité. */
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.2) 55%,
+      rgba(0, 0, 0, 0.26) 100%
+    );
   }
 
   /* Below tablet the reference band becomes too shallow: the slot switches
