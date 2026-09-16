@@ -13,15 +13,19 @@ travail :
 ```
 public/references/
     moodboard.png   →  planche d'identité (logo)
-    home.png        →  /
-    portfolio.png   →  /portfolio
-    weddings.png    →  /mariages
-    civil.png       →  /ceremonies-civiles
-    birthdays.png   →  /anniversaires
-    maternity.png   →  /maternite-naissance
-    about.png       →  /a-propos
-    contact.png     →  /contact
+    home.png · portfolio.png · about.png · contact.png
+    weddings.png · civil.png · birthdays.png · maternity.png
 ```
+
+> **Note.** Ces maquettes documentent la **première** version du site. Depuis
+> la refonte éditoriale, le site public tient en quatre pages en anglais
+> (`/`, `/about`, `/portfolio`, `/contact`) et ne reprend plus ces mises en
+> page. Les fichiers restent ici comme archive et comme source des visuels :
+> les photographies extraites sont, elles, toujours celles utilisées.
+> Les anciennes catégories (mariages, cérémonies civiles, anniversaires,
+> maternité) ne sont plus des pages publiques — leurs URLs redirigent vers le
+> portfolio — mais **leurs images sont conservées** et plusieurs d'entre elles
+> sont réutilisées dans les nouvelles séquences.
 
 ## Extraction
 
@@ -59,7 +63,7 @@ mêmes chemins remplacerait les extractions sans toucher au code.
 ```bash
 npm run dev
 node scripts/shoot.js            # capture chaque page à 1440 px
-                                 # et la juxtapose à sa maquette
+                                 # et la juxtapose à sa maquette d'origine
 node scripts/compare.js home     # géométrie des blocs, maquette vs rendu
 node scripts/bands.js home       # hauteurs de section
 node scripts/rows.js home 432 810  # lignes de texte d'une tranche

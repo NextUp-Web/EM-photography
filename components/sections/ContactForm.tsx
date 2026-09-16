@@ -1,19 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import { SESSION_TYPES } from "@/lib/data";
+import { useId, useState } from "react";
+import { CONTACT_EMAIL } from "@/lib/data";
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const MESSAGES: Record<Exclude<Status, "idle" | "sending">, string> = {
-  sent: "Merci — votre demande est bien arrivée. Je vous réponds sous 48 heures.",
-  error:
-    "L’envoi n’a pas abouti. Écrivez-moi directement à contact@em-photography.ch et je vous réponds rapidement.",
+type Field = {
+  name: string;
+  label: string;
+  type: string;
+  autoComplete: string;
+  required?: boolean;
+  /** spans both columns */
+  full?: boolean;
 };
+
+const FIELDS: Field[] = [
+  { name: "name", label: "Your name", type: "text", autoComplete: "name", required: true },
+  { name: "email", label: "Your email", type: "email", autoComplete: "email", required: true },
+  { name: "partnerName", label: "Your partner's name", type: "text", autoComplete: "off" },
+  { name: "date", label: "Wedding / session date", type: "date", autoComplete: "off" },
+  { name: "location", label: "Location", type: "text", autoComplete: "off", full: true },
+];
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const statusId = useId();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,103 +49,74 @@ export default function ContactForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate={false}>
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="name" className={styles.label}>
-            Nom <span aria-hidden="true">*</span>
+    <form className={styles.form} onSubmit={handleSubmit} aria-describedby={statusId}>
+      <div className={styles.grid}>
+        {FIELDS.map((field) => (
+          <div
+            key={field.name}
+            className={[styles.field, field.full ? styles.full : ""].filter(Boolean).join(" ")}
+          >
+            <label htmlFor={field.name} className={`label ${styles.label}`}>
+              {field.label}
+              {field.required ? <span aria-hidden="true"> *</span> : null}
+            </label>
+            <input
+              id={field.name}
+              name={field.name}
+              type={field.type}
+              autoComplete={field.autoComplete}
+              required={field.required}
+              className={styles.input}
+            />
+          </div>
+        ))}
+
+        <div className={`${styles.field} ${styles.full}`}>
+          <label htmlFor="message" className={`label ${styles.label}`}>
+            Tell me a little about your story
+            <span aria-hidden="true"> *</span>
           </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
             required
-            placeholder="Votre nom"
-            className={styles.input}
+            className={`${styles.input} ${styles.textarea}`}
           />
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="email" className={styles.label}>
-            Email <span aria-hidden="true">*</span>
+        <div className={`${styles.field} ${styles.full}`}>
+          <label htmlFor="referral" className={`label ${styles.label}`}>
+            How did you hear about me?
           </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            placeholder="votre@email.com"
-            className={styles.input}
-          />
+          <input id="referral" name="referral" type="text" autoComplete="off" className={styles.input} />
         </div>
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="sessionType" className={styles.label}>
-            Type de séance <span aria-hidden="true">*</span>
-          </label>
-          <select id="sessionType" name="sessionType" required defaultValue="" className={styles.input}>
-            <option value="" disabled>
-              Sélectionner
-            </option>
-            {SESSION_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className={styles.foot}>
+        <button type="submit" className={styles.submit} disabled={status === "sending"}>
+          {status === "sending" ? "Sending" : "Send your inquiry"}
+          <span className="cta__arrow" aria-hidden="true">
+            &#8594;
+          </span>
+        </button>
 
-        <div className={styles.field}>
-          <label htmlFor="date" className={styles.label}>
-            Date souhaitée
-          </label>
-          <input id="date" name="date" type="date" className={styles.input} />
-        </div>
+        <p id={statusId} className={styles.status} role="status">
+          {status === "sent" ? (
+            "Thank you — your message is on its way. I'll write back within a few days."
+          ) : status === "error" ? (
+            <>
+              Something went wrong on the way. Please write to me directly at{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className={styles.mail}>
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </>
+          ) : (
+            <span className={styles.hint}>Fields marked * are needed to reply to you.</span>
+          )}
+        </p>
       </div>
-
-      <div className={styles.field}>
-        <label htmlFor="location" className={styles.label}>
-          Lieu
-        </label>
-        <input
-          id="location"
-          name="location"
-          type="text"
-          placeholder="Ville, région ou lieu précis"
-          className={styles.input}
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="message" className={styles.label}>
-          Message <span aria-hidden="true">*</span>
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={3}
-          required
-          placeholder="Parlez-moi de votre projet, vos envies, vos idées..."
-          className={`${styles.input} ${styles.textarea}`}
-        />
-      </div>
-
-      <button type="submit" className={styles.submit} disabled={status === "sending"}>
-        {status === "sending" ? "Envoi en cours" : "Envoyer une demande"}
-        <span className={styles.submitArrow} aria-hidden="true">
-          &#10230;
-        </span>
-      </button>
-
-      <p className={styles.note} role="status">
-        {status === "sent" || status === "error"
-          ? MESSAGES[status]
-          : "Vos informations restent confidentielles et ne seront jamais partagées."}
-      </p>
     </form>
   );
 }

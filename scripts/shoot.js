@@ -16,11 +16,7 @@ const WIDTH = Number(process.env.SHOT_WIDTH || 1440);
 const PAGES = {
   home: "/",
   portfolio: "/portfolio",
-  weddings: "/mariages",
-  civil: "/ceremonies-civiles",
-  birthdays: "/anniversaires",
-  maternity: "/maternite-naissance",
-  about: "/a-propos",
+  about: "/about",
   contact: "/contact",
 };
 

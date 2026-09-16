@@ -1,158 +1,101 @@
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+/* ============================================================
+   CONTACT — a conversation, not a form to fill in
+   ============================================================ */
+
+.hero {
+  padding-block: var(--space-xl) var(--space-2xl);
 }
 
-/* Hairline divider between the editorial column and the form, as per the
-   reference. */
-/* Colonnes et filet vertical relevés sur la maquette. */
-.main {
+.heroInner {
   display: grid;
-  grid-template-columns: minmax(0, 400fr) minmax(0, 462fr);
-  gap: 0;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.heroTitle {
+  grid-column: 1 / 8;
+  max-width: 11ch;
+}
+
+.heroText {
+  grid-column: 7 / 13;
+  align-self: end;
+  padding-bottom: 0.4em;
+}
+
+.heroText p + p {
+  margin-top: 1.5em;
+}
+
+/* ---- form ------------------------------------------------------ */
+
+.body {
+  padding-bottom: var(--space-2xl);
+}
+
+.bodyInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
   align-items: start;
-  padding-inline: clamp(22px, 5.7vw, 82px);
 }
 
-.intro {
-  padding-right: clamp(24px, 6.7vw, 96px);
-}
-
-.introHeading {
-  margin-top: 22px;
-  font-size: clamp(1.75rem, 3.05vw, 2.75rem);
-}
-
-.intro .introRule {
-  margin-top: 26px;
-  color: var(--charcoal);
-}
-
-.introBody {
-  margin-top: 26px;
-}
-
-.signature {
-  margin-top: 34px;
-}
-
-.signatureName {
-  margin-top: 10px;
-  font-size: var(--fs-micro);
-  letter-spacing: 0.24em;
-  color: var(--charcoal);
+.aside {
+  grid-column: 1 / 4;
+  margin-top: clamp(40px, 6vw, 96px);
 }
 
 .formWrap {
-  padding-left: clamp(24px, 4.1vw, 59px);
-  border-left: 1px solid var(--hairline);
+  grid-column: 5 / 13;
 }
 
-.strip {
-  margin-top: clamp(28px, 2.8vw, 40px);
+.formLabel {
+  display: block;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink-faint);
 }
 
-.bandInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* ============================================================
+   Tablet
+   ============================================================ */
 
-.bandMeta {
-  margin-top: 18px;
-}
-
-.bandInner .bandRule {
-  margin-top: 20px;
-}
-
-.infos {
-  display: grid;
-  width: 100%;
-}
-
-.info {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(16px, 1.6vw, 24px);
-}
-
-.infoIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: clamp(46px, 4.7vw, 68px);
-  aspect-ratio: 1;
-  border: 1px solid var(--hairline);
-  border-radius: 50%;
-  color: var(--charcoal);
-}
-
-.infoBody {
-  min-width: 0;
-}
-
-.infoTitle {
-  margin-top: 10px;
-}
-
-.infoTitleSmall {
-  margin-top: 10px;
-  font-size: var(--fs-body);
-  color: var(--black);
-}
-
-.infoLink {
-  transition: color 520ms var(--ease-premium);
-}
-
-.infoLink:hover,
-.infoLink:focus-visible {
-  color: var(--charcoal);
-}
-
-.infoMeta {
-  margin-top: 8px;
-}
-
-.infoBody .infoRule {
-  margin-top: 20px;
-  color: var(--stone);
-}
-
-@media (max-width: 900px) {
-  .main {
-    grid-template-columns: 1fr;
+@media (max-width: 1024px) {
+  .heroTitle {
+    grid-column: 1 / 13;
   }
 
-  .intro {
-    padding-right: 0;
+  .heroText {
+    grid-column: 1 / 13;
+    margin-top: var(--space-lg);
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .aside {
+    grid-column: 1 / 5;
   }
 
   .formWrap {
-    padding-left: 0;
-    padding-top: 34px;
-    border-left: 0;
-    border-top: 1px solid var(--hairline);
+    grid-column: 5 / 13;
   }
 }
 
-@media (max-width: 768px) {
-  .introHeading,
-  .introBody {
-    margin-top: 18px;
+/* ============================================================
+   Phone
+   ============================================================ */
+
+@media (max-width: 760px) {
+  .heroInner,
+  .bodyInner {
+    display: block;
   }
 
-  .intro .introRule {
-    margin-top: 20px;
-  }
-
-  .signature {
-    margin-top: 26px;
+  .aside {
+    width: 62%;
+    margin-top: 0;
+    margin-bottom: var(--space-lg);
   }
 }

@@ -1,0 +1,236 @@
+/* ============================================================
+   ABOUT — intimate, personal, very open
+   ============================================================ */
+
+.hero {
+  padding-bottom: var(--space-2xl);
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  align-items: end;
+}
+
+.heroFigure {
+  grid-column: 1 / 8;
+}
+
+.heroTitle {
+  grid-column: 9 / 13;
+  max-width: 12ch;
+  padding-bottom: clamp(24px, 4vw, 72px);
+}
+
+/* ---- your story ------------------------------------------------ */
+
+.story {
+  padding-bottom: var(--space-2xl);
+}
+
+.storyInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  padding-bottom: var(--space-xl);
+}
+
+.storyLabel {
+  grid-column: 1 / 3;
+  color: var(--ink-faint);
+}
+
+.storyText {
+  grid-column: 4 / 11;
+}
+
+.storyText p + p {
+  margin-top: 1.5em;
+}
+
+.storyFigure {
+  margin-inline: auto;
+  max-width: var(--max);
+  padding-inline: var(--page-x);
+}
+
+/* ---- my approach ----------------------------------------------- */
+
+.approach {
+  padding-bottom: var(--space-2xl);
+}
+
+.approachInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.approachLabel {
+  grid-column: 1 / 3;
+  color: var(--ink-faint);
+}
+
+.approachText {
+  grid-column: 6 / 13;
+}
+
+.approachText p + p {
+  margin-top: 1.5em;
+}
+
+/* ---- positioning ----------------------------------------------- */
+
+.positioning {
+  padding-block: var(--space-2xl);
+}
+
+.positioningInner {
+  display: flex;
+  justify-content: center;
+}
+
+.positioningLine {
+  max-width: 20ch;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---- what I want for you --------------------------------------- */
+
+.wish {
+  padding-block: var(--space-2xl);
+}
+
+.wishInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.wishFigure {
+  grid-column: 1 / 6;
+}
+
+.wishText {
+  grid-column: 6 / 13;
+  align-self: center;
+}
+
+.wishLabel {
+  color: var(--ink-faint);
+  margin-bottom: var(--space-md);
+}
+
+.wishVerse p + p {
+  margin-top: 1.5em;
+}
+
+/* ---- coda ------------------------------------------------------ */
+
+.coda {
+  padding-bottom: var(--space-2xl);
+}
+
+.codaInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  align-items: start;
+}
+
+.codaA {
+  grid-column: 1 / 5;
+  margin-top: clamp(32px, 6vw, 104px);
+}
+
+.codaB {
+  grid-column: 5 / 9;
+}
+
+.codaC {
+  grid-column: 10 / 13;
+  margin-top: clamp(48px, 8vw, 140px);
+}
+
+/* ============================================================
+   Tablet and small laptops — the closing passage needs its full
+   measure to keep its line breaks, so it stacks earlier than the rest.
+   ============================================================ */
+
+@media (max-width: 1160px) {
+  .storyText {
+    grid-column: 4 / 13;
+  }
+
+  .approachText {
+    grid-column: 4 / 13;
+  }
+
+  .wishFigure {
+    grid-column: 1 / 13;
+  }
+
+  .wishText {
+    grid-column: 1 / 13;
+    margin-top: var(--space-lg);
+  }
+}
+
+/* ============================================================
+   Phone
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .heroInner,
+  .storyInner,
+  .approachInner,
+  .wishInner {
+    display: block;
+  }
+
+  .heroTitle {
+    max-width: 11ch;
+    padding-top: var(--space-lg);
+    padding-bottom: 0;
+  }
+
+  .storyLabel,
+  .approachLabel {
+    margin-bottom: var(--space-md);
+  }
+
+  .storyText,
+  .approachText {
+    padding-left: clamp(0px, 3vw, 24px);
+  }
+
+  .storyFigure {
+    padding-inline: 0;
+  }
+
+  .wishText {
+    margin-top: var(--space-lg);
+  }
+
+  .codaInner {
+    display: block;
+  }
+
+  .codaA {
+    width: 70%;
+    margin-top: 0;
+  }
+
+  .codaB {
+    width: 86%;
+    margin-top: var(--space-md);
+    margin-left: auto;
+  }
+
+  .codaC {
+    width: 62%;
+    margin-top: var(--space-md);
+  }
+}

@@ -1,14 +1,12 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
   width: 100%;
 }
 
-.row {
+.grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 26px;
+  column-gap: clamp(20px, 3vw, 48px);
+  row-gap: var(--space-md);
 }
 
 .field {
@@ -18,112 +16,130 @@
   min-width: 0;
 }
 
-.label {
-  font-family: var(--font-serif);
-  font-size: var(--fs-caption);
-  line-height: 1.4;
-  color: var(--black);
+.full {
+  grid-column: 1 / -1;
 }
 
-/* Flat, hairline fields — no radius, no shadow. */
+.label {
+  color: var(--ink-faint);
+}
+
 .input {
   width: 100%;
-  padding: 9px 15px;
-  background: var(--white);
-  border: 1px solid var(--hairline);
-  border-radius: 0;
-  font-family: var(--font-serif);
-  font-size: var(--fs-caption);
-  line-height: 1.4;
-  color: var(--black);
-  transition: border-color 520ms var(--ease-premium);
   appearance: none;
-}
-
-.input::placeholder {
-  color: var(--stone);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  padding: 10px 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink);
+  transition: border-color var(--dur) var(--ease);
 }
 
 .input:hover {
-  border-color: var(--mist);
+  border-bottom-color: var(--ink-soft);
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--charcoal);
+  border-bottom-color: var(--ink);
 }
 
 .input:focus-visible {
-  outline: none;
-}
-
-select.input {
-  background-image: linear-gradient(45deg, transparent 50%, var(--charcoal) 50%),
-    linear-gradient(135deg, var(--charcoal) 50%, transparent 50%);
-  background-position: calc(100% - 20px) calc(50% + 1px), calc(100% - 15px) calc(50% + 1px);
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 40px;
+  outline: 1px solid var(--ink);
+  outline-offset: 6px;
 }
 
 .textarea {
   resize: vertical;
-  min-height: 101px;
+  min-height: 7em;
+}
+
+/* The native date control brings its own furniture — keep it quiet. */
+.input[type="date"] {
+  min-height: 2.6em;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.input[type="date"]:hover::-webkit-calendar-picker-indicator,
+.input[type="date"]:focus::-webkit-calendar-picker-indicator {
+  opacity: 0.7;
+}
+
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .submit {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
-  width: 100%;
-  padding: 19px 24px;
-  background: var(--black);
-  color: var(--white);
-  border: 1px solid var(--black);
+  gap: 0.9em;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hairline-strong);
   border-radius: 0;
-  cursor: pointer;
+  padding: 12px 0 10px;
   font-family: var(--font-sans);
-  font-size: var(--fs-nav);
-  font-weight: 400;
-  letter-spacing: var(--ls-nav);
+  font-size: var(--fs-link);
+  letter-spacing: var(--ls-link);
   text-transform: uppercase;
-  text-indent: var(--ls-nav);
-  transition: background-color 620ms var(--ease-premium), color 620ms var(--ease-premium);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), opacity var(--dur) var(--ease);
 }
 
 .submit:hover:not(:disabled),
-.submit:focus-visible:not(:disabled) {
-  background: var(--charcoal);
-  border-color: var(--charcoal);
+.submit:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+.submit:hover:not(:disabled) :global(.cta__arrow) {
+  transform: translateX(6px);
 }
 
 .submit:disabled {
-  opacity: 0.6;
   cursor: progress;
+  opacity: 0.5;
 }
 
-.submitArrow {
-  display: inline-block;
-  font-size: 1.05em;
-  line-height: 1;
-  transition: transform var(--dur-hover) var(--ease-premium);
-}
-
-.submit:hover:not(:disabled) .submitArrow {
-  transform: translateX(7px);
-}
-
-.note {
-  margin: 0;
-  font-size: var(--fs-caption);
+.status {
+  flex: 1 1 22ch;
+  max-width: 46ch;
+  font-size: 0.8125rem;
   line-height: 1.7;
-  text-align: center;
-  color: var(--stone);
+  color: var(--ink-soft);
 }
 
-@media (max-width: 560px) {
-  .row {
-    grid-template-columns: 1fr;
+.hint {
+  color: var(--ink-faint);
+}
+
+.mail {
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .foot {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

@@ -8,16 +8,7 @@ const { chromium } = require("playwright");
 
 const BASE = process.env.BASE_URL || "http://127.0.0.1:3000";
 const WIDTHS = [1920, 1600, 1440, 1280, 1024, 768, 430, 390, 375];
-const PAGES = [
-  "/",
-  "/portfolio",
-  "/mariages",
-  "/ceremonies-civiles",
-  "/anniversaires",
-  "/maternite-naissance",
-  "/a-propos",
-  "/contact",
-];
+const PAGES = ["/", "/about", "/portfolio", "/contact"];
 
 (async () => {
   const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });

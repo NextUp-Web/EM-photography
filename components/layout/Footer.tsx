@@ -1,66 +1,44 @@
 import Link from "next/link";
-import Logo from "@/components/ui/Logo";
-import { InstagramIcon, PinterestIcon } from "@/components/ui/Icons";
-import { NAV_ALL, INSTAGRAM_URL, PINTEREST_URL } from "@/lib/data";
+import { INSTAGRAM_URL, NAV, SEO_LINE } from "@/lib/data";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.inner}>
-        <Link href="/" className={styles.logoLink} aria-label="EM Photography — accueil">
-          <Logo variant="white" height="var(--logo-h-footer)" />
-        </Link>
+      <div className={`shell ${styles.inner}`}>
+        <hr className="rule" />
 
-        <nav aria-label="Pied de page">
-          <ul className={styles.nav}>
-            {NAV_ALL.map((item) => (
-              <li key={item.label}>
-                <Link href={item.href} className={styles.navLink}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className={styles.top}>
+          <div className={styles.identity}>
+            <p className={styles.name}>EM Photography</p>
+            <p className={`label ${styles.based}`}>Switzerland based</p>
+          </div>
+
+          <a
+            href={INSTAGRAM_URL}
+            className={`label ${styles.instagram}`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Instagram
+          </a>
+
+          <nav aria-label="Footer">
+            <ul className={styles.nav}>
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={`label ${styles.navLink}`}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
         <div className={styles.base}>
-          <p className={styles.legal}>
-            © 2024 EM Photography
-            <br />
-            All rights reserved.
-          </p>
-
-          <p className={styles.tagline}>
-            Switzerland &amp; Europe
-            <br />
-            Capturing a more meaningful tomorrow
-          </p>
-
-          <ul className={styles.social}>
-            <li>
-              <a
-                href={INSTAGRAM_URL}
-                className={styles.socialLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Instagram"
-              >
-                <InstagramIcon size={18} />
-              </a>
-            </li>
-            <li>
-              <a
-                href={PINTEREST_URL}
-                className={styles.socialLink}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Pinterest"
-              >
-                <PinterestIcon size={18} />
-              </a>
-            </li>
-          </ul>
+          <p className={styles.seo}>{SEO_LINE}</p>
+          <p className={`label ${styles.copy}`}>© 2026 EM Photography</p>
         </div>
       </div>
     </footer>

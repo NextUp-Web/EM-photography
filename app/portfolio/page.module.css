@@ -1,72 +1,327 @@
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+/* ============================================================
+   PORTFOLIO — the most photographic page. Very little text.
+   ============================================================ */
+
+.hero {
+  padding-block: var(--space-xl) var(--space-2xl);
 }
 
-.rowTwo {
-  margin-top: clamp(24px, 2.1vw, 30px);
+.heroInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
 }
 
-/* Washed photographic ground behind the experience block. The image is
-   optional: without it the band reads as a flat deep-ivory panel. */
-.experience {
-  position: relative;
-  background-color: var(--ivory-deep);
-  padding-block: clamp(32px, 2.9vw, 42px) clamp(44px, 4.3vw, 62px);
-  isolation: isolate;
+.heroTitle {
+  grid-column: 1 / 9;
+  max-width: 12ch;
 }
 
-.experience::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: var(--experience-bg, none);
-  background-size: 100% 40%;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  opacity: 0.55;
+.heroLede {
+  grid-column: 8 / 13;
+  align-self: end;
+  padding-bottom: 0.5em;
 }
 
-.experienceInner {
+.collections {
+  grid-column: 1 / 13;
+  margin-top: var(--space-xl);
+}
+
+.collectionsList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 clamp(10px, 1.4vw, 20px);
 }
 
-.experienceHead {
+.collectionsList li {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: baseline;
+  gap: clamp(10px, 1.4vw, 20px);
 }
 
-.experienceTitle {
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-indent: 0.15em;
-  font-size: clamp(0.9375rem, 1.63vw, 1.47rem);
-  line-height: 1.5;
+.dot {
+  color: var(--stone);
 }
 
-.experienceHead .experienceRule {
-  margin-top: 22px;
-  color: var(--charcoal);
+.collectionsLink {
+  display: block;
+  padding-block: 13px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
-.experienceSteps {
-  margin-top: clamp(28px, 2.85vw, 41px);
+.collectionsLink:hover,
+.collectionsLink:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--hairline-strong);
 }
 
-.bandInner {
+/* ============================================================
+   A sequence — opening frame, a pair, a detail, a landscape,
+   one line. The placements change from one sequence to the next.
+   ============================================================ */
+
+.sequence {
+  padding-bottom: var(--space-2xl);
+  scroll-margin-top: var(--space-md);
+}
+
+.sequenceInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.sequenceHead {
+  grid-column: 1 / 13;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: baseline;
+  gap: clamp(16px, 2vw, 32px);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: var(--space-lg);
 }
 
-.bandLink {
-  margin-top: 30px;
+.sequenceIndex {
+  color: var(--stone);
+}
+
+.sequenceTitle {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.pair {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  align-items: start;
+}
+
+.line {
+  grid-column: 1 / 13;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-xl);
+}
+
+.line p {
+  max-width: 24ch;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* ---- variant 1 — open wide, then close in ---------------------- */
+
+.v1 .opening {
+  grid-column: 1 / 13;
+  margin-inline: calc(var(--page-x) * -1);
+}
+
+.v1 .pair {
+  margin-top: var(--space-xl);
+}
+
+.v1 .pairA {
+  grid-column: 2 / 7;
+}
+
+.v1 .pairB {
+  grid-column: 8 / 12;
+  margin-top: clamp(40px, 7vw, 120px);
+}
+
+.v1 .detail {
+  grid-column: 1 / 4;
+  margin-top: var(--space-xl);
+}
+
+.v1 .wide {
+  grid-column: 5 / 13;
+  margin-top: calc(var(--space-2xl) * -0.35);
+}
+
+/* ---- variant 2 — inset, then a landscape across the page ------- */
+
+.v2 .opening {
+  grid-column: 2 / 13;
+}
+
+.v2 .pair {
+  margin-top: var(--space-xl);
+}
+
+.v2 .pairA {
+  grid-column: 1 / 6;
+}
+
+.v2 .pairB {
+  grid-column: 7 / 11;
+  margin-top: clamp(56px, 9vw, 152px);
+}
+
+.v2 .detail {
+  grid-column: 10 / 13;
+  margin-top: calc(var(--space-xl) * -1);
+}
+
+.v2 .wide {
+  grid-column: 1 / 10;
+  margin-top: var(--space-xl);
+}
+
+/* ---- variant 3 — wide, then a small frame held in the middle --- */
+
+.v3 .opening {
+  grid-column: 1 / 13;
+  margin-inline: calc(var(--page-x) * -1);
+}
+
+.v3 .pair {
+  margin-top: var(--space-xl);
+}
+
+.v3 .pairA {
+  grid-column: 1 / 5;
+}
+
+.v3 .pairB {
+  grid-column: 9 / 13;
+  margin-top: clamp(32px, 5vw, 88px);
+}
+
+.v3 .detail {
+  grid-column: 5 / 9;
+  margin-top: calc(var(--space-2xl) * -0.5);
+}
+
+.v3 .wide {
+  grid-column: 3 / 11;
+  margin-top: var(--space-xl);
+}
+
+/* ============================================================
+   Closing
+   ============================================================ */
+
+.closing {
+  padding-bottom: var(--space-2xl);
+}
+
+.closingFigure {
+  height: clamp(320px, 66svh, 760px);
+}
+
+.closingInner {
+  padding-top: var(--space-2xl);
+}
+
+.closingTitle {
+  max-width: 16ch;
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================================
+   Tablet
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .heroTitle {
+    grid-column: 1 / 13;
+  }
+
+  .heroLede {
+    grid-column: 1 / 13;
+    margin-top: var(--space-md);
+    padding-bottom: 0;
+  }
+
+  .v1 .detail,
+  .v3 .detail {
+    margin-top: var(--space-lg);
+  }
+
+  .v1 .wide,
+  .v2 .wide,
+  .v3 .wide {
+    margin-top: var(--space-lg);
+  }
+
+  .v2 .detail {
+    margin-top: var(--space-lg);
+  }
+}
+
+/* ============================================================
+   Phone — one column, but never four frames of the same size
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .sequenceInner,
+  .pair {
+    display: block;
+  }
+
+  .v1 .opening,
+  .v2 .opening,
+  .v3 .opening {
+    margin-inline: calc(var(--page-x) * -1);
+  }
+
+  .v1 .pair,
+  .v2 .pair,
+  .v3 .pair {
+    margin-top: 0;
+  }
+
+  .v1 .pairA,
+  .v2 .pairA,
+  .v3 .pairA {
+    width: 76%;
+    margin-top: var(--space-lg);
+  }
+
+  .v1 .pairB,
+  .v2 .pairB,
+  .v3 .pairB {
+    width: 62%;
+    margin-top: var(--space-md);
+    margin-left: auto;
+  }
+
+  .v1 .detail {
+    width: 58%;
+    margin-top: var(--space-lg);
+  }
+
+  .v2 .detail {
+    width: 54%;
+    margin-top: var(--space-lg);
+    margin-left: auto;
+  }
+
+  .v3 .detail {
+    width: 66%;
+    margin-top: var(--space-lg);
+    margin-inline: auto;
+  }
+
+  .v1 .wide,
+  .v2 .wide,
+  .v3 .wide {
+    margin-top: var(--space-lg);
+    margin-inline: calc(var(--page-x) * -1);
+  }
+
+  .line {
+    padding-top: var(--space-lg);
+  }
+
+  .collections {
+    margin-top: var(--space-lg);
+  }
 }

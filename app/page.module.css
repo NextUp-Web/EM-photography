@@ -1,85 +1,319 @@
-.homeGrid {
-  margin-top: clamp(22px, 1.8vw, 25px);
+/* ============================================================
+   HOME — six sequences, read from top to bottom like a magazine
+   ============================================================ */
+
+/* ---- 01 hero --------------------------------------------------- */
+
+.heroTop {
+  padding-bottom: var(--space-sm);
 }
 
-.bandInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
+.heroFigure {
+  height: clamp(340px, 68svh, 820px);
 }
 
-.aboutLink {
-  margin-top: 26px;
-}
-
-/* Le bloc image + texte de la maquette est plus serré que les autres sections. */
-.behindSection {
-  padding-block: 22px 31px;
-}
-
-.palette {
-  padding-block: 21px 36px;
-}
-
-.swatches {
+.heroFoot {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(22px, 3vw, 44px);
-  margin-top: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-lg);
+  padding-top: clamp(28px, 3.4vw, 52px);
 }
 
-.swatch {
+.heroTitle {
+  flex: 1 1 auto;
+  max-width: 18ch;
+}
+
+.heroMeta {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding-bottom: 6px;
+}
+
+.scroll {
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 0.7em;
+  padding-block: 12px;
+  color: var(--ink-faint);
+  transition: color var(--dur) var(--ease);
 }
 
-.chip {
-  display: block;
-  width: clamp(48px, 4.6vw, 67px);
-  aspect-ratio: 1;
-  border-radius: 50%;
+.scroll:hover,
+.scroll:focus-visible {
+  color: var(--ink);
 }
 
-.swatchName {
-  font-size: var(--fs-micro);
-  letter-spacing: 0.2em;
-  text-indent: 0.2em;
-  color: var(--charcoal);
+/* ---- 02 intention ---------------------------------------------- */
+
+.philosophy {
+  padding-block: var(--space-2xl);
 }
 
-@media (max-width: 768px) {
-  .aboutLink {
-    margin-top: 26px;
+.philosophyInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  row-gap: var(--space-lg);
+}
+
+.philosophyTitle {
+  grid-column: 1 / 8;
+  max-width: 16ch;
+}
+
+.verse {
+  grid-column: 8 / 13;
+  align-self: end;
+  padding-bottom: 0.4em;
+}
+
+/* ---- 03 selected stories --------------------------------------- */
+
+.stories {
+  padding-bottom: var(--space-2xl);
+}
+
+.storiesHead {
+  max-width: 44ch;
+  margin-bottom: var(--space-xl);
+}
+
+.storiesTitle {
+  margin-top: var(--space-sm);
+}
+
+.storiesLede {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* The spread: one tall frame, two smaller ones, one landscape.
+   Nothing lines up on a common baseline — that is the point. */
+.spread {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+  align-items: start;
+}
+
+.spreadTall {
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+}
+
+.spreadSmallA {
+  grid-column: 8 / 12;
+  grid-row: 1;
+  margin-top: clamp(40px, 7vw, 116px);
+}
+
+.spreadSmallB {
+  grid-column: 9 / 13;
+  grid-row: 2;
+  margin-top: clamp(28px, 3.6vw, 56px);
+}
+
+.spreadWide {
+  grid-column: 3 / 13;
+  grid-row: 3;
+  margin-top: clamp(56px, 8vw, 148px);
+}
+
+/* ---- 04 the approach ------------------------------------------- */
+
+.approach {
+  padding-bottom: var(--space-2xl);
+}
+
+.approachInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.approachFigure {
+  grid-column: 1 / 6;
+}
+
+.approachText {
+  grid-column: 7 / 13;
+  align-self: center;
+}
+
+.approachStatement {
+  margin-top: var(--space-sm);
+  max-width: 22ch;
+}
+
+.approachProse {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  max-width: 62ch;
+}
+
+.approachProse p + p {
+  margin-top: 1.4em;
+}
+
+/* ---- 05 about teaser ------------------------------------------- */
+
+.about {
+  padding-block: var(--space-2xl);
+}
+
+.aboutInner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2.4vw, 40px);
+}
+
+.aboutFigure {
+  grid-column: 1 / 6;
+}
+
+.aboutText {
+  grid-column: 7 / 13;
+  align-self: center;
+}
+
+.aboutStatement {
+  max-width: 14ch;
+}
+
+.aboutLabel {
+  margin-top: var(--space-md);
+  color: var(--ink-faint);
+}
+
+.aboutProse {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+  max-width: 42ch;
+}
+
+/* ---- 06 closing ------------------------------------------------ */
+
+.closing {
+  padding-bottom: var(--space-2xl);
+}
+
+.closingFigure {
+  height: clamp(300px, 62svh, 720px);
+}
+
+.closingInner {
+  padding-top: var(--space-2xl);
+}
+
+.closingTitle {
+  max-width: 14ch;
+}
+
+.closingLede {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================================
+   Tablet
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .philosophyTitle {
+    grid-column: 1 / 9;
   }
 
-  .swatches {
-    margin-top: 26px;
+  .verse {
+    grid-column: 3 / 13;
+  }
+
+  .approachFigure {
+    grid-column: 1 / 6;
+  }
+
+  .approachText {
+    grid-column: 6 / 13;
+  }
+
+  .aboutFigure {
+    grid-column: 1 / 6;
+  }
+
+  .aboutText {
+    grid-column: 6 / 13;
   }
 }
 
-/* Keep all five swatches on one row at phone widths. */
-@media (max-width: 520px) {
-  .swatches {
-    flex-wrap: nowrap;
-    gap: 10px;
+/* ============================================================
+   Phone — the same rhythm, never four identical stacked frames
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .heroFoot {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .swatch {
-    min-width: 0;
-    gap: 12px;
+  .heroTitle {
+    max-width: 14ch;
   }
 
-  .chip {
-    width: clamp(36px, 10vw, 48px);
+  .heroMeta {
+    gap: var(--space-xs);
+    padding-bottom: 0;
   }
 
-  .swatchName {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-    text-indent: 0.12em;
+  .philosophyInner,
+  .spread,
+  .approachInner,
+  .aboutInner {
+    display: block;
+  }
+
+  .verse {
+    margin-top: var(--space-lg);
+    padding-bottom: 0;
+    padding-left: clamp(0px, 4vw, 32px);
+  }
+
+  .spreadTall {
+    width: 92%;
+  }
+
+  .spreadSmallA {
+    width: 62%;
+    margin-top: var(--space-md);
+    margin-left: auto;
+  }
+
+  .spreadSmallB {
+    width: 76%;
+    margin-top: var(--space-sm);
+  }
+
+  .spreadWide {
+    margin-top: var(--space-lg);
+    margin-inline: calc(var(--page-x) * -1);
+  }
+
+  .approachFigure {
+    width: 78%;
+  }
+
+  .approachText {
+    margin-top: var(--space-lg);
+  }
+
+  .aboutFigure {
+    width: 88%;
+  }
+
+  .aboutText {
+    margin-top: var(--space-lg);
   }
 }

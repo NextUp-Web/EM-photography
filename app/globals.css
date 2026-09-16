@@ -1,578 +1,364 @@
 @layer reset, base;
 
 /* ============================================================
-   EM PHOTOGRAPHY — design tokens, reset, base type, primitives
-   Reference viewport: 1440px
+   EM PHOTOGRAPHY
+   Editorial documentary photography with a quietly romantic soul.
+
+   Four colours, two typefaces, a lot of empty space.
    ============================================================ */
 
 :root {
-  /* ---- Palette (direction artistique) ---- */
-  --black: #000000;
-  --charcoal: #61605e;
-  --stone: #969592;
-  --mist: #cac6c1;
-  --white: #ffffff;
+  /* ---- Palette ---- */
+  --ivory: #f7f4ee; /* Soft Ivory  — the page */
+  --warm-white: #fcfbf8; /* Warm White  — the quieter band */
+  --ink: #171614; /* Soft Black  — everything written */
+  --stone: #b8b1a6; /* Stone       — micro accent only, never text */
 
-  /* Neutral surfaces read off the reference boards */
-  --ivory: #f5f4f1;
-  --ivory-deep: #efece8;
-  --paper: #faf9f7; /* bandes claires de la maquette */
-  --hairline: #e2ded9;
-  --hairline-dark: rgba(255, 255, 255, 0.16);
+  /* Derived from the ink alone — no fifth hue. */
+  --ink-soft: rgba(23, 22, 20, 0.66);
+  --ink-faint: rgba(23, 22, 20, 0.38);
+  --hairline: rgba(184, 177, 166, 0.85);
+  --hairline-strong: rgba(23, 22, 20, 0.16);
 
   /* ---- Type ---- */
-  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
-  --font-sans: var(--font-jost), "Jost", "Helvetica Neue", Arial, sans-serif;
-  --font-script: var(--font-parisienne), "Parisienne", cursive;
+  --font-serif: var(--font-instrument), "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica Neue", Helvetica, var(--font-inter), "Inter", Arial, sans-serif;
 
-  --fs-micro: 0.625rem; /* 10px  — footer micro copy */
-  --fs-nav: 0.7625rem; /* 12.2px — navigation */
-  --fs-eyebrow: 0.6875rem; /* 11px — surtitres en ligne */
-  --fs-eyebrow-lg: 0.79rem; /* 12.6px — surtitres de section centrés */
-  --fs-link: 0.9rem; /* 14.4px — micro-liens soulignés */
-  --fs-label: 0.925rem; /* 14.8px — category labels */
-  --fs-caption: 1rem; /* 16px */
-  --fs-body: 0.9375rem; /* 15px */
-  --fs-lead: 1.0625rem; /* 17px — chapeau centré sous les titres */
-  --fs-h4: clamp(1.125rem, 1.5vw, 1.375rem); /* 18 → 22 */
-  --fs-h3: clamp(1.5rem, 2.4vw, 2.15rem); /* 24 → 34.5 */
-  --fs-h2: clamp(1.625rem, 2.7vw, 2.375rem); /* 26 → 38 */
-  --fs-display: clamp(1.375rem, 2.36vw, 2.125rem); /* 22 → 34 — bandeau accueil */
-  --fs-title: clamp(2rem, 4.45vw, 4rem); /* 32 → 64 — bandeau de page */
+  --fs-hero: clamp(2.9rem, 8vw, 7.25rem);
+  --fs-h1: clamp(2.6rem, 6.6vw, 5.5rem);
+  --fs-h2: clamp(2.1rem, 4.6vw, 3.75rem);
+  --fs-h3: clamp(1.55rem, 2.7vw, 2.35rem);
+  --fs-statement: clamp(1.75rem, 3.3vw, 2.9rem);
+  --fs-lede: clamp(1.0625rem, 0.9rem + 0.6vw, 1.375rem);
+  --fs-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+  --fs-label: 0.6875rem;
+  --fs-link: 0.75rem;
 
-  --ls-nav: 0.24em;
-  --ls-eyebrow: 0.3em;
-  --ls-label: 0.22em;
-  --ls-title: 0.18em;
-  --ls-display: 0.12em;
+  --ls-label: 0.26em;
+  --ls-link: 0.18em;
 
   /* ---- Layout ---- */
-  --gutter: 46px; /* les grilles pleine largeur affleurent le bord */
-  --gutter-wide: 145px; /* pied de page + blocs image/texte */
-  --gutter-header: 166px; /* le header est plus rentré que la page */
-  --page-max: 1560px;
-  --measure: 1180px; /* centred editorial text column */
+  --page-x: clamp(20px, 5.2vw, 96px);
+  --max: 1560px;
 
-  --header-h: 108px;
-  --logo-h: 88px;
-  --logo-h-footer: 64px;
+  --space-2xs: 8px;
+  --space-xs: clamp(12px, 1.4vw, 18px);
+  --space-sm: clamp(20px, 2.4vw, 32px);
+  --space-md: clamp(32px, 4vw, 56px);
+  --space-lg: clamp(56px, 7vw, 104px);
+  --space-xl: clamp(88px, 10.5vw, 160px);
+  --space-2xl: clamp(116px, 15vw, 232px);
 
-  --space-xs: 16px;
-  --space-sm: 30px;
-  --space-md: 48px;
-  --space-lg: 56px;
-  --space-section: 36px;
-  --space-section-end: 27px;
-  --space-section-lg: 68px;
-
-  /* ---- Hero proportions (width / height) ---- */
-  --hero-home: 2.74;
-  --hero-page: 2.8;
-  --hero-about: 3.4;
-  --hero-contact: 3.1;
-
-  /* ---- Motion ---- */
-  --ease-premium: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --dur-reveal: 820ms;
-  --dur-hover: 900ms;
+  /* ---- Motion — barely there ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 900ms;
 }
 
 @layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-/* ============================================================
-   Reset
-   ============================================================ */
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+  body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote {
+    margin: 0;
+  }
 
-body {
-  margin: 0;
-  background: var(--ivory);
-  color: var(--black);
-  font-family: var(--font-serif);
-  font-size: var(--fs-body);
-  line-height: 1.8;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote {
-  margin: 0;
-}
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
 
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  :focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 4px;
+  }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-}
+  ::selection {
+    background: var(--stone);
+    color: var(--ink);
+  }
 
-:focus-visible {
-  outline: 1px solid var(--charcoal);
-  outline-offset: 3px;
-}
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 
-::selection {
-  background: var(--mist);
-  color: var(--black);
-}
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 14px 22px;
+    font-size: var(--fs-link);
+    letter-spacing: var(--ls-link);
+    text-transform: uppercase;
+  }
 
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 200;
-  background: var(--black);
-  color: var(--white);
-  padding: 14px 22px;
-  font-family: var(--font-sans);
-  font-size: var(--fs-nav);
-  letter-spacing: var(--ls-nav);
-  text-transform: uppercase;
-}
-
-.skip-link:focus {
-  left: 0;
-}
-
+  .skip-link:focus {
+    left: 0;
+  }
 }
 
 @layer base {
+  /* ---------- layout ---------- */
 
-/* ============================================================
-   Layout primitives
-   ============================================================ */
+  .shell {
+    width: 100%;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--page-x);
+  }
 
-.shell {
-  width: 100%;
-  max-width: var(--page-max);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
+  .shell--narrow {
+    max-width: calc(1120px + var(--page-x) * 2);
+  }
 
-.shell--wide {
-  padding-inline: var(--gutter-wide);
-}
+  /* Escapes the shell gutters — never wider than the viewport. */
+  .bleed {
+    margin-inline: calc(var(--page-x) * -1);
+  }
 
-.shell--measure {
-  max-width: calc(var(--measure) + var(--gutter) * 2);
-}
+  .band--warm {
+    background: var(--warm-white);
+  }
 
-.section {
-  padding-block: var(--space-section) var(--space-section-end);
-}
+  /* ---------- type ---------- */
 
-.section--lg {
-  padding-block: var(--space-section-lg);
-}
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
 
-.section--sm {
-  padding-block: var(--space-lg);
-}
+  .serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
 
-.section--ivory {
-  background: var(--ivory);
-}
+  .hero-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--fs-hero);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
 
-.section--deep {
-  background: var(--ivory-deep);
-}
+  .title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--fs-h1);
+    line-height: 1;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
 
-.section--white {
-  background: var(--paper);
-}
+  .heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
 
-.section--bright {
-  background: #fdfdfc;
-}
+  .statement {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--fs-statement);
+    line-height: 1.22;
+    letter-spacing: -0.005em;
+  }
 
-/* Black editorial band. The silk texture is an optional asset:
-   when absent the band renders as solid black, exactly as intended. */
-.section--dark {
-  position: relative;
-  background-color: var(--black);
-  color: var(--white);
-  isolation: isolate;
-}
+  .lede {
+    font-size: var(--fs-lede);
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
 
-.section--dark::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: var(--dark-texture, none);
-  background-size: cover;
-  background-position: center;
-  opacity: var(--dark-texture-opacity, 0.55);
-}
+  .prose {
+    font-size: var(--fs-body);
+    line-height: 1.85;
+    color: var(--ink-soft);
+  }
 
-.section--dark .eyebrow,
-.section--dark .caption {
-  color: var(--mist);
-}
+  /* Keeps its authored line breaks at every width — for short,
+     one-thought-per-line passages only. */
+  .lines br {
+    display: inline;
+  }
 
-.section--dark .label {
-  color: var(--white);
-}
+  /* Poetic lists — one thought per line, air between them. */
+  .verse {
+    font-size: var(--fs-lede);
+    line-height: 2.05;
+    color: var(--ink-soft);
+  }
 
-/* ============================================================
-   Typography primitives
-   ============================================================ */
+  .verse p + p {
+    margin-top: 0.35em;
+  }
 
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: var(--fs-eyebrow);
-  font-weight: 400;
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
-  line-height: 1.6;
-  color: var(--stone);
-}
+  /* ---------- rules ---------- */
 
-.label {
-  font-family: var(--font-sans);
-  font-size: var(--fs-label);
-  font-weight: 400;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  line-height: 1.6;
-  color: var(--black);
-}
+  .rule {
+    display: block;
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background: var(--hairline);
+  }
 
-.caption {
-  font-size: var(--fs-caption);
-  line-height: 1.5;
-  color: var(--charcoal);
-}
+  /* ---------- editorial CTA ---------- */
 
-.display {
-  font-family: var(--font-serif);
-  font-size: var(--fs-display);
-  font-weight: 400;
-  letter-spacing: var(--ls-display);
-  line-height: 1.3;
-  text-transform: uppercase;
-}
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9em;
+    padding-block: 12px 10px;
+    font-family: var(--font-sans);
+    font-size: var(--fs-link);
+    letter-spacing: var(--ls-link);
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--hairline-strong);
+    transition: border-color var(--dur) var(--ease);
+  }
 
-.title {
-  font-family: var(--font-serif);
-  font-size: var(--fs-title);
-  font-weight: 400;
-  letter-spacing: var(--ls-title);
-  line-height: 1.1;
-  text-transform: uppercase;
-}
+  .cta__arrow {
+    display: inline-block;
+    transition: transform var(--dur) var(--ease);
+  }
 
-.h2 {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  line-height: 1.28;
-  letter-spacing: 0.005em;
-}
+  .cta:hover,
+  .cta:focus-visible {
+    border-bottom-color: var(--ink);
+  }
 
-.h3 {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h3);
-  font-weight: 400;
-  line-height: 1.45;
-}
+  .cta:hover .cta__arrow,
+  .cta:focus-visible .cta__arrow {
+    transform: translateX(6px);
+  }
 
-.h4 {
-  font-family: var(--font-serif);
-  font-size: var(--fs-h4);
-  font-weight: 400;
-  line-height: 1.4;
-}
+  /* ---------- images ---------- */
 
-.body {
-  font-size: var(--fs-body);
-  line-height: 1.5;
-  color: var(--charcoal);
-}
+  .figure {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--stone) 22%, var(--ivory));
+  }
 
-.script {
-  font-family: var(--font-script);
-  font-size: 1.75rem;
-  line-height: 1.2;
-  color: var(--black);
-}
+  .figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-/* Trailing letter-spacing offsets optical centring — compensate. */
-.centered {
-  text-align: center;
-}
+  .caption {
+    margin-top: var(--space-xs);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
 
-.centered.eyebrow,
-.centered.label {
-  text-indent: var(--ls-eyebrow);
-}
+  /* ---------- reveal ---------- */
 
-.centered.title {
-  text-indent: var(--ls-title);
-}
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+  }
 
-.centered.display {
-  text-indent: var(--ls-display);
-}
-
-/* ============================================================
-   Rules & dividers
-   ============================================================ */
-
-.rule {
-  display: block;
-  width: 46px;
-  height: 1px;
-  border: 0;
-  background: currentColor;
-  opacity: 0.55;
-  margin: 0;
-}
-
-.rule--center {
-  margin-inline: auto;
-}
-
-.rule--wide {
-  width: 64px;
-}
-
-.rule--short {
-  width: 28px;
-}
-
-.section--dark .rule {
-  background: var(--white);
-  opacity: 0.6;
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
 }
 
 /* ============================================================
-   Editorial link (underlined micro-CTA with travelling arrow)
+   Authored line breaks are part of the composition, but the long
+   ones would leave orphans on a phone. Those passages flow as prose
+   instead and the measure and leading carry the rhythm; the short,
+   poetic ones keep every break (.lines), as do the display titles.
    ============================================================ */
 
-.editorial-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-sans);
-  font-size: var(--fs-link);
-  letter-spacing: var(--ls-nav);
-  text-transform: uppercase;
-  padding-bottom: 9px;
-  border-bottom: 1px solid currentColor;
-  color: var(--black);
-}
+@media (max-width: 860px) {
+  .verse br,
+  .prose br {
+    display: none;
+  }
 
-.editorial-link__arrow {
-  display: inline-block;
-  transition: transform var(--dur-hover) var(--ease-premium);
-}
-
-.editorial-link:hover .editorial-link__arrow,
-.editorial-link:focus-visible .editorial-link__arrow {
-  transform: translateX(7px);
-}
-
-.section--dark .editorial-link {
-  color: var(--white);
-}
-
-/* Serif CTA — large editorial link used at the foot of pages */
-.editorial-cta {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 20px;
-  font-family: var(--font-serif);
-  font-size: var(--fs-h2);
-  line-height: 1.25;
-  color: var(--black);
-}
-
-.editorial-cta__arrow {
-  display: inline-block;
-  font-size: 0.62em;
-  transition: transform var(--dur-hover) var(--ease-premium);
-}
-
-.editorial-cta:hover .editorial-cta__arrow,
-.editorial-cta:focus-visible .editorial-cta__arrow {
-  transform: translateX(9px);
-}
-
-/* Outlined rectangular CTA (À propos closing band) */
-.outline-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  padding: 15px 30px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  font-family: var(--font-sans);
-  font-size: var(--fs-nav);
-  letter-spacing: var(--ls-nav);
-  text-transform: uppercase;
-  color: var(--black);
-  transition: background-color var(--dur-hover) var(--ease-premium),
-    border-color var(--dur-hover) var(--ease-premium);
-}
-
-.outline-cta:hover,
-.outline-cta:focus-visible {
-  border-color: rgba(0, 0, 0, 0.6);
-}
-
-.section--dark .outline-cta {
-  border-color: rgba(255, 255, 255, 0.45);
-  color: var(--white);
-}
-
-.section--dark .outline-cta:hover,
-.section--dark .outline-cta:focus-visible {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.75);
-}
-
-.outline-cta__arrow {
-  display: inline-block;
-  transition: transform var(--dur-hover) var(--ease-premium);
-}
-
-.outline-cta:hover .outline-cta__arrow {
-  transform: translateX(7px);
-}
-
-/* ============================================================
-   Figure — real photography, or a reserved slot when the asset
-   has not been supplied yet. Space is preserved either way.
-   ============================================================ */
-
-/* CTA plein — rectangle noir de la page Cérémonies civiles */
-.solid-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  min-width: 347px;
-  padding: 18px 38px;
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  letter-spacing: 0.01em;
-  transition: background-color var(--dur-hover) var(--ease-premium);
-}
-
-.solid-cta:hover,
-.solid-cta:focus-visible {
-  background: #1b1a18;
-}
-
-.solid-cta__arrow {
-  display: inline-block;
-  transition: transform var(--dur-hover) var(--ease-premium);
-}
-
-.solid-cta:hover .solid-cta__arrow {
-  transform: translateX(7px);
-}
-
-.figure {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: var(--ivory-deep);
-}
-
-.figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.figure--zoom img {
-  transition: transform 1100ms var(--ease-premium);
-}
-
-.figure--zoom:hover img,
-a:hover .figure--zoom img,
-a:focus-visible .figure--zoom img {
-  transform: scale(1.025);
-}
-
-.figure__pending {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  background: var(--ivory-deep);
-  box-shadow: inset 0 0 0 1px var(--hairline);
-}
-
-.figure__pending span {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--stone);
-  word-break: break-word;
-}
-
-/* ============================================================
-   Reveal on scroll
-   ============================================================ */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-  transition: opacity var(--dur-reveal) var(--ease-premium),
-    transform var(--dur-reveal) var(--ease-premium);
+  .lines br {
+    display: inline;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .reveal,
   .reveal.is-visible {
     opacity: 1;
@@ -587,127 +373,5 @@ a:focus-visible .figure--zoom img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* ============================================================
-   Column sets with hairline separators (used on several pages)
-   ============================================================ */
-
-.columns {
-  display: grid;
-  gap: 0;
-}
-
-.columns > * {
-  padding-inline: clamp(20px, 3vw, 46px);
-  border-left: 1px solid var(--hairline);
-}
-
-.columns > *:first-child {
-  border-left: 0;
-}
-
-.section--dark .columns > * {
-  border-left-color: var(--hairline-dark);
-}
-
-.columns--3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.columns--4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-/* ============================================================
-   Responsive
-   ============================================================ */
-
-@media (max-width: 768px) {
-  .columns--3,
-  .columns--4 {
-    grid-template-columns: 1fr;
-  }
-
-  .columns > * {
-    padding-inline: 0;
-    padding-block: 34px;
-    border-left: 0;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .columns > *:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .columns > *:last-child {
-    padding-bottom: 0;
-  }
-
-  .section--dark .columns > * {
-    border-top-color: var(--hairline-dark);
-  }
-
-  .editorial-cta {
-    gap: 14px;
-  }
-}
-
-}
-
-/* ============================================================
-   Jetons responsives — hors @layer, comme le :root de tête
-   ============================================================ */
-
-@media (max-width: 1280px) {
-  :root {
-    --gutter: 40px;
-    --gutter-wide: 112px;
-    --gutter-header: 128px;
-    --header-h: 100px;
-    --logo-h: 80px;
-    --space-section: 34px;
-    --space-section-end: 26px;
-    --space-section-lg: 62px;
-  }
-}
-
-@media (max-width: 1024px) {
-  :root {
-    --gutter: 32px;
-    --gutter-wide: 64px;
-    --gutter-header: 48px;
-    --header-h: 92px;
-    --logo-h: 68px;
-    --space-section: 40px;
-    --space-section-end: 34px;
-    --space-section-lg: 66px;
-    --space-lg: 54px;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --gutter: 22px;
-    --gutter-wide: 22px;
-    --gutter-header: 22px;
-    --header-h: 76px;
-    --logo-h: 52px;
-    --logo-h-footer: 58px;
-    --space-section: 44px;
-    --space-section-end: 40px;
-    --space-section-lg: 58px;
-    --space-lg: 46px;
-    --space-md: 36px;
-  }
-}
-
-@media (max-width: 430px) {
-  :root {
-    --gutter: 18px;
-    --gutter-wide: 18px;
-    --gutter-header: 18px;
   }
 }
