@@ -1,6 +1,6 @@
 /**
- * Contrôle responsive : signale tout débordement horizontal et les éléments
- * plus larges que le viewport, pour chaque page et chaque largeur cible.
+ * Responsive check: reports horizontal overflow and any element wider than
+ * the viewport, for every page at every target width.
  *
  *   node scripts/responsive.js
  */
@@ -8,16 +8,7 @@ const { chromium } = require("playwright");
 
 const BASE = process.env.BASE_URL || "http://127.0.0.1:3000";
 const WIDTHS = [1920, 1600, 1440, 1280, 1024, 768, 430, 390, 375];
-const PAGES = [
-  "/",
-  "/portfolio",
-  "/mariages",
-  "/ceremonies-civiles",
-  "/anniversaires",
-  "/maternite-naissance",
-  "/a-propos",
-  "/contact",
-];
+const PAGES = ["/", "/about", "/portfolio", "/contact"];
 
 (async () => {
   const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
@@ -45,6 +36,6 @@ const PAGES = [
     }
     await page.close();
   }
-  console.log(problems ? `${problems} débordement(s)` : "aucun débordement horizontal");
+  console.log(problems ? `${problems} horizontal overflow(s)` : "no horizontal overflow");
   await browser.close();
 })();

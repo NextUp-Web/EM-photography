@@ -1,72 +1,158 @@
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+/* ============================================================
+   PORTFOLIO — editorial · elegant · timeless
+   ============================================================ */
+
+.intro {
+  padding-block: var(--rhythm-lg) 0;
+  text-align: center;
 }
 
-.rowTwo {
-  margin-top: clamp(24px, 2.1vw, 30px);
+.title {
+  font-size: var(--fs-page-title);
+  margin: 0;
 }
 
-/* Washed photographic ground behind the experience block. The image is
-   optional: without it the band reads as a flat deep-ivory panel. */
-.experience {
-  position: relative;
-  background-color: var(--ivory-deep);
-  padding-block: clamp(32px, 2.9vw, 42px) clamp(44px, 4.3vw, 62px);
-  isolation: isolate;
+.lead {
+  margin: clamp(18px, 2.2vw, 28px) auto 0;
+  max-width: 46ch;
 }
 
-.experience::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: var(--experience-bg, none);
-  background-size: 100% 40%;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  opacity: 0.55;
+.categories {
+  margin-top: clamp(26px, 3.4vw, 44px);
 }
 
-.experienceInner {
+.categoryList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: clamp(12px, 1.6vw, 22px);
 }
 
-.experienceHead {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.categoryItem {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(12px, 1.6vw, 22px);
 }
 
-.experienceTitle {
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-indent: 0.15em;
-  font-size: clamp(0.9375rem, 1.63vw, 1.47rem);
-  line-height: 1.5;
+.dot {
+  color: var(--color-stone);
 }
 
-.experienceHead .experienceRule {
-  margin-top: 22px;
-  color: var(--charcoal);
+.categoryLink {
+  color: var(--color-meta);
+  transition: color var(--dur) var(--ease);
 }
 
-.experienceSteps {
-  margin-top: clamp(28px, 2.85vw, 41px);
+.categoryLink:hover,
+.categoryLink:focus-visible {
+  color: var(--color-black);
 }
 
-.bandInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.introRule {
+  margin-top: clamp(28px, 3.6vw, 46px);
 }
 
-.bandLink {
-  margin-top: 30px;
+/* ---------- Chapters ---------- */
+
+.chapter {
+  padding-block: var(--rhythm-sm) var(--rhythm-xs);
+}
+
+.chapterHead {
+  margin-bottom: clamp(20px, 2.6vw, 32px);
+}
+
+.chapterTitle {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  margin: 0;
+}
+
+.chapterMeta {
+  margin-top: 6px;
+}
+
+.chapterLead {
+  margin-top: 0;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-img);
+  margin-top: var(--gap-img);
+}
+
+.detail,
+.wide {
+  margin-top: var(--gap-img);
+}
+
+/* ---------- Quote ---------- */
+
+.quoteWrap {
+  padding-block: var(--rhythm-lg);
+  text-align: center;
+}
+
+.quote {
+  font-size: var(--fs-quote);
+  color: var(--color-black);
+  max-width: 24ch;
+  margin-inline: auto;
+}
+
+/* ---------- Closing ---------- */
+
+.closing {
+  margin-top: var(--rhythm-md);
+}
+
+.closingTitle {
+  font-size: clamp(1.625rem, 2.7vw, 2.4rem);
+  margin-bottom: clamp(24px, 3vw, 38px);
+}
+
+/* ============================================================
+   Mobile — v2.2
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .intro {
+    padding-block: var(--rhythm-md) 0;
+  }
+
+  .lead {
+    max-width: 32ch;
+    text-wrap: balance;
+  }
+
+  /* The board lets the description find its own three lines here. */
+  .break {
+    display: none;
+  }
+
+  .categoryList {
+    gap: 6px 18px;
+  }
+
+  .categoryItem {
+    gap: 0;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .chapter {
+    padding-block: var(--rhythm-sm) 0;
+  }
+
+  .quoteWrap {
+    padding-block: var(--rhythm-md);
+  }
+
+  .closing {
+    margin-top: var(--rhythm-sm);
+  }
 }

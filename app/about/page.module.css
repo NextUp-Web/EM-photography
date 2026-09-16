@@ -1,0 +1,150 @@
+/* ============================================================
+   ABOUT — authentic · personal · human
+   ============================================================ */
+
+.heroWrap {
+  position: relative;
+}
+
+.heroTitle {
+  position: absolute;
+  left: var(--shell-pad);
+  bottom: clamp(26px, 4.2vw, 62px);
+  z-index: 2;
+  font-size: var(--fs-statement);
+  color: var(--color-warm-white);
+  text-shadow: 0 1px 24px rgba(23, 22, 20, 0.34);
+  margin: 0;
+}
+
+/* ---------- Your story ---------- */
+
+.story {
+  display: grid;
+  grid-template-columns: 56fr 31fr;
+  gap: clamp(30px, 5vw, 78px);
+  align-items: start;
+  padding-block: var(--rhythm-md) var(--rhythm-sm);
+}
+
+.storyText {
+  max-width: 48ch;
+}
+
+.storyCopy {
+  margin-top: clamp(18px, 2.2vw, 26px);
+}
+
+.storyImage {
+  margin-top: 6px;
+}
+
+/* ---------- Rules & approach ---------- */
+
+.ruleWrap {
+  padding-block: 0;
+}
+
+.approach {
+  padding-block: var(--rhythm-sm);
+}
+
+.approachCopy {
+  margin-top: clamp(16px, 2vw, 24px);
+  max-width: 62ch;
+}
+
+/* ---------- Positioning statement ---------- */
+
+.positioning {
+  padding-block: var(--rhythm-lg);
+  text-align: center;
+}
+
+.positioningText {
+  font-size: clamp(1.375rem, 2.2vw, 2rem);
+  margin-inline: auto;
+}
+
+/* ---------- Atmosphere ---------- */
+
+.landscape {
+  padding-bottom: var(--rhythm-md);
+}
+
+/* ---------- What I want for you ---------- */
+
+.wish {
+  padding-bottom: var(--rhythm-lg);
+}
+
+.wishCopy {
+  margin-top: clamp(16px, 2vw, 24px);
+  max-width: 62ch;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-img);
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+/* ============================================================
+   Mobile — v2.2 : image, then title, then copy, then the pause
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .heroTitle {
+    position: static;
+    color: var(--color-black);
+    text-shadow: none;
+    padding-inline: var(--shell-pad);
+    margin-top: clamp(28px, 8vw, 40px);
+  }
+
+  .story {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: clamp(26px, 7vw, 36px) var(--rhythm-sm);
+  }
+
+  .storyText {
+    max-width: none;
+  }
+
+  /* The hero is already a portrait of Emma — the board drops this one. */
+  .storyImage {
+    display: none;
+  }
+
+  .approach {
+    padding-block: var(--rhythm-sm);
+  }
+
+  .positioning {
+    padding-block: var(--rhythm-md);
+    text-align: left;
+  }
+
+  .positioningText {
+    margin-inline: 0;
+  }
+
+  .landscape {
+    padding-bottom: var(--rhythm-sm);
+  }
+
+  .landscape > * {
+    --fig-ratio: 1.5;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .galleryC {
+    grid-column: 1 / -1;
+    --fig-ratio: 1.7;
+  }
+}

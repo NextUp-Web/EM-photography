@@ -1,85 +1,271 @@
-.homeGrid {
-  margin-top: clamp(22px, 1.8vw, 25px);
+/* ============================================================
+   HOME — immersive · emotive · timeless
+   ============================================================ */
+
+/* ---------- Hero ---------- */
+
+.hero {
+  margin-bottom: 0;
 }
 
-.bandInner {
+.heroText {
+  max-width: none;
+  padding-bottom: clamp(30px, 3.4vw, 46px); /* keeps the SCROLL cue its own air */
+}
+
+.heroLabel {
+  color: inherit;
+  opacity: 0.88;
+  margin-bottom: clamp(14px, 1.6vw, 22px);
+}
+
+.heroTitle {
+  font-size: var(--fs-hero);
+  margin: 0;
+}
+
+.heroMeta {
+  color: inherit;
+  opacity: 0.88;
+  margin-top: clamp(18px, 2.2vw, 30px);
+  white-space: nowrap;
+}
+
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 2.6vw, 34px);
+  transform: translateX(-50%);
+  color: inherit;
+  opacity: 0.85;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scrollArrow {
+  letter-spacing: 0;
+}
+
+/* ---------- Philosophy ---------- */
+
+.philosophy {
+  padding-block: var(--rhythm-lg) 0;
+}
+
+.statement {
+  font-size: var(--fs-statement);
+  max-width: 18ch;
+}
+
+.philosophyCopy {
+  margin-top: clamp(26px, 3vw, 40px);
+  max-width: 42ch;
+  line-height: 1.95;
+}
+
+.philosophyRule {
+  margin-top: var(--rhythm-md);
+}
+
+/* ---------- Selected stories ---------- */
+
+.stories {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 22px;
+  padding-block: var(--rhythm-sm) var(--rhythm-md);
 }
 
-.aboutLink {
-  margin-top: 26px;
+.storiesHead {
+  order: 1;
+  margin-bottom: clamp(26px, 3.2vw, 44px);
 }
 
-/* Le bloc image + texte de la maquette est plus serré que les autres sections. */
-.behindSection {
-  padding-block: 22px 31px;
+.storiesTitle {
+  font-size: var(--fs-heading);
+  margin-top: clamp(14px, 1.6vw, 20px);
 }
 
-.palette {
-  padding-block: 21px 36px;
+.storiesLead {
+  margin-top: clamp(12px, 1.4vw, 18px);
+  max-width: 44ch;
 }
 
-.swatches {
+.grid {
+  order: 2;
+  display: grid;
+  grid-template-columns: 58fr 40fr;
+  gap: var(--gap-img);
+}
+
+.gridTall {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.gridTop {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.gridBottom {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.storiesWide {
+  order: 3;
+  margin-top: var(--gap-img);
+}
+
+.storiesCta {
+  order: 4;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(22px, 3vw, 44px);
-  margin-top: 16px;
+  justify-content: flex-end;
+  margin-top: clamp(22px, 2.6vw, 34px);
 }
 
-.swatch {
-  display: flex;
-  flex-direction: column;
+/* ---------- The approach ---------- */
+
+.approach {
+  display: grid;
+  grid-template-columns: 26fr 61fr;
+  gap: clamp(28px, 5vw, 72px);
   align-items: center;
-  gap: 16px;
+  padding-block: var(--rhythm-xs) var(--rhythm-lg);
 }
 
-.chip {
-  display: block;
-  width: clamp(48px, 4.6vw, 67px);
-  aspect-ratio: 1;
-  border-radius: 50%;
+.approachText {
+  max-width: 46ch;
 }
 
-.swatchName {
-  font-size: var(--fs-micro);
-  letter-spacing: 0.2em;
-  text-indent: 0.2em;
-  color: var(--charcoal);
+.approachCopy {
+  margin-block: clamp(16px, 1.8vw, 22px) clamp(24px, 2.8vw, 34px);
 }
+
+/* ---------- About teaser ---------- */
+
+.teaserBand {
+  border-block: 1px solid var(--hairline-soft);
+}
+
+.teaser {
+  display: grid;
+  grid-template-columns: 26fr 61fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  padding-block: var(--rhythm-md);
+}
+
+.teaserTitle {
+  font-size: var(--fs-statement);
+  max-width: 16ch;
+}
+
+.teaserLabel {
+  margin-top: clamp(18px, 2.2vw, 28px);
+  max-width: 36ch;
+}
+
+.teaserCopy {
+  margin-block: clamp(10px, 1.2vw, 14px) clamp(22px, 2.6vw, 30px);
+  max-width: 40ch;
+}
+
+/* ---------- Closing band ---------- */
+
+.closingTitle {
+  font-size: clamp(1.625rem, 2.6vw, 2.35rem);
+}
+
+.closingSub {
+  font-size: clamp(1.625rem, 2.6vw, 2.35rem);
+  margin-bottom: clamp(24px, 3vw, 38px);
+}
+
+/* ============================================================
+   Mobile — v2.2
+   ============================================================ */
 
 @media (max-width: 768px) {
-  .aboutLink {
-    margin-top: 26px;
+  .heroText {
+    padding-bottom: 44px;
   }
 
-  .swatches {
-    margin-top: 26px;
-  }
-}
-
-/* Keep all five swatches on one row at phone widths. */
-@media (max-width: 520px) {
-  .swatches {
-    flex-wrap: nowrap;
-    gap: 10px;
+  .heroMeta {
+    letter-spacing: 0.18em;
+    margin-top: 18px;
   }
 
-  .swatch {
-    min-width: 0;
-    gap: 12px;
+  .philosophy {
+    padding-block: var(--rhythm-md) 0;
   }
 
-  .chip {
-    width: clamp(36px, 10vw, 48px);
+  .philosophyCopy {
+    max-width: none;
   }
 
-  .swatchName {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-    text-indent: 0.12em;
+  .stories {
+    padding-block: var(--rhythm-sm) var(--rhythm-sm);
+  }
+
+  /* The board leads with the landscape, then the label. */
+  .storiesWide {
+    order: 0;
+    margin-top: 0;
+    margin-bottom: clamp(30px, 8vw, 44px);
+    --fig-ratio: 1.55;
+  }
+
+  .storiesHead {
+    order: 1;
+  }
+
+  .grid {
+    order: 2;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gridTall {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    --fig-ratio: 1.02;
+  }
+
+  .gridTop {
+    grid-column: 1;
+    grid-row: auto;
+    --fig-ratio: 0.84;
+  }
+
+  .gridBottom {
+    grid-column: 2;
+    grid-row: auto;
+    --fig-ratio: 0.84;
+  }
+
+  .storiesCta {
+    order: 4;
+    justify-content: flex-start;
+  }
+
+  .approach,
+  .teaser {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 7vw, 34px);
+  }
+
+  .approachImage,
+  .teaserImage {
+    width: 68%;
+    max-width: 360px;
+  }
+
+  .approach {
+    padding-block: var(--rhythm-sm) var(--rhythm-md);
+  }
+
+  .teaser {
+    padding-block: var(--rhythm-md);
   }
 }

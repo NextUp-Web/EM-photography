@@ -1,9 +1,16 @@
 .logo {
-  display: block;
-  height: var(--logo-size, var(--logo-h));
+  --logo-h: 46px;
+  display: inline-block;
+  height: var(--logo-h);
 }
 
 .image {
-  height: 100%;
   width: auto;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    --logo-h: 34px;
+  }
 }

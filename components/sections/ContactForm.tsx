@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { SESSION_TYPES } from "@/lib/data";
+import { CONTACT_EMAIL } from "@/lib/data";
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const MESSAGES: Record<Exclude<Status, "idle" | "sending">, string> = {
-  sent: "Merci — votre demande est bien arrivée. Je vous réponds sous 48 heures.",
-  error:
-    "L’envoi n’a pas abouti. Écrivez-moi directement à contact@em-photography.ch et je vous réponds rapidement.",
-};
+const REFERRALS = [
+  "Instagram",
+  "A friend or family",
+  "A search engine",
+  "A venue or wedding planner",
+  "Somewhere else",
+];
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -36,102 +38,120 @@ export default function ContactForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate={false}>
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="name" className={styles.label}>
-            Nom <span aria-hidden="true">*</span>
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-            placeholder="Votre nom"
-            className={styles.input}
-          />
-        </div>
-
-        <div className={styles.field}>
-          <label htmlFor="email" className={styles.label}>
-            Email <span aria-hidden="true">*</span>
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            placeholder="votre@email.com"
-            className={styles.input}
-          />
-        </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="name">
+          Your name
+        </label>
+        <input
+          className={styles.input}
+          id="name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+        />
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="sessionType" className={styles.label}>
-            Type de séance <span aria-hidden="true">*</span>
-          </label>
-          <select id="sessionType" name="sessionType" required defaultValue="" className={styles.input}>
-            <option value="" disabled>
-              Sélectionner
-            </option>
-            {SESSION_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="email">
+          Your email
+        </label>
+        <input
+          className={styles.input}
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="partnerName">
+          Your partner&rsquo;s name
+        </label>
+        <input
+          className={styles.input}
+          id="partnerName"
+          name="partnerName"
+          type="text"
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="date">
+          Wedding / session date
+        </label>
+        <input className={styles.input} id="date" name="date" type="date" />
+      </div>
+
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="location">
+          Location
+        </label>
+        <input className={styles.input} id="location" name="location" type="text" />
+      </div>
+
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="message">
+          Tell me a little about your story
+        </label>
+        <textarea
+          className={styles.textarea}
+          id="message"
+          name="message"
+          rows={5}
+          required
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label className={`label ${styles.label}`} htmlFor="referral">
+          How did you hear about me?
+        </label>
+        <div className={styles.selectWrap}>
+          <select
+            className={`${styles.input} ${styles.select}`}
+            id="referral"
+            name="referral"
+            defaultValue=""
+          >
+            <option value="" />
+            {REFERRALS.map((option) => (
+              <option key={option} value={option}>
+                {option}
               </option>
             ))}
           </select>
+          <span className={styles.chevron} aria-hidden="true">
+            <svg viewBox="0 0 12 8" width="11" height="7" fill="none">
+              <path d="M1 1.5 6 6.5l5-5" stroke="currentColor" strokeWidth="1" />
+            </svg>
+          </span>
         </div>
-
-        <div className={styles.field}>
-          <label htmlFor="date" className={styles.label}>
-            Date souhaitée
-          </label>
-          <input id="date" name="date" type="date" className={styles.input} />
-        </div>
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="location" className={styles.label}>
-          Lieu
-        </label>
-        <input
-          id="location"
-          name="location"
-          type="text"
-          placeholder="Ville, région ou lieu précis"
-          className={styles.input}
-        />
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="message" className={styles.label}>
-          Message <span aria-hidden="true">*</span>
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={3}
-          required
-          placeholder="Parlez-moi de votre projet, vos envies, vos idées..."
-          className={`${styles.input} ${styles.textarea}`}
-        />
       </div>
 
       <button type="submit" className={styles.submit} disabled={status === "sending"}>
-        {status === "sending" ? "Envoi en cours" : "Envoyer une demande"}
-        <span className={styles.submitArrow} aria-hidden="true">
-          &#10230;
+        {status === "sending" ? "Sending" : "Send your inquiry"}
+        <span className="cta-arrow" aria-hidden="true">
+          &#8594;
         </span>
       </button>
 
-      <p className={styles.note} role="status">
-        {status === "sent" || status === "error"
-          ? MESSAGES[status]
-          : "Vos informations restent confidentielles et ne seront jamais partagées."}
+      <p className={styles.status} role="status" aria-live="polite">
+        {status === "sent"
+          ? "Thank you — your message is on its way. I answer every enquiry personally, usually within 48 hours."
+          : null}
+        {status === "error" ? (
+          <>
+            The message could not be sent. Please write to me directly at{" "}
+            <a className={styles.mail} href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </a>
+            .
+          </>
+        ) : null}
       </p>
     </form>
   );

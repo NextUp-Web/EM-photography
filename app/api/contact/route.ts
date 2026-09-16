@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 
-const REQUIRED = ["name", "email", "sessionType", "message"] as const;
+/**
+ * The enquiry form on /contact posts here. Delivery is still not wired to a
+ * provider — the route validates and answers 503 rather than pretending the
+ * message was sent.
+ */
+const REQUIRED = ["name", "email", "message"] as const;
+
+const OPTIONAL = ["partnerName", "date", "location", "referral"] as const;
 
 export async function POST(request: Request) {
   let payload: Record<string, unknown>;
@@ -24,7 +31,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
 
+  const enquiry = Object.fromEntries(
+    [...REQUIRED, ...OPTIONAL]
+      .map((field) => [field, typeof payload[field] === "string" ? payload[field] : ""])
+      .filter(([, value]) => value !== ""),
+  );
+
   // Delivery provider is not connected yet. Add the Resend (or equivalent) call
-  // here — the validated enquiry above is the only input it needs.
+  // here — `enquiry` above is the only input it needs.
+  void enquiry;
+
   return NextResponse.json({ error: "delivery_not_configured" }, { status: 503 });
 }
