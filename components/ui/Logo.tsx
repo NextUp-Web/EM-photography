@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "./Logo.module.css";
 
-/** Intrinsic ratio of the supplied lockup (width / height). */
-const WIDTH = 678;
-const HEIGHT = 528;
+/** Intrinsic size of the official lockup supplied by the client. */
+const WIDTH = 691;
+const HEIGHT = 647;
 
 type LogoProps = {
   variant?: "black" | "white";

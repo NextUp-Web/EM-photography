@@ -1,5 +1,5 @@
 .logo {
-  --logo-h: 46px;
+  --logo-h: 54px;
   display: inline-block;
   height: var(--logo-h);
 }
@@ -11,6 +11,6 @@
 
 @media (max-width: 768px) {
   .logo {
-    --logo-h: 34px;
+    --logo-h: 38px;
   }
 }
