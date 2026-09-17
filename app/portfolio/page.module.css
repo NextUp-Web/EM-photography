@@ -6,7 +6,9 @@
 /* ---------- Title ---------- */
 
 .intro {
-  padding-top: var(--rhythm-lg);
+  /* The header now floats over the page (no hero photo here to sit on), so
+     this never drops below its height plus a little air. */
+  padding-top: max(var(--rhythm-lg), calc(var(--header-h) + 24px));
   text-align: center;
 }
 

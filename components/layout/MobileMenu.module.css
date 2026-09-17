@@ -13,6 +13,12 @@
   color: var(--color-black);
   cursor: pointer;
   min-height: 44px;
+  transition: color var(--dur) var(--ease);
+}
+
+/* Header floats transparently over a hero photo on these routes. */
+:global(.is-over-hero) .toggle {
+  color: var(--color-warm-white);
 }
 
 .panel {

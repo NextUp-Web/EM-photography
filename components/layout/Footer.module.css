@@ -24,6 +24,10 @@
   gap: 9px;
 }
 
+.mark {
+  display: inline-block;
+}
+
 .place,
 .instagram,
 .navLink {

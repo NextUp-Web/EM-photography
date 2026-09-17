@@ -1,13 +1,25 @@
 /* ============================================================
-   Header — a thin ivory-free band: warm white, one hairline, nothing else.
+   Header — floats over the top of the page so the hero photograph
+   (Home / About / Contact) can run to the very top of the site, behind it.
    ============================================================ */
 
 .header {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: var(--color-warm-white);
-  border-bottom: 1px solid var(--hairline-soft);
+  background: transparent;
+}
+
+/* On a hero page a soft vignette keeps the logo and nav legible on the photo. */
+.overHero {
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 22, 20, 0.4) 0%,
+    rgba(23, 22, 20, 0.14) 65%,
+    rgba(23, 22, 20, 0) 100%
+  );
 }
 
 .inner {
@@ -46,7 +58,11 @@
   color: var(--color-black);
   padding-block: 6px;
   opacity: 0.66;
-  transition: opacity var(--dur) var(--ease);
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.overHero .navLink {
+  color: var(--color-warm-white);
 }
 
 .navLink:hover,

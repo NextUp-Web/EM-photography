@@ -6,9 +6,9 @@ import ImageBand from "@/components/sections/ImageBand";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "About Emma | EM Photography",
+  title: "About Emra | EM Photography",
   description:
-    "I'm Emma, the person behind EM Photography — editorial documentary photography with a quietly romantic soul, from Switzerland and across Europe.",
+    "I'm Emra, the person behind EM Photography — editorial documentary photography with a quietly romantic soul, from Switzerland and across Europe.",
   alternates: { canonical: "/about" },
 };
 
@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* ---------- Hero — full bleed, 268 × 227 on the board ---------- */}
       <ImageBand
         src="/images/v3/about/hero.jpg"
-        alt="Emma seated on a terrace in a cream knit, looking out across the lake"
+        alt="Emra seated on a terrace in a cream knit, looking out across the lake"
         ratio={1.181}
         mobileRatio={0.78}
         variant="hero"
@@ -42,7 +42,7 @@ export default function AboutPage() {
             Your story
           </SectionLabel>
           <p className={`copy ${styles.storyLead}`}>
-            I&rsquo;m Emma, the person behind
+            I&rsquo;m Emra, the person behind
             <br />
             EM Photography.
           </p>
@@ -57,7 +57,7 @@ export default function AboutPage() {
         <Figure
           className={`bleed-phone ${styles.storyImage}`}
           src="/images/v3/about/portrait.jpg"
-          alt="Emma holding her camera, the lake behind her"
+          alt="Emra holding her camera, the lake behind her"
           ratio={0.631}
           mobileRatio={0.86}
           sizes="(max-width: 768px) 70vw, 44vw"

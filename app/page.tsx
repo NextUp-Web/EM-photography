@@ -155,7 +155,7 @@ export default function HomePage() {
           <Figure
             className={styles.teaserImage}
             src="/images/v3/home/emma.jpg"
-            alt="Emma in a cream knit, looking out across the hillside"
+            alt="Emra in a cream knit, looking out across the hillside"
             ratio={0.93}
             sizes="(max-width: 768px) 70vw, 42vw"
             position="center 40%"
@@ -167,7 +167,7 @@ export default function HomePage() {
               what is quietly felt.
             </h2>
             <SectionLabel tone="ink" className={styles.teaserLabel}>
-              I&rsquo;m Emma, the person behind
+              I&rsquo;m Emra, the person behind
               <br />
               EM Photography.
             </SectionLabel>

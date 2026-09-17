@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Wordmark from "@/components/ui/Wordmark";
+import Logo from "@/components/ui/Logo";
 import { COPYRIGHT_YEAR, INSTAGRAM_URL, NAV, SEO_LINE } from "@/lib/data";
 import styles from "./Footer.module.css";
 
@@ -9,8 +9,8 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Link href="/" aria-label="EM Photography — home">
-              <Wordmark layout="inline" />
+            <Link href="/" className={styles.mark} aria-label="EM Photography — home">
+              <Logo height="44px" />
             </Link>
             <p className={styles.place}>Switzerland based</p>
           </div>
