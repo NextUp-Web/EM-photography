@@ -59,7 +59,7 @@ export const STORY = {
 } as const;
 
 export const CONTACT_EMAIL = "contact@em-photography.ch";
-export const INSTAGRAM_URL = "https://www.instagram.com/em.photography/";
+export const INSTAGRAM_URL = "https://emphotography.ch";
 export const SITE_URL = "https://em-photography.ch";
 export const COPYRIGHT_YEAR = 2026;
 export const SEO_LINE =
