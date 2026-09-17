@@ -3,7 +3,7 @@
   width: 100%;
   aspect-ratio: var(--ratio);
   overflow: hidden;
-  background: var(--color-warm-white);
+  background: var(--color-page);
   isolation: isolate;
 }
 

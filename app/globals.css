@@ -20,6 +20,13 @@
   --color-stone: #b8b1a6;
   --color-black: #171614;
 
+  /*
+   * La surface des pages est le blanc pur, comme demandé. Le Soft Ivory
+   * n'intervient qu'en accent, sur des blocs contenus ; le Warm White
+   * reste l'encre claire posée sur les photographies.
+   */
+  --color-page: #ffffff;
+
   /* Readable neutrals blended from Soft Black and Stone — no new hues. */
   --color-muted: #5f5b53; /* body copy */
   --color-meta: #3d3a34; /* the boards set their small caps nearly black */
@@ -130,14 +137,14 @@
 
   html {
     -webkit-text-size-adjust: 100%;
-    background: var(--color-warm-white);
+    background: var(--color-page);
   }
 
   body {
     margin-inline: auto;
     margin-block: 0;
     max-width: var(--frame-max);
-    background: var(--color-warm-white);
+    background: var(--color-page);
     color: var(--color-black);
     font-family: var(--font-sans);
     font-size: var(--fs-body);
