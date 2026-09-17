@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "@/components/ui/Logo";
+import Wordmark from "@/components/ui/Wordmark";
 import DesktopNav from "./DesktopNav";
 import MobileMenu from "./MobileMenu";
 import styles from "./Header.module.css";
@@ -9,7 +9,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link href="/" className={styles.brand} aria-label="EM Photography — home">
-          <Logo priority />
+          <Wordmark />
         </Link>
 
         <DesktopNav />

@@ -3,65 +3,78 @@
 /* ============================================================
    EM PHOTOGRAPHY
    Design tokens, reset, editorial primitives.
-   Art direction: v2.1 (desktop) / v2.2 (mobile)
+
+   Every value below is measured on the client's presentation boards,
+   public/references/maquette-desktop.jpg and maquette-mobile.jpg.
+   Board geometry: four page panels, 280 / 268 / 252 / 262 px wide,
+   each with ~4.6% side padding. Photograph ratios, grid fractions and
+   the relative type scale are taken straight from those panels.
+
    TIMELESS · AUTHENTIC · POETIC
    ============================================================ */
 
 :root {
-  /* ---- Palette (final, approved) ---- */
+  /* ---- Palette (the board's four swatches, nothing else) ---- */
   --color-ivory: #f7f4ee;
   --color-warm-white: #fcfbf8;
   --color-stone: #b8b1a6;
   --color-black: #171614;
 
   /* Readable neutrals blended from Soft Black and Stone — no new hues. */
-  --color-muted: #54514b; /* body copy */
-  --color-meta: #6b665c; /* micro labels, metadata */
+  --color-muted: #5f5b53; /* body copy */
+  --color-meta: #3d3a34; /* the boards set their small caps nearly black */
+  --color-quiet: #6f6a61; /* footer metadata, legal line */
 
-  --hairline: rgba(184, 177, 166, 0.62);
-  --hairline-soft: rgba(184, 177, 166, 0.38);
-  --hairline-light: rgba(255, 255, 255, 0.4);
+  --hairline: rgba(184, 177, 166, 0.58);
+  --hairline-soft: rgba(184, 177, 166, 0.36);
 
   /* ---- Type ---- */
   --font-serif: var(--font-instrument), "Instrument Serif", Georgia,
     "Times New Roman", serif;
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
 
-  --fs-micro: 0.625rem; /* 10px — footer base line */
-  --fs-nav: 0.6875rem; /* 11px — navigation, labels, CTA */
-  --fs-label: 0.6875rem;
-  --fs-body-sm: 0.875rem; /* 14px */
-  --fs-body: 0.9375rem; /* 15px */
-  --fs-lead: 1rem;
+  --fs-micro: 0.6875rem; /* 11px — footer base line */
+  --fs-nav: 0.75rem; /* 12px — navigation, labels, CTA */
+  --fs-label: 0.75rem;
+  --fs-body-sm: 0.9375rem; /* 15px */
+  --fs-body: 1.0625rem; /* 17px */
 
-  --fs-quote: clamp(1.375rem, 2.1vw, 1.9rem);
-  --fs-statement: clamp(1.75rem, 3vw, 2.75rem);
-  --fs-heading: clamp(1.75rem, 2.8vw, 2.5rem);
-  --fs-page-title: clamp(2.25rem, 4vw, 3.5rem);
-  --fs-hero: clamp(2.5rem, 4.9vw, 4.5rem);
+  /*
+   * The board sets its headlines at these multiples of the body size:
+   * statements ×2.4, hero and section titles ×3.0, page titles ×3.9,
+   * quotes ×1.9, band titles ×2.1.
+   */
+  --fs-quote: clamp(1.375rem, 2.5vw, 2.15rem);
+  --fs-band-sub: clamp(1.25rem, 1.9vw, 1.7rem);
+  --fs-band-title: clamp(1.75rem, 2.9vw, 2.6rem);
+  --fs-display: clamp(2rem, 3.4vw, 3rem);
+  --fs-hero: clamp(2.375rem, 4vw, 3.5rem);
+  --fs-about-hero: clamp(2.25rem, 3.8vw, 3.3rem);
+  --fs-page-title: clamp(2.625rem, 5vw, 4.4rem);
 
   --ls-nav: 0.2em;
   --ls-label: 0.24em;
   --ls-micro: 0.18em;
 
-  --lh-display: 1.14;
-  --lh-body: 1.78;
+  --lh-display: 1.16;
+  --lh-body: 1.8;
 
   /* ---- Layout ---- */
-  --frame-max: 1600px;
-  --shell-pad: clamp(20px, 5.2vw, 76px);
+  --frame-max: 1360px;
+  --shell-pad: clamp(20px, 4.6vw, 58px); /* 4.6% of the panel, as measured */
   --measure: 46ch;
-  --measure-wide: 60ch;
 
-  --header-h: 78px;
+  --header-h: 96px;
 
-  --gap-img: 10px; /* narrow editorial gutters */
+  /* Board gutter: 6px on a 280px panel = 2.1%. */
+  --gap-img: clamp(8px, 2.1vw, 28px);
 
-  /* Section rhythm — deliberately uneven, tuned per block. */
-  --rhythm-xs: clamp(28px, 3.4vw, 46px);
-  --rhythm-sm: clamp(42px, 5vw, 68px);
-  --rhythm-md: clamp(58px, 7vw, 96px);
-  --rhythm-lg: clamp(76px, 9.4vw, 132px);
+  /* Section rhythm — deliberately uneven, tuned block by block. */
+  --rhythm-xs: clamp(26px, 3.2vw, 44px);
+  --rhythm-sm: clamp(40px, 5vw, 68px);
+  --rhythm-md: clamp(56px, 7.4vw, 104px);
+  --rhythm-lg: clamp(72px, 10vw, 148px);
+  --rhythm-xl: clamp(88px, 12vw, 180px);
 
   /* ---- Motion ---- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -70,12 +83,14 @@
 
 @media (max-width: 768px) {
   :root {
-    --header-h: 58px;
-    --gap-img: 7px;
-    --fs-hero: clamp(2.5rem, 12.4vw, 3.4rem);
-    --fs-statement: clamp(1.75rem, 8.4vw, 2.3rem);
-    --fs-page-title: clamp(2rem, 9.6vw, 2.6rem);
-    --fs-heading: clamp(1.625rem, 7.6vw, 2.1rem);
+    --header-h: 64px;
+    --gap-img: 8px;
+    --fs-hero: clamp(2.125rem, 9.6vw, 2.9rem);
+    --fs-about-hero: clamp(2rem, 9vw, 2.65rem);
+    --fs-display: clamp(1.875rem, 8.4vw, 2.4rem);
+    --fs-page-title: clamp(2.125rem, 9.8vw, 2.8rem);
+    --fs-band-title: clamp(1.625rem, 7vw, 2rem);
+    --fs-band-sub: clamp(1.125rem, 5vw, 1.4rem);
   }
 }
 
@@ -88,13 +103,14 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    background: var(--color-warm-white);
   }
 
   body {
     margin-inline: auto;
     margin-block: 0;
     max-width: var(--frame-max);
-    background: var(--color-ivory);
+    background: var(--color-warm-white);
     color: var(--color-black);
     font-family: var(--font-sans);
     font-size: var(--fs-body);
@@ -173,26 +189,51 @@
 @layer base {
   /* ---------- Layout primitives ---------- */
 
+  /* The padded column every text block and gallery sits in. */
   .shell {
     width: 100%;
     padding-inline: var(--shell-pad);
   }
 
-  /* Photographs that run to the page edge, as on every board. */
+  /* Photographs that run to the page edge, as the boards show them. */
   .bleed {
     width: 100%;
+  }
+
+  /*
+   * On the phone boards every photograph runs edge to edge while the copy
+   * keeps its margin, so image blocks step back out of the shell.
+   */
+  @media (max-width: 768px) {
+    /* Doubled so it also outranks .figure's own width. */
+    .bleed-phone.bleed-phone {
+      margin-inline: calc(var(--shell-pad) * -1);
+      width: calc(100% + var(--shell-pad) * 2);
+      max-width: none;
+    }
+
+    /* A block that is itself the shell simply drops its padding instead. */
+    .shell.bleed-phone.bleed-phone {
+      margin-inline: 0;
+      width: 100%;
+      padding-inline: 0;
+    }
   }
 
   .measure {
     max-width: var(--measure);
   }
 
-  .measure-wide {
-    max-width: var(--measure-wide);
+  /* A line break the desktop boards set, that the phone boards let wrap. */
+  @media (max-width: 768px) {
+    .br-wide {
+      display: none;
+    }
   }
 
-  .band-warm {
-    background: var(--color-warm-white);
+  /* Soft Ivory is a band colour on a Warm White page — never a big field. */
+  .band-ivory {
+    background: var(--color-ivory);
   }
 
   /* ---------- Typography primitives ---------- */
@@ -233,7 +274,7 @@
   }
 
   .copy + .copy {
-    margin-top: 1.1em;
+    margin-top: 1.15em;
   }
 
   .rule {
@@ -241,21 +282,22 @@
     width: 100%;
     height: 1px;
     border: 0;
-    background: var(--hairline);
+    background: var(--hairline-soft);
   }
 
   /* ---------- Calls to action ---------- */
 
+  /* Style 1 — a rule under a line of small caps. Never a button. */
   .cta-inline {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-family: var(--font-sans);
     font-size: var(--fs-nav);
     letter-spacing: var(--ls-nav);
     text-transform: uppercase;
     color: var(--color-black);
-    padding-bottom: 7px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--hairline);
     transition: border-color var(--dur) var(--ease);
   }
@@ -265,12 +307,13 @@
     border-bottom-color: var(--color-black);
   }
 
+  /* Style 2 — a hairline rectangle, nothing more. */
   .cta-outline {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 14px 30px;
+    gap: 14px;
+    padding: 15px 34px;
     border: 1px solid var(--hairline);
     background: transparent;
     font-family: var(--font-sans);
@@ -304,12 +347,12 @@
   /* On photography */
   .on-image {
     color: var(--color-warm-white);
-    text-shadow: 0 1px 24px rgba(23, 22, 20, 0.34);
+    text-shadow: 0 1px 22px rgba(23, 22, 20, 0.36);
   }
 
   .on-image .cta-outline,
   .cta-outline--light {
-    border-color: rgba(252, 251, 248, 0.55);
+    border-color: rgba(252, 251, 248, 0.6);
     color: var(--color-warm-white);
   }
 
@@ -328,13 +371,19 @@
     width: 100%;
     aspect-ratio: var(--fig-ratio, 1);
     overflow: hidden;
-    background: var(--color-warm-white);
+    background: var(--color-ivory);
   }
 
   .figure img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .figure {
+      aspect-ratio: var(--fig-ratio-mobile, var(--fig-ratio, 1));
+    }
   }
 
   /* ---------- Reveal ---------- */

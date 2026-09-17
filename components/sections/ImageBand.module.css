@@ -59,6 +59,13 @@
   text-align: center;
 }
 
+/* The home hero hangs its whole stack off the bottom edge, centred. */
+.overlayBottom {
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .band {
     aspect-ratio: var(--ratio-mobile);

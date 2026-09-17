@@ -1,12 +1,16 @@
 import Image from "next/image";
 import styles from "./Logo.module.css";
 
-/** Intrinsic size of the official lockup supplied by the client. */
-const WIDTH = 691;
-const HEIGHT = 647;
+/** Intrinsic sizes of the supplied lockup and of the monogram cut from it. */
+const SIZES = {
+  lockup: { width: 691, height: 647 },
+  mark: { width: 455, height: 538 },
+};
 
 type LogoProps = {
   variant?: "black" | "white";
+  /** `lockup` is EM over PHOTOGRAPHY; `mark` is the monogram alone. */
+  shape?: "lockup" | "mark";
   /** CSS height; defaults to the header token */
   height?: string;
   priority?: boolean;
@@ -18,21 +22,24 @@ type LogoProps = {
  */
 export default function Logo({
   variant = "black",
+  shape = "lockup",
   height,
   priority = false,
   className,
 }: LogoProps) {
+  const { width, height: intrinsicHeight } = SIZES[shape];
+  const file = shape === "mark" ? "em-mark" : "em-logo";
   const style = height ? ({ "--logo-h": height } as React.CSSProperties) : undefined;
 
   return (
     <span className={[styles.logo, className].filter(Boolean).join(" ")} style={style}>
       <Image
-        src={`/brand/em-logo-${variant}.png`}
+        src={`/brand/${file}-${variant}.png`}
         alt="EM Photography"
-        width={WIDTH}
-        height={HEIGHT}
+        width={width}
+        height={intrinsicHeight}
         priority={priority}
-        sizes="120px"
+        sizes="140px"
         className={styles.image}
       />
     </span>

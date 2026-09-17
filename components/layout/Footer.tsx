@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Wordmark from "@/components/ui/Wordmark";
 import { COPYRIGHT_YEAR, INSTAGRAM_URL, NAV, SEO_LINE } from "@/lib/data";
 import styles from "./Footer.module.css";
 
@@ -7,10 +8,12 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.top}>
-          <p className={styles.brand}>
-            <span className={styles.brandName}>EM Photography</span>
-            <span className={styles.brandPlace}>Switzerland based</span>
-          </p>
+          <div className={styles.brand}>
+            <Link href="/" aria-label="EM Photography — home">
+              <Wordmark layout="inline" />
+            </Link>
+            <p className={styles.place}>Switzerland based</p>
+          </div>
 
           <div className={styles.right}>
             <a
@@ -35,8 +38,6 @@ export default function Footer() {
             </nav>
           </div>
         </div>
-
-        <hr className={styles.rule} />
 
         <div className={styles.base}>
           <p className={styles.legal}>© {COPYRIGHT_YEAR} EM Photography</p>

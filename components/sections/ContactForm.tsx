@@ -16,6 +16,7 @@ const REFERRALS = [
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [dateFocused, setDateFocused] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -83,7 +84,38 @@ export default function ContactForm() {
         <label className={`label ${styles.label}`} htmlFor="date">
           Wedding / session date
         </label>
-        <input className={styles.input} id="date" name="date" type="date" />
+        {/*
+         * The board shows an empty rule with a small calendar glyph — no
+         * mm/dd/yyyy placeholder — so the native picker is only summoned once
+         * the field is actually being filled in.
+         */}
+        <div className={styles.selectWrap}>
+          <input
+            className={styles.input}
+            id="date"
+            name="date"
+            type={dateFocused ? "date" : "text"}
+            onFocus={() => setDateFocused(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.value) setDateFocused(false);
+            }}
+          />
+          {dateFocused ? null : (
+            <span className={styles.glyph} aria-hidden="true">
+              <svg viewBox="0 0 14 14" width="13" height="13" fill="none">
+                <rect
+                  x="0.5"
+                  y="2.5"
+                  width="13"
+                  height="11"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <path d="M0.5 5.5h13M4 0.5v3M10 0.5v3" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </span>
+          )}
+        </div>
       </div>
 
       <div className={styles.field}>

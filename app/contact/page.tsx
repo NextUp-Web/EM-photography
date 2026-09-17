@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Figure from "@/components/ui/Figure";
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/sections/ContactForm";
 import ImageBand from "@/components/sections/ImageBand";
@@ -15,15 +15,18 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      {/* ---------- Hero — full bleed, 262 × 226 on the board ---------- */}
       <ImageBand
-        src="/images/portfolio/anniversaires.jpg"
-        alt="A table laid with white roses, candles and cut glass"
-        ratio={2.5}
-        mobileRatio={1.25}
+        src="/images/v3/contact/hero.jpg"
+        alt="Jasmine flowering against a stone wall above the lake, Good People Better Stories written on the render"
+        ratio={1.159}
+        mobileRatio={0.86}
         sizes="100vw"
+        position="center 50%"
         priority
       />
 
+      {/* ---------- Tell me your story ---------- */}
       <section className={`shell ${styles.intro}`} aria-labelledby="contact-title">
         <div className={styles.column}>
           <Reveal>
@@ -43,13 +46,25 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className={`shell ${styles.closing}`}>
-        <Figure
-          src="/images/contact/closing-03.jpg"
-          alt="A small boat crossing still water at the foot of the mountains"
-          ratio={2.4}
-          sizes="100vw"
-          position="center 55%"
+      {/* ---------- Closing — full bleed, 262 × 252 on the board ---------- */}
+      <ImageBand
+        src="/images/v3/contact/closing.jpg"
+        alt="A table and a chair set out on the shore beneath an olive tree at dusk"
+        ratio={1.04}
+        mobileRatio={0.92}
+        sizes="100vw"
+        position="center 50%"
+      />
+
+      {/* The handwritten mark the board prints under the closing photograph. */}
+      <div className={`shell ${styles.signature}`}>
+        <Image
+          src="/images/v3/brand/some-people-brighter-days.png"
+          alt="Some people brighten days"
+          width={504}
+          height={567}
+          sizes="200px"
+          className={styles.signatureImage}
         />
       </div>
     </>

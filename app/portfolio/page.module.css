@@ -1,9 +1,12 @@
 /* ============================================================
    PORTFOLIO — editorial · elegant · timeless
+   Panel 252px on the board, content column 230px (padding 11).
    ============================================================ */
 
+/* ---------- Title ---------- */
+
 .intro {
-  padding-block: var(--rhythm-lg) 0;
+  padding-top: var(--rhythm-lg);
   text-align: center;
 }
 
@@ -13,146 +16,133 @@
 }
 
 .lead {
-  margin: clamp(18px, 2.2vw, 28px) auto 0;
-  max-width: 46ch;
+  margin-top: clamp(16px, 2vw, 26px);
+  margin-inline: auto;
+  max-width: 52ch;
 }
 
+/*
+ * The board spreads the three collections across the whole content column,
+ * with the two separators falling evenly in the gaps.
+ */
 .categories {
-  margin-top: clamp(26px, 3.4vw, 44px);
-}
-
-.categoryList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: baseline;
-  gap: clamp(12px, 1.6vw, 22px);
+  justify-content: space-between;
+  gap: 8px 0;
+  margin-top: clamp(30px, 4vw, 54px);
 }
 
-.categoryItem {
-  display: inline-flex;
-  align-items: baseline;
-  gap: clamp(12px, 1.6vw, 22px);
+.category {
+  color: var(--color-black);
 }
 
 .dot {
   color: var(--color-stone);
-}
-
-.categoryLink {
-  color: var(--color-meta);
-  transition: color var(--dur) var(--ease);
-}
-
-.categoryLink:hover,
-.categoryLink:focus-visible {
-  color: var(--color-black);
+  letter-spacing: 0;
 }
 
 .introRule {
-  margin-top: clamp(28px, 3.6vw, 46px);
+  margin-top: clamp(22px, 2.8vw, 36px);
 }
 
-/* ---------- Chapters ---------- */
+/* ---------- M & J ---------- */
 
-.chapter {
-  padding-block: var(--rhythm-sm) var(--rhythm-xs);
+.story {
+  padding-top: var(--rhythm-md);
 }
 
-.chapterHead {
-  margin-bottom: clamp(20px, 2.6vw, 32px);
+.storyHead {
+  margin-bottom: clamp(20px, 2.6vw, 34px);
 }
 
-.chapterTitle {
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+.storyTitle {
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
   margin: 0;
 }
 
-.chapterMeta {
-  margin-top: 6px;
+.storyMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  margin-top: 10px;
 }
 
-.chapterLead {
-  margin-top: 0;
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-img);
 }
 
 .pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap-img);
-  margin-top: var(--gap-img);
-}
-
-.detail,
-.wide {
-  margin-top: var(--gap-img);
 }
 
 /* ---------- Quote ---------- */
 
-.quoteWrap {
-  padding-block: var(--rhythm-lg);
-  text-align: center;
+.quoteBlock {
+  padding-block: var(--rhythm-md);
 }
 
 .quote {
   font-size: var(--fs-quote);
-  color: var(--color-black);
-  max-width: 24ch;
-  margin-inline: auto;
+  text-align: center;
 }
 
-/* ---------- Closing ---------- */
-
-.closing {
-  margin-top: var(--rhythm-md);
-}
+/* ---------- Closing band ---------- */
 
 .closingTitle {
-  font-size: clamp(1.625rem, 2.7vw, 2.4rem);
+  font-size: var(--fs-band-title);
   margin-bottom: clamp(24px, 3vw, 38px);
 }
 
+.closingCta {
+  min-width: min(100%, 320px);
+}
+
 /* ============================================================
-   Mobile — v2.2
+   Mobile — the second board, phone 04
    ============================================================ */
 
 @media (max-width: 768px) {
   .intro {
-    padding-block: var(--rhythm-md) 0;
+    padding-top: var(--rhythm-md);
   }
 
-  .lead {
-    max-width: 32ch;
-    text-wrap: balance;
-  }
-
-  /* The board lets the description find its own three lines here. */
-  .break {
-    display: none;
-  }
-
-  .categoryList {
-    gap: 6px 18px;
-  }
-
-  .categoryItem {
-    gap: 0;
+  /* Two lines of collections, still centred, still tracked. */
+  .categories {
+    justify-content: center;
+    gap: 6px 0;
+    margin-top: clamp(24px, 7vw, 34px);
   }
 
   .dot {
+    margin-inline: 10px;
+  }
+
+  /* The phone board breaks after COUPLES, with no separator left hanging. */
+  .categories li:nth-child(4) {
     display: none;
   }
 
-  .chapter {
-    padding-block: var(--rhythm-sm) 0;
+  /* Venue over country on the phone, and the separator goes with the line. */
+  .storyMeta {
+    flex-direction: column;
+    gap: 0;
   }
 
-  .quoteWrap {
-    padding-block: var(--rhythm-md);
+  .metaDot {
+    display: none;
   }
 
-  .closing {
-    margin-top: var(--rhythm-sm);
+  .story {
+    padding-top: var(--rhythm-sm);
+  }
+
+  .quoteBlock {
+    padding-block: var(--rhythm-sm);
   }
 }

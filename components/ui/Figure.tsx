@@ -5,6 +5,8 @@ type FigureProps = {
   alt: string;
   /** width / height — reserved up front so nothing shifts while loading */
   ratio: number;
+  /** width / height below 768px, where the phone boards recrop */
+  mobileRatio?: number;
   sizes: string;
   priority?: boolean;
   /** object-position — chosen so faces, hands and details are never clipped */
@@ -17,6 +19,7 @@ export default function Figure({
   src,
   alt,
   ratio,
+  mobileRatio,
   sizes,
   priority = false,
   position = "center",
@@ -26,7 +29,13 @@ export default function Figure({
   return (
     <div
       className={["figure", className].filter(Boolean).join(" ")}
-      style={{ "--fig-ratio": String(ratio), ...style } as React.CSSProperties}
+      style={
+        {
+          "--fig-ratio": String(ratio),
+          "--fig-ratio-mobile": String(mobileRatio ?? ratio),
+          ...style,
+        } as React.CSSProperties
+      }
     >
       <Image
         src={src}

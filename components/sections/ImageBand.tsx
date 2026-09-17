@@ -16,7 +16,7 @@ type ImageBandProps = {
   variant?: "band" | "hero";
   /** a very local gradient, only where text sits */
   scrim?: "none" | "bottom" | "full";
-  align?: "start" | "center";
+  align?: "start" | "center" | "bottom";
   children?: ReactNode;
   className?: string;
 };
@@ -74,7 +74,13 @@ export default function ImageBand({
       {children ? (
         <div
           className={`${styles.overlay} ${
-            align === "center" ? styles.overlayCenter : styles.overlayStart
+            styles[
+              align === "center"
+                ? "overlayCenter"
+                : align === "bottom"
+                  ? "overlayBottom"
+                  : "overlayStart"
+            ]
           } on-image`}
         >
           {children}

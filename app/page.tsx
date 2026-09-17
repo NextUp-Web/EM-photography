@@ -16,17 +16,17 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero ---------- */}
+      {/* ---------- Hero — full bleed, 280 × 227 on the board ---------- */}
       <ImageBand
-        src="/images/home/hero.jpg"
-        alt="A couple leaning forehead to forehead on a terrace above a mountain lake"
-        ratio={1.72}
-        mobileRatio={0.56}
+        src="/images/v3/home/hero.jpg"
+        alt="A bride and groom forehead to forehead above a Swiss lake at dusk"
+        ratio={1.233}
+        mobileRatio={0.62}
         variant="hero"
         scrim="bottom"
+        align="bottom"
         priority
-        position="center 38%"
-        className={styles.hero}
+        position="center 42%"
       >
         <div className={styles.heroText}>
           <p className={`label ${styles.heroLabel}`}>Switzerland based</p>
@@ -39,13 +39,13 @@ export default function HomePage() {
             Weddings <span aria-hidden="true">·</span> Couples{" "}
             <span aria-hidden="true">·</span> Intimate stories
           </p>
+          <p className={`label ${styles.scroll}`} aria-hidden="true">
+            Scroll <span className={styles.scrollArrow}>↓</span>
+          </p>
         </div>
-        <p className={`label ${styles.scroll}`} aria-hidden="true">
-          Scroll <span className={styles.scrollArrow}>↓</span>
-        </p>
       </ImageBand>
 
-      {/* ---------- Philosophy ---------- */}
+      {/* ---------- For all that words cannot hold ---------- */}
       <section className={`shell ${styles.philosophy}`} aria-labelledby="philosophy">
         <Reveal>
           <h2 className={`serif-italic ${styles.statement}`} id="philosophy">
@@ -76,63 +76,69 @@ export default function HomePage() {
             Love, documented.
           </h2>
           <p className={`copy ${styles.storiesLead}`}>
-            A collection of honest moments, quiet emotions
-            <br />
+            A collection of honest moments, quiet emotions{" "}
+            <br className="br-wide" />
             and beautiful beginnings.
           </p>
         </Reveal>
 
-        <Figure
-          className={styles.storiesWide}
-          src="/images/portfolio/hero.jpg"
-          alt="A bride on a terrace above the lake, cypress trees along the water"
-          ratio={3.6}
-          sizes="100vw"
-          position="center 46%"
-        />
-
-        <div className={styles.grid}>
+        {/* 57 / 41 collage — the right column stacks 1.76 over 1.21. */}
+        <div className={`bleed-phone ${styles.grid}`}>
           <Figure
             className={styles.gridTall}
-            src="/images/home/mariages.jpg"
-            alt="A bride at a stone balustrade, her veil falling towards the lake"
-            ratio={1.04}
-            sizes="(max-width: 768px) 100vw, 58vw"
-            position="center 30%"
+            src="/images/v3/home/story-lead.jpg"
+            alt="A bride at a stone balustrade, the mountains and the lake behind her"
+            ratio={0.959}
+            sizes="(max-width: 768px) 100vw, 57vw"
+            position="center 46%"
           />
           <Figure
             className={styles.gridTop}
-            src="/images/weddings/gallery-03.jpg"
-            alt="A couple close together, her hand resting against his face"
-            ratio={1.4}
-            sizes="(max-width: 768px) 50vw, 40vw"
-            position="center 34%"
+            src="/images/v3/home/story-embrace.jpg"
+            alt="A couple close together in black and white, her hand at his face"
+            ratio={1.759}
+            sizes="(max-width: 768px) 50vw, 41vw"
+            position="center 40%"
           />
           <Figure
             className={styles.gridBottom}
-            src="/images/home/anniversaires.jpg"
-            alt="White roses and cut glass on a table laid above the water"
-            ratio={1.4}
-            sizes="(max-width: 768px) 50vw, 40vw"
+            src="/images/v3/home/story-flowers.jpg"
+            alt="A bouquet of white roses and ranunculus against dark foliage"
+            ratio={1.214}
+            sizes="(max-width: 768px) 50vw, 41vw"
+            position="center 52%"
           />
         </div>
+
+        <Figure
+          className={`bleed-phone ${styles.storiesWide}`}
+          src="/images/v3/home/story-shore.jpg"
+          alt="A village on the wooded shore of the lake, seen from the water"
+          ratio={4.31}
+          mobileRatio={1.45}
+          sizes="100vw"
+          position="center 52%"
+        />
 
         <div className={styles.storiesCta}>
           <EditorialLink href="/portfolio" label="View portfolio" />
         </div>
       </section>
 
-      {/* ---------- The approach ---------- */}
+      {/* ---------- The approach — 42 / 53 with a 5% gutter ---------- */}
       <section className={`shell ${styles.approach}`} aria-labelledby="approach">
         <Figure
           className={styles.approachImage}
-          src="/images/civil/gallery-02.jpg"
-          alt="A bride's hands holding a small bouquet against her dress"
-          ratio={0.8}
-          sizes="(max-width: 768px) 60vw, 26vw"
+          src="/images/v3/home/approach.jpg"
+          alt="His hand at her waist against the white of her dress, in black and white"
+          ratio={0.93}
+          sizes="(max-width: 768px) 70vw, 42vw"
+          position="center 50%"
         />
         <Reveal className={styles.approachText}>
-          <SectionLabel as="h2" id="approach">The approach</SectionLabel>
+          <SectionLabel as="h2" id="approach">
+            The approach
+          </SectionLabel>
           <p className={`copy ${styles.approachCopy}`}>
             My approach is documentary at heart, with an editorial eye for light,
             composition and details. I gently guide when needed, while leaving space
@@ -143,16 +149,16 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* ---------- About teaser ---------- */}
-      <section className={`band-warm ${styles.teaserBand}`} aria-labelledby="teaser">
+      {/* ---------- I find beauty in what is quietly felt ---------- */}
+      <section className={`band-ivory ${styles.teaserBand}`} aria-labelledby="teaser">
         <div className={`shell ${styles.teaser}`}>
           <Figure
             className={styles.teaserImage}
-            src="/images/about/portrait.jpg"
-            alt="Emma, resting her chin on her hand, looking out of frame"
-            ratio={0.88}
-            sizes="(max-width: 768px) 60vw, 26vw"
-            position="center 26%"
+            src="/images/v3/home/emma.jpg"
+            alt="Emma in a cream knit, looking out across the hillside"
+            ratio={0.93}
+            sizes="(max-width: 768px) 70vw, 42vw"
+            position="center 40%"
           />
           <Reveal className={styles.teaserText}>
             <h2 className={`serif-italic ${styles.teaserTitle}`} id="teaser">
@@ -161,7 +167,9 @@ export default function HomePage() {
               what is quietly felt.
             </h2>
             <SectionLabel tone="ink" className={styles.teaserLabel}>
-              I&rsquo;m Emma, the person behind EM Photography.
+              I&rsquo;m Emma, the person behind
+              <br />
+              EM Photography.
             </SectionLabel>
             <p className={`copy ${styles.teaserCopy}`}>
               I&rsquo;m drawn to quiet beauty, to beautiful light and to the moments
@@ -172,18 +180,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- Closing ---------- */}
+      {/* ---------- Closing — full bleed, 280 × 98 on the board ---------- */}
       <ImageBand
-        src="/images/birthdays/hero.jpg"
-        alt="A long table lit by candles, dressed with pale flowers"
-        ratio={3.3}
-        mobileRatio={1.15}
+        src="/images/v3/home/closing.jpg"
+        alt="The mountains above the lake, light falling across the far shore"
+        ratio={2.857}
+        mobileRatio={1.2}
         scrim="full"
         align="center"
-        position="center 55%"
+        position="center 46%"
       >
-        <p className={`serif-italic ${styles.closingTitle}`}>Made to be felt again.</p>
-        <p className={`serif ${styles.closingSub}`}>Tell me your story.</p>
+        <p className={`serif ${styles.closingTitle}`}>Made to be felt again.</p>
+        <p className={`serif-italic ${styles.closingSub}`}>Tell me your story.</p>
         <EditorialLink href="/contact" label="Get in touch" variant="outline" />
       </ImageBand>
     </>

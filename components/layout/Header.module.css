@@ -1,8 +1,12 @@
+/* ============================================================
+   Header — a thin ivory-free band: warm white, one hairline, nothing else.
+   ============================================================ */
+
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-ivory);
+  background: var(--color-warm-white);
   border-bottom: 1px solid var(--hairline-soft);
 }
 
@@ -31,7 +35,7 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: clamp(26px, 3.4vw, 54px);
+  gap: clamp(26px, 3.6vw, 56px);
 }
 
 .navLink {
@@ -41,7 +45,7 @@
   text-transform: uppercase;
   color: var(--color-black);
   padding-block: 6px;
-  opacity: 0.72;
+  opacity: 0.66;
   transition: opacity var(--dur) var(--ease);
 }
 
@@ -50,6 +54,7 @@
   opacity: 1;
 }
 
+/* The board sets the current page in the same size, simply at full strength. */
 .navLinkActive {
   opacity: 1;
 }

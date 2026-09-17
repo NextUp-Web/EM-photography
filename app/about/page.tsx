@@ -6,43 +6,47 @@ import ImageBand from "@/components/sections/ImageBand";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "About EM Photography | Documentary Wedding Photographer Switzerland",
+  title: "About Emma | EM Photography",
   description:
-    "Emma, the person behind EM Photography — editorial documentary photography with a quietly romantic soul, based in Switzerland and available across Europe.",
+    "I'm Emma, the person behind EM Photography — editorial documentary photography with a quietly romantic soul, from Switzerland and across Europe.",
   alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <>
-      {/* ---------- Hero ---------- */}
-      <section className={styles.heroWrap} aria-labelledby="about-title">
-        <ImageBand
-          src="/images/about/hero.jpg"
-          alt="Emma photographing from a terrace, the lake and mountains beyond her"
-          ratio={1.72}
-          mobileRatio={0.95}
-          position="24% center"
-          scrim="bottom"
-          priority
-        />
-        <h1 className={`serif-italic ${styles.heroTitle}`} id="about-title">
+      {/* ---------- Hero — full bleed, 268 × 227 on the board ---------- */}
+      <ImageBand
+        src="/images/v3/about/hero.jpg"
+        alt="Emma seated on a terrace in a cream knit, looking out across the lake"
+        ratio={1.181}
+        mobileRatio={0.78}
+        variant="hero"
+        scrim="bottom"
+        priority
+        position="center 32%"
+      >
+        <h1 className={`serif-italic ${styles.heroTitle}`}>
           I find beauty
           <br />
           in what is
           <br />
           quietly felt.
         </h1>
-      </section>
+      </ImageBand>
 
-      {/* ---------- Your story ---------- */}
-      <section className={`shell ${styles.story}`} aria-labelledby="your-story">
+      {/* ---------- Your story — text left, portrait right ---------- */}
+      <section className={`shell ${styles.story}`} aria-labelledby="story">
         <Reveal className={styles.storyText}>
-          <SectionLabel as="h2" id="your-story">Your story</SectionLabel>
-          <p className={`copy ${styles.storyCopy}`}>
-            I&rsquo;m Emma, the person behind EM Photography.
+          <SectionLabel as="h2" id="story">
+            Your story
+          </SectionLabel>
+          <p className={`copy ${styles.storyLead}`}>
+            I&rsquo;m Emma, the person behind
+            <br />
+            EM Photography.
           </p>
-          <p className="copy">
+          <p className={`copy ${styles.storyCopy}`}>
             I&rsquo;m drawn to honest moments, to people in love, to beautiful places
             and to the in-between. I believe the most meaningful photographs are the
             ones that feel real — the fleeting moments, the gentle chaos, the quiet
@@ -51,23 +55,23 @@ export default function AboutPage() {
         </Reveal>
 
         <Figure
-          className={styles.storyImage}
-          src="/images/about/portrait.jpg"
-          alt="Emma resting her chin on her hand, looking away from the camera"
-          ratio={0.78}
-          sizes="(max-width: 768px) 30vw, 26vw"
-          position="center 22%"
+          className={`bleed-phone ${styles.storyImage}`}
+          src="/images/v3/about/portrait.jpg"
+          alt="Emma holding her camera, the lake behind her"
+          ratio={0.631}
+          mobileRatio={0.86}
+          sizes="(max-width: 768px) 70vw, 44vw"
+          position="center 40%"
         />
+        <hr className={`rule ${styles.storyRule}`} />
       </section>
 
       {/* ---------- My approach ---------- */}
-      <div className={`shell ${styles.ruleWrap}`}>
-        <hr className="rule" />
-      </div>
-
-      <section className={`shell ${styles.approach}`} aria-labelledby="my-approach">
+      <section className={`shell ${styles.approach}`} aria-labelledby="approach">
         <Reveal>
-          <SectionLabel as="h2" id="my-approach">My approach</SectionLabel>
+          <SectionLabel as="h2" id="approach">
+            My approach
+          </SectionLabel>
           <p className={`copy ${styles.approachCopy}`}>
             My approach is documentary at heart, with an editorial eye for light,
             composition and details. I gently guide when needed, while leaving space
@@ -75,16 +79,13 @@ export default function AboutPage() {
             effortless and entirely yours.
           </p>
         </Reveal>
+        <hr className={`rule ${styles.approachRule}`} />
       </section>
 
-      <div className={`shell ${styles.ruleWrap}`}>
-        <hr className="rule" />
-      </div>
-
-      {/* ---------- Positioning statement ---------- */}
-      <section className={`shell ${styles.positioning}`}>
+      {/* ---------- Quote ---------- */}
+      <section className={`shell ${styles.quoteBlock}`}>
         <Reveal>
-          <p className={`serif-italic ${styles.positioningText}`}>
+          <p className={`serif-italic ${styles.quote}`}>
             Editorial documentary photography
             <br />
             with a quietly romantic soul.
@@ -92,53 +93,57 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      {/* ---------- Atmosphere ---------- */}
-      <div className={`shell ${styles.landscape}`}>
+      {/* ---------- The villa above the lake ---------- */}
+      <div className={`shell ${styles.villa}`}>
         <Figure
-          src="/images/contact/closing-01.jpg"
-          alt="A lakeside villa framed by cypress trees, mountains fading behind"
-          ratio={2.3}
+          className="bleed-phone"
+          src="/images/v3/about/villa.jpg"
+          alt="A stone villa and cypresses above the lake, the mountains behind"
+          ratio={1.419}
           sizes="100vw"
+          position="center 50%"
         />
       </div>
 
       {/* ---------- What I want for you ---------- */}
-      <section className={`shell ${styles.wish}`} aria-labelledby="what-i-want">
-        <Reveal className={styles.wishText}>
-          <SectionLabel as="h2" id="what-i-want">What I want for you</SectionLabel>
-          <p className={`copy ${styles.wishCopy}`}>
+      <section className={`shell ${styles.want}`} aria-labelledby="want">
+        <Reveal>
+          <SectionLabel as="h2" id="want">
+            What I want for you
+          </SectionLabel>
+          <p className={`copy ${styles.wantCopy}`}>
             I want you to look back at your photographs and feel everything all over
             again. Not just how it looked, but how it felt — the people, the place,
             the energy, the in-between moments. I want your story to live on through
             images that feel like you.
           </p>
         </Reveal>
-
-        <div className={styles.gallery}>
-          <Figure
-            className={styles.galleryA}
-            src="/images/weddings/gallery-05.jpg"
-            alt="An urn of white flowers on a terrace above the lake, cypress trees behind"
-            ratio={0.74}
-            sizes="(max-width: 768px) 50vw, 30vw"
-          />
-          <Figure
-            className={styles.galleryB}
-            src="/images/civil/gallery-03.jpg"
-            alt="A couple kissing, a small bouquet held between them"
-            ratio={0.74}
-            sizes="(max-width: 768px) 50vw, 30vw"
-          />
-          <Figure
-            className={styles.galleryC}
-            src="/images/contact/closing-03.jpg"
-            alt="A small boat crossing still water beneath the mountains"
-            ratio={0.74}
-            sizes="(max-width: 768px) 100vw, 30vw"
-            position="center 46%"
-          />
-        </div>
       </section>
+
+      {/* ---------- Triptych — three verticals, 0.644 each ---------- */}
+      <div className={`shell bleed-phone ${styles.triptych}`}>
+        <Figure
+          src="/images/v3/about/trip-flowers.jpg"
+          alt="White roses beneath a statue in the garden of a villa"
+          ratio={0.644}
+          sizes="(max-width: 768px) 33vw, 31vw"
+          position="center 50%"
+        />
+        <Figure
+          src="/images/v3/about/trip-couple.jpg"
+          alt="A couple walking away down a shaded gallery, in black and white"
+          ratio={0.644}
+          sizes="(max-width: 768px) 33vw, 31vw"
+          position="center 50%"
+        />
+        <Figure
+          src="/images/v3/about/trip-lake.jpg"
+          alt="A small boat crossing the lake below the mountains"
+          ratio={0.644}
+          sizes="(max-width: 768px) 33vw, 31vw"
+          position="center 50%"
+        />
+      </div>
     </>
   );
 }

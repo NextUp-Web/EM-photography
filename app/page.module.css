@@ -1,22 +1,23 @@
 /* ============================================================
    HOME — immersive · emotive · timeless
+   Panel 280px wide on the board, content column 250px (padding 15).
    ============================================================ */
 
 /* ---------- Hero ---------- */
 
-.hero {
-  margin-bottom: 0;
-}
-
 .heroText {
-  max-width: none;
-  padding-bottom: clamp(30px, 3.4vw, 46px); /* keeps the SCROLL cue its own air */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* The board hangs the whole stack off the bottom edge of the frame. */
+  padding-bottom: clamp(18px, 2.4vw, 34px);
 }
 
 .heroLabel {
   color: inherit;
-  opacity: 0.88;
-  margin-bottom: clamp(14px, 1.6vw, 22px);
+  opacity: 0.9;
+  margin-bottom: clamp(12px, 1.5vw, 20px);
 }
 
 .heroTitle {
@@ -26,18 +27,14 @@
 
 .heroMeta {
   color: inherit;
-  opacity: 0.88;
-  margin-top: clamp(18px, 2.2vw, 30px);
-  white-space: nowrap;
+  opacity: 0.9;
+  margin-top: clamp(16px, 2vw, 28px);
 }
 
 .scroll {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(20px, 2.6vw, 34px);
-  transform: translateX(-50%);
   color: inherit;
   opacity: 0.85;
+  margin-top: clamp(14px, 1.9vw, 26px);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -47,25 +44,25 @@
   letter-spacing: 0;
 }
 
-/* ---------- Philosophy ---------- */
+/* ---------- For all that words cannot hold ---------- */
 
 .philosophy {
   padding-block: var(--rhythm-lg) 0;
 }
 
 .statement {
-  font-size: var(--fs-statement);
+  font-size: var(--fs-display);
   max-width: 18ch;
 }
 
 .philosophyCopy {
-  margin-top: clamp(26px, 3vw, 40px);
-  max-width: 42ch;
+  margin-top: clamp(26px, 3.2vw, 44px);
+  max-width: 46ch;
   line-height: 1.95;
 }
 
 .philosophyRule {
-  margin-top: var(--rhythm-md);
+  margin-top: var(--rhythm-lg);
 }
 
 /* ---------- Selected stories ---------- */
@@ -73,28 +70,29 @@
 .stories {
   display: flex;
   flex-direction: column;
-  padding-block: var(--rhythm-sm) var(--rhythm-md);
+  padding-block: var(--rhythm-md) var(--rhythm-lg);
 }
 
 .storiesHead {
   order: 1;
-  margin-bottom: clamp(26px, 3.2vw, 44px);
+  margin-bottom: clamp(30px, 5.2vw, 78px);
 }
 
 .storiesTitle {
-  font-size: var(--fs-heading);
-  margin-top: clamp(14px, 1.6vw, 20px);
+  font-size: var(--fs-hero);
+  margin-top: clamp(14px, 1.7vw, 22px);
 }
 
 .storiesLead {
-  margin-top: clamp(12px, 1.4vw, 18px);
-  max-width: 44ch;
+  margin-top: clamp(12px, 1.5vw, 20px);
+  max-width: 48ch;
 }
 
+/* 142 / 6 / 102 of a 250px content column. */
 .grid {
   order: 2;
   display: grid;
-  grid-template-columns: 58fr 40fr;
+  grid-template-columns: 142fr 102fr;
   gap: var(--gap-img);
 }
 
@@ -122,147 +120,136 @@
   order: 4;
   display: flex;
   justify-content: flex-end;
-  margin-top: clamp(22px, 2.6vw, 34px);
+  margin-top: clamp(22px, 2.8vw, 38px);
 }
 
 /* ---------- The approach ---------- */
 
+/* 106 / 12 / 132 of the 250px content column. */
 .approach {
   display: grid;
-  grid-template-columns: 26fr 61fr;
-  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: 106fr 132fr;
+  column-gap: 5%;
   align-items: center;
-  padding-block: var(--rhythm-xs) var(--rhythm-lg);
+  padding-block: 0 var(--rhythm-lg);
 }
 
+/* The column itself is the measure — the board runs the copy right to its edge. */
 .approachText {
-  max-width: 46ch;
+  max-width: none;
 }
 
 .approachCopy {
-  margin-block: clamp(16px, 1.8vw, 22px) clamp(24px, 2.8vw, 34px);
+  margin-block: clamp(18px, 2.2vw, 28px) clamp(26px, 3vw, 38px);
 }
 
-/* ---------- About teaser ---------- */
+/* ---------- I find beauty in what is quietly felt ---------- */
 
 .teaserBand {
-  border-block: 1px solid var(--hairline-soft);
+  border-top: 1px solid var(--hairline-soft);
 }
 
 .teaser {
   display: grid;
-  grid-template-columns: 26fr 61fr;
-  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: 106fr 132fr;
+  column-gap: 5%;
   align-items: center;
   padding-block: var(--rhythm-md);
 }
 
 .teaserTitle {
-  font-size: var(--fs-statement);
+  font-size: var(--fs-display);
   max-width: 16ch;
 }
 
 .teaserLabel {
-  margin-top: clamp(18px, 2.2vw, 28px);
-  max-width: 36ch;
+  margin-top: clamp(18px, 2.3vw, 30px);
 }
 
 .teaserCopy {
-  margin-block: clamp(10px, 1.2vw, 14px) clamp(22px, 2.6vw, 30px);
-  max-width: 40ch;
+  margin-block: clamp(12px, 1.5vw, 18px) clamp(24px, 2.8vw, 34px);
+  max-width: none;
 }
 
 /* ---------- Closing band ---------- */
 
 .closingTitle {
-  font-size: clamp(1.625rem, 2.6vw, 2.35rem);
+  font-size: var(--fs-band-title);
 }
 
 .closingSub {
-  font-size: clamp(1.625rem, 2.6vw, 2.35rem);
-  margin-bottom: clamp(24px, 3vw, 38px);
+  font-size: var(--fs-band-sub);
+  margin-block: clamp(4px, 0.6vw, 8px) clamp(22px, 2.8vw, 34px);
 }
 
 /* ============================================================
-   Mobile — v2.2
+   Mobile — the second board, phones 01 and 02
    ============================================================ */
 
 @media (max-width: 768px) {
   .heroText {
-    padding-bottom: 44px;
-  }
-
-  .heroMeta {
-    letter-spacing: 0.18em;
-    margin-top: 18px;
+    padding-bottom: 34px;
   }
 
   .philosophy {
-    padding-block: var(--rhythm-md) 0;
+    padding-block: var(--rhythm-lg) 0;
   }
 
   .philosophyCopy {
     max-width: none;
   }
 
-  .stories {
-    padding-block: var(--rhythm-sm) var(--rhythm-sm);
+  .philosophyRule {
+    margin-top: var(--rhythm-md);
   }
 
-  /* The board leads with the landscape, then the label. */
+  .stories {
+    padding-block: var(--rhythm-md) var(--rhythm-md);
+  }
+
+  /* The phone board leads with the shore, then the label, then the sequence. */
   .storiesWide {
     order: 0;
     margin-top: 0;
-    margin-bottom: clamp(30px, 8vw, 44px);
-    --fig-ratio: 1.55;
+    margin-bottom: clamp(30px, 8vw, 46px);
   }
 
   .storiesHead {
     order: 1;
+    margin-bottom: clamp(24px, 6vw, 36px);
   }
 
+  /* One photograph at a time, each running the full width of the screen. */
   .grid {
-    order: 2;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
-  .gridTall {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    --fig-ratio: 1.02;
-  }
-
-  .gridTop {
+  .gridTall,
+  .gridTop,
+  .gridBottom {
     grid-column: 1;
     grid-row: auto;
-    --fig-ratio: 0.84;
-  }
-
-  .gridBottom {
-    grid-column: 2;
-    grid-row: auto;
-    --fig-ratio: 0.84;
   }
 
   .storiesCta {
-    order: 4;
     justify-content: flex-start;
+    margin-top: clamp(20px, 6vw, 30px);
   }
 
   .approach,
   .teaser {
     grid-template-columns: 1fr;
-    gap: clamp(24px, 7vw, 34px);
+    gap: clamp(26px, 7vw, 38px);
   }
 
   .approachImage,
   .teaserImage {
-    width: 68%;
-    max-width: 360px;
+    width: 74%;
+    max-width: 380px;
   }
 
   .approach {
-    padding-block: var(--rhythm-sm) var(--rhythm-md);
+    padding-block: 0 var(--rhythm-md);
   }
 
   .teaser {

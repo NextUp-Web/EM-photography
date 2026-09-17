@@ -1,13 +1,17 @@
 /* ============================================================
    CONTACT — welcoming · simple · meaningful
+   Panel 262px on the board; the form column runs 189px of it, set in
+   from the left with a wide right margin.
    ============================================================ */
 
 .intro {
-  padding-block: var(--rhythm-md) var(--rhythm-sm);
+  padding-block: var(--rhythm-lg) var(--rhythm-xl);
 }
 
+/* 189 of the board's 262px panel. */
 .column {
-  max-width: 940px;
+  max-width: 72%;
+  min-width: min(100%, 560px);
 }
 
 .title {
@@ -16,28 +20,39 @@
 }
 
 .lead {
-  margin-top: clamp(18px, 2.2vw, 26px);
-  max-width: 54ch;
+  margin-top: clamp(20px, 2.6vw, 32px);
+  max-width: 48ch;
 }
 
 .formWrap {
-  margin-top: clamp(34px, 4.4vw, 56px);
+  margin-top: clamp(38px, 5vw, 70px);
 }
 
-.closing {
-  padding-bottom: var(--rhythm-lg);
+/* ---------- The handwritten mark ---------- */
+
+.signature {
+  display: flex;
+  justify-content: flex-end;
+  padding-block: clamp(30px, 4.5vw, 64px) clamp(44px, 5.4vw, 82px);
+}
+
+.signatureImage {
+  width: auto;
+  height: clamp(120px, 18vw, 250px);
+  opacity: 0.92;
 }
 
 @media (max-width: 768px) {
   .intro {
-    padding-block: var(--rhythm-sm) var(--rhythm-sm);
+    padding-block: var(--rhythm-md) var(--rhythm-md);
   }
 
-  .closing {
-    padding-bottom: var(--rhythm-md);
+  .signature {
+    padding-block: clamp(24px, 8vw, 40px) var(--rhythm-md);
   }
 
-  .closing > * {
-    --fig-ratio: 1.45;
+  .column {
+    max-width: none;
+    min-width: 0;
   }
 }
