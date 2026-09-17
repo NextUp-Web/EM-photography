@@ -116,7 +116,7 @@ export default function PortfolioPage() {
 
       {/* ---------- Closing — full bleed, 252 × 206 on the board ---------- */}
       <ImageBand
-        src="/images/v3/portfolio/closing.jpg"
+        src="/images/v3/portfolio/closing.webp"
         alt="The lake below the mountains, a headland reaching into still water"
         ratio={1.223}
         mobileRatio={1}

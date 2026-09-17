@@ -17,7 +17,7 @@ export default function AboutPage() {
     <>
       {/* ---------- Hero — full bleed, 268 × 227 on the board ---------- */}
       <ImageBand
-        src="/images/v3/about/hero.jpg"
+        src="/images/v3/about/hero.webp"
         alt="Emra seated on a terrace in a cream knit, looking out across the lake"
         ratio={1.181}
         mobileRatio={0.78}
@@ -56,7 +56,7 @@ export default function AboutPage() {
 
         <Figure
           className={`bleed-phone ${styles.storyImage}`}
-          src="/images/v3/about/portrait.jpg"
+          src="/images/v3/about/portrait.webp"
           alt="Emra holding her camera, the lake behind her"
           ratio={0.631}
           mobileRatio={0.86}
@@ -97,7 +97,7 @@ export default function AboutPage() {
       <div className={`shell ${styles.villa}`}>
         <Figure
           className="bleed-phone"
-          src="/images/v3/about/villa.jpg"
+          src="/images/v3/about/villa.webp"
           alt="A stone villa and cypresses above the lake, the mountains behind"
           ratio={1.419}
           sizes="100vw"
@@ -123,21 +123,21 @@ export default function AboutPage() {
       {/* ---------- Triptych — three verticals, 0.644 each ---------- */}
       <div className={`shell bleed-phone ${styles.triptych}`}>
         <Figure
-          src="/images/v3/about/trip-flowers.jpg"
+          src="/images/v3/about/trip-flowers.webp"
           alt="White roses beneath a statue in the garden of a villa"
           ratio={0.644}
           sizes="(max-width: 768px) 33vw, 31vw"
           position="center 50%"
         />
         <Figure
-          src="/images/v3/about/trip-couple.jpg"
+          src="/images/v3/about/trip-couple.webp"
           alt="A couple walking away down a shaded gallery, in black and white"
           ratio={0.644}
           sizes="(max-width: 768px) 33vw, 31vw"
           position="center 50%"
         />
         <Figure
-          src="/images/v3/about/trip-lake.jpg"
+          src="/images/v3/about/trip-lake.webp"
           alt="A small boat crossing the lake below the mountains"
           ratio={0.644}
           sizes="(max-width: 768px) 33vw, 31vw"

@@ -25,33 +25,33 @@ export const STORY = {
   venue: "Château de Vullierens",
   country: "Switzerland",
   lead: {
-    src: "/images/v3/portfolio/lead.jpg",
+    src: "/images/v3/portfolio/lead.webp",
     alt: "A bride and groom on a balustraded terrace, the lake and the mountains behind them",
     ratio: 1.237,
     position: "center 45%",
   },
   pair: [
     {
-      src: "/images/v3/portfolio/pair-couple.jpg",
+      src: "/images/v3/portfolio/pair-couple.webp",
       alt: "The couple seen from behind, her veil falling the length of her dress",
       ratio: 0.836,
       position: "center 45%",
     },
     {
-      src: "/images/v3/portfolio/pair-veil.jpg",
+      src: "/images/v3/portfolio/pair-veil.webp",
       alt: "The veil lifted and lit from behind under a stone loggia",
       ratio: 0.836,
       position: "center 40%",
     },
   ],
   detail: {
-    src: "/images/v3/portfolio/detail-note.jpg",
+    src: "/images/v3/portfolio/detail-note.webp",
     alt: "A handwritten card, À tous les beaux jours, among white flowers and cut glass",
     ratio: 1.456,
     position: "center 50%",
   },
   wide: {
-    src: "/images/v3/portfolio/village.jpg",
+    src: "/images/v3/portfolio/village.webp",
     alt: "Cypresses above the lake, the village and the mountains beyond",
     ratio: 1.474,
     position: "center 50%",

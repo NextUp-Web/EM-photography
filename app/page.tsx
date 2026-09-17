@@ -18,7 +18,7 @@ export default function HomePage() {
     <>
       {/* ---------- Hero — full bleed, 280 × 227 on the board ---------- */}
       <ImageBand
-        src="/images/v3/home/hero.jpg"
+        src="/images/v3/home/hero.webp"
         alt="A bride and groom forehead to forehead above a Swiss lake at dusk"
         ratio={1.233}
         mobileRatio={0.62}
@@ -86,7 +86,7 @@ export default function HomePage() {
         <div className={`bleed-phone ${styles.grid}`}>
           <Figure
             className={styles.gridTall}
-            src="/images/v3/home/story-lead.jpg"
+            src="/images/v3/home/story-lead.webp"
             alt="A bride at a stone balustrade, the mountains and the lake behind her"
             ratio={0.959}
             sizes="(max-width: 768px) 100vw, 57vw"
@@ -94,7 +94,7 @@ export default function HomePage() {
           />
           <Figure
             className={styles.gridTop}
-            src="/images/v3/home/story-embrace.jpg"
+            src="/images/v3/home/story-embrace.webp"
             alt="A couple close together in black and white, her hand at his face"
             ratio={1.759}
             sizes="(max-width: 768px) 50vw, 41vw"
@@ -102,7 +102,7 @@ export default function HomePage() {
           />
           <Figure
             className={styles.gridBottom}
-            src="/images/v3/home/story-flowers.jpg"
+            src="/images/v3/home/story-flowers.webp"
             alt="A bouquet of white roses and ranunculus against dark foliage"
             ratio={1.214}
             sizes="(max-width: 768px) 50vw, 41vw"
@@ -112,7 +112,7 @@ export default function HomePage() {
 
         <Figure
           className={`bleed-phone ${styles.storiesWide}`}
-          src="/images/v3/home/story-shore.jpg"
+          src="/images/v3/home/story-shore.webp"
           alt="A village on the wooded shore of the lake, seen from the water"
           ratio={4.31}
           mobileRatio={1.45}
@@ -129,7 +129,7 @@ export default function HomePage() {
       <section className={`shell ${styles.approach}`} aria-labelledby="approach">
         <Figure
           className={styles.approachImage}
-          src="/images/v3/home/approach.jpg"
+          src="/images/v3/home/approach.webp"
           alt="His hand at her waist against the white of her dress, in black and white"
           ratio={0.93}
           sizes="(max-width: 768px) 70vw, 42vw"
@@ -154,7 +154,7 @@ export default function HomePage() {
         <div className={`shell ${styles.teaser}`}>
           <Figure
             className={styles.teaserImage}
-            src="/images/v3/home/emma.jpg"
+            src="/images/v3/home/emra.webp"
             alt="Emra in a cream knit, looking out across the hillside"
             ratio={0.93}
             sizes="(max-width: 768px) 70vw, 42vw"
@@ -182,7 +182,7 @@ export default function HomePage() {
 
       {/* ---------- Closing — full bleed, 280 × 98 on the board ---------- */}
       <ImageBand
-        src="/images/v3/home/closing.jpg"
+        src="/images/v3/home/closing.webp"
         alt="The mountains above the lake, light falling across the far shore"
         ratio={2.857}
         mobileRatio={1.2}

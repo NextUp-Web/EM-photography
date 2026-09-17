@@ -17,7 +17,7 @@ export default function ContactPage() {
     <>
       {/* ---------- Hero — full bleed, 262 × 226 on the board ---------- */}
       <ImageBand
-        src="/images/v3/contact/hero.jpg"
+        src="/images/v3/contact/hero.webp"
         alt="Jasmine flowering against a stone wall above the lake, Good People Better Stories written on the render"
         ratio={1.159}
         mobileRatio={0.86}
@@ -48,7 +48,7 @@ export default function ContactPage() {
 
       {/* ---------- Closing — full bleed, 262 × 252 on the board ---------- */}
       <ImageBand
-        src="/images/v3/contact/closing.jpg"
+        src="/images/v3/contact/closing.webp"
         alt="A table and a chair set out on the shore beneath an olive tree at dusk"
         ratio={1.04}
         mobileRatio={0.92}
