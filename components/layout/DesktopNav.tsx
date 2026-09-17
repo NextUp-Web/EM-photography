@@ -2,16 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV } from "@/lib/data";
+import type { NavItem } from "@/lib/data";
 import styles from "./Header.module.css";
 
-export default function DesktopNav() {
+/** Une moitié de la navigation, posée à gauche ou à droite du logo. */
+export default function DesktopNav({
+  items,
+  align,
+  label,
+}: {
+  items: NavItem[];
+  align: "start" | "end";
+  label: string;
+}) {
   const pathname = usePathname();
 
   return (
-    <nav className={styles.nav} aria-label="Primary">
-      <ul className={styles.navList}>
-        {NAV.map((item) => {
+    <nav className={styles.nav} aria-label={label}>
+      <ul className={`${styles.navList} ${align === "end" ? styles.navListEnd : ""}`}>
+        {items.map((item) => {
           const active =
             item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
           return (

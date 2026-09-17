@@ -84,10 +84,12 @@
 }
 
 .submit {
-  composes: cta-outline from global;
-  width: 100%;
-  padding-block: 20px;
-  margin-top: clamp(10px, 1.4vw, 20px);
+  composes: cta-inline from global;
+  align-self: flex-start;
+  margin-top: clamp(14px, 2vw, 26px);
+  background: transparent;
+  border-top: 0;
+  border-inline: 0;
   cursor: pointer;
 }
 

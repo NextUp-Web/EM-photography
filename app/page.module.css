@@ -256,3 +256,9 @@
     padding-block: var(--rhythm-md);
   }
 }
+
+/* Le dernier paragraphe de « The approach » précède le lien : il garde
+   l'écart que la maquette laisse avant le micro-CTA. */
+.approachCopyLast {
+  margin-bottom: var(--rhythm-xs);
+}

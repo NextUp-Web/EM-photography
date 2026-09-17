@@ -34,13 +34,27 @@ export default function ContactPage() {
               Tell me your story.
             </h1>
             <p className={`copy ${styles.lead}`}>
-              Whether you&rsquo;re planning a wedding, an intimate gathering, or
-              simply want to capture a season of life to remember — I&rsquo;d love to
-              hear from you.
+              I&rsquo;d love to hear what you&rsquo;re planning.
+            </p>
+            <p className="copy">
+              Whether you&rsquo;re celebrating a wedding,{" "}
+              <br className="br-wide" />
+              an intimate gathering, or simply a season of life{" "}
+              <br className="br-wide" />
+              you want to remember —{" "}
+              <br className="br-wide" />
+              tell me a little about it.
+            </p>
+            <p className="copy">
+              Where you&rsquo;re going.
+              <br />
+              Who will be there.
+              <br />
+              What matters most to you.
             </p>
           </Reveal>
 
-          <div className={styles.formWrap}>
+          <div className={`band-ivory ${styles.formWrap}`}>
             <ContactForm />
           </div>
         </div>

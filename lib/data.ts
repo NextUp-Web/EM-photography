@@ -8,6 +8,13 @@ export const NAV: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+/**
+ * Les deux moitiés posées de part et d'autre du logo. Deux entrées de
+ * chaque côté : la ligne d'en-tête est symétrique.
+ */
+export const NAV_LEFT: NavItem[] = NAV.slice(0, 2);
+export const NAV_RIGHT: NavItem[] = NAV.slice(2);
+
 /** The collections printed under the portfolio title, as one tracked line. */
 export const PORTFOLIO_CATEGORIES = [
   "Weddings",

@@ -54,7 +54,7 @@
 }
 
 .link[aria-current="page"] {
-  font-style: italic;
+  border-bottom-color: var(--color-black);
 }
 
 .note {

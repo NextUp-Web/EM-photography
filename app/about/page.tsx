@@ -26,7 +26,7 @@ export default function AboutPage() {
         priority
         position="center 32%"
       >
-        <h1 className={`serif-italic ${styles.heroTitle}`}>
+        <h1 className={`serif ${styles.heroTitle}`}>
           I find beauty
           <br />
           in what is
@@ -47,10 +47,18 @@ export default function AboutPage() {
             EM Photography.
           </p>
           <p className={`copy ${styles.storyCopy}`}>
-            I&rsquo;m drawn to honest moments, to people in love, to beautiful places
-            and to the in-between. I believe the most meaningful photographs are the
-            ones that feel real — the fleeting moments, the gentle chaos, the quiet
-            glances that say everything.
+            I&rsquo;m drawn to what is honest and fleeting —{" "}
+            <br className="br-wide" />
+            the moments that happen naturally,{" "}
+            <br className="br-wide" />
+            when no one is thinking about the camera.
+          </p>
+          <p className="copy">
+            The kind of beauty that lives in a glance,{" "}
+            <br className="br-wide" />
+            a hand held a little longer,{" "}
+            <br className="br-wide" />
+            a laugh that wasn&rsquo;t meant to be photographed.
           </p>
         </Reveal>
 
@@ -73,19 +81,28 @@ export default function AboutPage() {
             My approach
           </SectionLabel>
           <p className={`copy ${styles.approachCopy}`}>
-            My approach is documentary at heart, with an editorial eye for light,
-            composition and details. I gently guide when needed, while leaving space
-            for your connection to unfold naturally. So your photographs feel honest,
-            effortless and entirely yours.
+            My approach is documentary at heart,{" "}
+            <br className="br-wide" />
+            with an editorial eye for light, composition and details.
+          </p>
+          <p className="copy">
+            I&rsquo;ll gently guide you when needed,{" "}
+            <br className="br-wide" />
+            while leaving space for your connection to unfold naturally.
+          </p>
+          <p className="copy">
+            Because the photographs I value most{" "}
+            <br className="br-wide" />
+            are the ones that feel unmistakably yours.
           </p>
         </Reveal>
         <hr className={`rule ${styles.approachRule}`} />
       </section>
 
       {/* ---------- Quote ---------- */}
-      <section className={`shell ${styles.quoteBlock}`}>
+      <section className={`shell band-ivory ${styles.quoteBlock}`}>
         <Reveal>
-          <p className={`serif-italic ${styles.quote}`}>
+          <p className={`serif ${styles.quote}`}>
             Editorial documentary photography
             <br />
             with a quietly romantic soul.
@@ -112,10 +129,25 @@ export default function AboutPage() {
             What I want for you
           </SectionLabel>
           <p className={`copy ${styles.wantCopy}`}>
-            I want you to look back at your photographs and feel everything all over
-            again. Not just how it looked, but how it felt — the people, the place,
-            the energy, the in-between moments. I want your story to live on through
-            images that feel like you.
+            Years from now, I want your photographs to bring you back —{" "}
+            <br className="br-wide" />
+            not only to how the day looked,{" "}
+            <br className="br-wide" />
+            but to the feeling of being there.
+          </p>
+          <p className="copy">
+            The light.
+            <br />
+            The laughter.
+            <br />
+            The people you loved.
+            <br />
+            The way you held each other.
+          </p>
+          <p className="copy">
+            A little piece of that time,{" "}
+            <br className="br-wide" />
+            kept for you to feel again.
           </p>
         </Reveal>
       </section>

@@ -24,8 +24,10 @@
   max-width: 48ch;
 }
 
+/* Accent ivoire sous le formulaire — un bloc, pas un fond de page. */
 .formWrap {
   margin-top: clamp(38px, 5vw, 70px);
+  padding: clamp(28px, 4vw, 56px);
 }
 
 /* ---------- The handwritten mark ---------- */

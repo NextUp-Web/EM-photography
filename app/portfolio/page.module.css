@@ -85,8 +85,9 @@
 
 /* ---------- Quote ---------- */
 
+/* Posé sur un accent ivoire : le bloc a besoin d'un peu plus d'air. */
 .quoteBlock {
-  padding-block: var(--rhythm-md);
+  padding-block: var(--rhythm-lg);
 }
 
 .quote {

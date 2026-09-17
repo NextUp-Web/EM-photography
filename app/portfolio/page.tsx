@@ -19,7 +19,7 @@ export default function PortfolioPage() {
       {/* ---------- Title ---------- */}
       <section className={`shell ${styles.intro}`}>
         <Reveal>
-          <h1 className={`serif-italic ${styles.title}`}>Love, documented.</h1>
+          <h1 className={`serif ${styles.title}`}>Love, documented.</h1>
           <p className={`copy ${styles.lead}`}>
             A collection of honest moments, quiet emotions{" "}
             <br className="br-wide" />
@@ -106,9 +106,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* ---------- Quote ---------- */}
-      <section className={`shell ${styles.quoteBlock}`}>
+      <section className={`shell band-ivory ${styles.quoteBlock}`}>
         <Reveal>
-          <p className={`serif-italic ${styles.quote}`}>
+          <p className={`serif ${styles.quote}`}>
             &ldquo;The moments in between.&rdquo;
           </p>
         </Reveal>

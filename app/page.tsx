@@ -30,7 +30,7 @@ export default function HomePage() {
       >
         <div className={styles.heroText}>
           <p className={`label ${styles.heroLabel}`}>Switzerland based</p>
-          <h1 className={`serif-italic ${styles.heroTitle}`}>
+          <h1 className={`serif ${styles.heroTitle}`}>
             Documenting love
             <br />
             in its softest form.
@@ -48,7 +48,7 @@ export default function HomePage() {
       {/* ---------- For all that words cannot hold ---------- */}
       <section className={`shell ${styles.philosophy}`} aria-labelledby="philosophy">
         <Reveal>
-          <h2 className={`serif-italic ${styles.statement}`} id="philosophy">
+          <h2 className={`serif ${styles.statement}`} id="philosophy">
             For all that
             <br />
             words cannot hold.
@@ -61,7 +61,8 @@ export default function HomePage() {
             The laughter between photographs.
             <br />
             The moments you never planned for.
-            <br />
+          </p>
+          <p className={`copy ${styles.philosophyCopy}`}>
             The beauty of what happens in between.
           </p>
         </Reveal>
@@ -140,10 +141,19 @@ export default function HomePage() {
             The approach
           </SectionLabel>
           <p className={`copy ${styles.approachCopy}`}>
-            My approach is documentary at heart, with an editorial eye for light,
-            composition and details. I gently guide when needed, while leaving space
-            for your connection to unfold naturally. So your photographs feel honest,
-            effortless and entirely yours.
+            My approach is documentary at heart,{" "}
+            <br className="br-wide" />
+            with an editorial eye for light, composition and details.
+          </p>
+          <p className="copy">
+            I gently guide when needed,{" "}
+            <br className="br-wide" />
+            while leaving space for your connection to unfold naturally.
+          </p>
+          <p className={`copy ${styles.approachCopyLast}`}>
+            So your photographs feel honest, effortless{" "}
+            <br className="br-wide" />
+            and entirely yours.
           </p>
           <EditorialLink href="/about" label="About me" />
         </Reveal>
@@ -161,7 +171,7 @@ export default function HomePage() {
             position="center 40%"
           />
           <Reveal className={styles.teaserText}>
-            <h2 className={`serif-italic ${styles.teaserTitle}`} id="teaser">
+            <h2 className={`serif ${styles.teaserTitle}`} id="teaser">
               I find beauty in
               <br />
               what is quietly felt.
@@ -172,8 +182,9 @@ export default function HomePage() {
               EM Photography.
             </SectionLabel>
             <p className={`copy ${styles.teaserCopy}`}>
-              I&rsquo;m drawn to quiet beauty, to beautiful light and to the moments
-              that don&rsquo;t ask to be photographed.
+              Drawn to quiet beauty, beautiful light{" "}
+              <br className="br-wide" />
+              and the moments that don&rsquo;t ask to be photographed.
             </p>
             <EditorialLink href="/about" label="Read more" />
           </Reveal>
@@ -191,7 +202,7 @@ export default function HomePage() {
         position="center 46%"
       >
         <p className={`serif ${styles.closingTitle}`}>Made to be felt again.</p>
-        <p className={`serif-italic ${styles.closingSub}`}>Tell me your story.</p>
+        <p className={`serif ${styles.closingSub}`}>Tell me your story.</p>
         <EditorialLink href="/contact" label="Get in touch" variant="outline" />
       </ImageBand>
     </>

@@ -64,7 +64,7 @@
   --shell-pad: clamp(20px, 4.6vw, 58px); /* 4.6% of the panel, as measured */
   --measure: 46ch;
 
-  --header-h: 96px;
+  --header-h: 124px;
 
   /* Board gutter: 6px on a 280px panel = 2.1%. */
   --gap-img: clamp(8px, 2.1vw, 28px);
@@ -81,16 +81,43 @@
   --dur: 700ms;
 }
 
+/*
+ * Mobile. Deux réglages distincts :
+ *
+ * - les petits textes rétrécissent (corps, navigation, petites capitales) ;
+ * - la respiration verticale se resserre, pour que le scroll ne se vide pas.
+ *
+ * Les grandes phrases, elles, restent grandes : elles gardent leurs retours
+ * à la ligne, qui font partie du dessin.
+ */
 @media (max-width: 768px) {
   :root {
-    --header-h: 64px;
+    --header-h: 80px;
     --gap-img: 8px;
+
+    --fs-micro: 0.625rem; /* 10px */
+    --fs-nav: 0.6563rem; /* 10.5px */
+    --fs-label: 0.6563rem;
+    --fs-body-sm: 0.8125rem; /* 13px */
+    --fs-body: 0.9375rem; /* 15px */
+
+    --ls-label: 0.2em;
+    --ls-nav: 0.18em;
+    --lh-body: 1.7;
+
     --fs-hero: clamp(2.125rem, 9.6vw, 2.9rem);
     --fs-about-hero: clamp(2rem, 9vw, 2.65rem);
     --fs-display: clamp(1.875rem, 8.4vw, 2.4rem);
     --fs-page-title: clamp(2.125rem, 9.8vw, 2.8rem);
     --fs-band-title: clamp(1.625rem, 7vw, 2rem);
     --fs-band-sub: clamp(1.125rem, 5vw, 1.4rem);
+    --fs-quote: clamp(1.25rem, 5.6vw, 1.75rem);
+
+    --rhythm-xs: 18px;
+    --rhythm-sm: 28px;
+    --rhythm-md: 38px;
+    --rhythm-lg: 50px;
+    --rhythm-xl: 60px;
   }
 }
 
@@ -129,6 +156,16 @@
   figure,
   blockquote {
     margin: 0;
+  }
+
+  /* Le site n'emploie aucun italique : ni chargé, ni synthétisé. */
+  i,
+  em,
+  address,
+  cite,
+  dfn,
+  var {
+    font-style: normal;
   }
 
   ul,
@@ -243,14 +280,6 @@
     font-weight: 400;
     line-height: var(--lh-display);
     letter-spacing: 0.002em;
-  }
-
-  .serif-italic {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    line-height: var(--lh-display);
-    letter-spacing: 0.004em;
   }
 
   .label {
