@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
  * provider — the route validates and answers 503 rather than pretending the
  * message was sent.
  */
-const REQUIRED = ["name", "email", "message"] as const;
+const REQUIRED = ["brideName", "email", "interest", "message"] as const;
 
-const OPTIONAL = ["partnerName", "date", "location", "referral"] as const;
+const OPTIONAL = ["groomName", "phone", "date", "location", "referral"] as const;
 
 export async function POST(request: Request) {
   let payload: Record<string, unknown>;

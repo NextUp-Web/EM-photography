@@ -1,210 +1,170 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import Figure from "@/components/ui/Figure";
-import EditorialLink from "@/components/ui/EditorialLink";
-import Reveal from "@/components/ui/Reveal";
-import SectionLabel from "@/components/ui/SectionLabel";
-import ImageBand from "@/components/sections/ImageBand";
+import SelectedStories from "@/components/sections/SelectedStories";
+import { PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "EM Photography | Wedding Photographer in Switzerland",
-  description:
-    "Editorial documentary wedding photography in Switzerland and across Europe. Honest, intimate and timeless imagery for modern love stories.",
   alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero — full bleed, 280 × 227 on the board ---------- */}
-      <ImageBand
-        src="/images/v3/home/hero.webp"
-        alt="A bride and groom forehead to forehead above a Swiss lake at dusk"
-        ratio={1.233}
-        mobileRatio={0.62}
-        variant="hero"
-        scrim="bottom"
-        align="bottom"
-        priority
-        position="center 42%"
-      >
-        <div className={styles.heroText}>
-          <p className={`label ${styles.heroLabel}`}>Switzerland based</p>
-          <h1 className={`serif ${styles.heroTitle}`}>
-            Documenting love
-            <br />
-            in its softest form.
+      {/* ---------- Hero ---------- */}
+      <section className={styles.hero} aria-label="EM Photography">
+        <Figure
+          photo={PHOTOS.homeHero}
+          ratio={2.22}
+          mobileRatio={1.12}
+          sizes="100vw"
+          priority
+          className={styles.heroFigure}
+        />
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroMark}>
+            <span className={styles.heroEm}>EM</span>
+            <span className={styles.heroWord}>Photography</span>
           </h1>
-          <p className={`label ${styles.heroMeta}`}>
-            Weddings <span aria-hidden="true">·</span> Couples{" "}
-            <span aria-hidden="true">·</span> Intimate stories
+          <p className={styles.heroLine}>Switzerland based &middot; Europe</p>
+          <p className={`${styles.heroLine} ${styles.heroTags}`}>
+            <span className={styles.heroTag}>Weddings</span>
+            <span className={styles.heroTag}>Couples</span>
+            <span className={styles.heroTag}>Personal stories</span>
           </p>
-          <p className={`label ${styles.scroll}`} aria-hidden="true">
-            Scroll <span className={styles.scrollArrow}>↓</span>
-          </p>
+          <Link href="/contact" className={`cta-solid ${styles.heroCta}`}>
+            Begin here
+          </Link>
         </div>
-      </ImageBand>
+      </section>
 
-      {/* ---------- For all that words cannot hold ---------- */}
+      {/* ---------- Philosophy ---------- */}
       <section className={`shell ${styles.philosophy}`} aria-labelledby="philosophy">
-        <Reveal>
-          <h2 className={`serif ${styles.statement}`} id="philosophy">
+        <div className={styles.philosophyText}>
+          <p className="label" id="philosophy">
+            Philosophy
+          </p>
+          <h2 className={`display ${styles.philosophyTitle}`}>
             For all that
             <br />
             words cannot hold.
           </h2>
           <p className={`copy ${styles.philosophyCopy}`}>
-            The quiet glances.
-            <br />
-            The hands held a little tighter.
-            <br />
-            The laughter between photographs.
-            <br />
-            The moments you never planned for.
+            The quiet details. The moments in between. I photograph stories with a
+            documentary sensitivity and a refined editorial eye — attentive to the
+            subtle gestures, fleeting expressions and details that quietly shape the
+            day.
           </p>
-          <p className={`copy ${styles.philosophyCopy}`}>
-            The beauty of what happens in between.
+        </div>
+
+        <div className={styles.philosophyFrames}>
+          <Figure
+            photo={PHOTOS.philosophyOne}
+            ratio={0.65}
+            mobileRatio={0.72}
+            sizes="(max-width: 860px) 32vw, 21vw"
+          />
+          <Figure
+            photo={PHOTOS.philosophyTwo}
+            ratio={0.65}
+            mobileRatio={0.72}
+            sizes="(max-width: 860px) 32vw, 21vw"
+          />
+          <Figure
+            photo={PHOTOS.philosophyThree}
+            ratio={0.65}
+            mobileRatio={0.72}
+            sizes="(max-width: 860px) 32vw, 21vw"
+          />
+        </div>
+      </section>
+
+      {/* ---------- Ivory statement ---------- */}
+      <section className={`band-ivory ${styles.band}`}>
+        <div className="shell">
+          <p className={`display ${styles.bandTitle}`}>
+            For those drawn to photographs that reveal more the longer you look.
           </p>
-        </Reveal>
-        <hr className={`rule ${styles.philosophyRule}`} />
+          <p className={`label ${styles.bandMeta}`}>
+            Documentary observation
+            <span className={`${styles.bandDot} ${styles.bandDotOne}`}>&middot;</span>
+            <br className={styles.bandBreak} /> Editorial sensibility{" "}
+            <span className={styles.bandDot}>&middot;</span> Quietly felt.
+          </p>
+        </div>
       </section>
 
       {/* ---------- Selected stories ---------- */}
       <section className={`shell ${styles.stories}`} aria-labelledby="stories">
-        <Reveal className={styles.storiesHead}>
-          <SectionLabel>Selected stories</SectionLabel>
-          <h2 className={`serif ${styles.storiesTitle}`} id="stories">
-            Love, documented.
+        <div className={styles.storiesText}>
+          <p className="label" id="stories">
+            Selected stories
+          </p>
+          <h2 className={`display ${styles.storiesTitle}`}>Love, documented.</h2>
+          <p className={`copy ${styles.storiesCopy}`}>
+            A collection that feels natural, considered and deeply connected to the
+            atmosphere of your celebration — unfolding chapter by chapter, each with
+            its own rhythm and feeling.
+          </p>
+        </div>
+
+        <SelectedStories
+          framesClassName={styles.storiesFrames}
+          controlsClassName={styles.storiesControls}
+        />
+      </section>
+
+      {/* ---------- About preview ---------- */}
+      <section className={`shell ${styles.about}`} aria-labelledby="about-preview">
+        <Figure
+          photo={PHOTOS.aboutPortrait}
+          ratio={1.37}
+          mobileRatio={1.4}
+          sizes="(max-width: 860px) 45vw, 33vw"
+          className={styles.aboutPortrait}
+        />
+
+        <div className={styles.aboutText}>
+          <p className="label" id="about-preview">
+            About
+          </p>
+          <h2 className={`display ${styles.aboutTitle}`}>
+            A quiet eye for what <br className={styles.aboutBreak} />
+            unfolds naturally.
           </h2>
-          <p className={`copy ${styles.storiesLead}`}>
-            A collection of honest moments, quiet emotions{" "}
-            <br className="br-wide" />
-            and beautiful beginnings.
+          <p className={`copy ${styles.aboutCopy}`}>
+            Drawn to the beauty of what is felt rather than staged. To the softness of
+            a gesture, the fleeting details that give a moment its atmosphere, and what
+            happens in between. I&rsquo;m interested in what feels honest, instinctive
+            and quietly meaningful.
           </p>
-        </Reveal>
-
-        {/* 57 / 41 collage — the right column stacks 1.76 over 1.21. */}
-        <div className={`bleed-phone ${styles.grid}`}>
-          <Figure
-            className={styles.gridTall}
-            src="/images/v3/home/story-lead.webp"
-            alt="A bride at a stone balustrade, the mountains and the lake behind her"
-            ratio={0.959}
-            sizes="(max-width: 768px) 100vw, 57vw"
-            position="center 46%"
-          />
-          <Figure
-            className={styles.gridTop}
-            src="/images/v3/home/story-embrace.webp"
-            alt="A couple close together in black and white, her hand at his face"
-            ratio={1.759}
-            sizes="(max-width: 768px) 50vw, 41vw"
-            position="center 40%"
-          />
-          <Figure
-            className={styles.gridBottom}
-            src="/images/v3/home/story-flowers.webp"
-            alt="A bouquet of white roses and ranunculus against dark foliage"
-            ratio={1.214}
-            sizes="(max-width: 768px) 50vw, 41vw"
-            position="center 52%"
-          />
         </div>
 
+        <Link href="/about" className={`cta-underline ${styles.aboutLink}`}>
+          More about me
+          <span className="arrow" aria-hidden="true">
+            &#8594;
+          </span>
+        </Link>
+      </section>
+
+      {/* ---------- Closing ---------- */}
+      <section className={styles.closing} aria-label="Get in touch">
         <Figure
-          className={`bleed-phone ${styles.storiesWide}`}
-          src="/images/v3/home/story-shore.webp"
-          alt="A village on the wooded shore of the lake, seen from the water"
-          ratio={4.31}
-          mobileRatio={1.45}
+          photo={PHOTOS.homeClosing}
+          ratio={4.15}
+          mobileRatio={1.87}
           sizes="100vw"
-          position="center 52%"
+          className={styles.closingFigure}
         />
-
-        <div className={styles.storiesCta}>
-          <EditorialLink href="/portfolio" label="View portfolio" />
+        <div className={styles.closingInner}>
+          <p className={`display ${styles.closingTitle}`}>Made to be felt again.</p>
+          <Link href="/contact" className={`cta-ghost ${styles.closingCta}`}>
+            Tell me your story.
+          </Link>
         </div>
       </section>
-
-      {/* ---------- The approach — 42 / 53 with a 5% gutter ---------- */}
-      <section className={`shell ${styles.approach}`} aria-labelledby="approach">
-        <Figure
-          className={styles.approachImage}
-          src="/images/v3/home/approach.webp"
-          alt="His hand at her waist against the white of her dress, in black and white"
-          ratio={0.93}
-          sizes="(max-width: 768px) 70vw, 42vw"
-          position="center 50%"
-        />
-        <Reveal className={styles.approachText}>
-          <SectionLabel as="h2" id="approach">
-            The approach
-          </SectionLabel>
-          <p className={`copy ${styles.approachCopy}`}>
-            My approach is documentary at heart,{" "}
-            <br className="br-wide" />
-            with an editorial eye for light, composition and details.
-          </p>
-          <p className="copy">
-            I gently guide when needed,{" "}
-            <br className="br-wide" />
-            while leaving space for your connection to unfold naturally.
-          </p>
-          <p className={`copy ${styles.approachCopyLast}`}>
-            So your photographs feel honest, effortless{" "}
-            <br className="br-wide" />
-            and entirely yours.
-          </p>
-          <EditorialLink href="/about" label="About me" />
-        </Reveal>
-      </section>
-
-      {/* ---------- I find beauty in what is quietly felt ---------- */}
-      <section className={`band-ivory ${styles.teaserBand}`} aria-labelledby="teaser">
-        <div className={`shell ${styles.teaser}`}>
-          <Figure
-            className={styles.teaserImage}
-            src="/images/v3/home/emra.webp"
-            alt="Emra in a cream knit, looking out across the hillside"
-            ratio={0.93}
-            sizes="(max-width: 768px) 70vw, 42vw"
-            position="center 40%"
-          />
-          <Reveal className={styles.teaserText}>
-            <h2 className={`serif ${styles.teaserTitle}`} id="teaser">
-              I find beauty in
-              <br />
-              what is quietly felt.
-            </h2>
-            <SectionLabel tone="ink" className={styles.teaserLabel}>
-              I&rsquo;m Emra, the person behind
-              <br />
-              EM Photography.
-            </SectionLabel>
-            <p className={`copy ${styles.teaserCopy}`}>
-              Drawn to quiet beauty, beautiful light{" "}
-              <br className="br-wide" />
-              and the moments that don&rsquo;t ask to be photographed.
-            </p>
-            <EditorialLink href="/about" label="Read more" />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- Closing — full bleed, 280 × 98 on the board ---------- */}
-      <ImageBand
-        src="/images/v3/home/closing.webp"
-        alt="The mountains above the lake, light falling across the far shore"
-        ratio={2.857}
-        mobileRatio={1.2}
-        scrim="full"
-        align="center"
-        position="center 46%"
-      >
-        <p className={`serif ${styles.closingTitle}`}>Made to be felt again.</p>
-        <p className={`serif ${styles.closingSub}`}>Tell me your story.</p>
-        <EditorialLink href="/contact" label="Get in touch" variant="outline" />
-      </ImageBand>
     </>
   );
 }

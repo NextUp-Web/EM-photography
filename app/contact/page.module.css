@@ -1,60 +1,138 @@
 /* ============================================================
-   CONTACT — welcoming · simple · meaningful
-   Panel 262px on the board; the form column runs 189px of it, set in
-   from the left with a wide right margin.
+   CONTACT — reproduced from the client mockup.
+
+   Desktop: title, lede, then a full-width monochrome photograph,
+   then two columns — the written invitation and the form.
+
+   Phone: the photograph comes first, then the title and lede, the
+   invitation, a single-column form, and the bouquet beneath it.
    ============================================================ */
 
-.intro {
-  padding-block: var(--rhythm-lg) var(--rhythm-xl);
+.top {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-/* 189 of the board's 262px panel. */
-.column {
-  max-width: 72%;
-  min-width: min(100%, 560px);
+.intro {
+  grid-row: 1;
+  padding: clamp(36px, 6.2vw, 92px) var(--shell-pad) clamp(26px, 3.4vw, 50px);
+  text-align: center;
 }
 
 .title {
   font-size: var(--fs-page-title);
-  margin: 0;
 }
 
-.lead {
-  margin-top: clamp(20px, 2.6vw, 32px);
-  max-width: 48ch;
+.lede {
+  margin-top: clamp(14px, 1.6vw, 24px);
+  margin-inline: auto;
+  max-width: 1080px;
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+  text-align: center;
 }
 
-/* Accent ivoire sous le formulaire — un bloc, pas un fond de page. */
+.heroFigure {
+  grid-row: 2;
+  background: var(--soft-black);
+}
+
+/* ---------- Invitation + form ---------- */
+
+.main {
+  display: grid;
+  grid-template-columns: 34.7fr 4.3fr 61fr;
+  align-items: start;
+  padding: clamp(28px, 3.4vw, 50px) var(--shell-pad) clamp(28px, 3.4vw, 48px);
+}
+
+.aside {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.asideTitle {
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-size: var(--fs-display-lg);
+}
+
+.asideCopy {
+  margin-top: clamp(16px, 1.9vw, 28px);
+}
+
 .formWrap {
-  margin-top: clamp(38px, 5vw, 70px);
-  padding: clamp(28px, 4vw, 56px);
+  grid-column: 3;
+  grid-row: 1 / span 2;
 }
 
-/* ---------- The handwritten mark ---------- */
-
-.signature {
-  display: flex;
-  justify-content: flex-end;
-  padding-block: clamp(30px, 4.5vw, 64px) clamp(44px, 5.4vw, 82px);
+.bouquet {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: clamp(20px, 2.6vw, 40px);
+  align-self: end;
 }
 
-.signatureImage {
-  width: auto;
-  height: clamp(120px, 18vw, 250px);
-  opacity: 0.92;
+.wide {
+  display: inline;
 }
 
-@media (max-width: 768px) {
+/* ============================================================
+   Phone
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .top {
+    grid-template-rows: auto auto;
+  }
+
+  .heroFigure {
+    grid-row: 1;
+  }
+
   .intro {
-    padding-block: var(--rhythm-md) var(--rhythm-md);
+    grid-row: 2;
+    text-align: left;
+    padding: clamp(20px, 5.5vw, 30px) var(--shell-pad) clamp(18px, 5vw, 26px);
+    border-bottom: 1px solid var(--hairline-soft);
   }
 
-  .signature {
-    padding-block: clamp(24px, 8vw, 40px) var(--rhythm-md);
-  }
-
-  .column {
+  .lede {
+    margin-inline: 0;
     max-width: none;
-    min-width: 0;
+    text-align: left;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+    padding: clamp(20px, 5.5vw, 30px) var(--shell-pad) 0;
+  }
+
+  .aside,
+  .formWrap {
+    grid-column: 1;
+  }
+
+  .aside {
+    grid-row: 1;
+  }
+
+  .formWrap {
+    grid-row: 2;
+    margin-top: clamp(18px, 5vw, 26px);
+  }
+
+
+  .wide {
+    display: none;
+  }
+
+  /* The bouquet closes the page, edge to edge, beneath the form. */
+  .bouquet {
+    grid-column: 1;
+    grid-row: 3;
+    width: calc(100% + var(--shell-pad) * 2);
+    max-width: none;
+    margin-inline: calc(var(--shell-pad) * -1);
+    margin-top: clamp(22px, 6vw, 32px);
   }
 }

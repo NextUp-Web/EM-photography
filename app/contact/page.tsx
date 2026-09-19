@@ -1,86 +1,75 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/sections/ContactForm";
-import ImageBand from "@/components/sections/ImageBand";
+import Figure from "@/components/ui/Figure";
+import { PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contact EM Photography | Switzerland Wedding Photographer",
+export const metadata = {
+  title: "Contact | EM Photography",
   description:
-    "Tell me your story. Enquire about wedding, couple and intimate celebration photography in Switzerland and across Europe.",
+    "Tell me what this day will feel like — enquiries for weddings, couples and intimate celebrations in Switzerland and across Europe.",
   alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
     <>
-      {/* ---------- Hero — full bleed, 262 × 226 on the board ---------- */}
-      <ImageBand
-        src="/images/v3/contact/hero.webp"
-        alt="Jasmine flowering against a stone wall above the lake, Good People Better Stories written on the render"
-        ratio={1.159}
-        mobileRatio={0.86}
-        sizes="100vw"
-        position="center 50%"
-        priority
-      />
-
-      {/* ---------- Tell me your story ---------- */}
-      <section className={`shell ${styles.intro}`} aria-labelledby="contact-title">
-        <div className={styles.column}>
-          <Reveal>
-            <h1 className={`serif ${styles.title}`} id="contact-title">
-              Tell me your story.
-            </h1>
-            <p className={`copy ${styles.lead}`}>
-              I&rsquo;d love to hear what you&rsquo;re planning.
-            </p>
-            <p className="copy">
-              Whether you&rsquo;re celebrating a wedding,{" "}
-              <br className="br-wide" />
-              an intimate gathering, or simply a season of life{" "}
-              <br className="br-wide" />
-              you want to remember —{" "}
-              <br className="br-wide" />
-              tell me a little about it.
-            </p>
-            <p className="copy">
-              Where you&rsquo;re going.
-              <br />
-              Who will be there.
-              <br />
-              What matters most to you.
-            </p>
-          </Reveal>
-
-          <div className={`band-ivory ${styles.formWrap}`}>
-            <ContactForm />
-          </div>
+      {/* The phone mockup opens on the photograph and sets the title beneath
+          it; the desktop mockup sets the title first. Source order follows the
+          phone, and the desktop grid puts the intro back on top. */}
+      <section className={styles.top}>
+        <div className={styles.intro}>
+          <h1 className={`display ${styles.title}`}>
+            Tell me what this day will feel like.
+          </h1>
+          <p className={`copy ${styles.lede}`}>
+            I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
+            celebrating a wedding, an intimate gathering, or simply a season of life
+            you want to remember, tell me a little about it. Your vision. Where it
+            will unfold. Who will be there. What matters most to you.
+          </p>
         </div>
+
+        <Figure
+          photo={PHOTOS.contactHero}
+          ratio={1.95}
+          mobileRatio={1.72}
+          sizes="100vw"
+          priority
+          className={styles.heroFigure}
+        />
       </section>
 
-      {/* ---------- Closing — full bleed, 262 × 252 on the board ---------- */}
-      <ImageBand
-        src="/images/v3/contact/closing.webp"
-        alt="A table and a chair set out on the shore beneath an olive tree at dusk"
-        ratio={1.04}
-        mobileRatio={0.92}
-        sizes="100vw"
-        position="center 50%"
-      />
+      <section className={styles.main} aria-labelledby="enquiry">
+        <div className={styles.aside}>
+          <p className="label" id="enquiry">
+            Share your vision.
+          </p>
+          <h2 className={`display ${styles.asideTitle}`}>
+            Thoughtful <br className={styles.wide} />
+            photography for <br className={styles.wide} />
+            the meaningful <br className={styles.wide} />
+            moments.
+          </h2>
+          <p className={`copy ${styles.asideCopy}`}>
+            Every celebration has its own rhythm, atmosphere and way of unfolding.
+            Tell me a little about what you&rsquo;re planning and what matters most to
+            you, and we can shape the coverage around the way your day is meant to
+            feel.
+          </p>
+        </div>
 
-      {/* The handwritten mark the board prints under the closing photograph. */}
-      <div className={`shell ${styles.signature}`}>
-        <Image
-          src="/images/v3/brand/some-people-brighter-days.png"
-          alt="Some people brighten days"
-          width={504}
-          height={567}
-          sizes="200px"
-          className={styles.signatureImage}
+        <div className={styles.formWrap}>
+          <ContactForm />
+        </div>
+
+        <Figure
+          photo={PHOTOS.contactBouquet}
+          ratio={0.98}
+          mobileRatio={2.39}
+          sizes="(max-width: 860px) 100vw, 32vw"
+          className={styles.bouquet}
         />
-      </div>
+      </section>
     </>
   );
 }

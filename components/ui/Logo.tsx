@@ -39,7 +39,7 @@ export default function Logo({
         width={width}
         height={intrinsicHeight}
         priority={priority}
-        sizes="140px"
+        sizes="120px"
         className={styles.image}
       />
     </span>

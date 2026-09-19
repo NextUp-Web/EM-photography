@@ -1,5 +1,4 @@
 .logo {
-  --logo-h: 76px;
   display: inline-block;
   height: var(--logo-h);
 }
@@ -7,10 +6,4 @@
 .image {
   width: auto;
   height: 100%;
-}
-
-@media (max-width: 768px) {
-  .logo {
-    --logo-h: 50px;
-  }
 }

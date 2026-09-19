@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
-import { Instrument_Serif } from "next/font/google";
+import { Montserrat, Playfair_Display, Sacramento } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
+/* The mockups are set in two families: a high-contrast editorial serif for
+   every headline and paragraph, and a geometric sans for navigation, small
+   labels and the form. The signature on About is a monoline script. */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-playfair",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+const sacramento = Sacramento({
   subsets: ["latin"],
   weight: "400",
-  style: ["normal"],
   display: "swap",
-  variable: "--font-instrument",
+  variable: "--font-sacramento",
 });
 
 const FAVICON = "/brand/em-logo-black.png";
@@ -39,7 +56,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={instrumentSerif.variable}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${montserrat.variable} ${sacramento.variable}`}
+    >
       <body>
         <a className="skip-link" href="#main">
           Skip to content

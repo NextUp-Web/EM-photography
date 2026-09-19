@@ -49,7 +49,7 @@ const PAGES = {
             if (y < document.body.scrollHeight) setTimeout(step, 60);
             else {
               window.scrollTo(0, 0);
-              setTimeout(resolve, 600);
+              setTimeout(resolve, 1800);
             }
           };
           step();
