@@ -32,7 +32,7 @@ export default function ContactPage() {
         <Figure
           photo={PHOTOS.contactHero}
           ratio={1.95}
-          mobileRatio={1.3}
+          mobileRatio={1.72}
           sizes="100vw"
           priority
           className={styles.heroFigure}
@@ -64,8 +64,8 @@ export default function ContactPage() {
 
         <Figure
           photo={PHOTOS.contactBouquet}
-          ratio={1.0}
-          mobileRatio={2.6}
+          ratio={0.98}
+          mobileRatio={2.39}
           sizes="(max-width: 860px) 100vw, 32vw"
           className={styles.bouquet}
         />

@@ -85,8 +85,8 @@
 
 @media (max-width: 860px) {
   :root {
-    --header-h: 80px;
-    --logo-h: 62px;
+    --header-h: 92px;
+    --logo-h: 70px;
     --gap-img: 6px;
     /* The phone mockups keep a generous margin around the copy. */
     --shell-pad: 26px;

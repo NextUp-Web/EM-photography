@@ -18,7 +18,7 @@ export default function AboutPage() {
           <Figure
             photo={PHOTOS.aboutHero}
             ratio={0.88}
-            mobileRatio={0.92}
+            mobileRatio={1.24}
             sizes="(max-width: 860px) 100vw, 46vw"
             priority
             className={styles.portrait}
@@ -46,8 +46,8 @@ export default function AboutPage() {
       <section className={styles.trace}>
         <Figure
           photo={PHOTOS.aboutBride}
-          ratio={0.97}
-          mobileRatio={1.3}
+          ratio={0.96}
+          mobileRatio={1.54}
           sizes="(max-width: 860px) 100vw, 46vw"
           className={styles.traceFigure}
         />
@@ -111,7 +111,7 @@ export default function AboutPage() {
           <Figure
             photo={PHOTOS.aboutVilla}
             ratio={0.83}
-            mobileRatio={1.2}
+            mobileRatio={1.44}
             sizes="(max-width: 860px) 46vw, 23vw"
             className={styles.villa}
           />
@@ -127,21 +127,21 @@ export default function AboutPage() {
           <Figure
             photo={PHOTOS.aboutCouple}
             ratio={1.74}
-            mobileRatio={1.2}
+            mobileRatio={1.44}
             sizes="(max-width: 860px) 46vw, 31vw"
             className={styles.couple}
           />
           <Figure
             photo={PHOTOS.aboutTable}
             ratio={1.74}
-            mobileRatio={1.2}
+            mobileRatio={1.44}
             sizes="(max-width: 860px) 46vw, 31vw"
             className={styles.table}
           />
           <Figure
             photo={PHOTOS.aboutBoat}
             ratio={1.74}
-            mobileRatio={1.2}
+            mobileRatio={1.44}
             sizes="(max-width: 860px) 46vw, 31vw"
             className={styles.boat}
           />

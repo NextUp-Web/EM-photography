@@ -34,7 +34,7 @@ export default function SelectedStories({
             key={photo.src + photo.alt}
             photo={photo}
             ratio={0.69}
-            mobileRatio={0.75}
+            mobileRatio={0.775}
             sizes="(max-width: 860px) 32vw, 21vw"
           />
         ))}

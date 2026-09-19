@@ -30,7 +30,7 @@ export default function PortfolioPage() {
         <Figure
           photo={PORTFOLIO_CLOSING}
           ratio={4.64}
-          mobileRatio={1.45}
+          mobileRatio={1.48}
           sizes="100vw"
           className={styles.closingFigure}
         />

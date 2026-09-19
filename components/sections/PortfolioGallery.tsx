@@ -5,6 +5,13 @@ import Figure from "@/components/ui/Figure";
 import { PORTFOLIO_FILTERS, STORIES, type Story } from "@/lib/data";
 import styles from "./PortfolioGallery.module.css";
 
+/**
+ * Each story is two independent columns, exactly as the mockup composes it:
+ * the tall lead with its caption beneath on the left, a stack of frames on
+ * the right, and — for the first story — a row of three running the full
+ * width under both. The caption therefore sits level with the right-hand
+ * stack rather than waiting for it.
+ */
 function StoryBlock({ story }: { story: Story }) {
   const caption = (
     <div className={`${styles.caption} ${styles[`caption${story.layout}`]}`}>
@@ -15,38 +22,28 @@ function StoryBlock({ story }: { story: Story }) {
 
   if (story.layout === "A") {
     return (
-      <article className={`shell ${styles.storyA}`}>
-        <Figure
-          photo={story.lead}
-          ratio={1.47}
-          mobileRatio={1.45}
-          sizes="(max-width: 860px) 100vw, 70vw"
-          className={styles.leadA}
-        />
-
-        <div className={styles.asideA}>
+      <article className={`shell ${styles.story}`}>
+        <div className={styles.lead}>
           <Figure
-            photo={story.aside[0]}
-            ratio={0.98}
-            sizes="28vw"
-            className={styles.asideFrame}
+            photo={story.lead}
+            ratio={1.47}
+            mobileRatio={1.45}
+            sizes="(max-width: 860px) 100vw, 70vw"
           />
-          <Figure
-            photo={story.aside[1]}
-            ratio={1.1}
-            sizes="28vw"
-            className={styles.asideFrame}
-          />
+          {caption}
         </div>
 
-        {caption}
+        <div className={styles.aside}>
+          <Figure photo={story.aside[0]} ratio={1.08} sizes="28vw" />
+          <Figure photo={story.aside[1]} ratio={0.99} sizes="28vw" />
+        </div>
 
-        <div className={styles.rowA}>
+        <div className={styles.row}>
           {story.row?.map((photo, index) => (
             <Figure
               key={`${photo.src}-${index}`}
               photo={photo}
-              ratio={[1.33, 1.56, 1.89][index]}
+              ratio={[1.32, 1.55, 1.88][index]}
               sizes="33vw"
             />
           ))}
@@ -57,7 +54,7 @@ function StoryBlock({ story }: { story: Story }) {
             <Figure
               key={`${photo.src}-m-${index}`}
               photo={photo}
-              ratio={0.68}
+              ratio={0.62}
               sizes="32vw"
             />
           ))}
@@ -67,42 +64,31 @@ function StoryBlock({ story }: { story: Story }) {
   }
 
   return (
-    <article className={`shell ${styles.storyB}`}>
-      <Figure
-        photo={story.lead}
-        ratio={1.95}
-        mobileRatio={1.42}
-        sizes="(max-width: 860px) 100vw, 65vw"
-        className={styles.leadB}
-      />
+    <article className={`shell ${styles.story} ${styles.storyB}`}>
+      <div className={styles.lead}>
+        <Figure
+          photo={story.lead}
+          ratio={1.95}
+          mobileRatio={1.42}
+          sizes="(max-width: 860px) 100vw, 65vw"
+        />
+        {caption}
+      </div>
 
-      <Figure
-        photo={story.aside[0]}
-        ratio={1.96}
-        sizes="34vw"
-        className={styles.asideWide}
-      />
-      <Figure
-        photo={story.aside[1]}
-        ratio={0.84}
-        sizes="15vw"
-        className={styles.asideSmallOne}
-      />
-      <Figure
-        photo={story.aside[2]}
-        ratio={1.03}
-        sizes="19vw"
-        className={styles.asideSmallTwo}
-      />
-
-      {caption}
+      <div className={styles.aside}>
+        <Figure photo={story.aside[0]} ratio={1.93} sizes="34vw" />
+        <div className={styles.asidePair}>
+          <Figure photo={story.aside[1]} ratio={0.83} sizes="15vw" />
+          <Figure photo={story.aside[2]} ratio={1.02} sizes="19vw" />
+        </div>
+      </div>
 
       <div className={styles.mobileRow}>
         {story.mobileRow.map((photo, index) => (
           <Figure
             key={`${photo.src}-m-${index}`}
             photo={photo}
-            ratio={0.68}
+            ratio={0.62}
             sizes="32vw"
           />
         ))}

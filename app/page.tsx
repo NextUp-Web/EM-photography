@@ -62,19 +62,19 @@ export default function HomePage() {
           <Figure
             photo={PHOTOS.philosophyOne}
             ratio={0.65}
-            mobileRatio={0.75}
+            mobileRatio={0.72}
             sizes="(max-width: 860px) 32vw, 21vw"
           />
           <Figure
             photo={PHOTOS.philosophyTwo}
             ratio={0.65}
-            mobileRatio={0.75}
+            mobileRatio={0.72}
             sizes="(max-width: 860px) 32vw, 21vw"
           />
           <Figure
             photo={PHOTOS.philosophyThree}
             ratio={0.65}
-            mobileRatio={0.75}
+            mobileRatio={0.72}
             sizes="(max-width: 860px) 32vw, 21vw"
           />
         </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
       <section className={`shell ${styles.about}`} aria-labelledby="about-preview">
         <Figure
           photo={PHOTOS.aboutPortrait}
-          ratio={1.31}
+          ratio={1.37}
           mobileRatio={1.4}
           sizes="(max-width: 860px) 45vw, 33vw"
           className={styles.aboutPortrait}
@@ -154,7 +154,7 @@ export default function HomePage() {
         <Figure
           photo={PHOTOS.homeClosing}
           ratio={4.15}
-          mobileRatio={1.08}
+          mobileRatio={1.87}
           sizes="100vw"
           className={styles.closingFigure}
         />

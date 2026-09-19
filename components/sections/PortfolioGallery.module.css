@@ -1,7 +1,6 @@
 /* ============================================================
-   PORTFOLIO gallery — two stories, each with the asymmetric
-   composition the mockup prints. Column fractions and photograph
-   ratios are measured on the mockup panel.
+   PORTFOLIO gallery — column fractions, photograph ratios and
+   caption spacing are measured on the mockup panel.
    ============================================================ */
 
 .filters {
@@ -37,105 +36,83 @@
   border-bottom-color: var(--color-ink);
 }
 
-/* ---------- Story A — tall lead, two frames beside, a row of three ---------- */
+/* ---------- Story ---------- */
 
-.storyA {
+.story {
   display: grid;
   grid-template-columns: 70.6fr 1.3fr 28.1fr;
-  gap: 0;
-  column-gap: 0;
+  align-items: start;
 }
 
-.leadA {
+/* The second story gives more of the width to its right-hand stack. */
+.storyB {
+  grid-template-columns: 64.8fr 1.2fr 34fr;
+}
+
+.lead {
   grid-column: 1;
   grid-row: 1;
 }
 
-.asideA {
+.aside {
   grid-column: 3;
-  grid-row: 1 / span 2;
-  display: grid;
-  grid-template-rows: 0.98fr 1.1fr;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
   gap: var(--gap-img);
-  align-content: start;
 }
 
-.asideFrame {
-  width: 100%;
+.asidePair {
+  display: flex;
+  gap: var(--gap-img);
+  align-items: flex-start;
 }
 
-.captionA {
-  grid-column: 1;
-  grid-row: 2;
-  text-align: center;
-  padding-block: clamp(14px, 1.9vw, 28px) clamp(10px, 1.4vw, 20px);
+.asidePair > :first-child {
+  width: 43.8%;
 }
 
-.rowA {
+.asidePair > :last-child {
+  width: calc(56.2% - var(--gap-img));
+}
+
+.row {
   grid-column: 1 / -1;
-  grid-row: 3;
+  grid-row: 2;
   display: grid;
   grid-template-columns: 27.4fr 32.1fr 38.9fr;
   gap: var(--gap-img);
   margin-top: var(--gap-img);
 }
 
-/* ---------- Story B — tall lead, a wide frame over a pair ---------- */
+/* ---------- Caption ---------- */
 
-.storyB {
-  display: grid;
-  grid-template-columns: 64.8fr 1.2fr 34fr;
-  grid-template-rows: auto auto auto;
-  column-gap: 0;
+.caption {
+  padding-block: clamp(10px, 1.5vw, 21px) clamp(16px, 2.1vw, 30px);
 }
 
-.leadB {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-.asideWide {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-.asideSmallOne,
-.asideSmallTwo {
-  grid-row: 2;
-  margin-top: var(--gap-img);
-}
-
-.asideSmallOne {
-  grid-column: 3;
-  width: calc(43.8% - var(--gap-img) / 2);
-  justify-self: start;
-}
-
-.asideSmallTwo {
-  grid-column: 3;
-  width: calc(53.8% - var(--gap-img) / 2);
-  justify-self: end;
+.captionA {
+  text-align: center;
 }
 
 .captionB {
-  grid-column: 1;
-  grid-row: 3;
   text-align: left;
-  padding-block: clamp(12px, 1.6vw, 22px) clamp(10px, 1.4vw, 20px);
+  /* The banner follows straight on, so this caption closes tighter. */
+  padding-bottom: clamp(8px, 1.1vw, 16px);
 }
-
-/* ---------- Caption ---------- */
 
 .name {
   font-size: var(--fs-story-name);
+  line-height: 1.2;
   letter-spacing: 0.24em;
   color: var(--color-ink);
 }
 
 .place {
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: var(--fs-ui);
   font-weight: 400;
+  line-height: 1.6;
   letter-spacing: 0.22em;
   color: var(--color-meta);
 }
@@ -175,51 +152,52 @@
 
 @media (max-width: 860px) {
   .filters {
-    padding-top: clamp(16px, 4.5vw, 24px);
-    padding-bottom: clamp(14px, 4vw, 20px);
+    padding-top: clamp(16px, 5vw, 26px);
+    padding-bottom: clamp(16px, 5.5vw, 28px);
   }
 
   .filterList {
     gap: 10px 26px;
   }
 
-  .storyA,
+  .story,
   .storyB {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
   }
 
-  .leadA,
-  .leadB,
-  .captionA,
-  .captionB,
+  .lead,
   .mobileRow {
     grid-column: 1;
   }
 
-  .leadA,
-  .leadB {
+  /* The phone mockup runs the photographs edge to edge and keeps the
+     margin for the captions only. */
+  .story,
+  .storyB {
+    padding-inline: 0;
+  }
+
+  .lead {
     grid-row: 1;
   }
 
-  .captionA,
-  .captionB {
-    grid-row: 2;
+  .caption {
+    padding-inline: var(--shell-pad);
+  }
+
+  .caption {
     text-align: center;
     padding-block: clamp(12px, 3.6vw, 18px) clamp(10px, 3vw, 16px);
   }
 
-  .asideA,
-  .asideWide,
-  .asideSmallOne,
-  .asideSmallTwo,
-  .rowA {
+  .aside,
+  .row {
     display: none;
   }
 
   .mobileRow {
     display: grid;
-    grid-row: 3;
+    grid-row: 2;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gap-img);
   }
@@ -228,6 +206,4 @@
     padding-block: clamp(20px, 6vw, 28px);
     gap: clamp(12px, 4vw, 18px);
   }
-
-
 }
