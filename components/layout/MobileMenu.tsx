@@ -6,11 +6,19 @@ import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/data";
 import styles from "./MobileMenu.module.css";
 
+/**
+ * The phone mockups print the word MENU beside the rule icon on Home and
+ * Contact, and the icon alone on About and Portfolio — reproduced here
+ * rather than levelled out.
+ */
+const LABELLED = ["/", "/contact"];
+
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const panelId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
+  const labelled = LABELLED.includes(pathname);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -24,7 +32,6 @@ export default function MobileMenu() {
       if (event.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
-
     panelRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
 
     return () => {
@@ -40,9 +47,17 @@ export default function MobileMenu() {
         className={styles.toggle}
         aria-expanded={open}
         aria-controls={panelId}
+        aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((value) => !value)}
       >
-        {open ? "Close" : "Menu"}
+        {labelled ? (
+          <span className={styles.word}>{open ? "Close" : "Menu"}</span>
+        ) : null}
+        <span className={styles.icon} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
       </button>
 
       <div
@@ -73,7 +88,9 @@ export default function MobileMenu() {
             })}
           </ul>
         </nav>
-        <p className={`label ${styles.note}`}>Switzerland based</p>
+        <p className={`label ${styles.note}`}>
+          Based in Switzerland - available across Europe
+        </p>
       </div>
     </div>
   );

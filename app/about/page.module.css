@@ -1,143 +1,300 @@
 /* ============================================================
-   ABOUT — authentic · personal · human
-   Panel 268px on the board, content column 244px (padding 12).
+   ABOUT — reproduced from the client mockup.
    ============================================================ */
 
-/* ---------- Hero ---------- */
-
-.heroTitle {
-  font-size: var(--fs-about-hero);
-  margin: 0;
-  /* The board sets it low and left, well inside the frame. */
-  padding-bottom: clamp(10px, 1.6vw, 22px);
+/* A line break the desktop mockup sets and the phone lets wrap. */
+.wide {
+  display: inline;
 }
 
-/* ---------- Your story ---------- */
+/* ---------- A quiet eye ---------- */
 
-/* 124 / 14 / 106 of the 244px content column. */
-.story {
+.intro {
   display: grid;
-  grid-template-columns: 124fr 106fr;
-  column-gap: 5.7%;
+  grid-template-columns: 51fr 7fr 42fr;
+  /* Two flexible rows top and bottom centre the text block against the
+     portrait, as the mockup sets it. */
+  grid-template-rows: 1fr auto auto 1fr;
+}
+
+.introHead {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 0 0 0 var(--shell-pad);
+}
+
+.introTitle {
+  margin-top: clamp(14px, 1.7vw, 26px);
+  font-size: var(--fs-xl);
+}
+
+.introCopy {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: var(--fs-lede);
+  line-height: 1.45;
+  padding: clamp(18px, 2.2vw, 32px) 0 0 var(--shell-pad);
+}
+
+.portraitWrap {
+  position: relative;
+  grid-column: 3;
+  grid-row: 1 / -1;
+}
+
+.signature {
+  position: absolute;
+  right: clamp(18px, 2.4vw, 36px);
+  bottom: clamp(14px, 2vw, 30px);
+  font-family: var(--font-script);
+  font-size: clamp(1.6rem, 2.9vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--warm-white);
+  text-shadow: 0 1px 6px rgba(25, 24, 22, 0.55), 0 2px 22px rgba(25, 24, 22, 0.45);
+}
+
+/* The little flourish the mockup draws under the signature. */
+.signature::after {
+  content: "";
+  display: block;
+  width: 62%;
+  height: 1px;
+  margin: 0.35em 0 0 auto;
+  background: currentColor;
+}
+
+/* ---------- More than a record ---------- */
+
+.trace {
+  display: grid;
+  grid-template-columns: 53.6fr 4.1fr 43.4fr;
   align-items: start;
-  padding-block: var(--rhythm-md) 0;
+  padding: var(--sp-xs) var(--shell-pad) var(--sp-sm);
 }
 
-.storyText {
-  /* The board drops the copy a little below the top of the portrait. */
-  padding-top: clamp(16px, 4vw, 58px);
+.traceFigure {
+  grid-column: 1;
 }
 
-.storyLead {
-  margin-top: clamp(20px, 2.4vw, 30px);
+.traceText {
+  grid-column: 3;
 }
 
-.storyCopy {
-  margin-top: 1.7em;
+.traceTitle {
+  font-size: var(--fs-lg);
 }
 
-.storyRule {
-  grid-column: 1 / -1;
-  margin-top: var(--rhythm-md);
+.traceCopy {
+  margin-top: clamp(18px, 2.2vw, 32px);
 }
 
-/* ---------- My approach ---------- */
-
-.approach {
-  padding-block: var(--rhythm-md) 0;
+/* The headline uses the whole column; the paragraphs keep a shorter
+   measure, exactly as the mockup sets them. */
+.traceText :global(.copy) {
+  max-width: 43ch;
 }
 
-/* The board runs these two blocks wide and shallow — a few long lines. */
-.approachCopy {
-  margin-top: clamp(20px, 2.4vw, 30px);
-  max-width: 76ch;
-}
+/* ---------- Ivory statement ---------- */
 
-.approachRule {
-  margin-top: var(--rhythm-md);
-}
-
-/* ---------- Quote ---------- */
-
-/* Posé sur un accent ivoire : le bloc a besoin d'un peu plus d'air. */
-.quoteBlock {
-  padding-block: var(--rhythm-lg);
-}
-
-.quote {
-  font-size: var(--fs-quote);
+.band {
+  padding-block: clamp(28px, 3.4vw, 48px);
   text-align: center;
-  line-height: 1.34;
 }
 
-/* ---------- The villa ---------- */
+.bandTitle {
+  font-size: var(--fs-lg);
+}
 
-.villa {
-  padding-block: 0;
+.bandMeta {
+  margin-top: clamp(12px, 1.4vw, 20px);
+  color: var(--color-meta);
+}
+
+.metaBreak {
+  display: none;
 }
 
 /* ---------- What I want for you ---------- */
 
 .want {
-  padding-block: var(--rhythm-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: var(--gap-img);
+  padding-top: clamp(26px, 3.2vw, 46px);
+  padding-bottom: clamp(26px, 3.2vw, 46px);
 }
 
-.wantCopy {
-  margin-top: clamp(20px, 2.4vw, 30px);
-  max-width: 76ch;
+.wantTop {
+  display: grid;
+  grid-template-columns: 50.6fr 22.4fr 26fr;
+  gap: var(--gap-img);
+  align-items: start;
 }
 
-/* ---------- Triptych ---------- */
-
-.triptych {
+.wantRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-img);
-  padding-bottom: clamp(110px, 15vw, 230px);
+}
+
+.wantText {
+  padding-right: clamp(20px, 3vw, 46px);
+}
+
+.wantCopy {
+  margin-top: clamp(20px, 2.4vw, 34px);
 }
 
 /* ============================================================
-   Mobile — the second board, phone 03
+   Phone
    ============================================================ */
 
-@media (max-width: 768px) {
-  .story {
+@media (max-width: 860px) {
+  .wide::after {
+    content: " ";
+  }
+
+  /* The title is set into the portrait, which runs edge to edge. */
+  .intro {
     grid-template-columns: 1fr;
-    gap: clamp(26px, 7vw, 38px);
-    padding-block: var(--rhythm-md) 0;
+    grid-template-rows: auto auto;
   }
 
-  .storyText {
+  .wide {
+    display: none;
+  }
+
+  .portraitWrap {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .portraitWrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 24, 22, 0) 30%,
+      rgba(25, 24, 22, 0.58) 100%
+    );
+    pointer-events: none;
+  }
+
+  .introHead {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 2;
+    align-self: end;
+    padding: 0 var(--shell-pad) clamp(18px, 5vw, 26px);
+  }
+
+  .introLabel {
+    color: rgba(250, 249, 246, 0.82);
+  }
+
+  .introTitle {
+    margin-top: clamp(8px, 2.4vw, 14px);
+    max-width: 13ch;
+    color: var(--warm-white);
+    text-shadow: 0 1px 20px rgba(25, 24, 22, 0.34);
+  }
+
+  .introCopy {
+    grid-column: 1;
+    grid-row: 2;
+    padding: clamp(18px, 5vw, 26px) var(--shell-pad) clamp(16px, 4.5vw, 24px);
+  }
+
+  /* The phone mockup drops the signature — the title now sits where it was. */
+  .signature {
+    display: none;
+  }
+
+  .trace {
+    grid-template-columns: 1fr;
+    padding-inline: 0;
     padding-top: 0;
+    padding-bottom: clamp(22px, 6vw, 32px);
+    row-gap: clamp(18px, 5vw, 26px);
   }
 
-  /* The phone puts the portrait first, then the copy — as board 03 shows. */
-  .storyImage {
-    order: -1;
+  .traceFigure {
+    grid-column: 1;
+    grid-row: 1;
   }
 
-  .storyRule {
-    margin-top: var(--rhythm-sm);
+  .traceText {
+    grid-column: 1;
+    grid-row: 2;
+    padding-inline: var(--shell-pad);
   }
 
-  .approach,
+  .traceText :global(.copy) {
+    max-width: none;
+  }
+
+  .band {
+    padding-block: clamp(26px, 7vw, 36px);
+  }
+
+  .bandTitle {
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+
+  .bandMeta {
+    margin-inline: auto;
+  }
+
+  /* The phone mockup sets the three statements on three lines. */
+  .metaBreak {
+    display: inline;
+  }
+
+  /* The phone mockup prints a 2 x 2 block of four frames, so both
+     sub-grids dissolve and their children join one grid. */
   .want {
-    padding-block: var(--rhythm-sm) 0;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--gap-img);
+    padding-top: clamp(24px, 6.5vw, 34px);
+    padding-bottom: clamp(24px, 6.5vw, 34px);
   }
 
-  .approachRule {
-    margin-top: var(--rhythm-sm);
+  .wantTop,
+  .wantRow {
+    display: contents;
   }
 
-  .quoteBlock {
-    padding-block: var(--rhythm-sm);
+  .wantText {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding-right: 0;
+    margin-bottom: clamp(8px, 2.5vw, 14px);
   }
 
-  .want {
-    padding-block: var(--rhythm-sm);
+  .villa {
+    grid-column: 1;
+    grid-row: 2;
   }
 
-  .triptych {
-    padding-bottom: var(--rhythm-lg);
+  /* The phone mockup prints four frames, not five. */
+  .veil {
+    display: none;
+  }
+
+  .couple {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .table {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .boat {
+    grid-column: 2;
+    grid-row: 3;
   }
 }

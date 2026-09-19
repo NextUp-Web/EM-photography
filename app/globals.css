@@ -1,130 +1,118 @@
 @layer reset, base;
 
 /* ============================================================
-   EM PHOTOGRAPHY
-   Design tokens, reset, editorial primitives.
+   EM PHOTOGRAPHY — design tokens
 
-   Every value below is measured on the client's presentation boards,
-   public/references/maquette-desktop.jpg and maquette-mobile.jpg.
-   Board geometry: four page panels, 280 / 268 / 252 / 262 px wide,
-   each with ~4.6% side padding. Photograph ratios, grid fractions and
-   the relative type scale are taken straight from those panels.
-
-   TIMELESS · AUTHENTIC · POETIC
+   Every value below is measured on the four client mockups
+   (Home / About / Portfolio / Contact, desktop + mobile).
+   Palette is the client's own: warm white, ivory, soft black,
+   warm grey — nothing else.
    ============================================================ */
 
 :root {
-  /* ---- Palette (the board's four swatches, nothing else) ---- */
-  --color-ivory: #f7f4ee;
-  --color-warm-white: #fcfbf8;
-  --color-stone: #b8b1a6;
-  --color-black: #171614;
+  /* ---- Palette ---- */
+  --warm-white: #faf9f6;
+  --ivory: #f4f1eb;
+  --soft-black: #191816;
+  --warm-grey: #aaa59d;
 
-  /*
-   * La surface des pages est le blanc pur, comme demandé. Le Soft Ivory
-   * n'intervient qu'en accent, sur des blocs contenus ; le Warm White
-   * reste l'encre claire posée sur les photographies.
-   */
-  --color-page: #ffffff;
+  --color-page: var(--warm-white);
+  --color-ink: var(--soft-black);
+  --color-body: #4f4b45; /* body copy — soft black lifted towards warm grey */
+  --color-meta: #6d6862; /* small caps, captions */
+  --color-quiet: #8b857d;
 
-  /* Readable neutrals blended from Soft Black and Stone — no new hues. */
-  --color-muted: #5f5b53; /* body copy */
-  --color-meta: #3d3a34; /* the boards set their small caps nearly black */
-  --color-quiet: #6f6a61; /* footer metadata, legal line */
-
-  --hairline: rgba(184, 177, 166, 0.58);
-  --hairline-soft: rgba(184, 177, 166, 0.36);
+  --hairline: #d9d4cb;
+  --hairline-soft: #e3ded5;
 
   /* ---- Type ---- */
-  --font-serif: var(--font-instrument), "Instrument Serif", Georgia,
-    "Times New Roman", serif;
-  --font-sans: "Helvetica Neue", Helvetica, Inter, Arial, sans-serif;
-
-  --fs-micro: 0.6875rem; /* 11px — footer base line */
-  --fs-nav: 0.75rem; /* 12px — navigation, labels, CTA */
-  --fs-label: 0.75rem;
-  --fs-body-sm: 0.9375rem; /* 15px */
-  --fs-body: 1.0625rem; /* 17px */
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-ui: var(--font-montserrat), "Montserrat", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-script: var(--font-sacramento), "Sacramento", cursive;
 
   /*
-   * The board sets its headlines at these multiples of the body size:
-   * statements ×2.4, hero and section titles ×3.0, page titles ×3.9,
-   * quotes ×1.9, band titles ×2.1.
+   * Display scale. Every size is measured on the mockups: the width of a
+   * printed line is divided by the width of the same line set at 16px, so
+   * the proportion of type to column is the mockup's, not an invention.
+   * Expressed in vw so 1440 lands exactly on the measured value.
    */
-  --fs-quote: clamp(1.375rem, 2.5vw, 2.15rem);
-  --fs-band-sub: clamp(1.25rem, 1.9vw, 1.7rem);
-  --fs-band-title: clamp(1.75rem, 2.9vw, 2.6rem);
-  --fs-display: clamp(2rem, 3.4vw, 3rem);
-  --fs-hero: clamp(2.375rem, 4vw, 3.5rem);
-  --fs-about-hero: clamp(2.25rem, 3.8vw, 3.3rem);
-  --fs-page-title: clamp(2.625rem, 5vw, 4.4rem);
+  --fs-hero-mark: clamp(2.6rem, 5.07vw, 4.8rem); /* 73 — EM */
+  --fs-hero-tag: clamp(0.7rem, 1.32vw, 1.2rem); /* 19 — Switzerland based */
+  --fs-xl: clamp(2.3rem, 5.2vw, 4.7rem); /* 75 — About headline */
+  --fs-page-title: clamp(2.1rem, 4.8vw, 4.4rem); /* 69 — Portfolio, Contact */
+  --fs-lg: clamp(2rem, 4.3vw, 3.9rem); /* 62 — About statements */
+  --fs-display-lg: clamp(1.9rem, 3.75vw, 3.4rem); /* 54 — Contact column */
+  --fs-display: clamp(1.75rem, 2.85vw, 2.6rem); /* 41 — Home sections */
+  --fs-display-sm: clamp(1.65rem, 2.62vw, 2.4rem); /* 38 — About preview */
+  --fs-band: clamp(1.5rem, 2.29vw, 2.1rem); /* 33 — Home ivory band */
+  --fs-banner: clamp(1.6rem, 2.92vw, 2.65rem); /* 42 — text on photography */
+  --fs-divider: clamp(1.4rem, 2.68vw, 2.4rem); /* 38 — The moments in between */
+  --fs-story-name: clamp(1.15rem, 1.9vw, 1.72rem); /* 27 — M & J */
 
-  --ls-nav: 0.2em;
-  --ls-label: 0.24em;
-  --ls-micro: 0.18em;
+  --fs-lede: clamp(1rem, 1.78vw, 1.62rem); /* 26 — opening paragraphs */
+  --fs-body: clamp(0.95rem, 1.39vw, 1.28rem); /* 20 */
+  --fs-ui: clamp(0.6875rem, 1.07vw, 0.97rem); /* 15 — labels, form, filters */
+  --fs-nav: clamp(0.6875rem, 0.93vw, 0.85rem); /* 13 — navigation */
+  --fs-ui-sm: clamp(0.625rem, 0.98vw, 0.9rem); /* 14 — footer metadata */
 
-  --lh-display: 1.16;
-  --lh-body: 1.8;
+  --ls-ui: 0.16em;
+  --ls-label: 0.2em;
+  --ls-wide: 0.3em;
+
+  --lh-display: 1.1;
+  --lh-body: 1.52;
 
   /* ---- Layout ---- */
-  --frame-max: 1360px;
-  --shell-pad: clamp(20px, 4.6vw, 58px); /* 4.6% of the panel, as measured */
-  --measure: 46ch;
+  --frame-max: 1760px;
+  --shell-pad: clamp(20px, 4.3vw, 62px);
+  --gap-img: clamp(6px, 0.9vw, 13px);
 
-  --header-h: 124px;
+  --header-h: 112px;
+  --logo-h: 92px;
 
-  /* Board gutter: 6px on a 280px panel = 2.1%. */
-  --gap-img: clamp(8px, 2.1vw, 28px);
+  /* Vertical rhythm — the mockups breathe, but never sprawl. */
+  --sp-2xs: clamp(10px, 1.1vw, 16px);
+  --sp-xs: clamp(16px, 1.7vw, 24px);
+  --sp-sm: clamp(22px, 2.4vw, 34px);
+  --sp-md: clamp(30px, 3.4vw, 48px);
+  --sp-lg: clamp(40px, 4.6vw, 66px);
+  --sp-xl: clamp(52px, 6vw, 86px);
 
-  /* Section rhythm — deliberately uneven, tuned block by block. */
-  --rhythm-xs: clamp(26px, 3.2vw, 44px);
-  --rhythm-sm: clamp(40px, 5vw, 68px);
-  --rhythm-md: clamp(56px, 7.4vw, 104px);
-  --rhythm-lg: clamp(72px, 10vw, 148px);
-  --rhythm-xl: clamp(88px, 12vw, 180px);
-
-  /* ---- Motion ---- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --dur: 700ms;
+  --dur: 420ms;
 }
 
-/*
- * Mobile. Deux réglages distincts :
- *
- * - les petits textes rétrécissent (corps, navigation, petites capitales) ;
- * - la respiration verticale se resserre, pour que le scroll ne se vide pas.
- *
- * Les grandes phrases, elles, restent grandes : elles gardent leurs retours
- * à la ligne, qui font partie du dessin.
- */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   :root {
     --header-h: 80px;
-    --gap-img: 8px;
+    --logo-h: 62px;
+    --gap-img: 6px;
+    /* The phone mockups keep a generous margin around the copy. */
+    --shell-pad: 26px;
 
-    --fs-micro: 0.625rem; /* 10px */
-    --fs-nav: 0.6563rem; /* 10.5px */
-    --fs-label: 0.6563rem;
-    --fs-body-sm: 0.8125rem; /* 13px */
-    --fs-body: 0.9375rem; /* 15px */
+    /* The phone mockups are measured the same way as the desktop ones. */
+    --fs-hero-mark: 2.9rem; /* 46 */
+    --fs-hero-tag: 0.8125rem; /* 13 */
+    --fs-xl: clamp(2rem, 10.2vw, 2.7rem); /* 40 */
+    --fs-page-title: clamp(1.9rem, 9.4vw, 2.6rem); /* 37 */
+    --fs-lg: clamp(1.6rem, 7.6vw, 2.1rem); /* 30 */
+    --fs-display-lg: clamp(1.7rem, 8.5vw, 2.25rem); /* 33 */
+    --fs-display: clamp(1.6rem, 8.2vw, 2.15rem); /* 32 */
+    --fs-display-sm: clamp(1.55rem, 7.9vw, 2.05rem); /* 31 */
+    --fs-band: clamp(1.1rem, 5.1vw, 1.35rem); /* 20 */
+    --fs-banner: clamp(1.5rem, 7.6vw, 2rem); /* 30 */
+    --fs-divider: clamp(1.15rem, 6vw, 1.5rem); /* 24 */
+    --fs-story-name: clamp(1rem, 5vw, 1.3rem); /* 20 */
 
-    --ls-label: 0.2em;
-    --ls-nav: 0.18em;
-    --lh-body: 1.7;
+    --fs-lede: 1.075rem; /* 17 */
+    --fs-body: 0.97rem; /* 15.5 */
+    --fs-ui: 0.6875rem; /* 11 */
+    --fs-nav: 0.6875rem; /* 11 */
+    --fs-ui-sm: 0.625rem; /* 10 */
 
-    --fs-hero: clamp(2.125rem, 9.6vw, 2.9rem);
-    --fs-about-hero: clamp(2rem, 9vw, 2.65rem);
-    --fs-display: clamp(1.875rem, 8.4vw, 2.4rem);
-    --fs-page-title: clamp(2.125rem, 9.8vw, 2.8rem);
-    --fs-band-title: clamp(1.625rem, 7vw, 2rem);
-    --fs-band-sub: clamp(1.125rem, 5vw, 1.4rem);
-    --fs-quote: clamp(1.25rem, 5.6vw, 1.75rem);
-
-    --rhythm-xs: 18px;
-    --rhythm-sm: 28px;
-    --rhythm-md: 38px;
-    --rhythm-lg: 50px;
-    --rhythm-xl: 60px;
+    --ls-ui: 0.14em;
+    --lh-body: 1.6;
   }
 }
 
@@ -141,12 +129,11 @@
   }
 
   body {
-    margin-inline: auto;
-    margin-block: 0;
+    margin: 0 auto;
     max-width: var(--frame-max);
     background: var(--color-page);
-    color: var(--color-black);
-    font-family: var(--font-sans);
+    color: var(--color-ink);
+    font-family: var(--font-display);
     font-size: var(--fs-body);
     font-weight: 400;
     line-height: var(--lh-body);
@@ -163,16 +150,6 @@
   figure,
   blockquote {
     margin: 0;
-  }
-
-  /* Le site n'emploie aucun italique : ni chargé, ni synthétisé. */
-  i,
-  em,
-  address,
-  cite,
-  dfn,
-  var {
-    font-style: normal;
   }
 
   ul,
@@ -203,13 +180,13 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-black);
+    outline: 1px solid var(--color-ink);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--color-stone);
-    color: var(--color-black);
+    background: var(--ivory);
+    color: var(--color-ink);
   }
 
   .skip-link {
@@ -217,11 +194,12 @@
     left: -9999px;
     top: 0;
     z-index: 300;
-    background: var(--color-black);
-    color: var(--color-warm-white);
+    background: var(--soft-black);
+    color: var(--warm-white);
     padding: 12px 20px;
-    font-size: var(--fs-nav);
-    letter-spacing: var(--ls-nav);
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    letter-spacing: var(--ls-ui);
     text-transform: uppercase;
   }
 
@@ -233,171 +211,131 @@
 @layer base {
   /* ---------- Layout primitives ---------- */
 
-  /* The padded column every text block and gallery sits in. */
   .shell {
     width: 100%;
     padding-inline: var(--shell-pad);
   }
 
-  /* Photographs that run to the page edge, as the boards show them. */
-  .bleed {
-    width: 100%;
-  }
-
-  /*
-   * On the phone boards every photograph runs edge to edge while the copy
-   * keeps its margin, so image blocks step back out of the shell.
-   */
-  @media (max-width: 768px) {
-    /* Doubled so it also outranks .figure's own width. */
-    .bleed-phone.bleed-phone {
-      margin-inline: calc(var(--shell-pad) * -1);
-      width: calc(100% + var(--shell-pad) * 2);
-      max-width: none;
-    }
-
-    /* A block that is itself the shell simply drops its padding instead. */
-    .shell.bleed-phone.bleed-phone {
-      margin-inline: 0;
-      width: 100%;
-      padding-inline: 0;
-    }
-  }
-
-  .measure {
-    max-width: var(--measure);
-  }
-
-  /* A line break the desktop boards set, that the phone boards let wrap. */
-  @media (max-width: 768px) {
-    .br-wide {
-      display: none;
-    }
-  }
-
-  /* Soft Ivory is a band colour on a Warm White page — never a big field. */
   .band-ivory {
-    background: var(--color-ivory);
+    background: var(--ivory);
   }
 
-  /* ---------- Typography primitives ---------- */
+  /* ---------- Type primitives ---------- */
 
-  .serif {
-    font-family: var(--font-serif);
+  /* Editorial headline — high-contrast serif, tight leading. */
+  .display {
+    font-family: var(--font-display);
     font-weight: 400;
     line-height: var(--lh-display);
-    letter-spacing: 0.002em;
+    letter-spacing: -0.004em;
+    color: var(--color-ink);
   }
 
+  /* Small tracked sans — nav, section labels, form labels, CTA. */
   .label {
-    font-family: var(--font-sans);
-    font-size: var(--fs-label);
-    font-weight: 400;
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 600;
     letter-spacing: var(--ls-label);
-    line-height: 1.7;
+    line-height: 1.6;
     text-transform: uppercase;
     color: var(--color-meta);
   }
 
-  .label--ink {
-    color: var(--color-black);
+  /* Small tracked serif — story names, venues, filters, footer. */
+  .caps-serif {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
   }
 
   .copy {
+    font-family: var(--font-display);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
-    color: var(--color-muted);
+    color: var(--color-body);
   }
 
   .copy + .copy {
-    margin-top: 1.15em;
-  }
-
-  .rule {
-    display: block;
-    width: 100%;
-    height: 1px;
-    border: 0;
-    background: var(--hairline-soft);
+    margin-top: 1.05em;
   }
 
   /* ---------- Calls to action ---------- */
 
-  /* Style 1 — a rule under a line of small caps. Never a button. */
-  .cta-inline {
+  /* Tracked small caps over a rule — SEND INQUIRY, MORE ABOUT ME. */
+  .cta-underline {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    font-family: var(--font-sans);
-    font-size: var(--fs-nav);
-    letter-spacing: var(--ls-nav);
+    gap: 14px;
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 600;
+    letter-spacing: var(--ls-label);
     text-transform: uppercase;
-    color: var(--color-black);
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--hairline);
-    transition: border-color var(--dur) var(--ease);
+    color: var(--color-ink);
+    padding-bottom: 7px;
+    border: 0;
+    background: none;
+    border-bottom: 1px solid var(--color-ink);
+    cursor: pointer;
+    transition: opacity var(--dur) var(--ease);
   }
 
-  .cta-inline:hover,
-  .cta-inline:focus-visible {
-    border-bottom-color: var(--color-black);
+  .cta-underline:hover,
+  .cta-underline:focus-visible {
+    opacity: 0.6;
   }
 
-  /* Style 2 — a hairline rectangle, nothing more. */
-  .cta-outline {
+  /* Solid warm-white rectangle on a photograph — Begin here. */
+  .cta-solid {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    padding: 15px 34px;
-    border: 1px solid var(--hairline);
-    background: transparent;
-    font-family: var(--font-sans);
-    font-size: var(--fs-nav);
-    letter-spacing: var(--ls-nav);
-    text-transform: uppercase;
-    color: var(--color-black);
-    transition: border-color var(--dur) var(--ease),
-      background-color var(--dur) var(--ease);
+    min-width: 200px;
+    min-height: 54px;
+    padding: 14px 30px;
+    background: var(--warm-white);
+    color: var(--soft-black);
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    transition: background-color var(--dur) var(--ease);
   }
 
-  .cta-outline:hover,
-  .cta-outline:focus-visible {
-    border-color: var(--color-black);
+  .cta-solid:hover,
+  .cta-solid:focus-visible {
+    background: #fff;
   }
 
-  .cta-arrow {
+  /* Hairline rectangle on a photograph — Tell me your story. */
+  .cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 232px;
+    min-height: 54px;
+    padding: 14px 30px;
+    border: 1px solid rgba(250, 249, 246, 0.75);
+    color: var(--warm-white);
+    font-family: var(--font-display);
+    font-size: var(--fs-body);
+    line-height: 1.2;
+    transition: background-color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+
+  .cta-ghost:hover,
+  .cta-ghost:focus-visible {
+    border-color: var(--warm-white);
+    background: rgba(250, 249, 246, 0.12);
+  }
+
+  .arrow {
     display: inline-block;
-    font-size: 1.05em;
+    font-size: 1.15em;
     line-height: 1;
-    transition: transform var(--dur) var(--ease);
-  }
-
-  .cta-inline:hover .cta-arrow,
-  .cta-inline:focus-visible .cta-arrow,
-  .cta-outline:hover .cta-arrow,
-  .cta-outline:focus-visible .cta-arrow {
-    transform: translateX(4px);
-  }
-
-  /* On photography */
-  .on-image {
-    color: var(--color-warm-white);
-    text-shadow: 0 1px 22px rgba(23, 22, 20, 0.36);
-  }
-
-  .on-image .cta-outline,
-  .cta-outline--light {
-    border-color: rgba(252, 251, 248, 0.6);
-    color: var(--color-warm-white);
-  }
-
-  .on-image .cta-outline:hover,
-  .cta-outline--light:hover,
-  .on-image .cta-outline:focus-visible,
-  .cta-outline--light:focus-visible {
-    border-color: var(--color-warm-white);
-    background: rgba(252, 251, 248, 0.08);
   }
 
   /* ---------- Figures ---------- */
@@ -407,7 +345,7 @@
     width: 100%;
     aspect-ratio: var(--fig-ratio, 1);
     overflow: hidden;
-    background: var(--color-ivory);
+    background: var(--ivory);
   }
 
   .figure img {
@@ -416,38 +354,36 @@
     object-fit: cover;
   }
 
-  @media (max-width: 768px) {
+  /* The mockups print several frames monochrome; the files stay untouched. */
+  .figure--bw img {
+    filter: grayscale(1) contrast(1.02);
+  }
+
+  @media (max-width: 860px) {
     .figure {
       aspect-ratio: var(--fig-ratio-mobile, var(--fig-ratio, 1));
     }
   }
 
-  /* ---------- Reveal ---------- */
+  @media (max-width: 860px) {
+    .cta-solid {
+      min-width: 152px;
+      min-height: 46px;
+      padding: 11px 24px;
+    }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+    .cta-ghost {
+      min-width: 186px;
+      min-height: 46px;
+      padding: 11px 24px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal,
-    .reveal.is-visible {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-
     *,
     *::before,
     *::after {
       animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
       scroll-behavior: auto !important;
     }

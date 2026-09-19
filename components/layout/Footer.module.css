@@ -1,130 +1,125 @@
 /* ============================================================
-   Footer — three quiet rows, exactly as the boards print them.
+   Footer — brand block left, links top right, the legal line
+   under them. Centred and stacked on the phone.
    ============================================================ */
 
 .footer {
-  background: var(--color-ivory);
+  background: var(--color-page);
   border-top: 1px solid var(--hairline-soft);
 }
 
 .inner {
-  padding: clamp(28px, 3.2vw, 42px) var(--shell-pad) clamp(24px, 2.8vw, 36px);
-}
-
-.top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  row-gap: 10px;
+  column-gap: 32px;
+  padding: clamp(22px, 2.4vw, 32px) var(--shell-pad) clamp(22px, 2.4vw, 32px);
 }
 
 .brand {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
+  grid-column: 1;
+  grid-row: 1 / span 2;
 }
 
-.mark {
-  display: inline-block;
-}
-
-.place,
-.instagram,
-.navLink {
-  font-size: var(--fs-nav);
-  letter-spacing: var(--ls-label);
-  line-height: 1.7;
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(0.875rem, 1.43vw, 1.32rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--color-ink);
+  line-height: 1.5;
 }
 
 .place {
-  color: var(--color-quiet);
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: var(--fs-ui-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-meta);
+  line-height: 1.6;
 }
 
-.right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
-  /* Sets INSTAGRAM on the same line as the lockup, as the boards print it. */
-  padding-top: 5px;
-}
-
-.instagram {
-  color: var(--color-quiet);
-  transition: color var(--dur) var(--ease);
-}
-
-.instagram:hover,
-.instagram:focus-visible {
-  color: var(--color-black);
+.navWrap {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .nav {
   display: flex;
-  gap: clamp(18px, 2.6vw, 38px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.navItem {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.dot {
+  padding-inline: clamp(10px, 1.1vw, 16px);
+  color: var(--color-quiet);
+  font-size: var(--fs-nav);
+  line-height: 1;
 }
 
 .navLink {
-  color: var(--color-black);
-  opacity: 0.66;
+  font-family: var(--font-ui);
+  font-size: var(--fs-nav);
+  font-weight: 600;
+  letter-spacing: var(--ls-ui);
+  text-transform: uppercase;
+  color: var(--color-ink);
   transition: opacity var(--dur) var(--ease);
 }
 
 .navLink:hover,
 .navLink:focus-visible {
-  opacity: 1;
-}
-
-.base {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  margin-top: clamp(34px, 4.4vw, 58px);
-}
-
-.legal,
-.seo {
-  font-size: var(--fs-micro);
-  line-height: 1.8;
-  color: var(--color-quiet);
+  opacity: 0.6;
 }
 
 .legal {
-  letter-spacing: var(--ls-micro);
-  text-transform: uppercase;
-  flex: none;
-}
-
-.seo {
-  letter-spacing: 0.02em;
+  grid-column: 2;
+  grid-row: 2;
   text-align: right;
+  font-family: var(--font-display);
+  font-size: var(--fs-ui-sm);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-quiet);
+  line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .top {
-    flex-direction: column;
-    gap: 22px;
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 14px;
+    padding-block: 22px 26px;
   }
 
-  .right {
-    align-items: flex-start;
-    gap: 14px;
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  .navWrap {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .nav {
-    flex-wrap: wrap;
-    gap: 14px 22px;
+    justify-content: center;
   }
 
-  .base {
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 32px;
-  }
-
-  .seo {
-    text-align: left;
+  .legal {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
   }
 }

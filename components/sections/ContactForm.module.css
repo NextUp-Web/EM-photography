@@ -1,113 +1,123 @@
+/* ============================================================
+   Contact form — two columns of hairline rectangles on desktop,
+   one column on the phone, exactly as the mockup prints them.
+   ============================================================ */
+
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(30px, 4vw, 58px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(20px, 2.6vw, 42px);
+  row-gap: clamp(16px, 2.8vw, 40px);
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  min-width: 0;
+}
+
+/* INTEREST sits alone on its row, half the width. */
+.fieldWide {
+  grid-column: 1;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
 }
 
 .label {
   color: var(--color-meta);
-  letter-spacing: 0.14em;
 }
 
 .input {
+  margin-top: clamp(7px, 0.8vw, 11px);
   width: 100%;
-  border: 0;
-  border-bottom: 1px solid var(--hairline);
+  height: clamp(44px, 4.15vw, 60px);
+  padding: 0 16px;
+  border: 1px solid var(--hairline);
   background: transparent;
-  padding: 6px 0 9px;
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: var(--fs-body);
-  line-height: 1.5;
-  color: var(--color-black);
+  line-height: 1.4;
+  color: var(--color-ink);
   transition: border-color var(--dur) var(--ease);
-  appearance: none;
 }
 
 .input:hover,
 .input:focus {
-  border-bottom-color: var(--color-black);
+  border-color: var(--warm-grey);
 }
 
-.input:focus-visible {
-  outline: none;
-  border-bottom-color: var(--color-black);
-}
-
-/* Native date picker indicator — kept small and quiet. */
-.input::-webkit-calendar-picker-indicator {
-  opacity: 0.45;
-  cursor: pointer;
-}
-
-/* The board draws the message field as one thin rectangle, nothing else. */
 .textarea {
-  composes: input;
-  border: 1px solid var(--hairline);
-  padding: 14px 16px;
-  min-height: clamp(200px, 22vw, 300px);
+  height: auto;
+  min-height: clamp(110px, 10.5vw, 152px);
+  padding: 12px 14px;
   resize: vertical;
-}
-
-.textarea:hover,
-.textarea:focus,
-.textarea:focus-visible {
-  border-color: var(--color-black);
 }
 
 .selectWrap {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .select {
-  padding-right: 24px;
+  appearance: none;
+  padding-right: 42px;
   cursor: pointer;
 }
 
-.glyph,
 .chevron {
   position: absolute;
-  right: 2px;
-  top: 50%;
-  transform: translateY(-60%);
-  color: var(--color-quiet);
+  right: 15px;
+  bottom: 0;
+  height: clamp(44px, 4.15vw, 60px);
+  display: flex;
+  align-items: center;
+  color: var(--color-ink);
   pointer-events: none;
 }
 
-.glyph {
-  transform: translateY(-64%);
+.actions {
+  grid-column: 1 / -1;
+  margin-top: clamp(8px, 1.2vw, 18px);
 }
 
 .submit {
-  composes: cta-inline from global;
-  align-self: flex-start;
-  margin-top: clamp(14px, 2vw, 26px);
-  background: transparent;
-  border-top: 0;
-  border-inline: 0;
-  cursor: pointer;
+  border-bottom-width: 1.5px;
 }
 
-.submit:disabled {
-  opacity: 0.55;
-  cursor: progress;
-}
-
-.status:empty {
-  display: none;
+.submit[disabled] {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .status {
+  margin-top: 14px;
+  font-family: var(--font-display);
   font-size: var(--fs-body-sm);
   line-height: 1.7;
-  color: var(--color-muted);
+  color: var(--color-body);
+  min-height: 1lh;
 }
 
 .mail {
   border-bottom: 1px solid var(--hairline);
+}
+
+@media (max-width: 860px) {
+  .form {
+    grid-template-columns: 1fr;
+    row-gap: clamp(13px, 3.6vw, 18px);
+  }
+
+  .fieldWide,
+  .fieldFull {
+    grid-column: 1;
+  }
+
+  .actions {
+    grid-column: 1;
+    margin-top: clamp(10px, 3vw, 16px);
+  }
 }
