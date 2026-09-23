@@ -2,13 +2,7 @@ import Link from "next/link";
 import Figure from "@/components/ui/Figure";
 import Logo from "@/components/ui/Logo";
 import SelectedStories from "@/components/sections/SelectedStories";
-import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
-import {
-  HOME_CLOSING_STRIP,
-  INSTAGRAM_URL,
-  PHOTOS,
-  WHATSAPP_URL,
-} from "@/lib/data";
+import { HOME_CLOSING_STRIP, PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -45,7 +39,6 @@ export default function HomePage() {
             Begin here
           </Link>
         </div>
-        <span className={styles.scrollCue} aria-hidden="true" />
       </section>
 
       {/* ---------- Philosophy ---------- */}
@@ -173,7 +166,7 @@ export default function HomePage() {
 
         <div className={styles.enquire}>
           <p className={`label ${styles.enquireLabel}`}>
-            Let&rsquo;s create something meaningful
+            Let&rsquo;s create something meaningful.
           </p>
           <p className={`display ${styles.enquireTitle}`}>
             Tell me where your story begins.
@@ -181,30 +174,6 @@ export default function HomePage() {
           <Link href="/contact" className={`btn btn-dark ${styles.enquireCta}`}>
             Enquire
           </Link>
-        </div>
-
-        <div className={styles.signoff}>
-          <Logo height="var(--signoff-logo-h)" className={styles.signoffLogo} />
-          <p className={styles.signoffLinks}>
-            <a
-              className={styles.signoffLink}
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <InstagramGlyph size={17} />
-              <span>Follow on Instagram</span>
-            </a>
-            <a
-              className={styles.signoffLink}
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <WhatsAppGlyph size={17} />
-              <span>WhatsApp</span>
-            </a>
-          </p>
         </div>
       </section>
     </>

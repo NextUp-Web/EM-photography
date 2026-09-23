@@ -71,13 +71,13 @@
   color: var(--warm-white);
 }
 
-/* Two rules, widely spaced — the quietest possible mark. */
+/* Three hairlines, widely spaced. */
 .icon {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 26px;
-  height: 9px;
+  height: 13px;
 }
 
 .icon span {
@@ -88,10 +88,15 @@
     opacity var(--dur) var(--ease);
 }
 
+/* Open, the outer rules cross and the middle one goes. */
 .iconOpen span:first-child {
-  transform: translateY(4px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
+}
+
+.iconOpen span:nth-child(2) {
+  opacity: 0;
 }
 
 .iconOpen span:last-child {
-  transform: translateY(-4px) rotate(-45deg);
+  transform: translateY(-6px) rotate(-45deg);
 }

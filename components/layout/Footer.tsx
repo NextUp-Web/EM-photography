@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
-import { InstagramGlyph } from "@/components/ui/SocialIcons";
+import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
 import {
   COPYRIGHT_YEAR,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   NAV,
+  WHATSAPP_URL,
 } from "@/lib/data";
 import styles from "./Footer.module.css";
 
@@ -40,15 +41,26 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <a
-          className={styles.social}
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noreferrer noopener"
-          aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
-        >
-          <InstagramGlyph size={19} />
-        </a>
+        <div className={styles.socials}>
+          <a
+            className={styles.social}
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
+          >
+            <InstagramGlyph size={19} />
+          </a>
+          <a
+            className={styles.social}
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="EM Photography on WhatsApp"
+          >
+            <WhatsAppGlyph size={19} />
+          </a>
+        </div>
 
         <p className={styles.legal}>&copy; {COPYRIGHT_YEAR} EM Photography</p>
       </div>

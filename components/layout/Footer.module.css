@@ -33,7 +33,7 @@
   font-weight: 500;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--color-meta);
+  color: var(--color-body);
   line-height: 1.7;
 }
 
@@ -64,13 +64,21 @@
   opacity: 0.55;
 }
 
+/* Instagram and WhatsApp, side by side on one centred row. */
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.6vw, 24px);
+  margin-top: var(--sp-sm);
+}
+
 .social {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
-  margin-top: var(--sp-sm);
   color: var(--color-ink);
   transition: opacity var(--dur) var(--ease);
 }
