@@ -27,6 +27,11 @@
 }
 
 .place {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 clamp(8px, 0.9vw, 14px);
   margin-top: var(--sp-sm);
   font-family: var(--font-ui);
   font-size: var(--fs-ui-sm);
@@ -34,6 +39,21 @@
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--color-body);
+  line-height: 1.7;
+}
+
+.dot {
+  color: var(--color-quiet);
+}
+
+.availability {
+  margin-top: clamp(6px, 0.7vw, 10px);
+  font-family: var(--font-ui);
+  font-size: var(--fs-ui-sm);
+  font-weight: 400;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--color-meta);
   line-height: 1.7;
 }
 

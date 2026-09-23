@@ -1,0 +1,82 @@
+/* ============================================================
+   PORTFOLIO — the reportages.
+
+   Nothing frames the photograph: no card, no rule, no shadow, no
+   rounded corner. The cover carries the block, the initials and the
+   place sit quietly beneath it.
+   ============================================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(20px, 2.6vw, 44px);
+  row-gap: var(--section);
+}
+
+.item {
+  display: block;
+}
+
+.cover {
+  transition: opacity var(--dur) var(--ease);
+}
+
+/* The only hover on the grid: the cover lifts a shade. Nothing moves. */
+.item:hover .cover,
+.item:focus-visible .cover {
+  opacity: 0.86;
+}
+
+.name {
+  margin-top: clamp(16px, 1.7vw, 26px);
+  font-size: var(--fs-story-name);
+  line-height: 1.2;
+  letter-spacing: 0.24em;
+  color: var(--color-ink);
+  text-align: center;
+}
+
+.place {
+  margin-top: clamp(6px, 0.7vw, 10px);
+  font-weight: 400;
+  letter-spacing: var(--ls-ui);
+  color: var(--color-meta);
+  text-align: center;
+}
+
+/* ============================================================
+   Phone and small tablet — two to a line.
+   ============================================================ */
+
+@media (max-width: 1080px) {
+  .grid {
+    column-gap: clamp(16px, 2.4vw, 32px);
+    row-gap: var(--sp-xl);
+  }
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--gap-img);
+    row-gap: var(--sp-lg);
+  }
+
+  .name {
+    margin-top: clamp(10px, 3vw, 16px);
+    letter-spacing: 0.2em;
+  }
+
+  .place {
+    letter-spacing: 0.12em;
+  }
+}
+
+/* Below 360px two columns would make the photographs insignificant —
+   one to a line, full measure, keeps them photographic. */
+@media (max-width: 359px) {
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--sp-lg);
+  }
+}

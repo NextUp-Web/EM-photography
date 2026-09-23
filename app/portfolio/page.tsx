@@ -1,6 +1,6 @@
-import PortfolioGallery from "@/components/sections/PortfolioGallery";
+import CollectionGrid from "@/components/sections/CollectionGrid";
 import Figure from "@/components/ui/Figure";
-import { PORTFOLIO_CLOSING } from "@/lib/data";
+import { PORTFOLIO_CLOSING, SELECTED_STORIES_INTRO } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -24,7 +24,20 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      <PortfolioGallery />
+      {/* ---------- Selected stories ----------
+          A full section's worth of white between the line above and this
+          heading, so the reportages open on their own page of air. */}
+      <section className={styles.stories} aria-labelledby="selected-stories">
+        <div className={`shell ${styles.storiesHead}`}>
+          <p className="label">Portfolio</p>
+          <h2 className={`display ${styles.storiesTitle}`} id="selected-stories">
+            Selected stories
+          </h2>
+          <p className={`copy ${styles.storiesCopy}`}>{SELECTED_STORIES_INTRO}</p>
+        </div>
+
+        <CollectionGrid />
+      </section>
 
       <section className={styles.closing} aria-label="Some stories are meant to stay">
         <Figure

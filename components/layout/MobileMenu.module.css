@@ -48,6 +48,37 @@
   border-bottom-color: var(--color-ink);
 }
 
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .note {
   color: var(--color-quiet);
+}
+
+/* Instagram and WhatsApp, side by side beneath the place-line — small,
+   monochrome, the ink of the text above them. */
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 1.8vw, 26px);
+  margin-top: clamp(14px, 1.8vw, 22px);
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--color-ink);
+  transition: opacity var(--dur) var(--ease);
+}
+
+.social:hover,
+.social:focus-visible {
+  opacity: 0.55;
 }

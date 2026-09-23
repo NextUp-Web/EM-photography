@@ -16,11 +16,8 @@
   min-width: 0;
 }
 
-/* INTEREST sits alone on its row, half the width. */
-.fieldWide {
-  grid-column: 1;
-}
-
+/* The six required fields fill three rows of two; the message and the
+   referral run the whole width beneath them. */
 .fieldFull {
   grid-column: 1 / -1;
 }
@@ -46,6 +43,37 @@
 .input:hover,
 .input:focus {
   border-color: var(--warm-grey);
+}
+
+/* A field the visitor still has to attend to — a hairline, nothing red
+   and nothing loud. */
+.inputError,
+.inputError:hover,
+.inputError:focus {
+  border-color: var(--color-ink);
+}
+
+/* An empty select reads as a placeholder, not as an answer. */
+.select:invalid {
+  color: var(--color-quiet);
+}
+
+.hint {
+  margin-top: clamp(6px, 0.7vw, 9px);
+  font-family: var(--font-ui);
+  font-size: var(--fs-ui-sm);
+  font-weight: 400;
+  letter-spacing: var(--ls-ui);
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.hintQuiet {
+  color: var(--color-quiet);
+}
+
+.hintError {
+  color: var(--color-ink);
 }
 
 .textarea {
@@ -80,11 +108,23 @@
 
 .actions {
   grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: clamp(20px, 2.4vw, 38px);
+  row-gap: clamp(12px, 1.4vw, 18px);
   margin-top: clamp(8px, 1.2vw, 18px);
 }
 
 .submit {
   border-bottom-width: 1.5px;
+}
+
+/* Montserrat caps, widely tracked — the site's small-label voice. */
+.responseTime {
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  color: var(--color-meta);
 }
 
 .submit[disabled] {
@@ -93,7 +133,8 @@
 }
 
 .status {
-  margin-top: 14px;
+  flex-basis: 100%;
+  margin-top: 4px;
   font-family: var(--font-display);
   font-size: var(--fs-body);
   line-height: 1.7;
@@ -111,13 +152,32 @@
     row-gap: clamp(13px, 3.6vw, 18px);
   }
 
-  .fieldWide,
   .fieldFull {
     grid-column: 1;
   }
 
+  .input {
+    /* 16px keeps iOS from zooming the page when a field takes focus */
+    font-size: max(16px, var(--fs-body));
+    height: 50px;
+  }
+
+  .chevron {
+    height: 50px;
+  }
+
+  .textarea {
+    height: auto;
+  }
+
   .actions {
     grid-column: 1;
+    align-items: flex-start;
+    flex-direction: column;
     margin-top: clamp(10px, 3vw, 16px);
+  }
+
+  .submit {
+    width: 100%;
   }
 }

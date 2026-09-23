@@ -15,6 +15,8 @@ export type Photo = {
   position?: string;
   /** the mockup prints this frame monochrome */
   bw?: boolean;
+  /** width / height, when the frame carries its own crop (collection pages) */
+  ratio?: number;
 };
 
 const V3 = "/images/v3";
@@ -65,45 +67,25 @@ export const PHOTOS = {
     position: "center 44%",
   },
 
-  /* ---- About ---- */
+  /* ---- About ----
+
+     The three long sections each close on one horizontal frame set
+     beneath their text, never beside it. */
   aboutHero: {
-    src: `${V3}/about/portrait.webp`,
-    alt: "Emma photographing, camera raised to her eye",
-    position: "center 28%",
+    src: `${V3}/about/hero.webp`,
+    alt: "Emma on a terrace above the lake, the mountains catching the last light",
+    position: "center 46%",
   },
   aboutBride: {
-    src: `${V3}/home/story-lead.webp`,
-    alt: "A bride at the balustrade, her veil spread behind her, the lake beyond",
-    position: "center 45%",
+    src: `${V3}/home/story-embrace.webp`,
+    alt: "A couple forehead to forehead beneath the veil",
+    position: "center 40%",
   },
-  aboutVilla: {
-    src: `${V3}/about/villa.webp`,
-    alt: "A villa among cypresses on the hillside above the lake",
+  aboutApproach: {
+    src: `${V3}/home/closing.webp`,
+    alt: "The lake at sunset, cypresses on the shore and the mountains beyond",
     position: "center 50%",
   },
-  aboutVeil: {
-    src: `${V3}/home/approach.webp`,
-    alt: "A ringed hand gathering the veil against a dark suit",
-    position: "center 48%",
-    bw: true,
-  },
-  aboutCouple: {
-    src: `${V3}/about/trip-couple.webp`,
-    alt: "The couple walking away together, her veil trailing behind",
-    position: "center 40%",
-    bw: true,
-  },
-  aboutTable: {
-    src: `${V3}/portfolio/detail-note.webp`,
-    alt: "Candles and white flowers along a dinner table at dusk",
-    position: "center 52%",
-  },
-  aboutBoat: {
-    src: `${V3}/about/trip-lake.webp`,
-    alt: "A wooden boat crossing the lake below the village",
-    position: "center 55%",
-  },
-
   /* ---- Contact ---- */
   contactHero: {
     src: `${V3}/portfolio/pair-couple.webp`,
@@ -198,127 +180,274 @@ export const SELECTED_STORIES: Photo[] = [
    Portfolio
    ------------------------------------------------------------------ */
 
-export const PORTFOLIO_FILTERS = [
-  { id: "all", label: "All" },
-  { id: "weddings", label: "Weddings" },
-  { id: "couples", label: "Couples" },
-  { id: "engagements", label: "Engagements" },
-  { id: "intimate-celebrations", label: "Intimate celebrations" },
-];
-
 /**
- * The two stories the mockup prints, each with its own composition.
+ * One reportage — a couple, the place it happened, the cover frame the
+ * Portfolio grid prints, and the photographs its own page holds.
  *
- * `A` — a tall lead on the left, two frames stacked beside it, then a row of
- *       three running the full width beneath the caption.
- * `B` — a tall lead on the left, and beside it one wide frame over a pair.
- *
- * On the phone both stories collapse to the same shape: lead, name, place,
- * then a band of three. `mobileRow` names which three.
+ * >>> TO ADD A COUPLE: copy one entry, give it a new `slug`, set `name`
+ * >>> to their initials ("A & L") and `place` to city + country, point
+ * >>> `cover` at the cover frame and list the rest under `photos`.
+ * >>> The Portfolio grid, the route /portfolio/<slug>, the sitemap-ready
+ * >>> static params and the story-to-story navigation all read from here;
+ * >>> nothing else needs touching.
  */
-export type Story = {
-  id: string;
+export type Collection = {
+  slug: string;
+  /** the couple's initials, exactly as they should print — "A & L" */
   name: string;
+  /** city + country — "Zermatt, Switzerland" */
   place: string;
-  categories: string[];
-  layout: "A" | "B";
-  lead: Photo;
-  /** the right-hand column — two frames for layout A, three for layout B */
-  aside: Photo[];
-  /** layout A only: the row of three beneath the caption */
-  row?: Photo[];
-  mobileRow: Photo[];
+  /** the month and year, printed small on the story's own page */
+  date?: string;
+  /** one paragraph opening the story's own page */
+  intro?: string;
+  cover: Photo;
+  photos: Photo[];
 };
 
-const MJ_HAND: Photo = {
-  src: `${V3}/home/approach.webp`,
-  alt: "A ringed hand resting against a dark suit",
-  position: "center 45%",
-  bw: true,
-};
-
-const MJ_TABLE: Photo = {
-  src: `${V3}/portfolio/detail-note.webp`,
-  alt: "Candlelight along the dinner table, white roses and cut glass",
-  position: "center 50%",
-};
-
-const MJ_EMBRACE: Photo = {
-  src: `${V3}/home/story-embrace.webp`,
-  alt: "The couple forehead to forehead beneath the veil",
-  position: "center 38%",
-  bw: true,
-};
-
-const AL_STREET: Photo = {
-  src: `${V3}/about/trip-couple.webp`,
-  alt: "The couple walking away down a wet cobbled street",
-  position: "center 42%",
-  bw: true,
-};
-
-const AL_FLOWERS: Photo = {
-  src: `${V3}/about/trip-flowers.webp`,
-  alt: "A bouquet of white roses",
-  position: "center 52%",
-};
-
-const AL_BOAT: Photo = {
-  src: `${V3}/about/trip-lake.webp`,
-  alt: "A wooden boat crossing beneath the village",
-  position: "center 58%",
-};
-
-export const STORIES: Story[] = [
+export const COLLECTIONS: Collection[] = [
   {
-    id: "m-and-j",
+    slug: "i-and-e",
+    name: "I & E",
+    place: "Montreux, Switzerland",
+    date: "September 2026",
+    intro:
+      "A morning that began quietly above the lake and never quite hurried. We walked, we waited for the light, and let the day arrive on its own terms.",
+    cover: {
+      src: `${V3}/home/emra.webp`,
+      alt: "Emra looking out over the lake and the mountains in the early light",
+      position: "center 35%",
+    },
+    photos: [
+      {
+        src: `${V3}/home/emra.webp`,
+        alt: "Emra on the hillside above the lake, the mountains catching the first light",
+        position: "center 35%",
+        ratio: 1.9,
+      },
+      {
+        src: `${V3}/home/story-lead.webp`,
+        alt: "At the balustrade, looking out across the water",
+        position: "center 45%",
+        ratio: 0.96,
+      },
+      {
+        src: `${V3}/home/story-embrace.webp`,
+        alt: "The two of them forehead to forehead beneath the veil",
+        position: "center 38%",
+        ratio: 1.3,
+        bw: true,
+      },
+      {
+        src: `${V3}/home/story-flowers.webp`,
+        alt: "A bouquet of white roses and ranunculus held against a knitted sleeve",
+        position: "center 50%",
+        ratio: 1.21,
+      },
+      {
+        src: `${V3}/about/hero.webp`,
+        alt: "A table laid for two on the terrace, the village and the lake beyond",
+        position: "center 45%",
+        ratio: 1.18,
+      },
+      {
+        src: `${V3}/home/story-shore.webp`,
+        alt: "The far shore of the lake at sunrise, the mountains behind it",
+        position: "center 50%",
+        ratio: 3.1,
+      },
+    ],
+  },
+  {
+    slug: "m-and-j",
     name: "M & J",
-    place: "Château de Vuillerens - Switzerland",
-    categories: ["weddings", "couples"],
-    layout: "A",
-    lead: {
+    place: "Vuillerens, Switzerland",
+    date: "July 2026",
+    intro:
+      "A château, a long table under candlelight, and a day that stayed close and unhurried from the first gesture to the last dance.",
+    cover: {
       src: `${V3}/portfolio/lead.webp`,
       alt: "M & J on the terrace of the château, the lake and mountains behind them",
       position: "center 48%",
     },
-    aside: [MJ_HAND, MJ_TABLE],
-    row: [
-      MJ_EMBRACE,
+    photos: [
       {
-        src: `${V3}/portfolio/village.webp`,
-        alt: "The villa and cypresses above the lake at sunset",
+        src: `${V3}/portfolio/lead.webp`,
+        alt: "M & J on the terrace, the lake and the mountains behind them",
+        position: "center 48%",
+        ratio: 1.9,
+      },
+      {
+        src: `${V3}/home/approach.webp`,
+        alt: "A ringed hand resting against a dark suit",
+        position: "center 45%",
+        ratio: 0.93,
+        bw: true,
+      },
+      {
+        src: `${V3}/portfolio/detail-note.webp`,
+        alt: "Candlelight along the dinner table, white roses and cut glass",
         position: "center 50%",
+        ratio: 1.46,
       },
       {
         src: `${V3}/portfolio/pair-veil.webp`,
         alt: "The bride under the loggia, her veil spread across the stone",
         position: "center 42%",
+        ratio: 0.84,
         bw: true,
       },
+      {
+        src: `${V3}/portfolio/village.webp`,
+        alt: "The villa and cypresses above the lake at sunset",
+        position: "center 50%",
+        ratio: 1.47,
+      },
+      {
+        src: `${V3}/home/closing.webp`,
+        alt: "The mountains and the lake at the end of the day",
+        position: "center 50%",
+        ratio: 2.86,
+      },
     ],
-    mobileRow: [MJ_HAND, MJ_TABLE, MJ_EMBRACE],
   },
   {
-    id: "a-and-l",
+    slug: "a-and-l",
     name: "A & L",
-    place: "Lake Como - Italy",
-    categories: ["couples", "engagements", "intimate-celebrations"],
-    layout: "B",
-    lead: {
+    place: "Lake Como, Italy",
+    date: "June 2026",
+    intro:
+      "Two days on the water, an elopement of their own making — a walk through the old town, a boat at golden hour, and dinner beneath the olive trees.",
+    cover: {
       src: `${V3}/home/hero.webp`,
       alt: "A & L at the water's edge, the village of Lake Como beyond",
       position: "center 46%",
     },
-    aside: [AL_STREET, AL_FLOWERS, AL_BOAT],
-    mobileRow: [AL_STREET, AL_FLOWERS, AL_BOAT],
+    photos: [
+      {
+        src: `${V3}/home/hero.webp`,
+        alt: "A & L at the water's edge, the village beyond them",
+        position: "center 46%",
+        ratio: 1.9,
+      },
+      {
+        src: `${V3}/about/trip-couple.webp`,
+        alt: "The couple walking away down a wet cobbled street",
+        position: "center 42%",
+        ratio: 0.64,
+        bw: true,
+      },
+      {
+        src: `${V3}/about/trip-flowers.webp`,
+        alt: "A bouquet of white roses on a stone ledge",
+        position: "center 52%",
+        ratio: 0.64,
+      },
+      {
+        src: `${V3}/about/villa.webp`,
+        alt: "A villa among cypresses on the hillside above the lake",
+        position: "center 50%",
+        ratio: 1.42,
+      },
+      {
+        src: `${V3}/about/trip-lake.webp`,
+        alt: "A wooden boat crossing beneath the village",
+        position: "center 58%",
+        ratio: 0.64,
+      },
+      {
+        src: `${V3}/contact/hero.webp`,
+        alt: "A table laid for two beneath an olive tree at sunset",
+        position: "center 50%",
+        ratio: 1.16,
+      },
+    ],
   },
 ];
+
+/** The story a slug names, or undefined — the route answers 404 on undefined. */
+export function getCollection(slug: string): Collection | undefined {
+  return COLLECTIONS.find((collection) => collection.slug === slug);
+}
+
+/** The next story in the list, wrapping round, for the foot of a story page. */
+export function getNextCollection(slug: string): Collection {
+  const index = COLLECTIONS.findIndex((collection) => collection.slug === slug);
+  return COLLECTIONS[(index + 1) % COLLECTIONS.length];
+}
+
+export const SELECTED_STORIES_INTRO =
+  "A collection of love stories documented with softness, depth and intention — from quiet moments between two souls to intimate weddings and elopements shaped by meaningful places.";
 
 export const PORTFOLIO_CLOSING: Photo = {
   src: `${V3}/home/story-embrace.webp`,
   alt: "The couple forehead to forehead as the sun sets behind the mountains",
   position: "center 26%",
 };
+
+/* ------------------------------------------------------------------
+   About — the three steps printed beneath the approach photograph.
+   ------------------------------------------------------------------ */
+
+export const APPROACH_STEPS = [
+  {
+    number: "01",
+    title: "Observe",
+    copy: "I take the time to truly see what is happening — the atmosphere, the people, the small moments and the emotions running underneath them.",
+  },
+  {
+    number: "02",
+    title: "Guide",
+    copy: "With measured, gentle direction you can move naturally, so the photographs feel genuine rather than rehearsed.",
+  },
+  {
+    number: "03",
+    title: "Preserve",
+    copy: "I keep it all — the large moments and the quiet ones — so you can feel how the day felt, years from now.",
+  },
+];
+
+/* ------------------------------------------------------------------
+   About — closing gallery
+
+   Desktop prints the first two frames on one line and nothing else;
+   the phone prints all six, two to a line.
+   ------------------------------------------------------------------ */
+
+export const ABOUT_GALLERY: Photo[] = [
+  {
+    src: `${V3}/about/trip-couple.webp`,
+    alt: "The couple walking away together through the old town",
+    position: "center 40%",
+    bw: true,
+  },
+  {
+    src: `${V3}/portfolio/detail-note.webp`,
+    alt: "Candles and white flowers along a dinner table at dusk",
+    position: "center 52%",
+  },
+  {
+    src: `${V3}/about/trip-lake.webp`,
+    alt: "A wooden boat crossing the lake below the village",
+    position: "center 55%",
+  },
+  {
+    src: `${V3}/portfolio/pair-veil.webp`,
+    alt: "The veil lifted and lit from behind under a stone loggia",
+    position: "center 42%",
+    bw: true,
+  },
+  {
+    src: `${V3}/about/trip-flowers.webp`,
+    alt: "A bouquet of white roses resting on a stone ledge",
+    position: "center 55%",
+  },
+  {
+    src: `${V3}/about/villa.webp`,
+    alt: "A villa among cypresses on the hillside above the lake",
+    position: "center 50%",
+  },
+];
 
 /* ------------------------------------------------------------------
    Contact form
@@ -331,6 +460,19 @@ export const INTERESTS = [
   "Engagement",
   "Intimate celebration",
 ];
+
+/** The six answers offered under “How did you hear about me?”. */
+export const REFERRAL_SOURCES = [
+  "Instagram",
+  "Google",
+  "Pinterest",
+  "A friend or family recommendation",
+  "A wedding planner or venue",
+  "Somewhere else",
+];
+
+/** The shortest message the form accepts, in words. */
+export const MESSAGE_MIN_WORDS = 6;
 
 export const CONTACT_EMAIL = "contact@em-photography.ch";
 export const SITE_URL = "https://em-photography.ch";
@@ -374,7 +516,7 @@ export const HOME_CLOSING_STRIP: Photo[] = [
    >>> every Instagram and WhatsApp link on the site reads from here.
    ------------------------------------------------------------------ */
 
-export const INSTAGRAM_HANDLE = "emphotography";
+export const INSTAGRAM_HANDLE = "emphotography.ch";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
 /** International format, digits only — wa.me refuses anything else. */

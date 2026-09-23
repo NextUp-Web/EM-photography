@@ -229,11 +229,6 @@
     background: var(--ivory);
   }
 
-  /* One section's worth of air above a block. */
-  .section-gap {
-    margin-top: var(--section);
-  }
-
   /* ---------- Type primitives ---------- */
 
   /* Editorial headline — Bodoni Moda, quiet tracking, open leading. */
@@ -326,36 +321,6 @@
     background: var(--soft-black);
     border-color: var(--soft-black);
     color: var(--warm-white);
-  }
-
-  /* Tracked small caps over a rule — kept for the contact form. */
-  .cta-underline {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-ui);
-    font-size: var(--fs-ui);
-    font-weight: 600;
-    letter-spacing: var(--ls-label);
-    text-transform: uppercase;
-    color: var(--color-ink);
-    padding-bottom: 7px;
-    border: 0;
-    background: none;
-    border-bottom: 1px solid var(--color-ink);
-    cursor: pointer;
-    transition: opacity var(--dur) var(--ease);
-  }
-
-  .cta-underline:hover,
-  .cta-underline:focus-visible {
-    opacity: 0.6;
-  }
-
-  .arrow {
-    display: inline-block;
-    font-size: 1.15em;
-    line-height: 1;
   }
 
   /* ---------- Figures ---------- */

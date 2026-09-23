@@ -25,9 +25,16 @@ export default function Footer() {
           <Logo height="var(--footer-logo-h)" />
         </Link>
 
+        {/* The trade and the country on one line, what follows on the next. */}
         <p className={styles.place}>
-          Based in Switzerland &mdash; available across Europe
+          <span>Wedding &amp; couple photographer</span>
+          <span className={styles.dot} aria-hidden="true">
+            &middot;
+          </span>
+          <span>Based in Switzerland</span>
         </p>
+
+        <p className={styles.availability}>Available across Europe</p>
 
         <nav className={styles.navWrap} aria-label="Footer">
           <ul className={styles.nav}>

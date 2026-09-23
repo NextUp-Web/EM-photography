@@ -24,6 +24,31 @@
   display: none;
 }
 
+/* ---------- Selected stories ---------- */
+
+/* A whole section of white opens this block, as the brief asks. */
+.stories {
+  padding-top: var(--section);
+}
+
+.storiesHead {
+  text-align: center;
+  padding-bottom: var(--sp-xl);
+}
+
+.storiesTitle {
+  margin-top: clamp(12px, 1.3vw, 20px);
+  font-size: var(--fs-display);
+}
+
+/* The paragraph keeps a short measure so it reads as a caption, not a
+   column of text. */
+.storiesCopy {
+  margin-top: clamp(16px, 1.8vw, 26px);
+  margin-inline: auto;
+  max-width: 62ch;
+}
+
 /* ---------- Closing banner ---------- */
 
 .closing {
@@ -77,6 +102,18 @@
 
   .wide {
     display: inline;
+  }
+
+  .stories {
+    padding-top: var(--section);
+  }
+
+  .storiesHead {
+    padding-bottom: var(--sp-lg);
+  }
+
+  .storiesCopy {
+    max-width: none;
   }
 
   .closing {

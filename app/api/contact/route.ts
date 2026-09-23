@@ -5,9 +5,19 @@ import { NextResponse } from "next/server";
  * provider — the route validates and answers 503 rather than pretending the
  * message was sent.
  */
-const REQUIRED = ["brideName", "email", "interest", "message"] as const;
+const REQUIRED = [
+  "fullName",
+  "email",
+  "phone",
+  "date",
+  "location",
+  "interest",
+  "message",
+  "referral",
+] as const;
 
-const OPTIONAL = ["groomName", "phone", "date", "location", "referral"] as const;
+/** The form's own minimum, enforced here too. */
+const MESSAGE_MIN_WORDS = 6;
 
 export async function POST(request: Request) {
   let payload: Record<string, unknown>;
@@ -31,10 +41,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
   }
 
+  const words = String(payload.message).trim().split(/\s+/).filter(Boolean).length;
+
+  if (words < MESSAGE_MIN_WORDS) {
+    return NextResponse.json(
+      { error: "message_too_short", minWords: MESSAGE_MIN_WORDS },
+      { status: 400 },
+    );
+  }
+
   const enquiry = Object.fromEntries(
-    [...REQUIRED, ...OPTIONAL]
-      .map((field) => [field, typeof payload[field] === "string" ? payload[field] : ""])
-      .filter(([, value]) => value !== ""),
+    REQUIRED.map((field) => [
+      field,
+      typeof payload[field] === "string" ? payload[field] : "",
+    ]),
   );
 
   // Delivery provider is not connected yet. Add the Resend (or equivalent) call

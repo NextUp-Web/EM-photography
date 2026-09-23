@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV } from "@/lib/data";
+import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, NAV, WHATSAPP_URL } from "@/lib/data";
 import styles from "./MobileMenu.module.css";
 
 type NavPanelProps = {
@@ -61,9 +62,36 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
         </ul>
       </nav>
 
-      <p className={`label ${styles.note}`}>
-        Based in Switzerland &mdash; available across Europe
-      </p>
+      <div className={styles.foot}>
+        <p className={`label ${styles.note}`}>
+          Based in Switzerland &mdash; available across Europe
+        </p>
+
+        {/* The two marks sit directly under the place-line, at the same
+            weight as everything else on the panel. */}
+        <div className={styles.socials}>
+          <a
+            className={styles.social}
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
+            onClick={onClose}
+          >
+            <InstagramGlyph size={18} />
+          </a>
+          <a
+            className={styles.social}
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="EM Photography on WhatsApp"
+            onClick={onClose}
+          >
+            <WhatsAppGlyph size={18} />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
