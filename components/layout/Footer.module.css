@@ -1,19 +1,32 @@
 /* ============================================================
-   Footer — one centred column on every platform.
+   Footer
+
+   A hairline first — the separation between the site and its
+   foot — then the lockup, large and centred, then one quiet row:
+   the place-line at the left, the four links in the middle, the
+   social marks and the copyright at the right.
    ============================================================ */
 
 .footer {
-  --footer-logo-h: clamp(48px, 4.4vw, 68px);
+  --footer-logo-h: clamp(84px, 10vw, 150px);
   background: var(--color-page);
-  border-top: 1px solid var(--hairline-soft);
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: var(--sp-lg) var(--shell-pad);
+  padding: var(--sp-xl) var(--shell-pad) var(--sp-lg);
+}
+
+/* The rule sits above the lockup and inside the page margin, so it reads
+   as a separation rather than as the edge of a block. */
+.rule {
+  width: 100%;
+  height: 0;
+  margin: 0 0 var(--sp-xl);
+  border: 0;
+  border-top: 1px solid var(--hairline-soft);
 }
 
 .brand {
@@ -26,59 +39,38 @@
   opacity: 0.65;
 }
 
-.place {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0 clamp(8px, 0.9vw, 14px);
-  margin-top: var(--sp-sm);
-  font-family: var(--font-ui);
-  font-size: var(--fs-ui-sm);
-  font-weight: 500;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--color-body);
-  line-height: 1.7;
+/* ---------- The row beneath the lockup ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: clamp(24px, 3vw, 56px);
+  width: 100%;
+  margin-top: var(--sp-lg);
 }
 
-.dot {
-  color: var(--color-quiet);
+.place {
+  grid-column: 1;
+  justify-self: start;
+  font-family: var(--font-display);
+  font-size: clamp(0.88rem, 1.13vw, 1.04rem);
+  line-height: 1.6;
+  color: var(--color-body);
 }
 
 .availability {
-  margin-top: clamp(6px, 0.7vw, 10px);
+  margin-top: 4px;
   font-family: var(--font-ui);
   font-size: var(--fs-ui-sm);
   font-weight: 400;
-  letter-spacing: var(--ls-label);
+  letter-spacing: var(--ls-ui);
   text-transform: uppercase;
-  color: var(--color-meta);
-  line-height: 1.7;
-}
-
-/* ============================================================
-   Phone — the trade and the country hold one line, so the type
-   and the tracking close up rather than the line breaking.
-   ============================================================ */
-
-@media (max-width: 860px) {
-  .place,
-  .availability {
-    font-size: min(0.65rem, 2.15vw);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-  }
-
-  .place {
-    /* the three spans stay on the row rather than wrapping off it */
-    flex-wrap: nowrap;
-    gap: 0 0.5em;
-  }
+  color: var(--color-quiet);
 }
 
 .navWrap {
-  margin-top: var(--sp-md);
+  grid-column: 2;
 }
 
 .nav {
@@ -90,10 +82,11 @@
 }
 
 .navLink {
-  font-family: var(--font-ui);
+  font-family: var(--font-display);
   font-size: var(--fs-nav);
-  font-weight: 600;
-  letter-spacing: var(--ls-label);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
   text-transform: uppercase;
   color: var(--color-ink);
   transition: opacity var(--dur) var(--ease);
@@ -104,13 +97,17 @@
   opacity: 0.55;
 }
 
-/* Instagram and WhatsApp, side by side on one centred row. */
+.end {
+  grid-column: 3;
+  justify-self: end;
+  text-align: right;
+}
+
 .socials {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(14px, 1.6vw, 24px);
-  margin-top: var(--sp-sm);
+  justify-content: flex-end;
+  gap: clamp(10px, 1.1vw, 16px);
 }
 
 .social {
@@ -129,7 +126,6 @@
 }
 
 .legal {
-  margin-top: var(--sp-xs);
   font-family: var(--font-ui);
   font-size: var(--fs-ui-sm);
   font-weight: 400;
@@ -137,4 +133,53 @@
   text-transform: uppercase;
   color: var(--color-quiet);
   line-height: 1.7;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Tablet — the three parts of the row stop fitting side by side.
+   ============================================================ */
+
+@media (max-width: 1080px) {
+  .row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: var(--sp-sm);
+    text-align: center;
+  }
+
+  .place,
+  .navWrap,
+  .end {
+    grid-column: 1;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .legal {
+    margin-top: clamp(8px, 1vw, 12px);
+  }
+}
+
+@media (max-width: 860px) {
+  .footer {
+    --footer-logo-h: clamp(62px, 17vw, 86px);
+  }
+
+  .rule {
+    margin-bottom: var(--sp-lg);
+  }
+
+  .place {
+    font-size: 0.92rem;
+    max-width: 26ch;
+  }
+
+  .nav {
+    gap: clamp(18px, 5vw, 30px);
+  }
 }

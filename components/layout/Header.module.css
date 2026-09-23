@@ -1,13 +1,13 @@
 /* ============================================================
-   Header — the lockup on the left, one burger on the right,
-   on every platform. Over the home hero it is transparent.
+   Header — the lockup on the left; the four links themselves on
+   the desktop, one burger on the phone. Over the home hero it is
+   transparent, and it never draws a rule beneath itself.
    ============================================================ */
 
 .header {
   z-index: 200;
   width: 100%;
-  transition: background-color var(--dur) var(--ease),
-    border-color var(--dur) var(--ease);
+  transition: background-color var(--dur) var(--ease);
 }
 
 /* Home: rides over the full-bleed hero. The body is centred inside
@@ -28,12 +28,12 @@
 
 .overlay {
   background: transparent;
-  border-bottom: 1px solid transparent;
 }
 
+/* Warm white and nothing else — no border, no rule, at any scroll
+   position and on any page. */
 .solid {
   background: var(--color-page);
-  border-bottom: 1px solid var(--hairline-soft);
 }
 
 .inner {
@@ -51,52 +51,109 @@
   flex: none;
 }
 
-/* ---------- Burger ---------- */
+/* ---------- Desktop navigation ----------
 
-.toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
+   Four words on one line at the right of the bar, set in the editorial
+   serif as small caps with wide tracking: thin, quiet, never heavy.
+   ------------------------------------------------------------------- */
+
+.nav {
+  display: block;
   flex: none;
-  border: 0;
-  background: transparent;
-  padding: 10px 0;
-  min-width: 44px;
-  min-height: 44px;
-  cursor: pointer;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(26px, 3.3vw, 54px);
+}
+
+.navLink {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--fs-nav);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  /* the tracking is added after the last letter too, so the row reads even */
+  text-indent: 0.24em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: inherit;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.solid .navLink {
   color: var(--color-ink);
 }
 
-.overlay .toggle {
+.overlay .navLink {
   color: var(--warm-white);
 }
 
-/* Three hairlines, widely spaced. */
-.icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 26px;
-  height: 13px;
+.navLink:hover,
+.navLink:focus-visible {
+  opacity: 0.62;
 }
 
-.icon span {
-  display: block;
-  height: 1px;
-  background: currentColor;
-  transition: transform var(--dur) var(--ease),
-    opacity var(--dur) var(--ease);
+/* The burger belongs to the phone alone. */
+.toggle {
+  display: none;
 }
 
-/* Open, the outer rules cross and the middle one goes. */
-.iconOpen span:first-child {
-  transform: translateY(6px) rotate(45deg);
-}
+/* ---------- Phone ---------- */
 
-.iconOpen span:nth-child(2) {
-  opacity: 0;
-}
+@media (max-width: 860px) {
+  .nav {
+    display: none;
+  }
 
-.iconOpen span:last-child {
-  transform: translateY(-6px) rotate(-45deg);
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: none;
+    border: 0;
+    background: transparent;
+    padding: 10px 0;
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+    color: var(--color-ink);
+  }
+
+  .overlay .toggle {
+    color: var(--warm-white);
+  }
+
+  /* Three hairlines, a shade wider and taller than before so the mark
+     reads at the same scale as the lockup beside it — still hairlines,
+     never a button. */
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 17px;
+  }
+
+  .icon span {
+    display: block;
+    height: 1px;
+    background: currentColor;
+    transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  }
+
+  /* Open, the outer rules cross and the middle one goes. */
+  .iconOpen span:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .iconOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .iconOpen span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }

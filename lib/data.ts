@@ -66,25 +66,49 @@ export const PHOTOS = {
     alt: "The couple held close on the terrace as the sun sets over the lake",
     position: "center 44%",
   },
+  /* The very large monochrome band that closes the home page, with
+     "Let's create something meaningful." printed over it. The frame is
+     wide enough that the couple keeps the right of it and the type has
+     the water to itself on the left. */
+  homeBanner: {
+    src: `${V3}/home/hero.webp`,
+    alt: "A couple forehead to forehead on the terrace, the lake and the mountains behind them",
+    position: "center 36%",
+    bw: true,
+  },
 
   /* ---- About ----
 
-     The three long sections each close on one horizontal frame set
-     beneath their text, never beside it. */
+     The page opens on a title and a great deal of white; the two long
+     sections that follow set their photographs beside the text. */
   aboutHero: {
     src: `${V3}/about/hero.webp`,
     alt: "Emma on a terrace above the lake, the mountains catching the last light",
     position: "center 46%",
   },
-  aboutBride: {
-    src: `${V3}/home/story-embrace.webp`,
-    alt: "A couple forehead to forehead beneath the veil",
-    position: "center 40%",
+  /* The portrait that leads the Emma collage — the one vertical frame. */
+  aboutPortraitMain: {
+    src: `${V3}/about/portrait.webp`,
+    alt: "Emma, camera in hand, on the shore of the lake",
+    position: "center 32%",
   },
-  aboutApproach: {
-    src: `${V3}/home/closing.webp`,
-    alt: "The lake at sunset, cypresses on the shore and the mountains beyond",
-    position: "center 50%",
+  /* The two smaller frames that overlap it. */
+  aboutPortraitTwo: {
+    src: `${V3}/home/emra.webp`,
+    alt: "Emma looking out over the lake and the mountains at sunset",
+    position: "center 30%",
+    bw: true,
+  },
+  aboutPortraitThree: {
+    src: `${V3}/about/hero.webp`,
+    alt: "Emma on the terrace, the village and the water beyond her",
+    position: "center 52%",
+  },
+  /* The tall frame beside "More than a record of the day". */
+  aboutTrace: {
+    src: `${V3}/portfolio/pair-veil.webp`,
+    alt: "A bride lifting her veil under a stone loggia",
+    position: "center 42%",
   },
   /* ---- Contact ---- */
   contactHero: {
@@ -97,6 +121,13 @@ export const PHOTOS = {
     src: `${V3}/about/trip-flowers.webp`,
     alt: "A bouquet of white roses resting on a stone ledge above the lake",
     position: "center 55%",
+  },
+  /* The monochrome band that closes the page. */
+  contactClosing: {
+    src: `${V3}/home/closing.webp`,
+    alt: "The lake at the end of the day, cypresses on the shore and the mountains beyond",
+    position: "center 50%",
+    bw: true,
   },
 } satisfies Record<string, Photo>;
 
@@ -379,51 +410,34 @@ export function getNextCollection(slug: string): Collection {
 export const SELECTED_STORIES_INTRO =
   "A collection of love stories documented with softness, depth and intention — from quiet moments between two souls to intimate weddings and elopements shaped by meaningful places.";
 
+/** The very large photograph that opens the page, under the title. */
+export const PORTFOLIO_INTRO: Photo = {
+  src: `${V3}/portfolio/lead.webp`,
+  alt: "A couple on a balustraded terrace above the lake at sunset",
+  position: "center 48%",
+};
+
 export const PORTFOLIO_CLOSING: Photo = {
   src: `${V3}/home/story-embrace.webp`,
-  alt: "The couple forehead to forehead as the sun sets behind the mountains",
-  position: "center 26%",
+  alt: "A couple forehead to forehead as the sun sets behind the mountains",
+  position: "center 10%",
 };
 
 /* ------------------------------------------------------------------
-   About — the three steps printed beneath the approach photograph.
+   About — the three vertical frames printed side by side, and the
+   three movements of the work set beneath them.
    ------------------------------------------------------------------ */
 
-export const APPROACH_STEPS = [
-  {
-    number: "01",
-    title: "Observe",
-    copy: "I take the time to truly see what is happening — the atmosphere, the people, the small moments and the emotions running underneath them.",
-  },
-  {
-    number: "02",
-    title: "Guide",
-    copy: "With measured, gentle direction you can move naturally, so the photographs feel genuine rather than rehearsed.",
-  },
-  {
-    number: "03",
-    title: "Preserve",
-    copy: "I keep it all — the large moments and the quiet ones — so you can feel how the day felt, years from now.",
-  },
-];
-
-/* ------------------------------------------------------------------
-   About — closing gallery
-
-   Desktop prints the first two frames on one line and nothing else;
-   the phone prints all six, two to a line.
-   ------------------------------------------------------------------ */
-
-export const ABOUT_GALLERY: Photo[] = [
+export const ABOUT_VERTICALS: Photo[] = [
   {
     src: `${V3}/about/trip-couple.webp`,
-    alt: "The couple walking away together through the old town",
+    alt: "A couple walking away together through the old town",
     position: "center 40%",
     bw: true,
   },
   {
-    src: `${V3}/portfolio/detail-note.webp`,
-    alt: "Candles and white flowers along a dinner table at dusk",
+    src: `${V3}/about/trip-flowers.webp`,
+    alt: "A bouquet of white roses resting on a stone ledge above the lake",
     position: "center 52%",
   },
   {
@@ -431,21 +445,23 @@ export const ABOUT_GALLERY: Photo[] = [
     alt: "A wooden boat crossing the lake below the village",
     position: "center 55%",
   },
+];
+
+export const APPROACH_STEPS = [
   {
-    src: `${V3}/portfolio/pair-veil.webp`,
-    alt: "The veil lifted and lit from behind under a stone loggia",
-    position: "center 42%",
-    bw: true,
+    number: "01",
+    title: "Observe",
+    copy: "I pay attention to what is quietly unfolding — the gestures, the atmosphere, and the in-between moments that give the day its feeling.",
   },
   {
-    src: `${V3}/about/trip-flowers.webp`,
-    alt: "A bouquet of white roses resting on a stone ledge",
-    position: "center 55%",
+    number: "02",
+    title: "Guide",
+    copy: "With a calm, gentle presence, I offer just enough direction for you to feel at ease, so the photographs remain natural and unforced.",
   },
   {
-    src: `${V3}/about/villa.webp`,
-    alt: "A villa among cypresses on the hillside above the lake",
-    position: "center 50%",
+    number: "03",
+    title: "Preserve",
+    copy: "What remains is more than a record — it is a way back into the feeling, a little piece of that time kept close.",
   },
 ];
 
@@ -459,13 +475,13 @@ export const INTERESTS = [
   "Couples",
   "Engagement",
   "Intimate celebration",
+  "Other",
 ];
 
-/** The six answers offered under “How did you hear about me?”. */
+/** The five answers offered under “How did you hear about me?”. */
 export const REFERRAL_SOURCES = [
   "Instagram",
   "Google",
-  "Pinterest",
   "A friend or family recommendation",
   "A wedding planner or venue",
   "Somewhere else",

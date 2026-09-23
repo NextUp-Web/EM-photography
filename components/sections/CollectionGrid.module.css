@@ -27,20 +27,28 @@
   opacity: 0.86;
 }
 
+/* The photographs are the page; the names beneath them are deliberately
+   small, light and widely tracked, so they never compete with the frame
+   above. */
 .name {
-  margin-top: clamp(16px, 1.7vw, 26px);
-  font-size: var(--fs-story-name);
-  line-height: 1.2;
-  letter-spacing: 0.24em;
+  margin-top: clamp(14px, 1.5vw, 22px);
+  font-family: var(--font-display);
+  font-size: var(--fs-ui);
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
   color: var(--color-ink);
   text-align: center;
 }
 
 .place {
-  margin-top: clamp(6px, 0.7vw, 10px);
+  margin-top: clamp(5px, 0.6vw, 9px);
+  font-size: var(--fs-ui-sm);
   font-weight: 400;
   letter-spacing: var(--ls-ui);
-  color: var(--color-meta);
+  color: var(--color-quiet);
   text-align: center;
 }
 
@@ -64,7 +72,8 @@
 
   .name {
     margin-top: clamp(10px, 3vw, 16px);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
   }
 
   .place {

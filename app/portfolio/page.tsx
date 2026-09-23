@@ -1,6 +1,11 @@
+import Link from "next/link";
 import CollectionGrid from "@/components/sections/CollectionGrid";
 import Figure from "@/components/ui/Figure";
-import { PORTFOLIO_CLOSING, SELECTED_STORIES_INTRO } from "@/lib/data";
+import {
+  PORTFOLIO_CLOSING,
+  PORTFOLIO_INTRO,
+  SELECTED_STORIES_INTRO,
+} from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -24,12 +29,22 @@ export default function PortfolioPage() {
         </p>
       </section>
 
+      {/* One very large photograph opening the page under the title. */}
+      <div className={styles.lead}>
+        <Figure
+          photo={PORTFOLIO_INTRO}
+          ratio={2.04}
+          mobileRatio={1.12}
+          sizes="100vw"
+          priority
+        />
+      </div>
+
       {/* ---------- Selected stories ----------
-          A full section's worth of white between the line above and this
-          heading, so the reportages open on their own page of air. */}
+          A full section's worth of white between the photograph above and
+          this heading, so the reportages open on their own page of air. */}
       <section className={styles.stories} aria-labelledby="selected-stories">
         <div className={`shell ${styles.storiesHead}`}>
-          <p className="label">Portfolio</p>
           <h2 className={`display ${styles.storiesTitle}`} id="selected-stories">
             Selected stories
           </h2>
@@ -42,15 +57,20 @@ export default function PortfolioPage() {
       <section className={styles.closing} aria-label="Some stories are meant to stay">
         <Figure
           photo={PORTFOLIO_CLOSING}
-          ratio={4.64}
-          mobileRatio={1.48}
+          ratio={1.9}
+          mobileRatio={1.18}
           sizes="100vw"
           className={styles.closingFigure}
         />
-        <p className={`display ${styles.closingTitle}`}>
-          Some stories are <br />
-          meant to stay.
-        </p>
+        <div className={styles.closingInner}>
+          <p className={`display ${styles.closingTitle}`}>
+            Some stories are <br />
+            Meant to stay
+          </p>
+          <Link href="/contact" className={`btn btn-light ${styles.closingCta}`}>
+            Enquire
+          </Link>
+        </div>
       </section>
     </>
   );

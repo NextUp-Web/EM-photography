@@ -1,11 +1,10 @@
 /* ============================================================
-   CONTACT — reproduced from the client mockup.
+   CONTACT
 
-   Desktop: title, lede, then a full-width monochrome photograph,
-   then two columns — the written invitation and the form.
-
-   Phone: the photograph comes first, then the title and lede, the
-   invitation, a single-column form, and the bouquet beneath it.
+   The title and its invitation centred on a short measure with a
+   great deal of white around them, then a full-width photograph,
+   then two columns — the written invitation and the form — and a
+   monochrome frame closing the page.
    ============================================================ */
 
 .top {
@@ -20,15 +19,19 @@
 }
 
 .title {
-  font-size: var(--fs-page-title);
+  font-size: clamp(2rem, 3.9vw, 3.6rem);
+  line-height: 1.16;
 }
 
+/* Narrow on purpose: the paragraph should never run the width of the
+   page, and it keeps a whole section of air around it. */
 .lede {
-  margin-top: clamp(14px, 1.6vw, 24px);
+  margin-top: clamp(20px, 2.4vw, 38px);
   margin-inline: auto;
-  max-width: 1080px;
-  font-size: var(--fs-lede);
-  line-height: 1.45;
+  max-width: 62ch;
+  width: min(100%, 720px);
+  font-size: var(--fs-body);
+  line-height: 1.72;
   text-align: center;
 }
 
@@ -76,30 +79,31 @@
   display: inline;
 }
 
+/* ---------- Closing frame ---------- */
+
+.closing {
+  margin-top: var(--section);
+}
+
 /* ============================================================
    Phone
    ============================================================ */
 
 @media (max-width: 860px) {
-  .top {
-    grid-template-rows: auto auto;
+  /* The reference sets the title first on the phone too, with the
+     photograph beneath it. */
+  .intro {
+    grid-row: 1;
+    padding: var(--section) var(--shell-pad) var(--sp-lg);
   }
 
   .heroFigure {
-    grid-row: 1;
-  }
-
-  .intro {
     grid-row: 2;
-    text-align: left;
-    padding: var(--sp-xl) var(--shell-pad) var(--sp-lg);
-    border-bottom: 1px solid var(--hairline-soft);
   }
 
   .lede {
-    margin-inline: 0;
+    width: 100%;
     max-width: none;
-    text-align: left;
   }
 
   .main {
@@ -121,12 +125,11 @@
     margin-top: clamp(18px, 5vw, 26px);
   }
 
-
   .wide {
     display: none;
   }
 
-  /* The bouquet closes the page, edge to edge, beneath the form. */
+  /* The bouquet closes the form, edge to edge, beneath it. */
   .bouquet {
     grid-column: 1;
     grid-row: 3;

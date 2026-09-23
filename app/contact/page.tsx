@@ -13,13 +13,14 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* The phone mockup opens on the photograph and sets the title beneath
-          it; the desktop mockup sets the title first. Source order follows the
-          phone, and the desktop grid puts the intro back on top. */}
+      {/* The title and its invitation, centred on a short measure with a
+          great deal of room around them, then the photograph. */}
       <section className={styles.top}>
         <div className={styles.intro}>
           <h1 className={`display ${styles.title}`}>
-            Tell me what this day will feel like.
+            Tell me what this day
+            <br />
+            will feel like.
           </h1>
           <p className={`copy ${styles.lede}`}>
             I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
@@ -32,7 +33,7 @@ export default function ContactPage() {
         <Figure
           photo={PHOTOS.contactHero}
           ratio={1.95}
-          mobileRatio={1.72}
+          mobileRatio={1.4}
           sizes="100vw"
           priority
           className={styles.heroFigure}
@@ -70,6 +71,16 @@ export default function ContactPage() {
           className={styles.bouquet}
         />
       </section>
+
+      {/* The page closes on one monochrome photograph, edge to edge. */}
+      <div className={styles.closing}>
+        <Figure
+          photo={PHOTOS.contactClosing}
+          ratio={2.86}
+          mobileRatio={1.6}
+          sizes="100vw"
+        />
+      </div>
     </>
   );
 }

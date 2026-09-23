@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: calc(var(--header-h) + var(--sp-md)) var(--shell-pad)
-    clamp(40px, 5vw, 78px);
+    clamp(44px, 6vw, 96px);
   text-align: center;
   color: var(--warm-white);
 }
@@ -76,13 +76,14 @@
 }
 
 /* The name, set in Bodoni Moda caps and held on a single line at every
-   width — the size is tied to the viewport so it can never wrap. */
+   width. The reference prints it nearly the full measure of the frame,
+   so the size is tied to the viewport and the tracking kept open. */
 .heroWordmark {
-  font-size: clamp(1.3rem, 6.8vw, 4.4rem);
-  letter-spacing: 0.15em;
+  font-size: clamp(1.05rem, 7.2vw, 7rem);
+  letter-spacing: 0.1em;
   /* the tracking is added after the last letter too, so the line recentres */
-  text-indent: 0.15em;
-  line-height: 1.1;
+  text-indent: 0.1em;
+  line-height: 1.04;
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--warm-white);
@@ -90,7 +91,7 @@
 }
 
 .heroLine {
-  margin-top: var(--sp-sm);
+  margin-top: clamp(18px, 2.1vw, 34px);
   font-family: var(--font-ui);
   font-size: var(--fs-hero-tag);
   font-weight: 500;
@@ -101,7 +102,7 @@
 }
 
 .heroLine + .heroLine {
-  margin-top: clamp(10px, 1vw, 16px);
+  margin-top: clamp(9px, 0.95vw, 15px);
 }
 
 /* Weddings · Couples · Love stories — one line, never broken. */
@@ -118,15 +119,19 @@
   padding-inline: 0.8em;
 }
 
+/* A hairline rectangle and nothing more, as the reference prints it. */
 .heroCta {
-  margin-top: var(--sp-md);
+  margin-top: clamp(26px, 3vw, 46px);
+  min-height: clamp(42px, 3.1vw, 52px);
+  padding: 13px clamp(26px, 2.4vw, 40px);
+  border-color: rgba(250, 249, 246, 0.66);
 }
 
 /* ---------- Philosophy ---------- */
 
 .philosophy {
   display: grid;
-  grid-template-columns: 32fr 8fr 60fr;
+  grid-template-columns: 34fr 8fr 58fr;
   align-items: center;
   /* The client asked for far more air between the hero and what follows. */
   padding-top: var(--section);
@@ -142,39 +147,83 @@
   font-size: var(--fs-display);
 }
 
-.philosophyCopy {
+/* The two short lines that follow the title — still serif, still ink,
+   but a third of the way down towards the paragraph. */
+.philosophyLede {
   margin-top: var(--sp-sm);
-  max-width: 44ch;
+  font-size: var(--fs-lede);
+  line-height: 1.42;
 }
 
+.philosophyCopy {
+  margin-top: var(--sp-sm);
+  max-width: 42ch;
+}
+
+/* The collage: one tall frame carrying the block, a smaller one set
+   above and to the right of it, and a third laid across the two. */
 .philosophyFrames {
+  position: relative;
   grid-column: 3;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-img);
+}
+
+.frameMain {
+  width: 51.5%;
+}
+
+.frameTop {
+  position: absolute;
+  left: 58.5%;
+  top: 1%;
+  width: 35%;
+}
+
+/* The overlapping frame keeps a hairline of page around it, which is what
+   lets it read as laid over the others — no card, no shadow, no radius. */
+.frameOverMat {
+  position: absolute;
+  left: 54.5%;
+  top: 37%;
+  width: 31%;
+  padding: clamp(5px, 0.62vw, 11px);
+  background: var(--color-page);
+}
+
+.frameOver {
+  width: 100%;
 }
 
 /* ---------- Ivory statement ---------- */
 
+/* Centred on both axes, with a great deal of room around it. */
 .band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(330px, 40vw, 540px);
   padding-block: var(--sp-xl);
   text-align: center;
 }
 
-/* The statement is balanced rather than ragged, so no line is left
-   holding a single word. */
+/* Wide enough that the two lines the brief prints are the two lines the
+   page sets — the break is the one in the markup, never a wrap. */
 .bandTitle {
-  font-size: var(--fs-band);
-  max-width: 42ch;
+  font-size: clamp(1.75rem, 3.5vw, 3.15rem);
+  line-height: 1.24;
+  max-width: 40ch;
   margin-inline: auto;
-  text-wrap: balance;
+}
+
+/* Each half of the statement holds its own line on the desktop. */
+.bandLine {
+  display: block;
 }
 
 .bandMeta {
-  margin-top: var(--sp-sm);
+  margin-top: clamp(20px, 2.4vw, 38px);
+  font-weight: 500;
   letter-spacing: var(--ls-wide);
   color: var(--color-meta);
-  text-wrap: balance;
 }
 
 /* ---------- Selected stories ---------- */
@@ -193,13 +242,14 @@
 }
 
 .storiesTitle {
-  margin-top: var(--sp-xs);
   font-size: var(--fs-display);
 }
 
+/* The measure is held short on purpose: the paragraph should break into
+   four short lines, not run the width of the column. */
 .storiesCopy {
   margin-top: var(--sp-sm);
-  max-width: 44ch;
+  max-width: 40ch;
 }
 
 .storiesFrames {
@@ -269,37 +319,88 @@
   text-align: center;
 }
 
+/* The sentence holds one line on the desktop, as the reference prints it. */
 .quoteText {
-  font-size: var(--fs-band);
-  max-width: 32ch;
+  font-size: clamp(1.7rem, 3.3vw, 3rem);
+  line-height: 1.24;
+  max-width: 46ch;
   margin-inline: auto;
-  text-wrap: balance;
 }
 
-.enquire {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--section) var(--shell-pad);
-}
-
-.enquireLabel {
+/* Far smaller than the sentence above it, and centred on it. */
+.quoteMeta {
+  margin-top: clamp(16px, 1.8vw, 28px);
+  margin-inline: auto;
+  font-weight: 500;
+  font-size: var(--fs-ui-sm);
   letter-spacing: var(--ls-wide);
+  color: var(--color-meta);
+  text-align: center;
 }
 
-.enquireTitle {
-  margin-top: var(--sp-sm);
-  font-size: var(--fs-display);
-  max-width: 26ch;
+/* ---------- The closing photograph ---------- */
+
+.banner {
+  position: relative;
+  margin-top: var(--section);
 }
 
-.enquireCta {
-  margin-top: var(--sp-md);
+.bannerFigure {
+  background: var(--soft-black);
+}
+
+/* Weighted to the left, where the type sits. */
+.bannerFigure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(25, 24, 22, 0.52) 0%,
+    rgba(25, 24, 22, 0.3) 38%,
+    rgba(25, 24, 22, 0) 66%
+  );
+  pointer-events: none;
+}
+
+.bannerInner {
+  position: absolute;
+  left: clamp(24px, 6vw, 112px);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(46%, 640px);
+  color: var(--warm-white);
+}
+
+.bannerTitle {
+  font-size: clamp(1.9rem, 4.4vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  text-shadow: 0 1px 26px rgba(25, 24, 22, 0.4);
+}
+
+.bannerEm {
+  font-style: italic;
+}
+
+.bannerMeta {
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  color: rgba(250, 249, 246, 0.92);
+}
+
+.bannerCta {
+  margin-top: clamp(22px, 2.4vw, 38px);
+  min-height: clamp(42px, 3.1vw, 52px);
+  padding: 13px clamp(26px, 2.4vw, 40px);
+  border-color: rgba(250, 249, 246, 0.72);
 }
 
 /* ============================================================
-   Phone — one centred column, with the same generous rhythm.
+   Phone and small tablet
    ============================================================ */
 
 @media (max-width: 860px) {
@@ -353,9 +454,27 @@
     margin-inline: 0;
   }
 
+  /* No superposition on a phone — the tall frame first, the two smaller
+     ones side by side beneath it. The editorial idea survives; the
+     illegible overlap does not. */
   .philosophyFrames {
-    grid-template-columns: 1fr;
-    gap: var(--sp-sm);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-img);
+  }
+
+  .frameMain {
+    grid-column: 1 / span 2;
+    width: 100%;
+  }
+
+  .frameTop,
+  .frameOverMat {
+    position: static;
+    width: 100%;
+    left: auto;
+    top: auto;
+    padding: 0;
   }
 
   .storiesControls {
@@ -376,5 +495,63 @@
 
   .strip {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* The ivory statement keeps its air but stops being a half-screen. */
+  .band {
+    min-height: 0;
+    padding-block: var(--sp-xl);
+  }
+
+  .bandTitle {
+    max-width: 20ch;
+  }
+
+  /* The phone lets the statement wrap on its own measure. */
+  .bandLine {
+    display: inline;
+  }
+
+  .quoteText {
+    max-width: 18ch;
+  }
+
+  .quoteMeta {
+    max-width: 30ch;
+  }
+
+  /* The banner text moves off the left edge and sits over the foot of the
+     photograph, where the frame is darkest. */
+  .bannerFigure::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 24, 22, 0.05) 18%,
+      rgba(25, 24, 22, 0.4) 58%,
+      rgba(25, 24, 22, 0.74) 100%
+    );
+  }
+
+  .bannerInner {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: clamp(26px, 7vw, 46px);
+    transform: none;
+    max-width: none;
+    padding-inline: var(--shell-pad);
+    text-align: center;
+  }
+
+  .bannerTitle {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
+
+  .bannerMeta {
+    font-size: min(0.68rem, 2.6vw);
+    letter-spacing: 0.2em;
+  }
+
+  .bannerCta {
+    display: inline-flex;
   }
 }

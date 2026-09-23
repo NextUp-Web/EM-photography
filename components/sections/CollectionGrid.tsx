@@ -22,7 +22,7 @@ export default function CollectionGrid() {
               sizes="(max-width: 860px) 46vw, 31vw"
               className={styles.cover}
             />
-            <p className={`caps-serif ${styles.name}`}>{collection.name}</p>
+            <p className={styles.name}>{collection.name}</p>
             <p className={`label ${styles.place}`}>{collection.place}</p>
           </Link>
         </li>

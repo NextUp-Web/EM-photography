@@ -1,10 +1,10 @@
 /* ============================================================
    ABOUT
 
-   Every long section follows the same figure: centred text on a
-   short measure, then ONE horizontal photograph beneath it, held
-   well inside the page so it never dominates. Type sizes are the
-   home page's, so the two pages read as one voice.
+   The page opens on one centred title and a great deal of white,
+   then reads as a spread: text one side, photography the other.
+   Type sizes are the home page's, so the two pages read as one
+   voice.
    ============================================================ */
 
 /* A line break the desktop sets and the phone lets wrap. */
@@ -12,46 +12,113 @@
   display: inline;
 }
 
-/* The shared horizontal frame: narrower than the text column's page,
-   centred, with a section's worth of air above it. */
-.wideFigure {
-  margin-top: var(--sp-lg);
+/* Each half of a two-line statement holds its own line on the desktop and
+   rejoins the flow on the phone — the break is CSS, never a <br>, so the
+   space between the halves can never be lost. */
+.line,
+.bandLine {
+  display: block;
+}
+
+/* ---------- The one where ---------- */
+
+/* The brief asks explicitly for a large white space here, so the opening
+   is given a section of air above it and another below. */
+.opening {
+  padding-top: calc(var(--section) + var(--sp-lg));
+  padding-bottom: var(--section);
+  text-align: center;
+}
+
+/* The two lines the brief prints are the two lines the page sets: the
+   break is the one in the markup, never a wrap. */
+.openingTitle {
+  font-size: clamp(1.9rem, 3.7vw, 3.4rem);
+  line-height: 1.22;
+  max-width: 34ch;
   margin-inline: auto;
-  width: min(100%, 1080px);
 }
 
 /* ---------- A quiet eye ---------- */
 
-.intro {
-  padding-top: var(--section);
-  text-align: center;
+.emma {
+  display: grid;
+  grid-template-columns: 38fr 6fr 56fr;
+  align-items: center;
+  padding-bottom: var(--section);
 }
 
-.introTitle {
-  margin-top: clamp(12px, 1.3vw, 20px);
-  /* the home page's section size, not the old full-page display */
-  font-size: var(--fs-display);
+.emmaText {
+  grid-column: 1;
 }
 
-.introCopy {
-  margin-top: clamp(18px, 2vw, 30px);
-  margin-inline: auto;
-  max-width: 62ch;
-}
-
-.signature {
-  margin-top: clamp(20px, 2.2vw, 32px);
-  font-family: var(--font-script);
-  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+.emmaTitle {
+  margin-top: var(--sp-xs);
+  font-size: var(--fs-lg);
   line-height: 1.1;
+}
+
+/* Its own line, set apart from the paragraph beneath it. */
+.emmaIntroLine {
+  margin-top: var(--sp-md);
+  font-size: var(--fs-lede);
+  line-height: 1.4;
   color: var(--color-ink);
+}
+
+.emmaCopy {
+  margin-top: var(--sp-sm);
+  max-width: 44ch;
+}
+
+/* One tall portrait carrying the block, a second above and to the right,
+   a third laid across the two. */
+.emmaFrames {
+  position: relative;
+  grid-column: 3;
+}
+
+.portraitMain {
+  width: 48%;
+}
+
+.portraitTop {
+  position: absolute;
+  left: 54%;
+  top: 0;
+  width: 38%;
+}
+
+/* A hairline of page around the overlapping frame, which is what lets it
+   read as laid over the others — no card, no shadow, no radius. */
+.portraitMat {
+  position: absolute;
+  left: 60%;
+  top: 46%;
+  width: 36%;
+  padding: clamp(5px, 0.62vw, 11px);
+  background: var(--color-page);
+}
+
+.portraitOver {
+  width: 100%;
 }
 
 /* ---------- More than a record ---------- */
 
 .trace {
-  padding-top: var(--section);
-  text-align: center;
+  display: grid;
+  grid-template-columns: 42fr 8fr 50fr;
+  align-items: center;
+  padding-bottom: var(--section);
+}
+
+.traceFigure {
+  grid-column: 1;
+}
+
+.traceText {
+  grid-column: 3;
 }
 
 .traceTitle {
@@ -60,252 +127,243 @@
 
 .traceCopy {
   margin-top: clamp(20px, 2.2vw, 32px);
-  margin-inline: auto;
-  max-width: 62ch;
+  max-width: 52ch;
 }
 
 /* ---------- Ivory statement ---------- */
 
 .band {
-  margin-top: var(--section);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(300px, 34vw, 460px);
   padding-block: var(--sp-xl);
   text-align: center;
 }
 
 .bandTitle {
-  font-size: var(--fs-band);
-  text-wrap: balance;
+  font-size: clamp(1.7rem, 3.2vw, 2.9rem);
+  line-height: 1.26;
+  max-width: 38ch;
+  margin-inline: auto;
 }
 
 .bandMeta {
-  margin-top: clamp(12px, 1.4vw, 20px);
+  margin-top: clamp(16px, 1.9vw, 30px);
+  margin-inline: auto;
+  font-weight: 500;
+  font-size: var(--fs-ui-sm);
+  letter-spacing: var(--ls-wide);
   color: var(--color-meta);
 }
 
-.metaBreak {
-  display: none;
-}
-
-/* ---------- My approach ---------- */
+/* ---------- Three frames, then the three movements ---------- */
 
 .approach {
-  padding-top: var(--section);
-  text-align: center;
+  padding-bottom: var(--section);
 }
 
-.approachTitle {
-  font-size: var(--fs-display);
-}
-
-.approachCopy {
-  margin-top: clamp(20px, 2.2vw, 32px);
-  margin-inline: auto;
-  max-width: 58ch;
-}
-
-/* The approach photograph is the widest on the page, so it keeps more
-   room than the two above it. */
-.approach .wideFigure {
+/* Three verticals of the same proportion, evenly spaced. */
+.verticals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.7vw, 30px);
   width: min(100%, 1240px);
+  margin-inline: auto;
 }
 
-/* 01 / 02 / 03 — three movements, hairline-separated, set beneath the
-   photograph. */
+/* 01 / 02 / 03 — three movements, separated by the quietest of vertical
+   hairlines, exactly as the reference prints them. */
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: clamp(26px, 3.4vw, 64px);
-  margin-top: var(--sp-lg);
+  margin-top: var(--section);
   margin-inline: auto;
   width: min(100%, 1240px);
   text-align: left;
 }
 
 .step {
-  padding-top: clamp(16px, 1.8vw, 26px);
-  border-top: 1px solid var(--hairline-soft);
+  padding-inline: clamp(20px, 3vw, 58px);
+}
+
+.step:first-child {
+  padding-left: 0;
+}
+
+.step:last-child {
+  padding-right: 0;
+}
+
+.step + .step {
+  border-left: 1px solid var(--hairline-soft);
 }
 
 .stepNumber {
-  font-weight: 500;
+  font-weight: 400;
+  font-size: var(--fs-ui);
   letter-spacing: var(--ls-wide);
   color: var(--color-quiet);
 }
 
+/* The short dash the reference sets under the number. */
+.stepRule {
+  display: block;
+  width: 26px;
+  height: 1px;
+  margin-top: clamp(10px, 1.1vw, 15px);
+  background: var(--hairline);
+}
+
 .stepTitle {
-  margin-top: clamp(8px, 1vw, 14px);
-  font-size: var(--fs-story-name);
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-size: clamp(1.4rem, 2.05vw, 1.95rem);
   font-weight: 400;
+  line-height: 1.1;
 }
 
 .stepCopy {
-  margin-top: clamp(10px, 1.2vw, 16px);
-}
-
-/* ---------- Closing gallery ---------- */
-
-.gallery {
-  padding-top: var(--section);
-  padding-bottom: var(--section);
-}
-
-.galleryHead {
-  text-align: center;
-  padding-bottom: var(--sp-lg);
-}
-
-.galleryTitle {
-  margin-top: clamp(12px, 1.3vw, 20px);
-  font-size: var(--fs-display);
-  font-style: italic;
-}
-
-/* The closing gallery keeps the measure the approach photograph sets, so
-   the page reads on one axis from top to bottom. */
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap-img);
-  width: min(100%, 1240px);
-  margin-inline: auto;
-}
-
-/* The desktop line holds two frames and no more. */
-.galleryExtra {
-  display: none;
-}
-
-/* ---------- Follow on Instagram ---------- */
-
-.follow {
-  margin-top: var(--sp-md);
-  text-align: center;
-}
-
-.followLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--hairline);
-  font-family: var(--font-display);
-  font-size: var(--fs-btn);
-  font-weight: 400;
-  letter-spacing: var(--ls-btn);
-  text-indent: var(--ls-btn);
-  text-transform: uppercase;
-  color: var(--color-ink);
-  transition: border-color var(--dur) var(--ease), opacity var(--dur) var(--ease);
-}
-
-.followLink:hover,
-.followLink:focus-visible {
-  border-color: var(--color-ink);
-  opacity: 0.7;
-}
-
-.followGlyph {
-  /* the glyph carries no tracking of its own */
-  text-indent: 0;
-  flex: none;
-}
-
-.followHandle {
-  margin-top: clamp(10px, 1.1vw, 15px);
-  font-weight: 400;
-  letter-spacing: var(--ls-ui);
-  color: var(--color-meta);
-}
-
-/* ============================================================
-   Laptop — the three movements need a little more room.
-   ============================================================ */
-
-@media (max-width: 1080px) {
-  .steps {
-    column-gap: clamp(20px, 2.6vw, 34px);
-  }
+  margin-top: clamp(12px, 1.4vw, 20px);
 }
 
 /* ============================================================
    Tablet and phone
    ============================================================ */
 
+@media (max-width: 1080px) {
+  .emmaTitle {
+    font-size: var(--fs-display);
+  }
+
+  .step {
+    padding-inline: clamp(16px, 2.2vw, 28px);
+  }
+}
+
 @media (max-width: 860px) {
   .wide {
     display: none;
   }
 
-  .bandTitle,
-  .bandMeta {
-    margin-inline: auto;
-  }
-
-  .bandTitle {
-    max-width: 18ch;
-  }
-
-  /* The phone sets the three statements on three lines. */
-  .metaBreak {
+  .line,
+  .bandLine {
     display: inline;
   }
 
-  /* The three movements stack, each still on its hairline. */
+  .opening {
+    padding-top: var(--section);
+    padding-bottom: var(--sp-xl);
+  }
+
+  .openingTitle {
+    max-width: 16ch;
+  }
+
+  /* Text first, then the photographs — both sections read as one column. */
+  .emma,
+  .trace {
+    grid-template-columns: 1fr;
+    row-gap: var(--sp-lg);
+  }
+
+  .emmaText,
+  .emmaFrames,
+  .traceText,
+  .traceFigure {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .emmaText {
+    grid-row: 1;
+  }
+
+  .emmaFrames {
+    grid-row: 2;
+  }
+
+  /* The photograph follows the text here too. */
+  .traceFigure {
+    grid-row: 2;
+  }
+
+  .traceText {
+    grid-row: 1;
+  }
+
+  .emmaCopy,
+  .traceCopy {
+    max-width: none;
+  }
+
+  /* No superposition on a phone: the tall portrait first, the two smaller
+     frames side by side beneath it. */
+  .emmaFrames {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-img);
+  }
+
+  .portraitMain {
+    grid-column: 1 / span 2;
+    width: 100%;
+  }
+
+  .portraitTop,
+  .portraitMat {
+    position: static;
+    width: 100%;
+    left: auto;
+    top: auto;
+    padding: 0;
+  }
+
+  .band {
+    min-height: 0;
+  }
+
+  .bandTitle {
+    max-width: 20ch;
+  }
+
+  .bandMeta {
+    max-width: 30ch;
+  }
+
+  /* Still three across on a tablet — never three thumbnails. */
+  .verticals {
+    gap: var(--gap-img);
+  }
+
   .steps {
     grid-template-columns: 1fr;
-    row-gap: var(--sp-sm);
-    width: 100%;
-    margin-top: var(--sp-md);
+    row-gap: var(--sp-md);
+    margin-top: var(--sp-xl);
   }
 
-  /* The phone prints all six frames, two to a line — three lines. */
-  .galleryExtra {
-    display: block;
+  .step,
+  .step:first-child,
+  .step:last-child {
+    padding-inline: 0;
   }
 
-  .galleryHead {
-    text-align: center;
-    padding-bottom: var(--sp-md);
-  }
-
-  .follow {
-    margin-top: var(--sp-sm);
+  /* Stacked, the hairline goes above each block rather than beside it. */
+  .step + .step {
+    border-left: 0;
+    border-top: 1px solid var(--hairline-soft);
+    padding-top: var(--sp-sm);
   }
 }
 
 /* ============================================================
-   Tablet only — 601 to 860px.
-
-   `Figure` swaps to its phone crop below 860px, which on a tablet
-   would stand the horizontal photographs up far taller than this
-   page wants. Here they keep the desktop crop and the page margin.
-   ============================================================ */
-
-@media (min-width: 601px) and (max-width: 860px) {
-  .wideFigure :global(.figure) {
-    aspect-ratio: var(--fig-ratio);
-  }
-}
-
-/* ============================================================
-   Phone only — the photographs run edge to edge, as everywhere
-   else on the site, while the text keeps the page margin.
+   Phone only — three verticals side by side would each be barely
+   100px wide, so they become one column at full measure.
    ============================================================ */
 
 @media (max-width: 600px) {
-  .wideFigure,
-  .approach .wideFigure {
-    margin-top: var(--sp-md);
-    width: calc(100% + var(--shell-pad) * 2);
-    max-width: none;
-    margin-inline: calc(var(--shell-pad) * -1);
-  }
-
-  /* Headings and labels stay centred; the paragraphs go left, which is
-     the only way a four-line measure reads well on a phone. */
-  .introCopy,
-  .traceCopy,
-  .approachCopy {
-    text-align: left;
+  .verticals {
+    grid-template-columns: 1fr;
+    gap: var(--sp-sm);
+    width: min(100%, 420px);
   }
 }

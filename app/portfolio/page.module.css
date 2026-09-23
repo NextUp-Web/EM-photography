@@ -1,15 +1,18 @@
 /* ============================================================
-   PORTFOLIO — intro and closing band.
+   PORTFOLIO — intro, the opening photograph and the closing band.
    ============================================================ */
 
 .intro {
   padding-top: var(--section);
-  padding-bottom: var(--sp-xl);
+  padding-bottom: var(--sp-lg);
   text-align: center;
 }
 
+/* Still the page's largest type, but no longer a slab: the client asked
+   for something more elegant and less massive than the old title. */
 .title {
-  font-size: var(--fs-page-title);
+  font-size: clamp(1.9rem, 3.55vw, 3.25rem);
+  line-height: 1.16;
 }
 
 .subtitle {
@@ -22,6 +25,13 @@
 /* The desktop mockup sets these on one line; the phone breaks them. */
 .wide {
   display: none;
+}
+
+/* ---------- The opening photograph ---------- */
+
+.lead {
+  margin-top: var(--sp-lg);
+  padding-inline: var(--shell-pad);
 }
 
 /* ---------- Selected stories ---------- */
@@ -37,7 +47,6 @@
 }
 
 .storiesTitle {
-  margin-top: clamp(12px, 1.3vw, 20px);
   font-size: var(--fs-display);
 }
 
@@ -67,27 +76,42 @@
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(25, 24, 22, 0.42) 0%,
-    rgba(25, 24, 22, 0.2) 45%,
-    rgba(25, 24, 22, 0) 68%
+    rgba(25, 24, 22, 0.5) 0%,
+    rgba(25, 24, 22, 0.28) 42%,
+    rgba(25, 24, 22, 0) 70%
   );
   pointer-events: none;
 }
 
-.closingTitle {
+.closingInner {
   position: absolute;
-  left: calc(var(--shell-pad) + clamp(22px, 4vw, 62px));
+  left: calc(var(--shell-pad) + clamp(22px, 4vw, 66px));
   top: 50%;
   transform: translateY(-50%);
+  max-width: min(46%, 560px);
+}
+
+.closingTitle {
   font-size: var(--fs-banner);
+  line-height: 1.18;
   color: var(--warm-white);
   text-shadow: 0 1px 24px rgba(25, 24, 22, 0.36);
+}
+
+/* Transparent, white hairline, white caps — nothing opaque behind it. */
+.closingCta {
+  margin-top: clamp(20px, 2.2vw, 34px);
+  min-height: clamp(42px, 3.1vw, 52px);
+  padding: 13px clamp(24px, 2.3vw, 38px);
+  background: transparent;
+  border-color: rgba(250, 249, 246, 0.8);
+  color: var(--warm-white);
 }
 
 @media (max-width: 860px) {
   .intro {
     padding-top: var(--section);
-    padding-bottom: var(--sp-xl);
+    padding-bottom: var(--sp-md);
   }
 
   .title {
@@ -102,6 +126,12 @@
 
   .wide {
     display: inline;
+  }
+
+  /* The opening photograph runs edge to edge on a phone. */
+  .lead {
+    margin-top: var(--sp-md);
+    padding-inline: 0;
   }
 
   .stories {
@@ -124,18 +154,24 @@
   .closingFigure::after {
     background: linear-gradient(
       to bottom,
-      rgba(25, 24, 22, 0.05) 30%,
-      rgba(25, 24, 22, 0.38) 100%
+      rgba(25, 24, 22, 0.06) 26%,
+      rgba(25, 24, 22, 0.6) 100%
     );
   }
 
-  .closingTitle {
+  /* The block keeps its left reading on a phone too, set into the page
+     margin at the foot of the frame. */
+  .closingInner {
     left: 0;
     right: 0;
     top: auto;
-    bottom: clamp(24px, 8vw, 38px);
+    bottom: clamp(24px, 7vw, 40px);
     transform: none;
-    text-align: center;
+    max-width: none;
     padding-inline: var(--shell-pad);
+  }
+
+  .closingCta {
+    margin-top: clamp(16px, 4.5vw, 24px);
   }
 }

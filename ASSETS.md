@@ -1,11 +1,17 @@
 # Design source & photography assets
 
-The site reproduces four client mockups (Home / About / Portfolio / Contact,
-each showing a desktop and a phone screen). Those mockups are the source of
-truth for layout, copy, colour and type. Where the accompanying Word document
-("Contenu site web.docx") disagrees with a mockup, the mockup wins — for
-example the About headline reads *A quiet eye for what unfolds naturally* and
-the photographer is **Emma**.
+The site was first built from four client mockups (Home / About / Portfolio /
+Contact, each showing a desktop and a phone screen) and has since been revised
+against the client's own revision document, *Contenu site web.docx*. **That
+document is now the source of truth**: where it gives a text, a composition or
+a reference screenshot, it wins over the original mockups and over the older
+copy on the page.
+
+Two of its wordings are deliberate and must not be "corrected": the Home
+About block reads *A quiet eve for what unfolds naturally.* and the About page
+line reads *I'm Emma, the photograph behind EM Photography.* The About page's
+own headline keeps *A quiet eye for what unfolds naturally*, as its reference
+screenshot prints it. The photographer is **Emma**.
 
 ## How the design was measured
 
@@ -40,8 +46,13 @@ page's closing sign-off and as the favicon, never re-typed with a font.
 `em-logo-white.png` is the same lockup in white: it sets the home hero and the
 header while the header rides over that hero.
 
-Navigation is one burger on every platform, opening a full-screen panel —
-Home, Portfolio, About, Contact, in that order.
+Navigation splits by platform, as the revision document asks. Above 860px the
+four links are printed in the bar itself — Home, Portfolio, About, Contact —
+set in Bodoni Moda caps with wide tracking, white while the bar rides over the
+home hero and ink once it settles. At 860px and below they collapse back into
+the burger, a shade larger than before so it reads at the scale of the lockup
+beside it, and it opens the same four full-screen. The bar draws no rule of
+its own at any scroll position, on any page.
 
 ## Photography
 
@@ -54,12 +65,19 @@ leaves the file on disk untouched.
 
 The mockups were rendered with a photo set that is not in the repository, so
 each slot uses the closest existing frame of the same subject, orientation and
-light. Two are worth naming:
+light. Worth naming:
 
 - the Portfolio closing band is monochrome, where the mockup shows the same
   embrace in warm colour — only the monochrome original exists;
 - the Home *Selected stories* gallery counts to twelve, as the mockup's
-  `01 / 12` promises, by cycling the whole library three frames at a time.
+  `01 / 12` promises, by cycling the whole library three frames at a time;
+- the Home closing band (*Let's create something meaningful.*) and the Contact
+  closing frame are colour originals carrying the `bw` flag, because the
+  revision document asks for monochrome there and no monochrome original of
+  that subject exists;
+- the About page's Emma collage uses the three frames of her that exist —
+  `about/portrait`, `home/emra` and `about/hero` — one tall and dominant, two
+  smaller ones set above and across it.
 
 Dropping the original photographs in at the same paths replaces them without
 touching any code; the ratio each slot expects is written beside every
