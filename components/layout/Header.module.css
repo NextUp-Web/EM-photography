@@ -1,10 +1,37 @@
 /* ============================================================
-   Header — logo left, navigation right, a hairline beneath.
+   Header — the lockup on the left, one burger on the right,
+   on every platform. Over the home hero it is transparent.
    ============================================================ */
 
 .header {
-  position: relative;
-  z-index: 100;
+  z-index: 200;
+  width: 100%;
+  transition: background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+/* Home: rides over the full-bleed hero. The body is centred inside
+   --frame-max, so the bar is pinned to that frame, not to the viewport. */
+.floating {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: var(--frame-max);
+}
+
+/* Every other page: in the flow, and stays put while scrolling. */
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.overlay {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.solid {
   background: var(--color-page);
   border-bottom: 1px solid var(--hairline-soft);
 }
@@ -24,37 +51,47 @@
   flex: none;
 }
 
-.list {
-  display: flex;
+/* ---------- Burger ---------- */
+
+.toggle {
+  display: inline-flex;
   align-items: center;
-  gap: clamp(22px, 3.05vw, 44px);
-}
-
-.link {
-  display: inline-block;
-  font-family: var(--font-ui);
-  font-size: var(--fs-nav);
-  font-weight: 600;
-  letter-spacing: var(--ls-ui);
-  text-transform: uppercase;
+  justify-content: flex-end;
+  flex: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 0;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
   color: var(--color-ink);
-  padding-block: 8px;
-  border-bottom: 1px solid transparent;
-  transition: opacity var(--dur) var(--ease);
 }
 
-.link:hover,
-.link:focus-visible {
-  opacity: 0.6;
+.overlay .toggle {
+  color: var(--warm-white);
 }
 
-/* The mockups mark the current page with a rule directly under the word. */
-.linkActive {
-  border-bottom-color: var(--color-ink);
+/* Two rules, widely spaced — the quietest possible mark. */
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 9px;
 }
 
-@media (max-width: 860px) {
-  .nav {
-    display: none;
-  }
+.icon span {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease),
+    opacity var(--dur) var(--ease);
+}
+
+.iconOpen span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.iconOpen span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
 }

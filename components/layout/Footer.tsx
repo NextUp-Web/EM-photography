@@ -1,39 +1,37 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { COPYRIGHT_YEAR, NAV } from "@/lib/data";
+import Logo from "@/components/ui/Logo";
+import { InstagramGlyph } from "@/components/ui/SocialIcons";
+import {
+  COPYRIGHT_YEAR,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  NAV,
+} from "@/lib/data";
 import styles from "./Footer.module.css";
 
+/** Home is reached through the lockup above, so the row lists the other three. */
+const FOOTER_LINKS = NAV.filter((item) => item.href !== "/");
+
 /**
- * The mockups print two variants of the same footer: Home drops HOME from
- * the link row and spells the word Copyright; the other three keep all four
- * links and set the © sign.
+ * Everything on one centred axis: the lockup, the place-line, the three
+ * links, the Instagram mark and the copyright.
  */
 export default function Footer() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  const links = isHome ? NAV.filter((item) => item.href !== "/") : NAV;
-
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <div className={styles.brand}>
-          <p className={styles.name}>EM Photography</p>
-          <p className={styles.place}>
-            Based in Switzerland - available across Europe
-          </p>
-        </div>
+        <Link href="/" className={styles.brand} aria-label="EM Photography — home">
+          <Logo height="var(--footer-logo-h)" />
+        </Link>
+
+        <p className={styles.place}>
+          Based in Switzerland &mdash; available across Europe
+        </p>
 
         <nav className={styles.navWrap} aria-label="Footer">
           <ul className={styles.nav}>
-            {links.map((item, index) => (
-              <li key={item.href} className={styles.navItem}>
-                {index > 0 ? (
-                  <span className={styles.dot} aria-hidden="true">
-                    ·
-                  </span>
-                ) : null}
+            {FOOTER_LINKS.map((item) => (
+              <li key={item.href}>
                 <Link href={item.href} className={styles.navLink}>
                   {item.label}
                 </Link>
@@ -42,9 +40,17 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className={styles.legal}>
-          {isHome ? "Copyright" : "©"} {COPYRIGHT_YEAR} EM PHOTOGRAPHY
-        </p>
+        <a
+          className={styles.social}
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
+        >
+          <InstagramGlyph size={19} />
+        </a>
+
+        <p className={styles.legal}>&copy; {COPYRIGHT_YEAR} EM Photography</p>
       </div>
     </footer>
   );

@@ -1,51 +1,19 @@
-.root {
-  display: none;
-}
-
-.toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  border: 0;
-  background: transparent;
-  padding: 10px 0;
-  color: var(--color-ink);
-  cursor: pointer;
-  min-height: 44px;
-}
-
-.word {
-  font-family: var(--font-ui);
-  font-size: var(--fs-nav);
-  font-weight: 600;
-  letter-spacing: var(--ls-ui);
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.icon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 19px;
-  height: 11px;
-}
-
-.icon span {
-  display: block;
-  height: 1.5px;
-  background: currentColor;
-}
+/* ============================================================
+   Navigation panel — full screen, centred, warm white.
+   ============================================================ */
 
 .panel {
   position: fixed;
-  inset: var(--header-h) 0 0;
-  z-index: 90;
+  inset: 0;
+  z-index: 190;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xl);
   background: var(--color-page);
-  padding: clamp(34px, 11vw, 60px) var(--shell-pad) calc(var(--shell-pad) + 16px);
+  padding: calc(var(--header-h) + var(--sp-lg)) var(--shell-pad) var(--sp-lg);
+  text-align: center;
 }
 
 .panel[hidden] {
@@ -55,29 +23,31 @@
 .list {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vw, 38px);
 }
 
 .link {
-  display: block;
-  padding-block: 16px;
+  display: inline-block;
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  line-height: 1.25;
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.1;
   color: var(--color-ink);
-  border-bottom: 1px solid var(--hairline-soft);
+  padding-bottom: 6px;
+  border-bottom: 1px solid transparent;
+  transition: opacity var(--dur) var(--ease);
 }
 
-.link[aria-current="page"] {
+.link:hover,
+.link:focus-visible {
+  opacity: 0.55;
+}
+
+.linkActive {
   border-bottom-color: var(--color-ink);
 }
 
 .note {
-  margin-top: 32px;
   color: var(--color-quiet);
-}
-
-@media (max-width: 860px) {
-  .root {
-    display: block;
-  }
 }

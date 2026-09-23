@@ -20,16 +20,28 @@ from the phone screens.
 Palette, straight from the client: warm white `#FAF9F6`, ivory `#F4F1EB`,
 soft black `#191816`, warm grey `#AAA59D`.
 
-Type: **Playfair Display** for every headline and paragraph, **Montserrat**
-(600, widely tracked) for navigation, small labels, the form and the CTAs, and
-**Sacramento** for the handwritten signature on About. All three are loaded
-through `next/font/google`.
+Type, per the client's brief (`Polices.docx`): **Bodoni Moda** — a
+Didot-class editorial serif — for every headline, paragraph and button, in
+Regular and Italic; **Montserrat** (600, widely tracked) for the small
+uppercase titles, the navigation, the labels and the form; and **Sacramento**
+for the handwritten signature on About. All three are loaded through
+`next/font/google`.
+
+Spacing is no longer taken from the mockups. The client asked for a far
+slower rhythm, so every section is separated by the `--section` token
+(96–190px desktop, 76–112px phone) and nothing on the page touches anything
+else.
 
 ## The logo
 
 `public/brand/em-logo-black.png` is the client's own artwork — the interlocked
-EM monogram over PHOTOGRAPHY — and it is exactly the lockup the mockups print.
-It is used in the header and as the favicon, never re-typed with a font.
+EM monogram over PHOTOGRAPHY. It is used in the header, the footer, the home
+page's closing sign-off and as the favicon, never re-typed with a font.
+`em-logo-white.png` is the same lockup in white: it sets the home hero and the
+header while the header rides over that hero.
+
+Navigation is one burger on every platform, opening a full-screen panel —
+Home, Portfolio, About, Contact, in that order.
 
 ## Photography
 

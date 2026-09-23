@@ -1,26 +1,24 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/data";
 import styles from "./MobileMenu.module.css";
 
+type NavPanelProps = {
+  id: string;
+  open: boolean;
+  onClose: () => void;
+};
+
 /**
- * The phone mockups print the word MENU beside the rule icon on Home and
- * Contact, and the icon alone on About and Portfolio — reproduced here
- * rather than levelled out.
+ * The full-screen navigation the burger opens, on every platform:
+ * four links centred on warm white, the place-line beneath them.
  */
-const LABELLED = ["/", "/contact"];
-
-export default function MobileMenu() {
-  const [open, setOpen] = useState(false);
+export default function NavPanel({ id, open, onClose }: NavPanelProps) {
   const pathname = usePathname();
-  const panelId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
-  const labelled = LABELLED.includes(pathname);
-
-  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -29,7 +27,7 @@ export default function MobileMenu() {
     document.body.style.overflow = "hidden";
 
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     panelRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
@@ -38,60 +36,34 @@ export default function MobileMenu() {
       document.body.style.overflow = overflow;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, onClose]);
 
   return (
-    <div className={styles.root}>
-      <button
-        type="button"
-        className={styles.toggle}
-        aria-expanded={open}
-        aria-controls={panelId}
-        aria-label={open ? "Close menu" : "Open menu"}
-        onClick={() => setOpen((value) => !value)}
-      >
-        {labelled ? (
-          <span className={styles.word}>{open ? "Close" : "Menu"}</span>
-        ) : null}
-        <span className={styles.icon} aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </button>
+    <div id={id} ref={panelRef} className={styles.panel} hidden={!open}>
+      <nav aria-label="Primary">
+        <ul className={styles.list}>
+          {NAV.map((item) => {
+            const active =
+              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`${styles.link} ${active ? styles.linkActive : ""}`}
+                  aria-current={active ? "page" : undefined}
+                  onClick={onClose}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
 
-      <div
-        id={panelId}
-        ref={panelRef}
-        className={styles.panel}
-        hidden={!open}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) setOpen(false);
-        }}
-      >
-        <nav aria-label="Primary">
-          <ul className={styles.list}>
-            {NAV.map((item) => {
-              const active =
-                item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={styles.link}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <p className={`label ${styles.note}`}>
-          Based in Switzerland - available across Europe
-        </p>
-      </div>
+      <p className={`label ${styles.note}`}>
+        Based in Switzerland &mdash; available across Europe
+      </p>
     </div>
   );
 }

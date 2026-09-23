@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Figure from "@/components/ui/Figure";
+import Logo from "@/components/ui/Logo";
 import SelectedStories from "@/components/sections/SelectedStories";
-import { PHOTOS } from "@/lib/data";
+import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
+import {
+  HOME_CLOSING_STRIP,
+  INSTAGRAM_URL,
+  PHOTOS,
+  WHATSAPP_URL,
+} from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -12,31 +19,33 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero ---------- */}
+      {/* ---------- Hero — one full-screen photograph, nothing else ---------- */}
       <section className={styles.hero} aria-label="EM Photography">
         <Figure
           photo={PHOTOS.homeHero}
           ratio={2.22}
-          mobileRatio={1.12}
           sizes="100vw"
           priority
           className={styles.heroFigure}
         />
         <div className={styles.heroInner}>
-          <h1 className={styles.heroMark}>
-            <span className={styles.heroEm}>EM</span>
-            <span className={styles.heroWord}>Photography</span>
-          </h1>
+          <Logo
+            variant="white"
+            height="var(--hero-logo-h)"
+            priority
+            className={styles.heroLogo}
+          />
           <p className={styles.heroLine}>Switzerland based &middot; Europe</p>
           <p className={`${styles.heroLine} ${styles.heroTags}`}>
             <span className={styles.heroTag}>Weddings</span>
             <span className={styles.heroTag}>Couples</span>
-            <span className={styles.heroTag}>Personal stories</span>
+            <span className={styles.heroTag}>Love stories</span>
           </p>
-          <Link href="/contact" className={`cta-solid ${styles.heroCta}`}>
+          <Link href="/contact" className={`btn btn-light ${styles.heroCta}`}>
             Begin here
           </Link>
         </div>
+        <span className={styles.scrollCue} aria-hidden="true" />
       </section>
 
       {/* ---------- Philosophy ---------- */}
@@ -62,20 +71,20 @@ export default function HomePage() {
           <Figure
             photo={PHOTOS.philosophyOne}
             ratio={0.65}
-            mobileRatio={0.72}
-            sizes="(max-width: 860px) 32vw, 21vw"
+            mobileRatio={0.78}
+            sizes="(max-width: 860px) 100vw, 21vw"
           />
           <Figure
             photo={PHOTOS.philosophyTwo}
             ratio={0.65}
-            mobileRatio={0.72}
-            sizes="(max-width: 860px) 32vw, 21vw"
+            mobileRatio={0.78}
+            sizes="(max-width: 860px) 100vw, 21vw"
           />
           <Figure
             photo={PHOTOS.philosophyThree}
             ratio={0.65}
-            mobileRatio={0.72}
-            sizes="(max-width: 860px) 32vw, 21vw"
+            mobileRatio={0.78}
+            sizes="(max-width: 860px) 100vw, 21vw"
           />
         </div>
       </section>
@@ -87,10 +96,7 @@ export default function HomePage() {
             For those drawn to photographs that reveal more the longer you look.
           </p>
           <p className={`label ${styles.bandMeta}`}>
-            Documentary observation
-            <span className={`${styles.bandDot} ${styles.bandDotOne}`}>&middot;</span>
-            <br className={styles.bandBreak} /> Editorial sensibility{" "}
-            <span className={styles.bandDot}>&middot;</span> Quietly felt.
+            Documentary observation. Editorial sensibility. Quietly felt.
           </p>
         </div>
       </section>
@@ -119,9 +125,9 @@ export default function HomePage() {
       <section className={`shell ${styles.about}`} aria-labelledby="about-preview">
         <Figure
           photo={PHOTOS.aboutPortrait}
-          ratio={1.37}
-          mobileRatio={1.4}
-          sizes="(max-width: 860px) 45vw, 33vw"
+          ratio={0.92}
+          mobileRatio={1.2}
+          sizes="(max-width: 860px) 100vw, 33vw"
           className={styles.aboutPortrait}
         />
 
@@ -139,30 +145,66 @@ export default function HomePage() {
             happens in between. I&rsquo;m interested in what feels honest, instinctive
             and quietly meaningful.
           </p>
+          <Link href="/about" className={`btn btn-dark ${styles.aboutLink}`}>
+            More about me
+          </Link>
         </div>
-
-        <Link href="/about" className={`cta-underline ${styles.aboutLink}`}>
-          More about me
-          <span className="arrow" aria-hidden="true">
-            &#8594;
-          </span>
-        </Link>
       </section>
 
-      {/* ---------- Closing ---------- */}
+      {/* ---------- Closing — four frames, then the invitation ---------- */}
       <section className={styles.closing} aria-label="Get in touch">
-        <Figure
-          photo={PHOTOS.homeClosing}
-          ratio={4.15}
-          mobileRatio={1.87}
-          sizes="100vw"
-          className={styles.closingFigure}
-        />
-        <div className={styles.closingInner}>
-          <p className={`display ${styles.closingTitle}`}>Made to be felt again.</p>
-          <Link href="/contact" className={`cta-ghost ${styles.closingCta}`}>
-            Tell me your story.
+        <div className={styles.strip}>
+          {HOME_CLOSING_STRIP.map((photo) => (
+            <Figure
+              key={photo.src}
+              photo={photo}
+              ratio={0.67}
+              mobileRatio={0.67}
+              sizes="(max-width: 860px) 50vw, 25vw"
+            />
+          ))}
+        </div>
+
+        <div className={`band-ivory ${styles.quote}`}>
+          <p className={`display ${styles.quoteText}`}>
+            Documenting love in its softest form.
+          </p>
+        </div>
+
+        <div className={styles.enquire}>
+          <p className={`label ${styles.enquireLabel}`}>
+            Let&rsquo;s create something meaningful
+          </p>
+          <p className={`display ${styles.enquireTitle}`}>
+            Tell me where your story begins.
+          </p>
+          <Link href="/contact" className={`btn btn-dark ${styles.enquireCta}`}>
+            Enquire
           </Link>
+        </div>
+
+        <div className={styles.signoff}>
+          <Logo height="var(--signoff-logo-h)" className={styles.signoffLogo} />
+          <p className={styles.signoffLinks}>
+            <a
+              className={styles.signoffLink}
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <InstagramGlyph size={17} />
+              <span>Follow on Instagram</span>
+            </a>
+            <a
+              className={styles.signoffLink}
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <WhatsAppGlyph size={17} />
+              <span>WhatsApp</span>
+            </a>
+          </p>
         </div>
       </section>
     </>

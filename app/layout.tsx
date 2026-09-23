@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Montserrat, Playfair_Display, Sacramento } from "next/font/google";
+import { Bodoni_Moda, Montserrat, Sacramento } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
 import "./globals.css";
 
-/* The mockups are set in two families: a high-contrast editorial serif for
-   every headline and paragraph, and a geometric sans for navigation, small
-   labels and the form. The signature on About is a monoline script. */
-const playfair = Playfair_Display({
+/* The client's art direction, in two families: Bodoni Moda — a Didot-class
+   editorial serif — for every headline, paragraph and button, and Montserrat,
+   widely tracked, for the small uppercase labels and the navigation. The
+   signature on About stays a monoline script. */
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-playfair",
+  variable: "--font-bodoni",
 });
 
 const montserrat = Montserrat({
@@ -58,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${montserrat.variable} ${sacramento.variable}`}
+      className={`${bodoni.variable} ${montserrat.variable} ${sacramento.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">

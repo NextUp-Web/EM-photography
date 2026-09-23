@@ -3,8 +3,8 @@
    ============================================================ */
 
 .intro {
-  padding-top: clamp(34px, 4.4vw, 64px);
-  padding-bottom: clamp(20px, 2.6vw, 42px);
+  padding-top: var(--section);
+  padding-bottom: var(--sp-xl);
   text-align: center;
 }
 
@@ -28,7 +28,7 @@
 
 .closing {
   position: relative;
-  margin-top: var(--gap-img);
+  margin-top: var(--section);
   padding-inline: var(--shell-pad);
 }
 
@@ -61,8 +61,8 @@
 
 @media (max-width: 860px) {
   .intro {
-    padding-top: clamp(30px, 9.5vw, 46px);
-    padding-bottom: clamp(16px, 5vw, 26px);
+    padding-top: var(--section);
+    padding-bottom: var(--sp-xl);
   }
 
   .title {
@@ -80,7 +80,7 @@
   }
 
   .closing {
-    margin-top: clamp(16px, 5vw, 24px);
+    margin-top: var(--section);
     padding-inline: 0;
   }
 

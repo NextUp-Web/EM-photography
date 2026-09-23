@@ -163,13 +163,10 @@ export default function ContactForm() {
       <div className={styles.actions}>
         <button
           type="submit"
-          className={`cta-underline ${styles.submit}`}
+          className={`btn btn-dark ${styles.submit}`}
           disabled={status === "sending"}
         >
           {status === "sending" ? "Sending" : "Send inquiry"}
-          <span className="arrow" aria-hidden="true">
-            &#8594;
-          </span>
         </button>
 
         <p className={styles.status} role="status" aria-live="polite">

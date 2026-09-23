@@ -1,10 +1,10 @@
 export type NavItem = { label: string; href: string };
 
-/** Public navigation — Home / About / Portfolio / Contact, nothing else. */
+/** Public navigation — Home / Portfolio / About / Contact, in that order. */
 export const NAV: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -335,3 +335,48 @@ export const INTERESTS = [
 export const CONTACT_EMAIL = "contact@em-photography.ch";
 export const SITE_URL = "https://em-photography.ch";
 export const COPYRIGHT_YEAR = 2026;
+
+/* ------------------------------------------------------------------
+   Home — closing strip
+
+   Four vertical frames, nothing printed over them.
+   ------------------------------------------------------------------ */
+
+export const HOME_CLOSING_STRIP: Photo[] = [
+  {
+    src: `${V3}/home/story-embrace.webp`,
+    alt: "The couple forehead to forehead beneath the veil",
+    position: "center 38%",
+  },
+  {
+    src: `${V3}/portfolio/pair-veil.webp`,
+    alt: "The veil lifted and lit from behind under a stone loggia",
+    position: "center 42%",
+    bw: true,
+  },
+  {
+    src: `${V3}/home/story-lead.webp`,
+    alt: "A bride at the balustrade looking out over the lake",
+    position: "center 45%",
+  },
+  {
+    src: `${V3}/portfolio/detail-note.webp`,
+    alt: "Candlelight along the dinner table, white roses and a handwritten card",
+    position: "center 50%",
+  },
+];
+
+/* ------------------------------------------------------------------
+   Social
+
+   >>> The two values below are placeholders. Replace the handle and the
+   >>> phone number with the client's own and nothing else needs touching:
+   >>> every Instagram and WhatsApp link on the site reads from here.
+   ------------------------------------------------------------------ */
+
+export const INSTAGRAM_HANDLE = "emphotography";
+export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
+
+/** International format, digits only — wa.me refuses anything else. */
+export const WHATSAPP_NUMBER = "41790000000";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
