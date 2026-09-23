@@ -73,7 +73,8 @@
 }
 
 .bandTitle {
-  font-size: var(--fs-display);
+  font-size: var(--fs-band);
+  text-wrap: balance;
 }
 
 .bandMeta {

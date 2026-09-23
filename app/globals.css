@@ -72,8 +72,8 @@
   --shell-pad: clamp(24px, 5vw, 96px);
   --gap-img: clamp(8px, 1.1vw, 16px);
 
-  --header-h: 86px;
-  --logo-h: 50px;
+  --header-h: 96px;
+  --logo-h: 64px;
 
   /* Vertical rhythm — the site should breathe, never compress. */
   --sp-2xs: clamp(12px, 1.2vw, 18px);
@@ -92,8 +92,8 @@
 
 @media (max-width: 860px) {
   :root {
-    --header-h: 68px;
-    --logo-h: 40px;
+    --header-h: 78px;
+    --logo-h: 52px;
     --gap-img: 10px;
     --shell-pad: 26px;
 
@@ -102,9 +102,11 @@
     --fs-page-title: clamp(1.9rem, 9.4vw, 2.6rem);
     --fs-lg: clamp(1.6rem, 7.6vw, 2.1rem);
     --fs-display-lg: clamp(1.7rem, 8.5vw, 2.25rem);
-    --fs-display: clamp(1.65rem, 8.2vw, 2.2rem);
-    --fs-display-sm: clamp(1.6rem, 7.9vw, 2.1rem);
-    --fs-band: clamp(1.2rem, 5.6vw, 1.55rem);
+    /* The section titles come down a notch and the ivory statements go up,
+       so the statement carries the page and the titles sit under it. */
+    --fs-display: clamp(1.5rem, 7.1vw, 1.95rem);
+    --fs-display-sm: clamp(1.45rem, 6.9vw, 1.9rem);
+    --fs-band: clamp(1.2rem, 6.6vw, 1.9rem);
     --fs-banner: clamp(1.5rem, 7.6vw, 2rem);
     --fs-divider: clamp(1.15rem, 6vw, 1.5rem);
     --fs-story-name: clamp(1rem, 5vw, 1.3rem);

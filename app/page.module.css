@@ -43,7 +43,6 @@
 }
 
 .heroInner {
-  --hero-logo-h: clamp(96px, 11vw, 168px);
   position: absolute;
   inset: 0;
   display: flex;
@@ -70,14 +69,24 @@
   pointer-events: none;
 }
 
-.heroLogo,
+.heroWordmark,
 .heroLine,
 .heroCta {
   position: relative;
 }
 
-.heroLogo {
-  filter: drop-shadow(0 2px 26px rgba(25, 24, 22, 0.5));
+/* The name, set in Bodoni Moda caps and held on a single line at every
+   width — the size is tied to the viewport so it can never wrap. */
+.heroWordmark {
+  font-size: clamp(1.3rem, 6.8vw, 4.4rem);
+  letter-spacing: 0.15em;
+  /* the tracking is added after the last letter too, so the line recentres */
+  text-indent: 0.15em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--warm-white);
+  text-shadow: 0 2px 26px rgba(25, 24, 22, 0.5);
 }
 
 .heroLine {
@@ -95,11 +104,13 @@
   margin-top: clamp(10px, 1vw, 16px);
 }
 
+/* Weddings · Couples · Love stories — one line, never broken. */
 .heroTags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: baseline;
+  white-space: nowrap;
 }
 
 .heroTag + .heroTag::before {
@@ -150,16 +161,20 @@
   text-align: center;
 }
 
+/* The statement is balanced rather than ragged, so no line is left
+   holding a single word. */
 .bandTitle {
   font-size: var(--fs-band);
   max-width: 42ch;
   margin-inline: auto;
+  text-wrap: balance;
 }
 
 .bandMeta {
   margin-top: var(--sp-sm);
   letter-spacing: var(--ls-wide);
   color: var(--color-meta);
+  text-wrap: balance;
 }
 
 /* ---------- Selected stories ---------- */
@@ -258,6 +273,7 @@
   font-size: var(--fs-band);
   max-width: 32ch;
   margin-inline: auto;
+  text-wrap: balance;
 }
 
 .enquire {
@@ -287,17 +303,15 @@
    ============================================================ */
 
 @media (max-width: 860px) {
-  .heroInner {
-    --hero-logo-h: clamp(92px, 26vw, 128px);
+  /* The three words have to hold one line on a phone, so the tracking
+     closes up rather than the line breaking. */
+  .heroTags {
+    font-size: min(0.72rem, 2.7vw);
+    letter-spacing: 0.16em;
   }
 
-  .heroTag:last-child {
-    flex-basis: 100%;
-    margin-top: 6px;
-  }
-
-  .heroTag:last-child::before {
-    content: none;
+  .heroTag + .heroTag::before {
+    padding-inline: 0.55em;
   }
 
   /* Text first, then image 1, image 2, image 3 — everything centred. */
@@ -326,6 +340,17 @@
   .aboutCopy {
     margin-inline: auto;
     max-width: 40ch;
+  }
+
+  /* Philosophy reads from the left margin on a phone, label, title and
+     paragraph together. */
+  .philosophy {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .philosophyCopy {
+    margin-inline: 0;
   }
 
   .philosophyFrames {

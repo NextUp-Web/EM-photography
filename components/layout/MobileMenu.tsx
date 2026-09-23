@@ -63,9 +63,15 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
       </nav>
 
       <div className={styles.foot}>
-        <p className={`label ${styles.note}`}>
-          Based in Switzerland &mdash; available across Europe
+        {/* The same place-line as the foot of the site, on two lines. */}
+        <p className={styles.note}>
+          <span>Wedding &amp; couple photographer</span>
+          <span className={styles.dot} aria-hidden="true">
+            &middot;
+          </span>
+          <span>Based in Switzerland</span>
         </p>
+        <p className={styles.availability}>Available across Europe</p>
 
         {/* The two marks sit directly under the place-line, at the same
             weight as everything else on the panel. */}

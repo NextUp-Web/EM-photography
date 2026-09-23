@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Figure from "@/components/ui/Figure";
-import Logo from "@/components/ui/Logo";
 import SelectedStories from "@/components/sections/SelectedStories";
 import { HOME_CLOSING_STRIP, PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
@@ -23,12 +22,9 @@ export default function HomePage() {
           className={styles.heroFigure}
         />
         <div className={styles.heroInner}>
-          <Logo
-            variant="white"
-            height="var(--hero-logo-h)"
-            priority
-            className={styles.heroLogo}
-          />
+          {/* The hero carries the name as type, on one line — the lockup
+              stays in the bar above. */}
+          <p className={`display ${styles.heroWordmark}`}>EM Photography</p>
           <p className={styles.heroLine}>Switzerland based &middot; Europe</p>
           <p className={`${styles.heroLine} ${styles.heroTags}`}>
             <span className={styles.heroTag}>Weddings</span>

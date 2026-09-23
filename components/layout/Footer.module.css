@@ -57,6 +57,26 @@
   line-height: 1.7;
 }
 
+/* ============================================================
+   Phone — the trade and the country hold one line, so the type
+   and the tracking close up rather than the line breaking.
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .place,
+  .availability {
+    font-size: min(0.65rem, 2.15vw);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .place {
+    /* the three spans stay on the row rather than wrapping off it */
+    flex-wrap: nowrap;
+    gap: 0 0.5em;
+  }
+}
+
 .navWrap {
   margin-top: var(--sp-md);
 }

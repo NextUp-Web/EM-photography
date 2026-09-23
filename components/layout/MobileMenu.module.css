@@ -10,7 +10,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--sp-xl);
+  /* A clear breath between the last link and the place-line. */
+  gap: clamp(96px, 17vh, 180px);
   background: var(--color-page);
   padding: calc(var(--header-h) + var(--sp-lg)) var(--shell-pad) var(--sp-lg);
   text-align: center;
@@ -54,8 +55,49 @@
   align-items: center;
 }
 
-.note {
+/* Montserrat caps, the same voice as the foot of the site, held on one
+   line at every width. */
+.note,
+.availability {
+  font-family: var(--font-ui);
+  font-size: var(--fs-ui-sm);
+  letter-spacing: var(--ls-ui);
+  line-height: 1.7;
+  text-transform: uppercase;
+  white-space: nowrap;
   color: var(--color-quiet);
+}
+
+.note {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 0.6em;
+  font-weight: 500;
+  color: var(--color-meta);
+}
+
+.availability {
+  margin-top: 0.45em;
+  font-weight: 400;
+}
+
+.dot {
+  color: var(--color-quiet);
+}
+
+/* Phone — the line closes up rather than breaking. */
+@media (max-width: 860px) {
+  .note,
+  .availability {
+    font-size: min(0.65rem, 2.15vw);
+    letter-spacing: 0.06em;
+  }
+
+  .note {
+    gap: 0 0.5em;
+  }
 }
 
 /* Instagram and WhatsApp, side by side beneath the place-line — small,
