@@ -37,23 +37,32 @@
     Georgia, serif;
   --font-ui: var(--font-montserrat), "Montserrat", "Avenir Next",
     "Helvetica Neue", Arial, sans-serif;
-  --font-script: var(--font-sacramento), "Sacramento", cursive;
 
   /* Display scale. */
-  --fs-hero-tag: clamp(0.7rem, 1.05vw, 0.95rem); /* hero sub-line */
+  /* Hero sub-lines. Measured off the client's hero reference, where the
+     two tracked lines set at ~1.5% of the frame's width. */
+  --fs-hero-tag: clamp(0.72rem, 1.57vw, 1.45rem);
   --fs-xl: clamp(2.3rem, 4.35vw, 4rem); /* About headline */
   --fs-page-title: clamp(2.1rem, 4.8vw, 4.4rem); /* Portfolio, Contact */
   --fs-lg: clamp(2rem, 4.3vw, 3.9rem); /* About statements */
   --fs-display-lg: clamp(1.9rem, 3.75vw, 3.4rem); /* Contact column */
-  --fs-display: clamp(1.8rem, 3vw, 2.8rem); /* Home sections */
-  --fs-display-sm: clamp(1.7rem, 2.75vw, 2.55rem); /* About preview */
+  /* Section titles. The client's Philosophy and "More than a record"
+     references both set these at ~4.2% of the frame's width. */
+  --fs-display: clamp(1.9rem, 3.75vw, 3.6rem);
+  /* Kept in the same proportion to --fs-display as before, so the home
+     page's About block still reads a step under its neighbours rather
+     than half their size. */
+  --fs-display-sm: clamp(1.8rem, 3.44vw, 3.3rem);
   --fs-band: clamp(1.55rem, 2.45vw, 2.3rem); /* ivory statements */
   --fs-banner: clamp(1.6rem, 2.92vw, 2.65rem); /* text on photography */
   --fs-divider: clamp(1.4rem, 2.68vw, 2.4rem);
   --fs-story-name: clamp(1.15rem, 1.9vw, 1.72rem);
 
-  --fs-lede: clamp(1rem, 1.78vw, 1.62rem);
-  --fs-body: clamp(0.95rem, 1.33vw, 1.22rem);
+  /* Sub-heads and body copy, both measured off the references: the
+     Philosophy sub-lines set at ~2.15% of the frame, its paragraph and
+     the Observe / Guide / Preserve paragraphs at ~1.55%. */
+  --fs-lede: clamp(1rem, 1.9vw, 1.72rem);
+  --fs-body: clamp(0.95rem, 1.55vw, 1.4rem);
   --fs-ui: clamp(0.6875rem, 1.02vw, 0.92rem); /* labels, form, filters */
   --fs-nav: clamp(0.6875rem, 0.93vw, 0.85rem); /* navigation */
   --fs-ui-sm: clamp(0.625rem, 0.95vw, 0.86rem); /* footer metadata */

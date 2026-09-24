@@ -13,6 +13,12 @@ type LogoProps = {
   shape?: "lockup" | "mark";
   /** CSS height; defaults to the header token */
   height?: string;
+  /**
+   * The width the lockup is actually drawn at, for the browser to pick a
+   * source from. The footer prints it several times larger than the bar
+   * does, and the default would leave it soft there.
+   */
+  sizes?: string;
   priority?: boolean;
   className?: string;
 };
@@ -24,6 +30,7 @@ export default function Logo({
   variant = "black",
   shape = "lockup",
   height,
+  sizes = "120px",
   priority = false,
   className,
 }: LogoProps) {
@@ -39,7 +46,7 @@ export default function Logo({
         width={width}
         height={intrinsicHeight}
         priority={priority}
-        sizes="120px"
+        sizes={sizes}
         className={styles.image}
       />
     </span>

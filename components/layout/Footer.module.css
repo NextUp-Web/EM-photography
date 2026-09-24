@@ -8,7 +8,9 @@
    ============================================================ */
 
 .footer {
-  --footer-logo-h: clamp(84px, 10vw, 150px);
+  /* Measured off the reference, where the lockup stands 14% of the
+     frame's width tall — it is meant to dominate the foot of the page. */
+  --footer-logo-h: clamp(96px, 14vw, 220px);
   background: var(--color-page);
 }
 
@@ -54,7 +56,8 @@
   grid-column: 1;
   justify-self: start;
   font-family: var(--font-display);
-  font-size: clamp(0.88rem, 1.13vw, 1.04rem);
+  /* the reference holds this on one line, at ~1.02% of the frame */
+  font-size: clamp(0.82rem, 1.02vw, 0.96rem);
   line-height: 1.6;
   color: var(--color-body);
 }
@@ -78,12 +81,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
-  gap: clamp(22px, 3.2vw, 52px);
+  /* the reference sets the four links at ~0.79% of the frame, 2.93%
+     apart, which is what leaves the mention beside them its one line */
+  gap: clamp(20px, 2.93vw, 46px);
 }
 
 .navLink {
   font-family: var(--font-display);
-  font-size: var(--fs-nav);
+  font-size: clamp(0.64rem, 0.79vw, 0.82rem);
   font-weight: 400;
   letter-spacing: 0.24em;
   text-indent: 0.24em;

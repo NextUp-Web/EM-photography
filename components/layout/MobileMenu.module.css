@@ -87,15 +87,19 @@
   color: var(--color-quiet);
 }
 
-/* Phone — the line closes up rather than breaking. */
+/* Phone. The line used to shrink to whatever held it on one row, which
+   on a 375px screen meant 8px type. It keeps a legible size instead and
+   is allowed to break onto a second line when it no longer fits. */
 @media (max-width: 860px) {
   .note,
   .availability {
-    font-size: min(0.65rem, 2.15vw);
+    font-size: 0.65rem;
     letter-spacing: 0.06em;
+    white-space: normal;
   }
 
   .note {
+    flex-wrap: wrap;
     gap: 0 0.5em;
   }
 }

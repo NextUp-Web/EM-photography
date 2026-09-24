@@ -18,8 +18,11 @@
   text-align: center;
 }
 
+/* The reference sets this title a little over three times the size of
+   the paragraph beneath it; at the body size this page uses, that is
+   ~4.8% of the frame. */
 .title {
-  font-size: clamp(2rem, 3.9vw, 3.6rem);
+  font-size: clamp(1.95rem, 4.8vw, 4.4rem);
   line-height: 1.16;
 }
 

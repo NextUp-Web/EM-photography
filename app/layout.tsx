@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Montserrat, Sacramento } from "next/font/google";
+import { Bodoni_Moda, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
@@ -7,8 +7,12 @@ import "./globals.css";
 
 /* The client's art direction, in two families: Bodoni Moda — a Didot-class
    editorial serif — for every headline, paragraph and button, and Montserrat,
-   widely tracked, for the small uppercase labels and the navigation. The
-   signature on About stays a monoline script. */
+   widely tracked, for the small uppercase labels and the navigation.
+
+   The monoline script that used to set the About signature is no longer
+   loaded: the revision document replaces that opening, and nothing on the
+   site is set in it. Leaving it registered cost a 23 KB preload on every
+   page for a face that never rendered. */
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -22,13 +26,6 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600"],
   display: "swap",
   variable: "--font-montserrat",
-});
-
-const sacramento = Sacramento({
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-  variable: "--font-sacramento",
 });
 
 const FAVICON = "/brand/em-logo-black.png";
@@ -59,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${montserrat.variable} ${sacramento.variable}`}
+      className={`${bodoni.variable} ${montserrat.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">

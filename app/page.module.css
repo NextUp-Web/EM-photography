@@ -42,6 +42,8 @@
   pointer-events: none;
 }
 
+/* The reference prints the wordmark all but edge to edge, so the hero
+   keeps a far narrower gutter than the rest of the page. */
 .heroInner {
   position: absolute;
   inset: 0;
@@ -49,7 +51,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding: calc(var(--header-h) + var(--sp-md)) var(--shell-pad)
+  padding: calc(var(--header-h) + var(--sp-md)) clamp(12px, 1.6vw, 24px)
     clamp(44px, 6vw, 96px);
   text-align: center;
   color: var(--warm-white);
@@ -76,10 +78,12 @@
 }
 
 /* The name, set in Bodoni Moda caps and held on a single line at every
-   width. The reference prints it nearly the full measure of the frame,
-   so the size is tied to the viewport and the tracking kept open. */
+   width. Measured off the reference: the string runs to ~96% of the
+   frame, which at this tracking is a size of 8.6vw. The `min()` caps it
+   at the --frame-max the body is centred inside, so the line can never
+   grow past the page on a very wide screen. */
 .heroWordmark {
-  font-size: clamp(1.05rem, 7.2vw, 7rem);
+  font-size: min(8.6vw, 151px);
   letter-spacing: 0.1em;
   /* the tracking is added after the last letter too, so the line recentres */
   text-indent: 0.1em;
@@ -91,7 +95,7 @@
 }
 
 .heroLine {
-  margin-top: clamp(18px, 2.1vw, 34px);
+  margin-top: clamp(20px, 4.6vw, 86px);
   font-family: var(--font-ui);
   font-size: var(--fs-hero-tag);
   font-weight: 500;
@@ -102,7 +106,7 @@
 }
 
 .heroLine + .heroLine {
-  margin-top: clamp(9px, 0.95vw, 15px);
+  margin-top: clamp(10px, 1.5vw, 28px);
 }
 
 /* Weddings · Couples · Love stories — one line, never broken. */
@@ -114,24 +118,32 @@
   white-space: nowrap;
 }
 
-.heroTag + .heroTag::before {
-  content: "·";
-  padding-inline: 0.8em;
+.heroTag {
+  padding-inline: 0.52em;
 }
 
-/* A hairline rectangle and nothing more, as the reference prints it. */
+/* A hairline rectangle and nothing more, as the reference prints it —
+   but at the reference's size: ~5.6vw tall, ~4.3vw of padding either
+   side, its label set in the serif at ~1.5vw with open tracking. */
 .heroCta {
-  margin-top: clamp(26px, 3vw, 46px);
-  min-height: clamp(42px, 3.1vw, 52px);
-  padding: 13px clamp(26px, 2.4vw, 40px);
+  margin-top: clamp(24px, 4.4vw, 82px);
+  min-height: clamp(46px, 5.6vw, 104px);
+  padding: 0 clamp(26px, 4.3vw, 80px);
+  font-size: clamp(0.78rem, 1.5vw, 1.4rem);
+  letter-spacing: 0.25em;
+  text-indent: 0.25em;
   border-color: rgba(250, 249, 246, 0.66);
 }
 
 /* ---------- Philosophy ---------- */
 
+/* Columns measured off the reference, where "words cannot hold." fills
+   the text column exactly: at this size that is 37 parts of the spread
+   against the collage's 57, with 6 between them. A narrower column
+   breaks the title onto a third line the reference does not have. */
 .philosophy {
   display: grid;
-  grid-template-columns: 34fr 8fr 58fr;
+  grid-template-columns: 37fr 6fr 57fr;
   align-items: center;
   /* The client asked for far more air between the hero and what follows. */
   padding-top: var(--section);
@@ -167,25 +179,29 @@
   grid-column: 3;
 }
 
+/* Every figure below is placed at the fraction of the collage the
+   reference measures it at: the tall frame holds 55% of the width, the
+   smaller one starts at 62.6% and the overlapping one at 57.9%, which is
+   what puts it across the other two. */
 .frameMain {
-  width: 51.5%;
+  width: 55%;
 }
 
 .frameTop {
   position: absolute;
-  left: 58.5%;
-  top: 1%;
-  width: 35%;
+  left: 62.6%;
+  top: 0.9%;
+  width: 37.4%;
 }
 
 /* The overlapping frame keeps a hairline of page around it, which is what
    lets it read as laid over the others — no card, no shadow, no radius. */
 .frameOverMat {
   position: absolute;
-  left: 54.5%;
+  left: 57.9%;
   top: 37%;
-  width: 31%;
-  padding: clamp(5px, 0.62vw, 11px);
+  width: 32.8%;
+  padding: clamp(4px, 0.49vw, 9px);
   background: var(--color-page);
 }
 
@@ -195,22 +211,26 @@
 
 /* ---------- Ivory statement ---------- */
 
-/* Centred on both axes, with a great deal of room around it. */
+/* Centred on both axes. The reference crop is a little over half as tall
+   as it is wide and the statement sits dead centre in it, so the band is
+   given that height rather than just padding. */
 .band {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(330px, 40vw, 540px);
+  min-height: clamp(340px, 48vw, 760px);
   padding-block: var(--sp-xl);
   text-align: center;
 }
 
-/* Wide enough that the two lines the brief prints are the two lines the
-   page sets — the break is the one in the markup, never a wrap. */
+/* Sized off the reference: the first line runs to 75% of the frame,
+   which at this measure is 5.1% of its width. Wide enough that the two
+   lines the brief prints are the two the page sets — the break is the
+   one in the markup, never a wrap. */
 .bandTitle {
-  font-size: clamp(1.75rem, 3.5vw, 3.15rem);
-  line-height: 1.24;
-  max-width: 40ch;
+  font-size: clamp(1.75rem, 4.47vw, 4.2rem);
+  line-height: 1.15;
+  max-width: none;
   margin-inline: auto;
 }
 
@@ -219,8 +239,11 @@
   display: block;
 }
 
+/* The reference sets this line at ~1.5% of the frame, a little under a
+   third of the statement above it, and drops it ~4.9% below it. */
 .bandMeta {
-  margin-top: clamp(20px, 2.4vw, 38px);
+  margin-top: clamp(22px, 4.9vw, 86px);
+  font-size: clamp(0.72rem, 1.66vw, 1.55rem);
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   color: var(--color-meta);
@@ -228,9 +251,11 @@
 
 /* ---------- Selected stories ---------- */
 
+/* The column is wide enough to hold the four lines the document prints,
+   and no wider. */
 .stories {
   display: grid;
-  grid-template-columns: 34fr 8fr 58fr;
+  grid-template-columns: 42fr 6fr 52fr;
   align-items: center;
   padding-top: var(--section);
   padding-bottom: var(--section);
@@ -245,11 +270,14 @@
   font-size: var(--fs-display);
 }
 
-/* The measure is held short on purpose: the paragraph should break into
-   four short lines, not run the width of the column. */
+/* The document sets this paragraph on four given lines. 22em is the one
+   measure that produces exactly those breaks: the longest of the four
+   runs to 21.3em, and the next word up would need 22.8em. Expressed in
+   em, it holds at every viewport, because the measure then scales with
+   the type. */
 .storiesCopy {
   margin-top: var(--sp-sm);
-  max-width: 40ch;
+  max-width: 22em;
 }
 
 .storiesFrames {
@@ -321,7 +349,7 @@
 
 /* The sentence holds one line on the desktop, as the reference prints it. */
 .quoteText {
-  font-size: clamp(1.7rem, 3.3vw, 3rem);
+  font-size: clamp(1.45rem, 2.57vw, 2.4rem);
   line-height: 1.24;
   max-width: 46ch;
   margin-inline: auto;
@@ -345,57 +373,44 @@
   margin-top: var(--section);
 }
 
+/* No shade is laid over this photograph. The reference prints the white
+   type straight onto the frame, and the monochrome original is dark
+   exactly where the type sits. */
 .bannerFigure {
   background: var(--soft-black);
 }
 
-/* Weighted to the left, where the type sits. */
-.bannerFigure::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(25, 24, 22, 0.52) 0%,
-    rgba(25, 24, 22, 0.3) 38%,
-    rgba(25, 24, 22, 0) 66%
-  );
-  pointer-events: none;
-}
-
+/* The reference sets the block 5.1% in from the left edge and centres it
+   on the frame. */
 .bannerInner {
   position: absolute;
-  left: clamp(24px, 6vw, 112px);
+  left: 5.1%;
   top: 50%;
   transform: translateY(-50%);
-  max-width: min(46%, 640px);
+  max-width: 46%;
   color: var(--warm-white);
 }
 
+/* Measured off the reference: caps at ~5.7% of the frame's width, set
+   almost solid, the last word italic. */
 .bannerTitle {
-  font-size: clamp(1.9rem, 4.4vw, 4rem);
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 5.72vw, 5.3rem);
+  line-height: 1.02;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--warm-white);
-  text-shadow: 0 1px 26px rgba(25, 24, 22, 0.4);
+  text-shadow: 0 1px 26px rgba(25, 24, 22, 0.32);
 }
 
 .bannerEm {
   font-style: italic;
 }
 
-.bannerMeta {
-  margin-top: clamp(14px, 1.6vw, 24px);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  color: rgba(250, 249, 246, 0.92);
-}
-
 .bannerCta {
-  margin-top: clamp(22px, 2.4vw, 38px);
-  min-height: clamp(42px, 3.1vw, 52px);
-  padding: 13px clamp(26px, 2.4vw, 40px);
+  margin-top: clamp(20px, 3.4vw, 60px);
+  min-height: clamp(42px, 4.3vw, 76px);
+  padding: 0 clamp(24px, 3.2vw, 56px);
+  font-size: clamp(0.76rem, 1.25vw, 1.15rem);
   border-color: rgba(250, 249, 246, 0.72);
 }
 
@@ -404,6 +419,13 @@
    ============================================================ */
 
 @media (max-width: 860px) {
+  /* The wordmark holds one line down to a 320px screen: at this tracking
+     the string is 11.09em, so 8.25% of the viewport is the largest size
+     that still clears the hero's gutter. */
+  .heroWordmark {
+    font-size: 8.25vw;
+  }
+
   /* The three words have to hold one line on a phone, so the tracking
      closes up rather than the line breaking. */
   .heroTags {
@@ -411,8 +433,8 @@
     letter-spacing: 0.16em;
   }
 
-  .heroTag + .heroTag::before {
-    padding-inline: 0.55em;
+  .heroTag {
+    padding-inline: 0.34em;
   }
 
   /* Text first, then image 1, image 2, image 3 — everything centred. */
@@ -470,7 +492,10 @@
 
   .frameTop,
   .frameOverMat {
-    position: static;
+    /* relative, never static: `fill` images are absolute, so a static
+       frame would hand them the collage as their containing block and
+       every photograph would stretch across the whole block. */
+    position: relative;
     width: 100%;
     left: auto;
     top: auto;
@@ -520,35 +545,38 @@
     max-width: 30ch;
   }
 
-  /* The banner text moves off the left edge and sits over the foot of the
-     photograph, where the frame is darkest. */
+  /* The phone keeps the reference's reading — type at the left of the
+     frame, vertically centred — rather than dropping it to the foot. The
+     crop is pulled towards the groom's side so the dark of the suit sits
+     under the type, and a restrained shade is laid over that side only.
+     The desktop carries no shade: this one exists because the brief asks
+     in so many words for the sentence to stay legible on a phone, where
+     the frame is cropped far tighter than the reference's. */
+  .bannerFigure img {
+    object-position: 34% 42% !important;
+  }
+
   .bannerFigure::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
-      to bottom,
-      rgba(25, 24, 22, 0.05) 18%,
-      rgba(25, 24, 22, 0.4) 58%,
-      rgba(25, 24, 22, 0.74) 100%
+      to right,
+      rgba(25, 24, 22, 0.44) 0%,
+      rgba(25, 24, 22, 0.22) 56%,
+      rgba(25, 24, 22, 0) 88%
     );
+    pointer-events: none;
   }
 
   .bannerInner {
-    left: 0;
-    right: 0;
-    top: auto;
-    bottom: clamp(26px, 7vw, 46px);
-    transform: none;
+    left: var(--shell-pad);
+    right: var(--shell-pad);
     max-width: none;
-    padding-inline: var(--shell-pad);
-    text-align: center;
   }
 
   .bannerTitle {
-    font-size: clamp(1.5rem, 8vw, 2.2rem);
-  }
-
-  .bannerMeta {
-    font-size: min(0.68rem, 2.6vw);
-    letter-spacing: 0.2em;
+    font-size: clamp(1.5rem, 8.4vw, 2.3rem);
   }
 
   .bannerCta {

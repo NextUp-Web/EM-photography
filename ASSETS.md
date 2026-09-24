@@ -13,6 +13,39 @@ line reads *I'm Emma, the photograph behind EM Photography.* The About page's
 own headline keeps *A quiet eye for what unfolds naturally*, as its reference
 screenshot prints it. The photographer is **Emma**.
 
+## How the type is sized
+
+Nothing below is a guess either. Each of the revision document's captures
+was measured — the pixel width of a printed line, divided by the width of
+that same string set in the live fonts — which gives the size the client's
+reference actually uses, expressed as a percentage of the frame's width.
+Those percentages are what the `vw` values in `globals.css` and the page
+stylesheets carry. The main ones, at the width each reference was read at:
+
+| element | reference | set at |
+| --- | --- | --- |
+| hero wordmark | 8.65% | 8.6vw (8.25vw on a phone, so it holds one line to 320px) |
+| hero sub-lines | 1.57% | 1.57vw |
+| hero button label | 1.51% | 1.5vw |
+| section titles | 3.75% | 3.75vw |
+| section sub-heads | 1.90% | 1.9vw |
+| body copy | 1.45–1.71% | 1.55vw |
+| home ivory statement | 4.47% | 4.47vw |
+| closing band caps | 5.72% | 5.72vw |
+| About heading | 5.45% | 5.45vw |
+| About ivory statement | 3.87% | 3.87vw |
+| Observe / Guide / Preserve | 3.56% | 3.56vw |
+| footer lockup height | 14% | 14vw |
+
+Every `vw` above carries a `clamp()` floor as well, so a phone never
+inherits a desktop percentage — an early cut of this work did, and set
+some lines at 5px.
+
+Where the document dictates line breaks — the Selected stories paragraph,
+the two-line statements, "Some stories are / Meant to stay" — the measure
+is set in `em` rather than `ch` or pixels, so the break holds at every
+width instead of only at the one it was checked at.
+
 ## How the design was measured
 
 Nothing in `app/globals.css` is a guess. Each mockup panel was scanned for the

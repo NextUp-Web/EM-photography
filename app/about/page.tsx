@@ -55,31 +55,35 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* The reference sets three frames side by side and stacked — one
+            tall column on the left, two on the right, offset from it and
+            from each other. Nothing overlaps: the superposition the
+            document asks for belongs to the home page's Philosophy
+            collage, not here. Each frame is placed at the fraction of the
+            block the reference measures it at. */}
         <div className={styles.emmaFrames}>
           <Figure
             photo={PHOTOS.aboutPortraitMain}
-            ratio={0.66}
+            ratio={0.37}
             mobileRatio={0.75}
-            sizes="(max-width: 860px) 100vw, 26vw"
+            sizes="(max-width: 860px) 100vw, 24vw"
             priority
             className={styles.portraitMain}
           />
           <Figure
             photo={PHOTOS.aboutPortraitTwo}
-            ratio={0.86}
+            ratio={0.79}
             mobileRatio={0.84}
-            sizes="(max-width: 860px) 46vw, 20vw"
+            sizes="(max-width: 860px) 46vw, 23vw"
             className={styles.portraitTop}
           />
-          <div className={styles.portraitMat}>
-            <Figure
-              photo={PHOTOS.aboutPortraitThree}
-              ratio={0.94}
-              mobileRatio={0.84}
-              sizes="(max-width: 860px) 46vw, 19vw"
-              className={styles.portraitOver}
-            />
-          </div>
+          <Figure
+            photo={PHOTOS.aboutPortraitThree}
+            ratio={0.74}
+            mobileRatio={0.84}
+            sizes="(max-width: 860px) 46vw, 27vw"
+            className={styles.portraitLow}
+          />
         </div>
       </section>
 

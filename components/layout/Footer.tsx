@@ -24,7 +24,7 @@ export default function Footer() {
         <hr className={styles.rule} />
 
         <Link href="/" className={styles.brand} aria-label="EM Photography — home">
-          <Logo height="var(--footer-logo-h)" />
+          <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 248px" />
         </Link>
 
         <div className={styles.row}>
@@ -54,7 +54,7 @@ export default function Footer() {
                 rel="noreferrer noopener"
                 aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
               >
-                <InstagramGlyph size={18} />
+                <InstagramGlyph size={20} />
               </a>
               <a
                 className={styles.social}
@@ -63,7 +63,7 @@ export default function Footer() {
                 rel="noreferrer noopener"
                 aria-label="EM Photography on WhatsApp"
               >
-                <WhatsAppGlyph size={18} />
+                <WhatsAppGlyph size={20} />
               </a>
             </div>
 

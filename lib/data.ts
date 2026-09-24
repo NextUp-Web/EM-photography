@@ -67,13 +67,17 @@ export const PHOTOS = {
     position: "center 44%",
   },
   /* The very large monochrome band that closes the home page, with
-     "Let's create something meaningful." printed over it. The frame is
-     wide enough that the couple keeps the right of it and the type has
-     the water to itself on the left. */
+     "Let's create something meaningful." printed over it.
+
+     Chosen for its composition rather than its subject alone: the
+     reference holds the couple in the right half and leaves the left
+     open, which is where the type goes. This frame does the same — the
+     couple at the centre right, water and balustrade to their left — so
+     nothing is laid over the photograph to make the type read. */
   homeBanner: {
     src: `${V3}/home/hero.webp`,
     alt: "A couple forehead to forehead on the terrace, the lake and the mountains behind them",
-    position: "center 36%",
+    position: "center 62%",
     bw: true,
   },
 
@@ -86,23 +90,25 @@ export const PHOTOS = {
     alt: "Emma on a terrace above the lake, the mountains catching the last light",
     position: "center 46%",
   },
-  /* The portrait that leads the Emma collage — the one vertical frame. */
+  /* The three frames of the Emma collage. The reference prints all three
+     in warm colour, so none of them carries the monochrome flag, and each
+     object-position below is set for the crop its slot asks for. */
   aboutPortraitMain: {
     src: `${V3}/about/portrait.webp`,
     alt: "Emma, camera in hand, on the shore of the lake",
-    position: "center 32%",
+    /* the slot is far narrower than the frame, so the crop holds her */
+    position: "56% 46%",
   },
-  /* The two smaller frames that overlap it. */
   aboutPortraitTwo: {
     src: `${V3}/home/emra.webp`,
     alt: "Emma looking out over the lake and the mountains at sunset",
-    position: "center 30%",
-    bw: true,
+    position: "center 34%",
   },
   aboutPortraitThree: {
     src: `${V3}/about/hero.webp`,
     alt: "Emma on the terrace, the village and the water beyond her",
-    position: "center 52%",
+    /* a landscape frame in a portrait slot — held on her, not the lake */
+    position: "36% 50%",
   },
   /* The tall frame beside "More than a record of the day". */
   aboutTrace: {
@@ -417,6 +423,10 @@ export const PORTFOLIO_INTRO: Photo = {
   position: "center 48%",
 };
 
+/**
+ * A monochrome original, and the darkest of them on its left, which is
+ * where "Some stories are / Meant to stay" is set.
+ */
 export const PORTFOLIO_CLOSING: Photo = {
   src: `${V3}/home/story-embrace.webp`,
   alt: "A couple forehead to forehead as the sun sets behind the mountains",

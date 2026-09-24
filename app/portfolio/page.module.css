@@ -8,10 +8,11 @@
   text-align: center;
 }
 
-/* Still the page's largest type, but no longer a slab: the client asked
-   for something more elegant and less massive than the old title. */
+/* Reduced from the 4.8% of the frame it used to set at, as the document
+   asks, while staying above the section titles beneath it — it is still
+   the page's heading, just no longer a slab over the photograph. */
 .title {
-  font-size: clamp(1.9rem, 3.55vw, 3.25rem);
+  font-size: clamp(1.95rem, 4.2vw, 3.9rem);
   line-height: 1.16;
 }
 
@@ -151,24 +152,16 @@
     padding-inline: 0;
   }
 
-  .closingFigure::after {
-    background: linear-gradient(
-      to bottom,
-      rgba(25, 24, 22, 0.06) 26%,
-      rgba(25, 24, 22, 0.6) 100%
-    );
-  }
+  /* The phone keeps the same left-weighted shade as the desktop rather
+     than switching to a vertical one, because the document puts this text
+     on the left of the frame and it stays there. */
 
-  /* The block keeps its left reading on a phone too, set into the page
-     margin at the foot of the frame. */
+  /* Left and vertically centred on the phone too, set into the page
+     margin — never dropped to the foot, never centred. */
   .closingInner {
-    left: 0;
-    right: 0;
-    top: auto;
-    bottom: clamp(24px, 7vw, 40px);
-    transform: none;
+    left: var(--shell-pad);
+    right: var(--shell-pad);
     max-width: none;
-    padding-inline: var(--shell-pad);
   }
 
   .closingCta {

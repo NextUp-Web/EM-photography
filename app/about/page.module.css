@@ -30,10 +30,12 @@
   text-align: center;
 }
 
-/* The two lines the brief prints are the two lines the page sets: the
-   break is the one in the markup, never a wrap. */
+/* The page's opening statement, and so its largest type — a step above
+   the Emma heading that follows it. The two lines the document prints
+   are the two lines the page sets: the break is the one in the markup,
+   never a wrap. */
 .openingTitle {
-  font-size: clamp(1.9rem, 3.7vw, 3.4rem);
+  font-size: clamp(1.9rem, 5.6vw, 5.2rem);
   line-height: 1.22;
   max-width: 34ch;
   margin-inline: auto;
@@ -41,9 +43,13 @@
 
 /* ---------- A quiet eye ---------- */
 
+/* Columns measured off the reference, where "A quiet eye for" fills the
+   text column exactly: at this size that is 42 parts of the spread
+   against the frames' 51. A narrower column breaks the heading onto a
+   fourth line the reference does not have. */
 .emma {
   display: grid;
-  grid-template-columns: 38fr 6fr 56fr;
+  grid-template-columns: 42fr 7fr 51fr;
   align-items: center;
   padding-bottom: var(--section);
 }
@@ -52,56 +58,69 @@
   grid-column: 1;
 }
 
+/* The page's dominant heading. The reference sets it larger than a
+   section title, at ~5.4% of the frame, on three lines. */
 .emmaTitle {
   margin-top: var(--sp-xs);
-  font-size: var(--fs-lg);
-  line-height: 1.1;
+  font-size: clamp(1.9rem, 5.45vw, 5rem);
+  line-height: 1.15;
 }
 
-/* Its own line, set apart from the paragraph beneath it. */
+/* Its own line, set apart from the paragraph beneath it — the same
+   family as the rest of the text, as the document asks, carried by the
+   space around it and the ink rather than by another typeface. */
 .emmaIntroLine {
   margin-top: var(--sp-md);
-  font-size: var(--fs-lede);
-  line-height: 1.4;
+  font-size: clamp(1.05rem, 1.9vw, 1.72rem);
+  line-height: 1.45;
   color: var(--color-ink);
 }
 
+/* The reference sets this paragraph larger than the home page's. */
 .emmaCopy {
   margin-top: var(--sp-sm);
+  font-size: clamp(1rem, 1.91vw, 1.75rem);
   max-width: 44ch;
 }
 
-/* One tall portrait carrying the block, a second above and to the right,
-   a third laid across the two. */
+/* The block the three frames are placed inside. Its proportion and every
+   position below are the reference's own, read off the capture: a tall
+   column at the left starting a little lower than the block, one frame
+   at the top right, one beneath it and further left — adjacent, never
+   overlapping. */
 .emmaFrames {
   position: relative;
   grid-column: 3;
+  aspect-ratio: 554 / 760;
+}
+
+.portraitMain,
+.portraitTop,
+.portraitLow {
+  position: absolute;
+  /* the placement carries the proportion here, not the figure's own ratio */
+  aspect-ratio: auto;
 }
 
 .portraitMain {
-  width: 48%;
+  left: 0;
+  top: 5%;
+  width: 45.8%;
+  height: 91.1%;
 }
 
 .portraitTop {
-  position: absolute;
-  left: 54%;
+  left: 54.2%;
   top: 0;
-  width: 38%;
+  width: 44.2%;
+  height: 40.8%;
 }
 
-/* A hairline of page around the overlapping frame, which is what lets it
-   read as laid over the others — no card, no shadow, no radius. */
-.portraitMat {
-  position: absolute;
-  left: 60%;
-  top: 46%;
-  width: 36%;
-  padding: clamp(5px, 0.62vw, 11px);
-  background: var(--color-page);
-}
-
-.portraitOver {
-  width: 100%;
+.portraitLow {
+  left: 47.8%;
+  top: 48.7%;
+  width: 52.2%;
+  height: 51.3%;
 }
 
 /* ---------- More than a record ---------- */
@@ -132,27 +151,31 @@
 
 /* ---------- Ivory statement ---------- */
 
+/* The reference crop is 41.5% as tall as it is wide, with the statement
+   centred in it on both axes. */
 .band {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(300px, 34vw, 460px);
+  min-height: clamp(300px, 41vw, 640px);
   padding-block: var(--sp-xl);
   text-align: center;
 }
 
+/* Measured off the reference: the statement sets at ~4.44% of the frame's
+   width, the line under it at ~1.23%, a little over a quarter of it. */
 .bandTitle {
-  font-size: clamp(1.7rem, 3.2vw, 2.9rem);
-  line-height: 1.26;
-  max-width: 38ch;
+  font-size: clamp(1.55rem, 3.87vw, 3.6rem);
+  line-height: 1.18;
+  max-width: none;
   margin-inline: auto;
 }
 
 .bandMeta {
-  margin-top: clamp(16px, 1.9vw, 30px);
+  margin-top: clamp(16px, 2.2vw, 38px);
   margin-inline: auto;
   font-weight: 500;
-  font-size: var(--fs-ui-sm);
+  font-size: clamp(0.66rem, 1.23vw, 1.15rem);
   letter-spacing: var(--ls-wide);
   color: var(--color-meta);
 }
@@ -183,8 +206,9 @@
   text-align: left;
 }
 
+/* The reference leaves ~5% of the frame either side of each hairline. */
 .step {
-  padding-inline: clamp(20px, 3vw, 58px);
+  padding-inline: clamp(18px, 4.8vw, 74px);
 }
 
 .step:first-child {
@@ -206,24 +230,27 @@
   color: var(--color-quiet);
 }
 
-/* The short dash the reference sets under the number. */
+/* The short dash the reference sets under the number — ~3.2% of the
+   frame long, dropped ~1.9% below the figure. */
 .stepRule {
   display: block;
-  width: 26px;
+  width: clamp(26px, 3.2vw, 52px);
   height: 1px;
-  margin-top: clamp(10px, 1.1vw, 15px);
+  margin-top: clamp(14px, 1.9vw, 30px);
   background: var(--hairline);
 }
 
+/* Measured off the reference, where "Observe" sets at ~3.9% of the
+   frame's width — the serif word is the column, not the number above it. */
 .stepTitle {
-  margin-top: clamp(14px, 1.6vw, 24px);
-  font-size: clamp(1.4rem, 2.05vw, 1.95rem);
+  margin-top: clamp(14px, 1.85vw, 30px);
+  font-size: clamp(1.45rem, 3.56vw, 3.3rem);
   font-weight: 400;
   line-height: 1.1;
 }
 
 .stepCopy {
-  margin-top: clamp(12px, 1.4vw, 20px);
+  margin-top: clamp(12px, 2.1vw, 34px);
 }
 
 /* ============================================================
@@ -296,26 +323,31 @@
     max-width: none;
   }
 
-  /* No superposition on a phone: the tall portrait first, the two smaller
-     frames side by side beneath it. */
+  /* The phone drops the placed block for a grid: the tall portrait across
+     the top, the two smaller frames side by side beneath it. */
   .emmaFrames {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--gap-img);
+    aspect-ratio: auto;
+  }
+
+  .portraitMain,
+  .portraitTop,
+  .portraitLow {
+    /* relative, never static: `fill` images are absolute, so a static
+       frame would hand them the collage as their containing block and
+       every photograph would stretch across the whole block. */
+    position: relative;
+    width: 100%;
+    height: auto;
+    left: auto;
+    top: auto;
+    aspect-ratio: var(--fig-ratio-mobile, var(--fig-ratio, 1));
   }
 
   .portraitMain {
     grid-column: 1 / span 2;
-    width: 100%;
-  }
-
-  .portraitTop,
-  .portraitMat {
-    position: static;
-    width: 100%;
-    left: auto;
-    top: auto;
-    padding: 0;
   }
 
   .band {
