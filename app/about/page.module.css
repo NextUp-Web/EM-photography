@@ -22,11 +22,16 @@
 
 /* ---------- The one where ---------- */
 
-/* The brief asks explicitly for a large white space here, so the opening
-   is given a section of air above it and another below. */
+/* The document: "Grand titre centré au milieu", then "Grand espace
+   blanc". The title stands alone in the middle of the first screen —
+   centred both ways — and the rest of that screen is the white space. */
 .opening {
-  padding-top: calc(var(--section) + var(--sp-lg));
-  padding-bottom: var(--section);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  padding-block: var(--section);
   text-align: center;
 }
 
@@ -278,8 +283,7 @@
   }
 
   .opening {
-    padding-top: var(--section);
-    padding-bottom: var(--sp-xl);
+    padding-block: var(--sp-xl);
   }
 
   .openingTitle {

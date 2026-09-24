@@ -51,8 +51,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  /* the block sits low in the frame, close to its foot */
   padding: calc(var(--header-h) + var(--sp-md)) clamp(12px, 1.6vw, 24px)
-    clamp(44px, 6vw, 96px);
+    clamp(18px, 2vw, 34px);
   text-align: center;
   color: var(--warm-white);
 }
@@ -211,14 +212,9 @@
 
 /* ---------- Ivory statement ---------- */
 
-/* Centred on both axes. The reference crop is a little over half as tall
-   as it is wide and the statement sits dead centre in it, so the band is
-   given that height rather than just padding. */
+/* The same height as the site's ivory blocks have always had — the
+   padding alone, exactly as the "Documenting love" block below it. */
 .band {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: clamp(340px, 48vw, 760px);
   padding-block: var(--sp-xl);
   text-align: center;
 }
@@ -520,12 +516,6 @@
 
   .strip {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* The ivory statement keeps its air but stops being a half-screen. */
-  .band {
-    min-height: 0;
-    padding-block: var(--sp-xl);
   }
 
   .bandTitle {
