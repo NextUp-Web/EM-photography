@@ -12,28 +12,30 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero — one full-screen photograph, nothing else ---------- */}
+      {/* ---------- Hero ----------
+          Exactly as the client's generated reference (document, page 1,
+          first image): EM, PHOTOGRAPHY tracked beneath it, the italic
+          place-line, then BEGIN HERE — all Cormorant Garamond, white,
+          centred low in the frame. The old version (the second image on
+          that page: EM PHOTOGRAPHY on one line, two tracked sans lines)
+          is what this replaces. */}
       <section className={styles.hero} aria-label="EM Photography">
         <Figure
           photo={PHOTOS.homeHero}
-          ratio={2.22}
+          ratio={1.78}
           sizes="100vw"
           priority
           className={styles.heroFigure}
         />
         <div className={styles.heroInner}>
-          {/* The hero carries the name as type, on one line — the lockup
-              stays in the bar above. */}
-          <p className={`display ${styles.heroWordmark}`}>EM Photography</p>
-          <p className={styles.heroLine}>Switzerland based &middot; Europe</p>
-          {/* The separators are real characters, not CSS pseudo-elements:
-              the line has to read as the document writes it when it is
-              selected, indexed or spoken, not only when it is looked at. */}
-          <p className={`${styles.heroLine} ${styles.heroTags}`}>
-            Weddings<span className={styles.heroTag}> &middot; </span>Couples
-            <span className={styles.heroTag}> &middot; </span>Love stories
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroEm}>EM</span>
+            <span className={styles.heroPhotography}>Photography</span>
+          </h1>
+          <p className={styles.heroLine}>
+            Wedding &amp; Couple photographer based in Switzerland
           </p>
-          <Link href="/contact" className={`btn btn-light ${styles.heroCta}`}>
+          <Link href="/contact" className={styles.heroCta}>
             Begin here
           </Link>
         </div>
@@ -182,16 +184,15 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* One very large monochrome photograph. The document asks for
-            exactly one sentence over it — "Let's create something
-            meaningful." — and nothing else is printed there. The Enquire
-            rule below it is the page's existing call to action, which the
-            reference also carries, so it stays. */}
+        {/* One very large monochrome photograph with, over it, everything
+            the client's reference prints (document, Home, the image under
+            "écris exactement tout ceci"): the three-line statement, the
+            tracked line beneath it and the Enquire rectangle. */}
         <div className={styles.banner}>
           <Figure
             photo={PHOTOS.homeBanner}
             ratio={1.78}
-            mobileRatio={1.05}
+            mobileRatio={0.72}
             sizes="100vw"
             className={styles.bannerFigure}
           />
@@ -203,7 +204,11 @@ export default function HomePage() {
               <br />
               <em className={styles.bannerEm}>meaningful.</em>
             </p>
-            <Link href="/contact" className={`btn btn-light ${styles.bannerCta}`}>
+            <p className={styles.bannerTags}>
+              Weddings<span aria-hidden="true"> &bull; </span>Couples
+              <span aria-hidden="true"> &bull; </span>Love stories
+            </p>
+            <Link href="/contact" className={styles.bannerCta}>
               Enquire
             </Link>
           </div>

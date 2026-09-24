@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Montserrat } from "next/font/google";
+import { Bodoni_Moda, Cormorant_Garamond, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
@@ -19,6 +19,18 @@ const bodoni = Bodoni_Moda({
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-bodoni",
+});
+
+/* Cormorant Garamond — the face the client's own references print the
+   home hero, the navigation and the footer in ("même taille, police,
+   couleur"): the EM / PHOTOGRAPHY lockup, the italic place-line, the
+   BEGIN HERE label, the four links and the foot of the site. */
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
 });
 
 const montserrat = Montserrat({
@@ -56,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${montserrat.variable}`}
+      className={`${bodoni.variable} ${cormorant.variable} ${montserrat.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">

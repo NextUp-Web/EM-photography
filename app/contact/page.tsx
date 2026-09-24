@@ -22,11 +22,20 @@ export default function ContactPage() {
             <br />
             will feel like.
           </h1>
+          {/* Centred, on the four lines the client's reference breaks it
+              into (document, Contact: "réaligne de la sorte"). */}
           <p className={`copy ${styles.lede}`}>
-            I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
-            celebrating a wedding, an intimate gathering, or simply a season of life
-            you want to remember, tell me a little about it. Your vision. Where it
-            will unfold. Who will be there. What matters most to you.
+            <span className={styles.line}>
+              I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
+              celebrating
+            </span>{" "}
+            <span className={styles.line}>
+              a wedding, an intimate gathering, or simply a season of life you want
+            </span>{" "}
+            <span className={styles.line}>
+              to remember, tell me a little about it. Your vision. Where it will unfold.
+            </span>{" "}
+            <span className={styles.line}>Who will be there. What matters most to you.</span>
           </p>
         </div>
 

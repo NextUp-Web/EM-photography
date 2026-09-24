@@ -15,7 +15,10 @@ import styles from "./Header.module.css";
  *
  * On the home page the hero is a full-bleed photograph, so the bar rides
  * over it — transparent, with the white lockup and white links — until the
- * page is scrolled, at which point it settles onto warm white. Every other
+ * page is scrolled, at which point it settles onto warm white. Over the
+ * hero the desktop bar prints the four links alone, as the client's
+ * reference does — the hero itself carries EM PHOTOGRAPHY — and the
+ * lockup appears once the bar settles. The phone keeps it throughout. Every other
  * page keeps it sticky and solid from the first pixel. The bar carries no
  * rule of its own at any point: nothing is drawn under the logo on scroll.
  */
@@ -53,7 +56,7 @@ export default function Header() {
         <div className={styles.inner}>
           <Link
             href="/"
-            className={styles.brand}
+            className={`${styles.brand} ${overlay ? styles.brandOverHero : ""}`}
             aria-label="EM Photography — home"
           >
             <Logo variant={overlay ? "white" : "black"} priority />

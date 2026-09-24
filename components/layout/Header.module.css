@@ -42,13 +42,23 @@
   justify-content: space-between;
   gap: 24px;
   height: var(--header-h);
-  padding-inline: var(--shell-pad);
+  /* The reference sets the last link 2.5% of the width from the edge. */
+  padding-inline: clamp(24px, 2.5vw, 48px);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   flex: none;
+  transition: opacity var(--dur) var(--ease);
+}
+
+/* Desktop, over the home hero: the links alone, as the reference. */
+@media (min-width: 861px) {
+  .brandOverHero {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 /* ---------- Desktop navigation ----------
@@ -62,20 +72,22 @@
   flex: none;
 }
 
+/* Measured off the reference: caps 0.76% of the frame's width tall,
+   words 2.7% apart, Cormorant Garamond semibold with light tracking. */
 .navList {
   display: flex;
   align-items: center;
-  gap: clamp(26px, 3.3vw, 54px);
+  gap: clamp(24px, 2.7vw, 50px);
 }
 
 .navLink {
   display: inline-block;
-  font-family: var(--font-display);
-  font-size: var(--fs-nav);
-  font-weight: 400;
-  letter-spacing: 0.24em;
+  font-family: var(--font-garamond);
+  font-size: clamp(0.78rem, 1.1vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.09em;
   /* the tracking is added after the last letter too, so the row reads even */
-  text-indent: 0.24em;
+  text-indent: 0.09em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;

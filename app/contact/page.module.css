@@ -28,14 +28,28 @@
 
 /* Narrow on purpose: the paragraph should never run the width of the
    page, and it keeps a whole section of air around it. */
+/* The reference sets the paragraph on four given lines, the longest a
+   little wider than the title's first line. */
 .lede {
   margin-top: clamp(20px, 2.4vw, 38px);
   margin-inline: auto;
-  max-width: 62ch;
-  width: min(100%, 720px);
-  font-size: var(--fs-body);
-  line-height: 1.72;
+  font-size: clamp(0.98rem, 1.62vw, 1.5rem);
+  line-height: 1.6;
   text-align: center;
+}
+
+/* Each of those lines holds on its own on the desktop; the phone lets the
+   paragraph flow, still centred. */
+.line {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .line {
+    display: inline;
+    white-space: normal;
+  }
 }
 
 .heroFigure {

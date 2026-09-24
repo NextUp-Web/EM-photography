@@ -13,6 +13,25 @@ line reads *I'm Emma, the photograph behind EM Photography.* The About page's
 own headline keeps *A quiet eye for what unfolds naturally*, as its reference
 screenshot prints it. The photographer is **Emma**.
 
+## Reading the revision document
+
+Several pages of the document put two images one above the other: the
+first is what the client wants, the second a capture of the site as it
+was. They must not be confused. On page 1 the first image (a couple on a
+terrace, *EM* over *PHOTOGRAPHY*, the italic place-line, BEGIN HERE) is
+the target for the home hero; the second (*EM PHOTOGRAPHY* on one line
+over two tracked sans lines) is the old version it replaces. Likewise the
+image under "écris exactement tout ceci" is the whole closing band —
+statement, WEDDINGS • COUPLES • LOVE STORIES and Enquire — and the About
+reference lays two frames **over** the large one.
+
+The hero, the navigation and the footer are set in **Cormorant
+Garamond**, because that is the face those references print ("même
+taille, police, couleur"); the rest of the site keeps Bodoni Moda and
+Montserrat. Over the home hero the desktop bar prints the four links
+alone, as the reference does; the lockup appears once the page scrolls,
+and stays on the phone beside the burger.
+
 ## How the type is sized
 
 Nothing below is a guess either. Each of the revision document's captures
@@ -24,9 +43,11 @@ stylesheets carry. The main ones, at the width each reference was read at:
 
 | element | reference | set at |
 | --- | --- | --- |
-| hero wordmark | 8.65% | 8.6vw (8.25vw on a phone, so it holds one line to 320px) |
-| hero sub-lines | 1.57% | 1.57vw |
-| hero button label | 1.51% | 1.5vw |
+| hero EM | 4.2% cap height | 6.6vw |
+| hero PHOTOGRAPHY | 15% long | 1.6vw, 0.24em tracking |
+| hero italic line | 30% long | 1.56vw |
+| hero button | 13.2% x 3.5% | 13.2vw x 3.5vw, label 1.04vw |
+| navigation | 0.76% cap height | 1.1vw |
 | section titles | 3.75% | 3.75vw |
 | section sub-heads | 1.90% | 1.9vw |
 | body copy | 1.45–1.71% | 1.55vw |
@@ -104,13 +125,18 @@ light. Worth naming:
   embrace in warm colour — only the monochrome original exists;
 - the Home *Selected stories* gallery counts to twelve, as the mockup's
   `01 / 12` promises, by cycling the whole library three frames at a time;
+- the home hero uses the embrace on the terrace at sunset, the library's
+  closest frame to the client's generated reference (that exact photograph
+  is not in the repository — dropping it in at `v3/home/hero.webp`
+  replaces it);
 - the Home closing band (*Let's create something meaningful.*) and the Contact
   closing frame are colour originals carrying the `bw` flag, because the
   revision document asks for monochrome there and no monochrome original of
-  that subject exists;
+  that subject exists; the band's frame is drawn a quarter larger from its
+  left edge so the couple sits right of centre, as in the reference;
 - the About page's Emma collage uses the three frames of her that exist —
-  `about/portrait`, `home/emra` and `about/hero` — one tall and dominant, two
-  smaller ones set above and across it.
+  `about/portrait`, `home/emra` and `about/hero` — one wide and tall, two
+  smaller ones laid over its right-hand side with a border of page.
 
 Dropping the original photographs in at the same paths replaces them without
 touching any code; the ratio each slot expects is written beside every

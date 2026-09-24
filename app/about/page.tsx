@@ -41,30 +41,26 @@ export default function AboutPage() {
 
           {/* Its own line, apart from the paragraph beneath it. */}
           <p className={`copy ${styles.emmaIntroLine}`}>
-            {/* Two lines on the desktop, one on the phone — the break is
-                CSS, so the space between them is never lost. */}
-            <span className={styles.line}>I&rsquo;m Emma, the photograph</span>{" "}
-            <span className={styles.line}>behind EM Photography.</span>
+            I&rsquo;m Emma, the photograph behind EM Photography.
           </p>
 
+          {/* The line breaks are the reference's own. */}
           <p className={`copy ${styles.emmaCopy}`}>
-            Drawn to the beauty of what is felt rather than staged. To the softness
-            of a gesture, the fleeting details that give a moment its atmosphere, and
-            what happens in between. I&rsquo;m interested in what feels honest,
-            instinctive and quietly meaningful.
+            <span className={styles.line}>Drawn to the beauty of what is felt rather</span>{" "}
+            <span className={styles.line}>than staged. To the softness of a gesture,</span>{" "}
+            <span className={styles.line}>the fleeting details that give a moment its</span>{" "}
+            <span className={styles.line}>atmosphere, and what happens in between.</span>{" "}
+            <span className={styles.line}>I&rsquo;m interested in what feels honest,</span>{" "}
+            <span className={styles.line}>instinctive and quietly meaningful.</span>
           </p>
         </div>
 
-        {/* The reference sets three frames side by side and stacked — one
-            tall column on the left, two on the right, offset from it and
-            from each other. Nothing overlaps: the superposition the
-            document asks for belongs to the home page's Philosophy
-            collage, not here. Each frame is placed at the fraction of the
-            block the reference measures it at. */}
+        {/* As the reference: one wide, tall frame, and two smaller frames
+            laid over its right-hand side. */}
         <div className={styles.emmaFrames}>
           <Figure
             photo={PHOTOS.aboutPortraitMain}
-            ratio={0.37}
+            ratio={0.64}
             mobileRatio={0.75}
             sizes="(max-width: 860px) 100vw, 24vw"
             priority
@@ -104,16 +100,20 @@ export default function AboutPage() {
             of what it felt like.
           </h2>
 
+          {/* The line breaks are the reference's own. */}
           <div className={styles.traceCopy}>
             <p className="copy">
-              Inspired by genuine connection, natural beauty and the imperfect
-              character of real moments, I create editorial imagery that feels
-              refined, timeless and deeply personal.
+              <span className={styles.line}>Inspired by genuine connection, natural beauty</span>{" "}
+              <span className={styles.line}>and the imperfect character of real moments,</span>{" "}
+              <span className={styles.line}>I create editorial imagery that feels refined,</span>{" "}
+              <span className={styles.line}>timeless and deeply personal.</span>
             </p>
             <p className="copy">
-              I work quietly and attentively, allowing moments to unfold naturally
-              while offering gentle direction when needed. There is space for
-              spontaneity, refined portraits and everything that happens in between.
+              <span className={styles.line}>I work quietly and attentively, allowing moments</span>{" "}
+              <span className={styles.line}>to unfold naturally while offering gentle direction</span>{" "}
+              <span className={styles.line}>when needed. There is space for spontaneity,</span>{" "}
+              <span className={styles.line}>refined portraits and everything that happens</span>{" "}
+              <span className={styles.line}>in between.</span>
             </p>
           </div>
         </div>
@@ -154,7 +154,14 @@ export default function AboutPage() {
               <p className={`label ${styles.stepNumber}`}>{step.number}</p>
               <span className={styles.stepRule} aria-hidden="true" />
               <h3 className={`display ${styles.stepTitle}`}>{step.title}</h3>
-              <p className={`copy ${styles.stepCopy}`}>{step.copy}</p>
+              <p className={`copy ${styles.stepCopy}`}>
+                {step.lines.map((line, index) => (
+                  <span key={line}>
+                    {index > 0 && " "}
+                    <span className={styles.line}>{line}</span>
+                  </span>
+                ))}
+              </p>
             </li>
           ))}
         </ol>

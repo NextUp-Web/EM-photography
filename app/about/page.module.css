@@ -54,7 +54,7 @@
    fourth line the reference does not have. */
 .emma {
   display: grid;
-  grid-template-columns: 42fr 7fr 51fr;
+  grid-template-columns: 42fr 5fr 53fr;
   align-items: center;
   padding-bottom: var(--section);
 }
@@ -71,32 +71,40 @@
   line-height: 1.15;
 }
 
-/* Its own line, set apart from the paragraph beneath it — the same
-   family as the rest of the text, as the document asks, carried by the
-   space around it and the ink rather than by another typeface. */
+/* "Une ligne indépendante avec la même police que le reste du texte":
+   the paragraph's own face, size and colour, on a line of its own. */
 .emmaIntroLine {
   margin-top: var(--sp-md);
-  font-size: clamp(1.05rem, 1.9vw, 1.72rem);
-  line-height: 1.45;
-  color: var(--color-ink);
+  font-size: clamp(1rem, 2vw, 1.85rem);
+  /* where the column is too short for it, the break falls evenly rather
+     than leaving one word alone */
+  text-wrap: balance;
 }
 
 /* The reference sets this paragraph larger than the home page's. */
 .emmaCopy {
   margin-top: var(--sp-sm);
-  font-size: clamp(1rem, 1.91vw, 1.75rem);
-  max-width: 44ch;
+  font-size: clamp(1rem, 2vw, 1.85rem);
 }
 
-/* The block the three frames are placed inside. Its proportion and every
-   position below are the reference's own, read off the capture: a tall
-   column at the left starting a little lower than the block, one frame
-   at the top right, one beneath it and further left — adjacent, never
-   overlapping. */
+/* The lines the reference prints hold on the desktop. */
+@media (min-width: 861px) {
+  .emmaCopy .line,
+  .traceCopy .line,
+  .stepCopy .line {
+    white-space: nowrap;
+  }
+}
+
+/* The block the three frames are placed inside. Every position below is
+   read off the client's reference (document, About, first image): one
+   wide, tall frame of Emma walking, and two smaller frames laid OVER its
+   right-hand side — one at the top right, one lower and further left —
+   each set off by a narrow border of page, as a collage. */
 .emmaFrames {
   position: relative;
   grid-column: 3;
-  aspect-ratio: 554 / 760;
+  aspect-ratio: 565 / 762;
 }
 
 .portraitMain,
@@ -109,23 +117,31 @@
 
 .portraitMain {
   left: 0;
-  top: 5%;
-  width: 45.8%;
-  height: 91.1%;
+  top: 5.2%;
+  width: 78.4%;
+  height: 90.8%;
+}
+
+/* The two frames laid over it carry a border of page colour, which is
+   what lets them read as placed on top — no shadow, no radius. */
+.portraitTop,
+.portraitLow {
+  z-index: 1;
+  box-shadow: 0 0 0 clamp(3px, 0.42vw, 7px) var(--color-page);
 }
 
 .portraitTop {
-  left: 54.2%;
+  left: 53.6%;
   top: 0;
-  width: 44.2%;
-  height: 40.8%;
+  width: 42.8%;
+  height: 41.1%;
 }
 
 .portraitLow {
-  left: 47.8%;
-  top: 48.7%;
-  width: 52.2%;
-  height: 51.3%;
+  left: 47.4%;
+  top: 49.1%;
+  width: 52.6%;
+  height: 50.9%;
 }
 
 /* ---------- More than a record ---------- */
@@ -149,9 +165,13 @@
   font-size: var(--fs-display);
 }
 
+/* The reference leaves a full blank line between the two paragraphs. */
 .traceCopy {
   margin-top: clamp(20px, 2.2vw, 32px);
-  max-width: 52ch;
+}
+
+.traceCopy :global(.copy) + :global(.copy) {
+  margin-top: 1.5em;
 }
 
 /* ---------- Ivory statement ---------- */
@@ -176,18 +196,22 @@
   margin-inline: auto;
 }
 
+/* Measured off the reference: the line under the statement runs to 81%
+   of the frame, in darker ink, 3.6% under it. */
 .bandMeta {
-  margin-top: clamp(16px, 2.2vw, 38px);
+  margin-top: clamp(14px, 1.9vw, 34px);
   margin-inline: auto;
   font-weight: 500;
-  font-size: clamp(0.66rem, 1.23vw, 1.15rem);
+  font-size: clamp(0.66rem, 1.38vw, 1.3rem);
   letter-spacing: var(--ls-wide);
-  color: var(--color-meta);
+  color: var(--color-ink);
 }
 
 /* ---------- Three frames, then the three movements ---------- */
 
+/* The photographs never touch the ivory band above them. */
 .approach {
+  padding-top: var(--section);
   padding-bottom: var(--section);
 }
 
@@ -206,14 +230,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: var(--section);
-  margin-inline: auto;
-  width: min(100%, 1240px);
+  width: 100%;
   text-align: left;
 }
 
-/* The reference leaves ~5% of the frame either side of each hairline. */
+/* The reference spreads the three columns across the whole measure, each
+   hairline with a little air either side of it. */
 .step {
-  padding-inline: clamp(18px, 4.8vw, 74px);
+  padding-inline: clamp(18px, 2.6vw, 48px);
 }
 
 .step:first-child {
@@ -327,6 +351,8 @@
     max-width: none;
   }
 
+
+
   /* The phone drops the placed block for a grid: the tall portrait across
      the top, the two smaller frames side by side beneath it. */
   .emmaFrames {
@@ -352,6 +378,11 @@
 
   .portraitMain {
     grid-column: 1 / span 2;
+  }
+
+  .portraitTop,
+  .portraitLow {
+    box-shadow: none;
   }
 
   .band {

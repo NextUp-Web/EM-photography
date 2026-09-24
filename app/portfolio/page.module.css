@@ -99,14 +99,30 @@
   text-shadow: 0 1px 24px rgba(25, 24, 22, 0.36);
 }
 
-/* Transparent, white hairline, white caps — nothing opaque behind it. */
+/* "Une case transparente en blanc Enquire": a transparent rectangle with
+   a white hairline and the word as the document writes it — the same
+   object as the Enquire on the home page's closing photograph. */
 .closingCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-top: clamp(20px, 2.2vw, 34px);
-  min-height: clamp(42px, 3.1vw, 52px);
-  padding: 13px clamp(24px, 2.3vw, 38px);
+  width: clamp(132px, 12vw, 220px);
+  height: clamp(40px, 3.3vw, 60px);
+  border: 1px solid rgba(250, 249, 246, 0.85);
   background: transparent;
-  border-color: rgba(250, 249, 246, 0.8);
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 1.3vw, 1.25rem);
+  letter-spacing: 0.08em;
+  text-indent: 0.08em;
+  line-height: 1;
   color: var(--warm-white);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.closingCta:hover,
+.closingCta:focus-visible {
+  background: rgba(250, 249, 246, 0.14);
 }
 
 @media (max-width: 860px) {

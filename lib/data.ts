@@ -33,10 +33,13 @@ const V3 = "/images/v3";
 
 export const PHOTOS = {
   /* ---- Home ---- */
+  /* The client's hero reference is a couple held close on a balustraded
+     terrace, the lake and the mountains behind them in the last sun. This
+     is the library's frame of exactly that moment. */
   homeHero: {
-    src: `${V3}/portfolio/lead.webp`,
-    alt: "A bride and groom on a balustraded terrace above the lake at sunset",
-    position: "center 46%",
+    src: `${V3}/home/hero.webp`,
+    alt: "A bride and groom held close on a terrace above the lake at sunset",
+    position: "46% 58%",
   },
   philosophyOne: {
     src: `${V3}/home/approach.webp`,
@@ -67,17 +70,13 @@ export const PHOTOS = {
     position: "center 44%",
   },
   /* The very large monochrome band that closes the home page, with
-     "Let's create something meaningful." printed over it.
-
-     Chosen for its composition rather than its subject alone: the
-     reference holds the couple in the right half and leaves the left
-     open, which is where the type goes. This frame does the same — the
-     couple at the centre right, water and balustrade to their left — so
-     nothing is laid over the photograph to make the type read. */
+     "Let's create something meaningful." printed over it. The couple
+     stands right of centre, water and balustrade to their left, which is
+     where the type goes — as in the client's reference. */
   homeBanner: {
-    src: `${V3}/home/hero.webp`,
-    alt: "A couple forehead to forehead on the terrace, the lake and the mountains behind them",
-    position: "center 62%",
+    src: `${V3}/portfolio/lead.webp`,
+    alt: "The couple on the balustraded terrace, the lake and the mountains behind them",
+    position: "center 58%",
     bw: true,
   },
 
@@ -96,8 +95,7 @@ export const PHOTOS = {
   aboutPortraitMain: {
     src: `${V3}/about/portrait.webp`,
     alt: "Emma, camera in hand, on the shore of the lake",
-    /* the slot is far narrower than the frame, so the crop holds her */
-    position: "56% 46%",
+    position: "center 40%",
   },
   aboutPortraitTwo: {
     src: `${V3}/home/emra.webp`,
@@ -457,21 +455,41 @@ export const ABOUT_VERTICALS: Photo[] = [
   },
 ];
 
+/* Each paragraph is kept as the lines the client's reference (document,
+   About, the Observe / Guide / Preserve image) breaks it into: the
+   desktop sets exactly those lines, the phone lets them flow. */
 export const APPROACH_STEPS = [
   {
     number: "01",
     title: "Observe",
-    copy: "I pay attention to what is quietly unfolding — the gestures, the atmosphere, and the in-between moments that give the day its feeling.",
+    lines: [
+      "I pay attention to what is quietly",
+      "unfolding — the gestures, the",
+      "atmosphere, and the in-between",
+      "moments that give the day",
+      "its feeling.",
+    ],
   },
   {
     number: "02",
     title: "Guide",
-    copy: "With a calm, gentle presence, I offer just enough direction for you to feel at ease, so the photographs remain natural and unforced.",
+    lines: [
+      "With a calm, gentle presence,",
+      "I offer just enough direction for",
+      "you to feel at ease, so the",
+      "photographs remain natural",
+      "and unforced.",
+    ],
   },
   {
     number: "03",
     title: "Preserve",
-    copy: "What remains is more than a record — it is a way back into the feeling, a little piece of that time kept close.",
+    lines: [
+      "What remains is more than",
+      "a record — it is a way back into",
+      "the feeling, a little piece of that",
+      "time kept close.",
+    ],
   },
 ];
 

@@ -30,7 +30,6 @@ export default function Footer() {
         <div className={styles.row}>
           <div className={styles.place}>
             <p>Wedding &amp; Couple photographer based in Switzerland.</p>
-            <p className={styles.availability}>Available across Europe</p>
           </div>
 
           <nav className={styles.navWrap} aria-label="Footer">
