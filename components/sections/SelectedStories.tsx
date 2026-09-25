@@ -1,50 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Figure from "@/components/ui/Figure";
 import { SELECTED_STORIES } from "@/lib/data";
 import styles from "./SelectedStories.module.css";
 
 const COUNT = SELECTED_STORIES.length;
+/** frames in view on the desktop; the phone shows the first of them only */
+const IN_VIEW = 3;
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
 /**
- * One photograph at a time — never a row of three. The arrows step through
- * the twelve frames one by one, on the desktop exactly as on the phone.
+ * Three frames side by side, stepped one at a time by the two squared
+ * arrows. The counter and the hairline beneath follow the first frame.
  */
-export default function SelectedStories({
-  framesClassName,
-  controlsClassName,
-}: {
-  framesClassName?: string;
-  controlsClassName?: string;
-}) {
+export default function SelectedStories({ className }: { className?: string }) {
   const [index, setIndex] = useState(0);
-  const photo = SELECTED_STORIES[index];
 
   const step = (delta: number) =>
     setIndex((current) => (current + delta + COUNT) % COUNT);
 
+  const frames = Array.from(
+    { length: IN_VIEW },
+    (_, offset) => SELECTED_STORIES[(index + offset) % COUNT],
+  );
+
   return (
-    <>
-      <div className={[styles.stage, framesClassName].filter(Boolean).join(" ")}>
-        <div className={styles.frame}>
-          {/* keyed on the source so each photograph fades in on its own */}
+    <div className={[styles.stories, className].filter(Boolean).join(" ")}>
+      <div className={styles.frames}>
+        {frames.map((photo, offset) => (
           <Figure
-            key={photo.src + index}
+            /* keyed on the source so each photograph fades in on its own */
+            key={`${photo.src}-${offset}`}
             photo={photo}
-            ratio={0.75}
-            mobileRatio={0.8}
-            sizes="(max-width: 860px) 100vw, 40vw"
+            ratio={1.167}
+            mobileRatio={1.167}
+            sizes="(max-width: 860px) 100vw, 33vw"
             className={styles.figure}
           />
-        </div>
+        ))}
       </div>
 
-      <div className={[styles.controls, controlsClassName].filter(Boolean).join(" ")}>
-        <div className={styles.pager}>
+      <div className={styles.controls}>
+        <p className={styles.counter} aria-live="polite">
+          {pad(index + 1)} / {pad(COUNT)}
+        </p>
+
+        <span className={styles.track} aria-hidden="true">
+          <span
+            className={styles.progress}
+            style={{
+              left: `${(index / COUNT) * 100}%`,
+              width: `${100 / COUNT}%`,
+            }}
+          />
+        </span>
+
+        <div className={styles.arrows}>
           <button
             type="button"
             className={styles.arrow}
@@ -53,9 +66,6 @@ export default function SelectedStories({
           >
             &#8592;
           </button>
-          <p className={styles.counter} aria-live="polite">
-            {pad(index + 1)} / {pad(COUNT)}
-          </p>
           <button
             type="button"
             className={styles.arrow}
@@ -65,11 +75,7 @@ export default function SelectedStories({
             &#8594;
           </button>
         </div>
-
-        <Link href="/portfolio" className={`btn btn-dark ${styles.view}`}>
-          View portfolio
-        </Link>
       </div>
-    </>
+    </div>
   );
 }

@@ -32,42 +32,37 @@ const V3 = "/images/v3";
    ------------------------------------------------------------------ */
 
 export const PHOTOS = {
-  /* ---- Home ---- */
-  /* The client's hero reference is a couple held close on a balustraded
-     terrace, the lake and the mountains behind them in the last sun. This
-     is the library's frame of exactly that moment. */
-  homeHero: {
+  /* ---- Home ----
+
+     The hero is two frames: a tall monochrome embrace, and a smaller
+     colour frame laid over its lower right corner. */
+  homeHeroMain: {
     src: `${V3}/home/hero.webp`,
-    alt: "A bride and groom held close on a terrace above the lake at sunset",
-    position: "46% 58%",
+    alt: "A bride and groom held close on the terrace, the lake and the mountains behind them",
+    position: "44% center",
+    bw: true,
   },
-  philosophyOne: {
+  homeHeroSide: {
+    src: `${V3}/home/story-lead.webp`,
+    alt: "A bride at the balustrade looking out over the lake",
+    position: "38% center",
+  },
+  approachOne: {
+    src: `${V3}/portfolio/pair-veil.webp`,
+    alt: "The veil lifted and lit from behind under a stone loggia",
+    position: "center 45%",
+  },
+  approachTwo: {
     src: `${V3}/home/approach.webp`,
     alt: "A hand resting on the lace of a wedding dress",
     position: "center 42%",
     bw: true,
   },
-  philosophyTwo: {
-    src: `${V3}/portfolio/detail-note.webp`,
-    alt: "A dinner table laid with white flowers, glasses and a handwritten card",
-    position: "center 50%",
-  },
-  philosophyThree: {
-    src: `${V3}/portfolio/pair-couple.webp`,
-    alt: "The couple seen from behind, her veil falling the length of her dress",
-    position: "center 40%",
-    bw: true,
-  },
   aboutPortrait: {
     src: `${V3}/about/portrait.webp`,
     alt: "Emma, camera in hand, on a terrace above the lake",
-    position: "center 30%",
+    position: "center 55%",
     bw: true,
-  },
-  homeClosing: {
-    src: `${V3}/home/hero.webp`,
-    alt: "The couple held close on the terrace as the sun sets over the lake",
-    position: "center 44%",
   },
   /* The very large monochrome band that closes the home page, with
      "Let's create something meaningful." printed over it. The couple
@@ -138,43 +133,21 @@ export const PHOTOS = {
 /* ------------------------------------------------------------------
    Home — Selected stories
 
-   The mockup prints three frames and a 01 / 12 counter, so the gallery
-   holds twelve photographs and steps three at a time. The first three
-   are exactly the frames the mockup shows.
+   The mockup prints three frames side by side and a 01 / 06 counter,
+   so the gallery holds six photographs and steps one at a time.
    ------------------------------------------------------------------ */
 
 export const SELECTED_STORIES: Photo[] = [
   {
-    src: `${V3}/home/story-lead.webp`,
-    alt: "A bride at the balustrade looking out over the lake",
-    position: "center 45%",
+    src: `${V3}/home/story-flowers.webp`,
+    alt: "A bouquet of white roses and ranunculus held against a knitted sleeve",
+    position: "center 50%",
   },
   {
-    src: `${V3}/portfolio/pair-veil.webp`,
-    alt: "The veil lifted and lit from behind under a stone loggia",
+    src: `${V3}/home/story-embrace.webp`,
+    alt: "The couple forehead to forehead, the lake behind them",
     position: "center 40%",
     bw: true,
-  },
-  {
-    src: `${V3}/about/trip-lake.webp`,
-    alt: "A wooden boat below the village on the lake",
-    position: "center 55%",
-  },
-  {
-    src: `${V3}/portfolio/lead.webp`,
-    alt: "The couple on the terrace at sunset",
-    position: "center 46%",
-  },
-  {
-    src: `${V3}/home/approach.webp`,
-    alt: "A hand on the lace of the dress",
-    position: "center 45%",
-    bw: true,
-  },
-  {
-    src: `${V3}/about/villa.webp`,
-    alt: "A villa among cypresses above the lake",
-    position: "center 50%",
   },
   {
     src: `${V3}/portfolio/pair-couple.webp`,
@@ -183,31 +156,20 @@ export const SELECTED_STORIES: Photo[] = [
     bw: true,
   },
   {
-    src: `${V3}/portfolio/village.webp`,
-    alt: "Cypresses above the lake, the village and the mountains beyond",
-    position: "center 50%",
+    src: `${V3}/about/trip-couple.webp`,
+    alt: "The couple walking away through the old town",
+    position: "center 45%",
+    bw: true,
   },
   {
-    src: `${V3}/about/trip-flowers.webp`,
-    alt: "White roses on a stone ledge",
+    src: `${V3}/about/trip-lake.webp`,
+    alt: "A wooden boat below the village on the lake",
     position: "center 55%",
   },
   {
-    src: `${V3}/home/story-embrace.webp`,
-    alt: "The couple forehead to forehead beneath the veil",
-    position: "center 40%",
-    bw: true,
-  },
-  {
-    src: `${V3}/contact/hero.webp`,
-    alt: "A table laid for two beneath an olive tree at sunset",
+    src: `${V3}/about/villa.webp`,
+    alt: "A villa among cypresses above the lake",
     position: "center 50%",
-  },
-  {
-    src: `${V3}/about/trip-couple.webp`,
-    alt: "The couple walking away through the old town",
-    position: "center 40%",
-    bw: true,
   },
 ];
 
@@ -521,36 +483,6 @@ export const MESSAGE_MIN_WORDS = 6;
 export const CONTACT_EMAIL = "contact@em-photography.ch";
 export const SITE_URL = "https://em-photography.ch";
 export const COPYRIGHT_YEAR = 2026;
-
-/* ------------------------------------------------------------------
-   Home — closing strip
-
-   Four vertical frames, nothing printed over them.
-   ------------------------------------------------------------------ */
-
-export const HOME_CLOSING_STRIP: Photo[] = [
-  {
-    src: `${V3}/home/story-embrace.webp`,
-    alt: "The couple forehead to forehead beneath the veil",
-    position: "center 38%",
-  },
-  {
-    src: `${V3}/portfolio/pair-veil.webp`,
-    alt: "The veil lifted and lit from behind under a stone loggia",
-    position: "center 42%",
-    bw: true,
-  },
-  {
-    src: `${V3}/home/story-lead.webp`,
-    alt: "A bride at the balustrade looking out over the lake",
-    position: "center 45%",
-  },
-  {
-    src: `${V3}/portfolio/detail-note.webp`,
-    alt: "Candlelight along the dinner table, white roses and a handwritten card",
-    position: "center 50%",
-  },
-];
 
 /* ------------------------------------------------------------------
    Social

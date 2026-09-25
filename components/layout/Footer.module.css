@@ -65,6 +65,11 @@
   color: var(--color-ink);
 }
 
+/* Where, beneath what — the two places held on one line. */
+.placeLine {
+  white-space: nowrap;
+}
+
 /* One line on the desktop, as the reference. */
 @media (min-width: 1081px) {
   .place {

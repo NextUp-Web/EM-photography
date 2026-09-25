@@ -33,14 +33,14 @@
   --hairline-soft: #e3ded5;
 
   /* ---- Type ---- */
-  --font-display: var(--font-bodoni), "Bodoni Moda", "Didot", "Bodoni 72",
-    Georgia, serif;
-  /* The home hero, the navigation and the footer, as the client's
-     references print them. */
+  /* One family for the whole site, as the client asked: Cormorant
+     Garamond — the face of the navigation and the footer. Only its
+     weight and its italic ever change. The three tokens are kept so
+     every rule that names one still resolves to it. */
   --font-garamond: var(--font-cormorant), "Cormorant Garamond", Garamond,
     Georgia, serif;
-  --font-ui: var(--font-montserrat), "Montserrat", "Avenir Next",
-    "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-garamond);
+  --font-ui: var(--font-garamond);
 
   /* Display scale. */
   /* Hero sub-lines. Measured off the client's hero reference, where the

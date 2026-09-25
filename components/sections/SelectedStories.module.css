@@ -1,14 +1,13 @@
 /* ============================================================
-   Selected stories — a single frame, stepped one at a time.
+   Selected stories — three frames side by side, stepped one at
+   a time. Sizes are in cqw of the page container (see the home
+   page), measured off the client's mockup.
    ============================================================ */
 
-.stage {
-  display: flex;
-  justify-content: center;
-}
-
-.frame {
-  width: min(100%, 560px);
+.frames {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8cqw;
 }
 
 .figure {
@@ -24,60 +23,89 @@
   }
 }
 
+/* 01 / 06 — hairline — ← → */
 .controls {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--sp-sm);
-}
-
-.pager {
-  display: flex;
   align-items: center;
-  gap: clamp(22px, 2.4vw, 34px);
+  margin-top: 1cqw;
 }
 
+.counter {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: max(0.625rem, 1cqw);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  margin-inline: 4cqw 13.6cqw;
+  background: var(--hairline);
+}
+
+.progress {
+  position: absolute;
+  top: -0.5px;
+  height: 2px;
+  background: var(--color-quiet);
+  transition: left var(--dur) var(--ease);
+}
+
+.arrows {
+  display: flex;
+  flex: none;
+  gap: 1.4cqw;
+}
+
+/* Two small squares, a hairline round each arrow. */
 .arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  border: 0;
-  background: none;
+  width: max(44px, 4.6cqw);
+  height: max(44px, 4.4cqw);
+  border: 1px solid rgba(25, 24, 22, 0.45);
+  background: transparent;
   padding: 0;
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: max(0.875rem, 1.35cqw);
   line-height: 1;
   color: var(--color-ink);
   cursor: pointer;
-  transition: opacity var(--dur) var(--ease);
+  transition: background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
 }
 
 .arrow:hover,
 .arrow:focus-visible {
-  opacity: 0.5;
+  background: var(--soft-black);
+  color: var(--warm-white);
 }
 
-.counter {
-  font-family: var(--font-ui);
-  font-size: var(--fs-ui);
-  font-weight: 600;
-  letter-spacing: var(--ls-label);
-  color: var(--color-ink);
-}
-
+/* The phone keeps one frame in view, the controls on one line beneath. */
 @media (max-width: 860px) {
-  .frame {
-    width: 100%;
+  .frames {
+    grid-template-columns: 1fr;
   }
 
-  /* The phone centres everything: arrows, counter, then the button. */
+  .frames > :not(:first-child) {
+    display: none;
+  }
+
   .controls {
-    align-items: center;
+    margin-top: 16px;
   }
 
-  .pager {
-    gap: 28px;
+  .track {
+    margin-inline: 18px;
+  }
+
+  .arrows {
+    gap: 10px;
   }
 }

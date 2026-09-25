@@ -3,63 +3,34 @@
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "@/components/ui/Logo";
 import NavPanel from "./MobileMenu";
 import { NAV } from "@/lib/data";
 import styles from "./Header.module.css";
 
 /**
- * The EM lockup on the left; on the right the four links printed in full on
- * the desktop — Home, Portfolio, About, Contact — and, on the phone, the
- * burger that opens the same four full screen.
+ * The name set as type in the middle of the bar — EM PHOTOGRAPHY over
+ * WEDDING & PORTRAIT PHOTOGRAPHER — with, on the right, the four links
+ * printed in full on the desktop — Home, Portfolio, About, Contact — and,
+ * on the phone, the burger that opens the same four full screen.
  *
- * On the home page the hero is a full-bleed photograph, so the bar rides
- * over it — transparent, with the white lockup and white links — until the
- * page is scrolled, at which point it settles onto warm white. Over the
- * hero the desktop bar prints the four links alone, as the client's
- * reference does — the hero itself carries EM PHOTOGRAPHY — and the
- * lockup appears once the bar settles. The phone keeps it throughout. Every other
- * page keeps it sticky and solid from the first pixel. The bar carries no
- * rule of its own at any point: nothing is drawn under the logo on scroll.
+ * The bar sits on warm white on every page and stays put while scrolling.
+ * It carries no rule of its own at any point.
  */
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const panelId = useId();
 
   /* Close on navigation. */
   useEffect(() => setOpen(false), [pathname]);
 
-  /* Over the hero the bar has no ground of its own; once the photograph has
-     scrolled past, it needs one. */
-  useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
-
-  const overlay = isHome && !scrolled && !open;
-
   return (
     <>
-      <header
-        className={[
-          styles.header,
-          isHome ? styles.floating : styles.sticky,
-          overlay ? styles.overlay : styles.solid,
-        ].join(" ")}
-      >
+      <header className={styles.header}>
         <div className={styles.inner}>
-          <Link
-            href="/"
-            className={`${styles.brand} ${overlay ? styles.brandOverHero : ""}`}
-            aria-label="EM Photography — home"
-          >
-            <Logo variant={overlay ? "white" : "black"} priority />
+          <Link href="/" className={styles.brand} aria-label="EM Photography — home">
+            <span className={styles.wordmark}>EM Photography</span>
+            <span className={styles.tagline}>Wedding &amp; Portrait Photographer</span>
           </Link>
 
           {/* Desktop — the four links themselves, widely spaced and thin. */}

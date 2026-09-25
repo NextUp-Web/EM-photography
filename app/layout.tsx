@@ -1,43 +1,19 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
 import "./globals.css";
 
-/* The client's art direction, in two families: Bodoni Moda — a Didot-class
-   editorial serif — for every headline, paragraph and button, and Montserrat,
-   widely tracked, for the small uppercase labels and the navigation.
-
-   The monoline script that used to set the About signature is no longer
-   loaded: the revision document replaces that opening, and nothing on the
-   site is set in it. Leaving it registered cost a 23 KB preload on every
-   page for a face that never rendered. */
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-bodoni",
-});
-
-/* Cormorant Garamond — the face the client's own references print the
-   home hero, the navigation and the footer in ("même taille, police,
-   couleur"): the EM / PHOTOGRAPHY lockup, the italic place-line, the
-   BEGIN HERE label, the four links and the foot of the site. */
+/* One family for the whole site — Cormorant Garamond, the face of the
+   navigation and the footer — in its regular, semibold and bold weights,
+   upright and italic. Nothing else is loaded. */
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-cormorant",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-  variable: "--font-montserrat",
 });
 
 const FAVICON = "/brand/em-logo-black.png";
@@ -68,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${cormorant.variable} ${montserrat.variable}`}
+      className={cormorant.variable}
     >
       <body>
         <a className="skip-link" href="#main">

@@ -1,328 +1,400 @@
 /* ============================================================
    HOME
 
-   The page is built on one rule: nothing touches. Every section
-   is separated from the next by --section, the hero occupies a
-   whole screen on its own, and the closing sequence is paced the
-   same way.
+   Built straight off the client's two mockups — desktop and
+   phone. Every size and distance below is expressed in cqw, a
+   share of the canvas's own width, taken from the mockup and
+   measured against it, so the page keeps the mockup's proportions
+   at any width (and stops growing with the page frame).
+
+   On the desktop the canvas is drawn at three quarters of the
+   page width — the client found the mockup, drawn edge to edge,
+   far too large — so everything on it is a quarter smaller.
    ============================================================ */
 
-/* ---------- Hero ----------
-
-   Built on the client's generated reference (document, page 1, first
-   image). Every size below is measured off that frame as a share of its
-   width: EM caps 4.2% tall, PHOTOGRAPHY 1.0% tall and 15% long, the
-   italic line 30% long, the button 13.2% x 3.5%, the whole block centred
-   and sitting 8% of the height above the foot of the frame. */
-
-.hero {
-  position: relative;
-  height: 100vh;
-  height: 100svh;
-  min-height: 560px;
-  overflow: hidden;
-}
-
-.heroFigure {
-  position: absolute;
-  inset: 0;
-  aspect-ratio: auto;
-  height: 100%;
-  background: var(--soft-black);
-}
-
-/* The reference has no visible shade: only a soft deepening at the top,
-   under the links, and at the foot, under the type. */
-.heroFigure::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(25, 24, 22, 0.22) 0%,
-    rgba(25, 24, 22, 0) 18%,
-    rgba(25, 24, 22, 0) 50%,
-    rgba(25, 24, 22, 0.3) 100%
-  );
-  pointer-events: none;
-}
-
-.heroInner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: var(--header-h) 16px 8vh;
-  padding-bottom: 8svh;
-  text-align: center;
-  color: var(--warm-white);
-  font-family: var(--font-garamond);
-  text-shadow: 0 1px 18px rgba(25, 24, 22, 0.3);
-}
-
-.heroTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 400;
-}
-
-/* EM — 6.6% of the frame's width, set almost solid. */
-.heroEm {
-  font-size: clamp(3.4rem, 6.6vw, 7.4rem);
-  font-weight: 400;
-  line-height: 0.8;
-  letter-spacing: 0.02em;
-  text-indent: 0.02em;
-}
-
-/* PHOTOGRAPHY — small tracked caps under the monogram. */
-.heroPhotography {
-  margin-top: clamp(16px, 2.1vw, 38px);
-  font-size: clamp(0.95rem, 1.6vw, 1.8rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.24em;
-  text-indent: 0.24em;
-  text-transform: uppercase;
-}
-
-/* The place-line, italic, in sentence case. */
-.heroLine {
-  margin-top: clamp(12px, 1.7vw, 30px);
-  font-size: clamp(1rem, 1.56vw, 1.8rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--warm-white);
-}
-
-/* A white hairline rectangle; the label in tracked Garamond caps. */
-.heroCta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: clamp(20px, 2.5vw, 44px);
-  width: clamp(148px, 13.2vw, 236px);
-  height: clamp(42px, 3.5vw, 62px);
-  border: 1px solid rgba(250, 249, 246, 0.9);
-  font-family: var(--font-garamond);
-  font-size: clamp(0.74rem, 1.04vw, 1.2rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-indent: 0.14em;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--warm-white);
-  transition: background-color var(--dur) var(--ease);
-}
-
-.heroCta:hover,
-.heroCta:focus-visible {
-  background: rgba(250, 249, 246, 0.14);
-}
-
-/* ---------- Philosophy ---------- */
-
-/* Columns measured off the reference, where "words cannot hold." fills
-   the text column exactly: at this size that is 37 parts of the spread
-   against the collage's 57, with 6 between them. A narrower column
-   breaks the title onto a third line the reference does not have. */
-.philosophy {
-  display: grid;
-  grid-template-columns: 37fr 6fr 57fr;
-  align-items: center;
-  /* The client asked for far more air between the hero and what follows. */
-  padding-top: var(--section);
-  padding-bottom: var(--section);
-}
-
-.philosophyText {
-  grid-column: 1;
-}
-
-.philosophyTitle {
-  margin-top: var(--sp-xs);
-  font-size: var(--fs-display);
-}
-
-/* The two short lines that follow the title — still serif, still ink,
-   but a third of the way down towards the paragraph. */
-.philosophyLede {
-  margin-top: var(--sp-sm);
-  font-size: var(--fs-lede);
-  line-height: 1.42;
-}
-
-.philosophyCopy {
-  margin-top: var(--sp-sm);
-  max-width: 42ch;
-}
-
-/* The collage: one tall frame carrying the block, a smaller one set
-   above and to the right of it, and a third laid across the two. */
-.philosophyFrames {
-  position: relative;
-  grid-column: 3;
-}
-
-/* Every figure below is placed at the fraction of the collage the
-   reference measures it at: the tall frame holds 55% of the width, the
-   smaller one starts at 62.6% and the overlapping one at 57.9%, which is
-   what puts it across the other two. */
-.frameMain {
-  width: 55%;
-}
-
-.frameTop {
-  position: absolute;
-  left: 62.6%;
-  top: 0.9%;
-  width: 37.4%;
-}
-
-/* The overlapping frame keeps a hairline of page around it, which is what
-   lets it read as laid over the others — no card, no shadow, no radius. */
-.frameOverMat {
-  position: absolute;
-  left: 57.9%;
-  top: 37%;
-  width: 32.8%;
-  padding: clamp(4px, 0.49vw, 9px);
-  background: var(--color-page);
-}
-
-.frameOver {
-  width: 100%;
-}
-
-/* ---------- Ivory statement ---------- */
-
-/* The same height as the site's ivory blocks have always had — the
-   padding alone, exactly as the "Documenting love" block below it. */
-.band {
-  padding-block: var(--sp-xl);
-  text-align: center;
-}
-
-/* Sized off the reference: the first line runs to 75% of the frame,
-   which at this measure is 5.1% of its width. Wide enough that the two
-   lines the brief prints are the two the page sets — the break is the
-   one in the markup, never a wrap. */
-.bandTitle {
-  font-size: clamp(1.75rem, 4.47vw, 4.2rem);
-  line-height: 1.15;
-  max-width: none;
+.home {
+  container-type: inline-size;
+  width: 75%;
   margin-inline: auto;
 }
 
-/* Each half of the statement holds its own line on the desktop. */
-.bandLine {
-  display: block;
+/* A thin rule under a title. */
+/* The section labels are set lighter here than elsewhere on the site. */
+.home :global(.label) {
+  font-weight: 600;
+  color: var(--color-ink);
 }
 
-/* The reference sets this line at ~1.5% of the frame, a little under a
-   third of the statement above it, and drops it ~4.9% below it. */
-.bandMeta {
-  margin-top: clamp(22px, 4.9vw, 86px);
-  font-size: clamp(0.72rem, 1.66vw, 1.55rem);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  color: var(--color-meta);
+.rule {
+  display: block;
+  height: 1px;
+  background: var(--warm-grey);
+}
+
+/* Paragraphs broken by hand as the mockup breaks them — on the desktop
+   the lines hold exactly those breaks. */
+.approachCopy,
+.storiesCopy,
+.aboutCopy {
+  white-space: nowrap;
+}
+
+/* ---------- Hero — two frames, warm white either side ---------- */
+
+.hero {
+  position: relative;
+  padding-top: 3.4cqw;
+  /* the colour frame steps a hair below the monochrome one */
+  padding-bottom: 0.8cqw;
+}
+
+.heroMain {
+  margin-left: 16.5%;
+  width: 67.3%;
+}
+
+/* Laid over the lower right corner, a warm-white margin round it. */
+.heroSide {
+  position: absolute;
+  bottom: 0;
+  left: 68.8%;
+  width: 26.8%;
+  box-shadow: 0 0 0 0.6cqw var(--color-page);
+}
+
+/* ---------- Observation ---------- */
+
+.observation {
+  padding: 1.9cqw 6cqw 0;
+}
+
+.observation :global(.label) {
+  font-size: 1.55cqw;
+  letter-spacing: 0.3em;
+  color: var(--color-ink);
+}
+
+.observationTitle {
+  margin-top: 1.6cqw;
+  font-size: 5.27cqw;
+  line-height: 1.13;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.observation .rule {
+  width: 10.3cqw;
+  margin-top: 2.2cqw;
+  background: var(--color-ink);
+}
+
+/* ---------- Approach ---------- */
+
+.approach {
+  display: grid;
+  grid-template-columns: 44.4cqw 1fr;
+  align-items: start;
+  margin-top: 5.2cqw;
+  padding: 0 1cqw 0 3.1cqw;
+}
+
+.approachText {
+  padding-top: 3.4cqw;
+}
+
+.approach :global(.label),
+.about :global(.label) {
+  font-size: 1.15cqw;
+  letter-spacing: 0.3em;
+}
+
+.approachTitle {
+  margin-top: 0.9cqw;
+  font-size: 5.02cqw;
+  line-height: 1.24;
+}
+
+.approachText .rule,
+.aboutText .rule {
+  width: 6.4cqw;
+  margin-top: 2cqw;
+}
+
+.approachLead,
+.approachCopy {
+  font-size: 1.99cqw;
+  line-height: 1.45;
+}
+
+.approachLead {
+  margin-top: 1.8cqw;
+  font-size: 2.15cqw;
+}
+
+.approachLead + .approachCopy {
+  margin-top: 1.3cqw;
+}
+
+.approachFrames {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.9cqw;
+}
+
+/* ---------- Ivory panels ---------- */
+
+.panel {
+  margin: 2.4cqw 1.6cqw 0;
+  padding: 3.2cqw 3cqw 4cqw;
+  border: 1px solid var(--hairline-soft);
+  background: var(--ivory);
+  text-align: center;
+}
+
+.panelLead {
+  font-family: var(--font-display);
+  font-size: 2cqw;
+  line-height: 1.4;
+  color: var(--color-body);
+}
+
+.panelRule {
+  display: block;
+  width: 4.4cqw;
+  height: 1px;
+  margin: 1.9cqw auto 0;
+  background: var(--warm-grey);
+}
+
+.panelRule + .panelLead {
+  margin-top: 1.6cqw;
+}
+
+.panelTitle {
+  margin-top: 1.4cqw;
+  font-size: 4.03cqw;
+  line-height: 1.24;
+  text-transform: uppercase;
 }
 
 /* ---------- Selected stories ---------- */
 
-/* The column is wide enough to hold the four lines the document prints,
-   and no wider. */
 .stories {
-  display: grid;
-  grid-template-columns: 42fr 6fr 52fr;
-  align-items: center;
-  padding-top: var(--section);
-  padding-bottom: var(--section);
+  margin-top: 3.5cqw;
+  padding-inline: 1.7cqw;
+  text-align: center;
 }
 
-.storiesText {
-  grid-column: 1;
-  grid-row: 1;
+.aboutText :global(.label) {
+  font-size: 1.02cqw;
 }
 
-.storiesTitle {
-  font-size: var(--fs-display);
+.storiesLabel {
+  font-size: 1.17cqw;
+  letter-spacing: 0.3em;
 }
 
-/* The document sets this paragraph on four given lines. 22em is the one
-   measure that produces exactly those breaks: the longest of the four
-   runs to 21.3em, and the next word up would need 22.8em. Expressed in
-   em, it holds at every viewport, because the measure then scales with
-   the type. */
 .storiesCopy {
-  margin-top: var(--sp-sm);
-  max-width: 22em;
+  margin-top: 1.4cqw;
+  font-size: 1.84cqw;
+  line-height: 1.6;
 }
 
-.storiesFrames {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-}
-
-.storiesControls {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
-  margin-top: var(--sp-md);
+.storiesGallery {
+  margin-top: 2.4cqw;
+  text-align: left;
 }
 
 /* ---------- About preview ---------- */
 
 .about {
   display: grid;
-  grid-template-columns: 33fr 8fr 59fr;
+  grid-template-columns: 38.2cqw 1fr;
+  column-gap: 5.2cqw;
   align-items: center;
-  padding-bottom: var(--section);
-}
-
-.aboutPortrait {
-  grid-column: 1;
-}
-
-.aboutText {
-  grid-column: 3;
+  margin-top: 4cqw;
+  padding-inline: 1.9cqw;
 }
 
 .aboutTitle {
-  margin-top: var(--sp-xs);
-  font-size: var(--fs-display-sm);
-}
-
-.aboutBreak {
-  display: none;
+  margin-top: 1.5cqw;
+  font-size: 4.48cqw;
+  line-height: 1.17;
 }
 
 .aboutCopy {
-  margin-top: var(--sp-sm);
-  max-width: 52ch;
+  margin-top: 2cqw;
+  font-size: 1.84cqw;
+  line-height: 1.6;
 }
 
-.aboutLink {
-  margin-top: var(--sp-md);
+/* ============================================================
+   Phone — the hero and the Philosophy title exactly as the phone
+   mockup draws them; the rest follows as one column.
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .home {
+    width: auto;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .approachCopy,
+  .storiesCopy,
+  .aboutCopy {
+    white-space: normal;
+  }
+
+  .hero {
+    padding-top: 3.4cqw;
+    padding-bottom: 13.2cqw;
+  }
+
+  .heroMain {
+    margin-left: 5.2%;
+    width: 78.7%;
+  }
+
+  .heroSide {
+    left: 58.6%;
+    width: 37.3%;
+    box-shadow: 0 0 0 1.7cqw var(--color-page);
+  }
+
+  .observation {
+    padding: 4.2cqw 5.4cqw 0;
+  }
+
+  .observation :global(.label) {
+    font-size: 2.21cqw;
+    letter-spacing: 0.26em;
+  }
+
+  .observationTitle {
+    margin-top: 3cqw;
+    font-size: 5.81cqw;
+    line-height: 1.23;
+  }
+
+  .observation .rule {
+    width: 11.7cqw;
+    margin-top: 2.3cqw;
+  }
+
+  /* Approach — the text, then the two frames side by side. */
+  .approach {
+    grid-template-columns: 1fr;
+    row-gap: 9cqw;
+    margin-top: 16cqw;
+    padding-inline: 5.4cqw;
+  }
+
+  .approachText {
+    padding-top: 0;
+  }
+
+  .approach :global(.label),
+  .about :global(.label),
+  .storiesLabel {
+    font-size: 2.5cqw;
+    letter-spacing: 0.26em;
+  }
+
+  .approachTitle,
+  .aboutTitle {
+    margin-top: 3.4cqw;
+    font-size: 9.2cqw;
+    line-height: 1.15;
+  }
+
+  .approachText .rule,
+  .aboutText .rule {
+    width: 11.7cqw;
+    margin-top: 5cqw;
+  }
+
+  .approachLead,
+  .approachCopy,
+  .aboutCopy,
+  .storiesCopy {
+    font-size: 4.4cqw;
+    line-height: 1.6;
+  }
+
+  .approachLead {
+    margin-top: 5.6cqw;
+  }
+
+  .approachLead + .approachCopy {
+    margin-top: 3.2cqw;
+  }
+
+  .approachFrames {
+    gap: 2.6cqw;
+  }
+
+  .panel {
+    margin: 11cqw 3cqw 0;
+    padding: 9cqw 6cqw 10cqw;
+  }
+
+  .panelLead {
+    font-size: 4.25cqw;
+    text-wrap: balance;
+  }
+
+  .panelRule {
+    width: 10cqw;
+    margin-top: 4.4cqw;
+  }
+
+  .panelRule + .panelLead {
+    margin-top: 4cqw;
+  }
+
+  .panelTitle {
+    margin-top: 4.8cqw;
+    font-size: 7cqw;
+    text-wrap: balance;
+  }
+
+  .stories {
+    margin-top: 13cqw;
+    padding-inline: 5.4cqw;
+  }
+
+  .storiesCopy {
+    margin-top: 3.4cqw;
+    text-wrap: balance;
+  }
+
+  .storiesGallery {
+    margin-top: 7cqw;
+  }
+
+  /* About — the portrait, then the text beneath it. */
+  .about {
+    grid-template-columns: 1fr;
+    row-gap: 8cqw;
+    margin-top: 13cqw;
+    padding-inline: 5.4cqw;
+  }
+
+  .aboutCopy {
+    margin-top: 5.6cqw;
+  }
 }
 
-/* ---------- Closing ---------- */
+/* ============================================================
+   Closing — as on the live site: the ivory statement, then the
+   very large monochrome photograph carrying the invitation.
+   ============================================================ */
 
 .closing {
   display: block;
-}
-
-/* Four vertical frames, edge to edge, with nothing printed over them. */
-.strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--gap-img);
-  padding-inline: var(--shell-pad);
 }
 
 .quote {
@@ -334,6 +406,7 @@
 /* The sentence holds one line on the desktop, as the reference prints it. */
 .quoteText {
   font-size: clamp(1.45rem, 2.57vw, 2.4rem);
+  font-weight: 700;
   line-height: 1.24;
   max-width: 46ch;
   margin-inline: auto;
@@ -348,6 +421,7 @@
   letter-spacing: var(--ls-wide);
   color: var(--color-meta);
   text-align: center;
+  white-space: nowrap;
 }
 
 /* ---------- The closing photograph ---------- */
@@ -447,116 +521,16 @@
   background: rgba(250, 249, 246, 0.14);
 }
 
-/* ============================================================
-   Phone and small tablet
-   ============================================================ */
-
 @media (max-width: 860px) {
-  /* The place-line may take two lines on a narrow phone; it stays
-     centred on its own measure. */
-  .heroLine {
-    max-width: 22em;
-  }
-
-  /* Text first, then image 1, image 2, image 3 — everything centred. */
-  .philosophy,
-  .stories,
-  .about {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    row-gap: var(--sp-lg);
-  }
-
-  .philosophyText,
-  .storiesText,
-  .aboutText,
-  .philosophyFrames,
-  .storiesFrames,
-  .aboutPortrait {
-    grid-column: 1;
-    grid-row: auto;
-    width: 100%;
-  }
-
-  .philosophyCopy,
-  .storiesCopy,
-  .aboutCopy {
-    margin-inline: auto;
-    max-width: 40ch;
-  }
-
-  /* Philosophy reads from the left margin on a phone, label, title and
-     paragraph together. */
-  .philosophy {
-    justify-items: start;
-    text-align: left;
-  }
-
-  .philosophyCopy {
-    margin-inline: 0;
-  }
-
-  /* No superposition on a phone — the tall frame first, the two smaller
-     ones side by side beneath it. The editorial idea survives; the
-     illegible overlap does not. */
-  .philosophyFrames {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gap-img);
-  }
-
-  .frameMain {
-    grid-column: 1 / span 2;
-    width: 100%;
-  }
-
-  .frameTop,
-  .frameOverMat {
-    /* relative, never static: `fill` images are absolute, so a static
-       frame would hand them the collage as their containing block and
-       every photograph would stretch across the whole block. */
-    position: relative;
-    width: 100%;
-    left: auto;
-    top: auto;
-    padding: 0;
-  }
-
-  .storiesControls {
-    grid-column: 1;
-    grid-row: auto;
-    margin-top: 0;
-    align-self: center;
-  }
-
-  .aboutLink {
-    align-self: center;
-  }
-
-  .aboutBreak {
-    display: inline;
-  }
-
-  .strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .bandTitle {
-    max-width: 20ch;
-  }
-
-  /* The phone lets the statement wrap on its own measure. */
-  .bandLine {
-    display: inline;
-  }
-
   .quoteText {
     max-width: 18ch;
   }
 
   .quoteMeta {
-    max-width: 30ch;
+    max-width: none;
+    white-space: normal;
+    letter-spacing: 0.16em;
+    text-wrap: balance;
   }
 
   /* The phone cannot hold the type beside the couple, so it holds it

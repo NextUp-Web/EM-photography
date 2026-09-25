@@ -29,7 +29,12 @@ export default function Footer() {
 
         <div className={styles.row}>
           <div className={styles.place}>
-            <p>Wedding &amp; Couple photographer based in Switzerland.</p>
+            <p>Wedding &amp; Couple photographer</p>
+            <p className={styles.placeLine}>
+              Based in Switzerland
+              <span aria-hidden="true"> &middot; </span>
+              Available across Europe
+            </p>
           </div>
 
           <nav className={styles.navWrap} aria-label="Footer">
