@@ -25,16 +25,19 @@ export default function Footer() {
           <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
         </Link>
 
-        <nav aria-label="Footer">
-          <ul className={styles.nav}>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className={styles.navLink}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* Two links either side of the page's centre line. */}
+        <nav aria-label="Footer" className={styles.nav}>
+          {[NAV.slice(0, 2), NAV.slice(2)].map((half, index) => (
+            <ul key={index} className={styles.navHalf}>
+              {half.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={styles.navLink}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ))}
         </nav>
 
         <div className={styles.socials}>
@@ -58,12 +61,13 @@ export default function Footer() {
           </a>
         </div>
 
+        {/* The dot sits on the page's centre line, the two places either side. */}
         <p className={styles.place}>
-          Switzerland based
+          <span className={styles.placeStart}>Switzerland based</span>
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          Available across Europe
+          <span className={styles.placeEnd}>Available across Europe</span>
         </p>
 
         <p className={`label ${styles.legal}`}>

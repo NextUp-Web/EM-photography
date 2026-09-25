@@ -48,14 +48,6 @@
   color: var(--color-ink);
 }
 
-.statement {
-  font-family: var(--font-display);
-  font-size: var(--t-statement);
-  font-weight: 700;
-  line-height: 1.3;
-  color: var(--color-ink);
-}
-
 .lead {
   font-family: var(--font-display);
   font-size: var(--t-lead);
@@ -69,6 +61,30 @@
   line-height: 1.7;
   color: var(--color-body);
   max-width: 44ch;
+}
+
+/* The two ivory panels — set exactly as main sets "Documenting love in
+   its softest form.": the sentence in Bodoni Moda, the line beneath it
+   in Montserrat caps, widely tracked, in the meta grey. */
+.panelQuote {
+  font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
+  font-size: clamp(1.45rem, 2.57vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.24;
+  color: var(--color-ink);
+  /* never one word alone on the last line */
+  text-wrap: balance;
+}
+
+.panelMeta {
+  margin-top: clamp(16px, 1.8vw, 28px);
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.625rem, 0.95vw, 0.86rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--color-meta);
 }
 
 .caps {
@@ -87,10 +103,6 @@
   height: 1px;
   margin-top: var(--step-m);
   background: var(--warm-grey);
-}
-
-.ruleCentred {
-  margin-inline: auto;
 }
 
 .rule + .lead,
@@ -131,7 +143,29 @@
   display: grid;
   grid-template-columns: 5fr 7fr;
   column-gap: var(--col-gap);
-  align-items: center;
+  align-items: stretch;
+}
+
+/* The photographs keep their own height and sit on the foot of the row… */
+.split > :not(.text) {
+  align-self: end;
+}
+
+/* …and the text column runs the same height, so the button at its foot
+   sits on the same line as the foot of the photographs. */
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.text > .cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* the space above the button, when the text is as tall as the frame */
+.text > :nth-last-child(2) {
+  margin-bottom: var(--step-l);
 }
 
 .pair {
@@ -161,20 +195,59 @@
   max-width: 60ch;
 }
 
-/* ---------- The invitation — photograph 7, text 5 ---------- */
+/* ---------- The invitation — one monochrome photograph across the page ---------- */
 
 .invite {
-  display: grid;
-  grid-template-columns: 7fr 5fr;
-  column-gap: var(--col-gap);
-  align-items: center;
+  position: relative;
 }
 
-.inviteTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.4em;
+/* The couple is drawn to the right half; the left takes the type, with a
+   soft shade on that side only. */
+.inviteFigure {
+  background: var(--soft-black);
+}
+
+.inviteFigure img {
+  transform: scale(1.28);
+  transform-origin: 0% 62%;
+}
+
+.inviteFigure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(25, 24, 22, 0.55) 0%,
+    rgba(25, 24, 22, 0.3) 36%,
+    rgba(25, 24, 22, 0) 60%
+  );
+  pointer-events: none;
+}
+
+/* On the left, a panel's padding in from the edge, centred on the height. */
+.inviteText {
+  position: absolute;
+  top: 50%;
+  left: var(--panel-pad);
+  transform: translateY(-50%);
+}
+
+.inviteText .title,
+.home .inviteTags {
+  color: var(--warm-white);
+}
+
+.home .inviteTags {
   margin-top: var(--step-m);
+}
+
+.inviteDot {
+  padding-inline: 0.9em;
+}
+
+.inviteCta {
+  margin-top: var(--step-l);
 }
 
 /* ============================================================
@@ -206,16 +279,51 @@
     row-gap: var(--step-l);
   }
 
-  .statement {
+  .text > :nth-last-child(2) {
+    margin-bottom: 0;
+  }
+
+  .text > .cta {
+    margin-top: var(--step-l);
+  }
+
+  .panelQuote,
+  .panelMeta {
     text-wrap: balance;
+  }
+
+  .panelMeta {
+    font-size: 0.65rem;
   }
 
   .storiesHead .body {
     text-wrap: balance;
   }
 
-  .invite {
-    grid-template-columns: 1fr;
-    row-gap: var(--step-l);
+  /* The type goes above the couple on the phone. */
+  .inviteFigure img {
+    object-position: 58% 0% !important;
+    transform: scale(1.34);
+    transform-origin: 58% 0%;
+  }
+
+  .inviteFigure::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 24, 22, 0.5) 0%,
+      rgba(25, 24, 22, 0.26) 40%,
+      rgba(25, 24, 22, 0) 58%
+    );
+  }
+
+  .inviteText {
+    top: 28px;
+    left: 24px;
+    right: 24px;
+    transform: none;
+  }
+
+  .inviteDot {
+    padding-inline: 0.5em;
   }
 }

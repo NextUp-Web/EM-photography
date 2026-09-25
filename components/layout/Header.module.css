@@ -31,15 +31,16 @@
   --wordmark-size: max(1.3rem, 1.8cqw);
 }
 
-/* The desktop sets the name at the left of the bar; the phone centres it,
-   as its mockup does. */
+/* The lockup sits at the left of the bar; inside it, EM PHOTOGRAPHY is
+   centred over the line beneath it. The phone centres the whole lockup on
+   the bar, as its mockup does. */
 .brand {
   grid-column: 1;
   justify-self: start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   white-space: nowrap;
   transition: opacity var(--dur) var(--ease);
 }
@@ -67,6 +68,9 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: var(--ls-label);
+  /* the tracking is added before the first letter too, so the line is
+     centred under the name */
+  text-indent: var(--ls-label);
   text-transform: uppercase;
   color: var(--color-ink);
 }
@@ -134,11 +138,6 @@
     justify-self: center;
     align-items: center;
     text-align: center;
-  }
-
-  .tagline {
-    /* the tracking is added after the last letter too, so it recentres */
-    text-indent: var(--ls-label);
   }
 
   .nav {

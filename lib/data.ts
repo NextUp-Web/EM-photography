@@ -39,13 +39,13 @@ export const PHOTOS = {
   homeHeroMain: {
     src: `${V3}/home/hero.webp`,
     alt: "A bride and groom held close on the terrace, the lake and the mountains behind them",
-    position: "44% center",
+    position: "44% 72%",
     bw: true,
   },
   homeHeroSide: {
     src: `${V3}/home/story-lead.webp`,
     alt: "A bride at the balustrade looking out over the lake",
-    position: "38% center",
+    position: "38% 78%",
   },
   approachOne: {
     src: `${V3}/portfolio/pair-veil.webp`,
@@ -65,11 +65,12 @@ export const PHOTOS = {
     bw: true,
   },
   /* The invitation that closes the home page: the couple at the
-     balustrade in the warm evening light, in colour. */
+     balustrade, in monochrome, the type over the open lake to their left. */
   homeInvite: {
     src: `${V3}/portfolio/lead.webp`,
     alt: "The couple on the balustraded terrace, the lake and the mountains behind them",
-    position: "center 58%",
+    position: "center 52%",
+    bw: true,
   },
 
 
