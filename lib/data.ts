@@ -371,7 +371,7 @@ export const PORTFOLIO_INTRO: Photo = {
 export const PORTFOLIO_CLOSING: Photo = {
   src: `${V3}/home/hero.webp`,
   alt: "A couple at the balustrade, the lake and the mountains behind them",
-  position: "center 58%",
+  position: "center 34%",
   bw: true,
 };
 

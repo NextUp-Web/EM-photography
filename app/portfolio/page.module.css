@@ -89,6 +89,9 @@
 
 .closing {
   position: relative;
+  /* cqw below is a share of the photograph's width — the measure — as on
+     the home page */
+  container-type: inline-size;
 }
 
 .closingFigure {
@@ -133,6 +136,33 @@
   margin-top: var(--step-l);
 }
 
+/* On the desktop, the home page's invitation proportions: the title at
+   5.72% of the photograph's width, the label and the Enquire rectangle
+   scaled with it — never smaller than the site's own steps. */
+@media (min-width: 861px) {
+  /* the couple drawn to the right half, as the home page draws its own */
+  .closingFigure img {
+    transform: scale(1.32);
+    transform-origin: 0% 0%;
+  }
+
+  .closingLabel {
+    font-size: max(var(--t-label), min(1.3cqw, 1.2rem));
+  }
+
+  .closingTitle {
+    margin-top: max(var(--step-s), min(1.6cqw, 28px));
+    font-size: max(var(--t-title), min(5.72cqw, 5.3rem));
+  }
+
+  .closingCta {
+    margin-top: max(var(--step-l), min(3.2cqw, 58px));
+    min-width: min(15.7cqw, 280px);
+    min-height: max(clamp(48px, 3.6vw, 58px), min(4cqw, 72px));
+    font-size: max(var(--t-label), min(1.1cqw, 1.225rem));
+  }
+}
+
 /* ============================================================
    Tablet and phone — one column on the same measure.
    ============================================================ */
@@ -174,6 +204,12 @@
   /* two to a line: the fifth frame would sit alone */
   .stripFrame:nth-child(5) {
     display: none;
+  }
+
+  /* The type goes above the couple on the phone, as on the home page. */
+  .closingFigure img {
+    transform: scale(1.4);
+    transform-origin: 45% 0%;
   }
 
   .closingFigure::after {

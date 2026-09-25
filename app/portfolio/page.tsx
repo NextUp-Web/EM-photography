@@ -80,8 +80,8 @@ export default function PortfolioPage() {
       <section className={styles.closing} aria-labelledby="portfolio-invite">
         <Figure
           photo={PORTFOLIO_CLOSING}
-          ratio={3.4}
-          mobileRatio={0.8}
+          ratio={2.8}
+          mobileRatio={0.62}
           sizes="100vw"
           className={styles.closingFigure}
         />
