@@ -92,9 +92,9 @@ export default function HomePage() {
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className="panel">
-        {/* Set exactly as main sets its first ivory band: two lines on the
-            desktop, one flowing measure on the phone. */}
+      <section className={`panel ${styles.band}`}>
+        {/* Set as main sets its first ivory band: two lines on the desktop,
+            one flowing measure on the phone. */}
         <p className={styles.bandTitle}>
           <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
           <span className={styles.bandLine}>reveal more the longer you look.</span>
@@ -173,7 +173,7 @@ export default function HomePage() {
             <br />
             something
             <br />
-            meaningful.
+            <em className={styles.inviteEm}>meaningful.</em>
           </h2>
           <p className={`label ${styles.inviteTags}`}>
             Weddings
