@@ -35,8 +35,8 @@
   flex-direction: column;
   gap: var(--home-gap);
   width: min(var(--home-max), 100% - 2 * var(--home-gutter));
-  /* cqw below is a share of this column's width — the width of the ivory
-     panels and of the closing photograph */
+  /* cqw below is a share of this column's width — the width of the
+     closing photograph */
   container-type: inline-size;
   margin-inline: auto;
   padding-top: var(--step-l);
@@ -52,44 +52,14 @@
   color: var(--color-ink);
 }
 
-/* The first ivory panel — set as main sets its first band: the sentence
-   in Bodoni Moda on two lines, the line beneath it in Montserrat caps,
-   widely tracked, in the meta grey. Every size is the share of the panel's
-   width it takes in main's band (the client's reference): the first line
-   runs to 61% of it, and the band keeps main's air above and below —
-   never past main's own largest sizes. */
-.band {
-  padding-block: clamp(var(--panel-pad), 7.2%, 132px);
-}
-
-.bandTitle {
-  font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
-  font-size: clamp(1.75rem, 3.66cqw, 4.2rem);
-  font-weight: 400;
-  line-height: 1.125;
-  color: var(--color-ink);
-}
-
+/* The first ivory panel is set exactly as the second (below); its
+   sentence holds two lines on the desktop. */
 .bandLine {
   display: block;
 }
 
-.bandMeta {
-  margin-top: clamp(22px, 4.99cqw, 86px);
-  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
-  font-size: clamp(0.72rem, 1.36cqw, 1.55rem);
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  /* the tracking follows the last letter; the same before the first keeps
-     the line on the centre of the panel */
-  padding-left: 0.3em;
-  line-height: 1.6;
-  text-transform: uppercase;
-  color: var(--color-meta);
-}
-
-/* The second ivory panel — set exactly as main sets "Documenting love in
-   its softest form.": the sentence in Bodoni Moda, the line beneath it in
+/* Both ivory panels — set exactly as main sets "Documenting love in its
+   softest form.": the sentence in Bodoni Moda, the line beneath it in
    Montserrat caps, widely tracked, in the meta grey. */
 .quoteText {
   font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
@@ -359,12 +329,7 @@
     margin-top: var(--step-l);
   }
 
-  /* main's first band on the phone: the sentence wraps on its own measure */
-  .bandTitle {
-    max-width: 20ch;
-    margin-inline: auto;
-  }
-
+  /* the first panel's sentence wraps on its own measure on the phone */
   .bandLine {
     display: inline;
   }
