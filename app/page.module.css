@@ -25,9 +25,9 @@
    ============================================================ */
 
 .home {
-  /* measure */
-  --home-max: 1080px;
-  --home-gutter: clamp(20px, 5vw, 80px);
+  /* measure — the site's own (globals.css) */
+  --home-max: var(--measure-max);
+  --home-gutter: var(--measure-gutter);
   /* rhythm */
   --home-gap: clamp(72px, 7vw, 104px);
   --step-s: 12px;
@@ -93,14 +93,6 @@
 .caps {
   text-transform: uppercase;
   letter-spacing: 0.02em;
-}
-
-.bold {
-  font-weight: 700;
-}
-
-.oneLine {
-  white-space: nowrap;
 }
 
 /* The steps inside a block: label → title → rule → lead → body. */
@@ -272,7 +264,6 @@
 
 @media (max-width: 860px) {
   .home {
-    --home-gutter: 20px;
     --home-gap: 64px;
     --step-l: 28px;
     --panel-pad: 40px;
@@ -317,11 +308,6 @@
   }
 
   .statement {
-    text-wrap: balance;
-  }
-
-  .oneLine {
-    white-space: normal;
     text-wrap: balance;
   }
 

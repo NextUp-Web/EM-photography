@@ -83,6 +83,10 @@
   /* ---- Layout ---- */
   --frame-max: 1760px;
   --shell-pad: clamp(24px, 5vw, 96px);
+  /* The site's measure: the home page, the header and the footer all sit
+     on this one column — nothing runs outside its margins. */
+  --measure-max: 1080px;
+  --measure-gutter: clamp(20px, 5vw, 80px);
   --gap-img: clamp(8px, 1.1vw, 16px);
 
   --header-h: 80px;
@@ -109,6 +113,7 @@
     --logo-h: 52px;
     --gap-img: 10px;
     --shell-pad: 26px;
+    --measure-gutter: 20px;
 
     --fs-hero-tag: 0.72rem;
     --fs-xl: clamp(2rem, 10.2vw, 2.7rem);

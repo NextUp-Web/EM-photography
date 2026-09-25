@@ -142,11 +142,11 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className={styles.panel}>
-        <p className={`${styles.statement} ${styles.bold}`}>
+        <p className={`${styles.statement} ${styles.caps}`}>
           Documenting love in its softest form.
         </p>
         <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
-        <p className={`label ${styles.oneLine}`}>
+        <p className={styles.lead}>
           Documentary presence. Editorial sensibility. Softly felt.
         </p>
       </section>

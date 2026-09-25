@@ -18,7 +18,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--sp-xl) var(--shell-pad) var(--sp-lg);
+  /* On the site's measure: nothing runs outside the page's margins. */
+  width: min(var(--measure-max), 100% - 2 * var(--measure-gutter));
+  margin-inline: auto;
+  padding: var(--sp-xl) 0 var(--sp-lg);
 }
 
 /* The rule sits above the lockup and inside the page margin, so it reads
