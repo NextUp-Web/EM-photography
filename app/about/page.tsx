@@ -1,5 +1,6 @@
+import Link from "next/link";
 import Figure from "@/components/ui/Figure";
-import { ABOUT_VERTICALS, APPROACH_STEPS, PHOTOS } from "@/lib/data";
+import { APPROACH_STEPS, PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -9,159 +10,129 @@ export const metadata = {
   alternates: { canonical: "/about" },
 };
 
+/**
+ * On the home page's system: one column on the site's measure, sections
+ * separated by --gap-section, type from the one scale. Two-column sections
+ * split 5 / 7 across --col-gap; the statements sit in the ivory panel.
+ */
 export default function AboutPage() {
   return (
     <div className="page">
-      {/* ---------- The one where ----------
-          One centred title and a great deal of white around it, exactly as
-          the brief asks — this opening is not compressed. */}
-      <section className={styles.opening}>
-        <h1 className={`display ${styles.openingTitle}`}>
-          The one where
-          <br />
-          You get to know more about EM
-        </h1>
-      </section>
-
-      {/* ---------- A quiet eye ----------
-          Text on the left, three frames of Emma on the right, set off one
-          another rather than in a row. */}
-      <section className={styles.emma} aria-labelledby="about-emma">
-        <div>
-          <p className="label" id="about-emma">
-            About
-          </p>
-          <h2 className={`display ${styles.emmaTitle}`}>
+      {/* ---------- A quiet eye — text 5, frames 7 ---------- */}
+      <section className={styles.opening} aria-labelledby="about-title">
+        <div className={styles.text}>
+          <p className={`label ${styles.eyebrow}`}>About</p>
+          <h1 className={styles.display} id="about-title">
             A quiet eye for
             <br />
             what unfolds
             <br />
             naturally.
-          </h2>
-
-          {/* Its own line, apart from the paragraph beneath it. */}
-          <p className={`copy ${styles.emmaIntroLine}`}>
-            I&rsquo;m Emma, the photograph behind EM Photography.
+          </h1>
+          <span className={styles.rule} aria-hidden="true" />
+          <p className={styles.lead}>
+            I&rsquo;m Emma, the photographer
+            <br className={styles.wide} /> behind EM Photography.
           </p>
-
-          {/* The line breaks are the reference's own. */}
-          <p className={`copy ${styles.emmaCopy}`}>
-            <span className={styles.line}>Drawn to the beauty of what is felt rather</span>{" "}
-            <span className={styles.line}>than staged. To the softness of a gesture,</span>{" "}
-            <span className={styles.line}>the fleeting details that give a moment its</span>{" "}
-            <span className={styles.line}>atmosphere, and what happens in between.</span>{" "}
-            <span className={styles.line}>I&rsquo;m interested in what feels honest,</span>{" "}
-            <span className={styles.line}>instinctive and quietly meaningful.</span>
+          <p className={styles.body}>
+            I&rsquo;m drawn to the beauty of what is felt rather than staged. To the
+            subtle gestures, the fleeting details that shape a moment. I&rsquo;m
+            inspired by natural light, honest in-between moments and a love that feels
+            honest, instinctive and quietly meaningful.
           </p>
         </div>
 
-        {/* As the reference: one wide, tall frame, and two smaller frames
-            laid over its right-hand side. */}
-        <div className={styles.emmaFrames}>
+        {/* One tall frame, and a smaller one laid over its lower right corner,
+            both inside the measure. */}
+        <div className={styles.frames}>
           <Figure
-            photo={PHOTOS.aboutPortraitMain}
-            ratio={0.64}
-            mobileRatio={0.75}
-            sizes="(max-width: 860px) 100vw, 24vw"
+            photo={PHOTOS.aboutLead}
+            ratio={0.71}
+            mobileRatio={0.8}
+            sizes="(max-width: 860px) 80vw, 44vw"
             priority
-            className={styles.portraitMain}
+            className={styles.frameMain}
           />
           <Figure
-            photo={PHOTOS.aboutPortraitTwo}
-            ratio={0.79}
-            mobileRatio={0.84}
-            sizes="(max-width: 860px) 46vw, 23vw"
-            className={styles.portraitTop}
-          />
-          <Figure
-            photo={PHOTOS.aboutPortraitThree}
-            ratio={0.74}
-            mobileRatio={0.84}
-            sizes="(max-width: 860px) 46vw, 27vw"
-            className={styles.portraitLow}
+            photo={PHOTOS.aboutLeadInset}
+            ratio={0.65}
+            mobileRatio={0.7}
+            sizes="(max-width: 860px) 45vw, 26vw"
+            priority
+            className={styles.frameInset}
           />
         </div>
       </section>
 
-      {/* ---------- More than a record ---------- */}
+      {/* ---------- More than a record — frame 7, text 5 ---------- */}
       <section className={styles.trace} aria-labelledby="about-trace">
         <Figure
           photo={PHOTOS.aboutTrace}
-          ratio={0.78}
-          mobileRatio={0.92}
-          sizes="(max-width: 860px) 100vw, 40vw"
-          className={styles.traceFigure}
+          ratio={1.16}
+          mobileRatio={1.1}
+          sizes="(max-width: 860px) 100vw, 56vw"
         />
 
-        <div className={styles.traceText}>
-          <h2 className={`display ${styles.traceTitle}`} id="about-trace">
-            More than a record <br className={styles.wide} />
-            of the day — a trace <br className={styles.wide} />
-            of what it felt like.
+        <div className={styles.text}>
+          <h2 className={styles.title} id="about-trace">
+            More than a record
+            <br className={styles.wide} /> of the day &mdash; a trace
+            <br className={styles.wide} /> of what it felt like.
           </h2>
-
-          {/* The line breaks are the reference's own. */}
-          <div className={styles.traceCopy}>
-            <p className="copy">
-              <span className={styles.line}>Inspired by genuine connection, natural beauty</span>{" "}
-              <span className={styles.line}>and the imperfect character of real moments,</span>{" "}
-              <span className={styles.line}>I create editorial imagery that feels refined,</span>{" "}
-              <span className={styles.line}>timeless and deeply personal.</span>
-            </p>
-            <p className="copy">
-              <span className={styles.line}>I work quietly and attentively, allowing moments</span>{" "}
-              <span className={styles.line}>to unfold naturally while offering gentle direction</span>{" "}
-              <span className={styles.line}>when needed. There is space for spontaneity,</span>{" "}
-              <span className={styles.line}>refined portraits and everything that happens</span>{" "}
-              <span className={styles.line}>in between.</span>
-            </p>
-          </div>
+          <span className={styles.rule} aria-hidden="true" />
+          <p className={styles.body}>
+            Inspired by genuine connection, natural beauty and the in-between moments
+            of real interaction &mdash; nuance and true presence that feel effortless,
+            timeless and deeply personal.
+          </p>
+          <p className={styles.body}>
+            I work quietly and intuitively, allowing moments to unfold naturally while
+            offering gentle direction when needed.
+          </p>
         </div>
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className="panel">
-        <p className={`display ${styles.bandTitle}`}>
-          <span className={styles.bandLine}>A little piece of that time,</span>{" "}
-          <span className={styles.bandLine}>kept close enough to feel again.</span>
-        </p>
-        <span className={`rule ${styles.bandRule}`} aria-hidden="true" />
-        <p className={`label ${styles.bandMeta}`}>
+      <section className={`panel ${styles.framed}`}>
+        <p className={styles.panelQuote}>Capturing how it felt.</p>
+        <p className={styles.panelMeta}>
           Observed with intention. Shaped with sensitivity. Made to remain.
         </p>
       </section>
 
-      {/* ---------- Three frames, then the three movements ---------- */}
-      <section className={styles.verticals}>
-        {ABOUT_VERTICALS.map((photo) => (
-          <Figure
-            key={photo.src}
-            photo={photo}
-            ratio={0.66}
-            mobileRatio={0.72}
-            sizes="(max-width: 860px) 92vw, 360px"
-          />
-        ))}
-      </section>
-
+      {/* ---------- Observe / Guide / Preserve ---------- */}
       <section aria-label="Observe, guide, preserve">
         <ol className={styles.steps}>
           {APPROACH_STEPS.map((step) => (
             <li key={step.number} className={styles.step}>
               <p className="label">{step.number}</p>
-              <span className={`rule ${styles.stepRule}`} aria-hidden="true" />
-              <h3 className={`display ${styles.stepTitle}`}>{step.title}</h3>
-              <p className={`copy ${styles.stepCopy}`}>
-                {step.lines.map((line, index) => (
-                  <span key={line}>
-                    {index > 0 && " "}
-                    <span className={styles.line}>{line}</span>
-                  </span>
-                ))}
-              </p>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <span className={styles.stepRule} aria-hidden="true" />
+              <p className={`${styles.body} ${styles.stepCopy}`}>{step.text}</p>
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* ---------- One wide frame ---------- */}
+      <section aria-label="Emma at work">
+        <Figure
+          photo={PHOTOS.aboutPanorama}
+          ratio={3.2}
+          mobileRatio={1.3}
+          sizes="100vw"
+        />
+      </section>
+
+      {/* ---------- The invitation ---------- */}
+      <section className={`panel ${styles.framed}`} aria-labelledby="about-invite">
+        <h2 className={styles.title} id="about-invite">
+          <span className={styles.phrase}>If my approach feels like you,</span>{" "}
+          <span className={styles.phrase}>I would love to hear your story.</span>
+        </h2>
+        <Link href="/contact" className={`btn btn-dark ${styles.cta}`}>
+          Enquire
+        </Link>
       </section>
     </div>
   );

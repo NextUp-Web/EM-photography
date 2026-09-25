@@ -67,7 +67,7 @@ export default function ContactForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="fullName">
           Full name *
         </label>
@@ -110,26 +110,34 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="date">
           Wedding / session date *
         </label>
         {/* An empty rule rather than mm/dd/yyyy — the native picker is only
             summoned once the field is actually being filled in. */}
-        <input
-          className={styles.input}
-          id="date"
-          name="date"
-          type={dateFocused ? "date" : "text"}
-          required
-          onFocus={() => setDateFocused(true)}
-          onBlur={(event) => {
-            if (!event.currentTarget.value) setDateFocused(false);
-          }}
-        />
+        <div className={styles.selectWrap}>
+          <input
+            className={`${styles.input} ${styles.date}`}
+            id="date"
+            name="date"
+            type={dateFocused ? "date" : "text"}
+            required
+            onFocus={() => setDateFocused(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.value) setDateFocused(false);
+            }}
+          />
+          <span className={styles.chevron} aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="15" height="15" fill="none">
+              <rect x="1.5" y="2.5" width="13" height="12" stroke="currentColor" />
+              <path d="M1.5 6h13M5 1v3M11 1v3" stroke="currentColor" />
+            </svg>
+          </span>
+        </div>
       </div>
 
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="location">
           Location / venue *
         </label>
@@ -142,7 +150,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="interest">
           Interest *
         </label>
@@ -155,7 +163,7 @@ export default function ContactForm() {
             required
           >
             <option value="" disabled>
-              Select
+              Please select
             </option>
             {INTERESTS.map((option) => (
               <option key={option} value={option}>
@@ -219,7 +227,7 @@ export default function ContactForm() {
             required
           >
             <option value="" disabled>
-              Select
+              Please select
             </option>
             {REFERRAL_SOURCES.map((option) => (
               <option key={option} value={option}>
@@ -242,7 +250,7 @@ export default function ContactForm() {
       <div className={styles.actions}>
         <button
           type="submit"
-          className={`btn btn-dark ${styles.submit}`}
+          className={`btn ${styles.submit}`}
           disabled={status === "sending"}
         >
           {status === "sending" ? "Sending" : "Send inquiry"}

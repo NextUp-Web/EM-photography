@@ -4,10 +4,10 @@ import { COLLECTIONS } from "@/lib/data";
 import styles from "./CollectionGrid.module.css";
 
 /**
- * The reportages themselves — no categories, no cards, no shadows: one
- * cover photograph, the couple's initials beneath it, then the place.
- * Three to a line on the desktop, two on the phone. The whole frame is
- * the link, and it opens that story's own page.
+ * The reportages as cards: one cover photograph, then, inside a hairline,
+ * the couple's initials over the place, and an arrow on the right. The
+ * middle card of each row is printed monochrome, so colour and black and
+ * white alternate. The whole card is the link to that story's own page.
  */
 export default function CollectionGrid() {
   return (
@@ -17,13 +17,20 @@ export default function CollectionGrid() {
           <Link href={`/portfolio/${collection.slug}`} className={styles.item}>
             <Figure
               photo={collection.cover}
-              ratio={1.28}
-              mobileRatio={1.05}
-              sizes="(max-width: 860px) 46vw, 360px"
+              ratio={1.32}
+              mobileRatio={1.2}
+              sizes="(max-width: 860px) 100vw, 33vw"
               className={styles.cover}
             />
-            <p className={`label ${styles.name}`}>{collection.name}</p>
-            <p className={`label ${styles.place}`}>{collection.place}</p>
+            <span className={styles.caption}>
+              <span className={styles.text}>
+                <span className={`caps-serif ${styles.name}`}>{collection.name}</span>
+                <span className={`label ${styles.place}`}>{collection.place}</span>
+              </span>
+              <span className={styles.arrow} aria-hidden="true">
+                &#8594;
+              </span>
+            </span>
           </Link>
         </li>
       ))}

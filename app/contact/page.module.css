@@ -1,111 +1,99 @@
 /* ============================================================
    CONTACT
 
-   On the site's system (globals.css): one column on the shared
-   measure, sections separated by --gap-section, type from the
-   one scale. The page opens on its title and invitation and one
-   photograph a --step-l apart, then the written invitation and
-   the form split 5 / 7, then one monochrome frame.
+   On the home page's system (globals.css, app/page.module.css):
+   one column on the shared measure, sections separated by
+   --gap-section, type from the one scale — display for the
+   page's title, title (in caps, as the home page's Philosophy
+   headline) for the inquiry, lead and body for the text, the
+   tracked label for the small caps.
+
+   The photograph runs the full measure; the words and the form
+   sit on a narrower column centred inside it.
    ============================================================ */
 
-.opening {
-  display: flex;
-  flex-direction: column;
-  gap: var(--step-l);
+.column {
+  width: min(100%, 62rem);
+  margin-inline: auto;
 }
 
-.intro {
-  text-align: center;
+/* ---------- Type — the home page's steps ---------- */
+
+.display,
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.display {
+  margin-top: var(--step-s);
+  font-size: var(--t-display);
 }
 
 .title {
-  font-size: var(--t-display);
-  line-height: 1.15;
-}
-
-.lede {
-  margin-top: var(--step-m);
-  font-size: var(--t-lead);
-  line-height: 1.6;
-}
-
-/* Each of the reference's four lines holds on its own on the desktop; the
-   phone lets the paragraph flow, still centred. */
-.line {
-  display: block;
-  white-space: nowrap;
-}
-
-/* ---------- Invitation + form — 5 / 7 ---------- */
-
-.main {
-  display: grid;
-  grid-template-columns: 5fr 7fr;
-  column-gap: var(--col-gap);
-  align-items: start;
-}
-
-.aside {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.asideTitle {
   margin-top: var(--step-s);
   font-size: var(--t-title);
-  line-height: 1.15;
 }
 
-.asideCopy {
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.lead,
+.subtitle {
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  line-height: 1.5;
+}
+
+.lead {
   margin-top: var(--step-m);
+  max-width: 52ch;
+  color: var(--color-body);
 }
 
-.formWrap {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+.subtitle {
+  margin-top: var(--step-s);
+  color: var(--color-ink);
 }
 
-.bouquet {
-  grid-column: 1;
-  grid-row: 2;
+.body {
+  margin-top: var(--step-m);
+  max-width: 62ch;
+  font-family: var(--font-display);
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--color-body);
+}
+
+/* The small label with its short hairline after it. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.eyebrow::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--warm-grey);
+}
+
+/* ---------- The form ---------- */
+
+.form {
   margin-top: var(--step-l);
-  align-self: end;
 }
-
-.wide {
-  display: inline;
-}
-
-/* ============================================================
-   Phone — one column on the same measure.
-   ============================================================ */
 
 @media (max-width: 860px) {
-  .line {
-    display: inline;
-    white-space: normal;
-  }
-
-  .main {
-    grid-template-columns: 1fr;
-  }
-
-  .aside,
-  .formWrap,
-  .bouquet {
-    grid-column: 1;
-  }
-
-  .formWrap {
-    grid-row: 2;
-    margin-top: var(--step-l);
-  }
-
-  .bouquet {
-    grid-row: 3;
-  }
-
-  .wide {
-    display: none;
+  .display,
+  .title,
+  .subtitle {
+    text-wrap: balance;
   }
 }

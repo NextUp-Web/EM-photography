@@ -1,13 +1,14 @@
 /* ============================================================
-   Contact form — two columns of hairline rectangles on desktop,
-   one column on the phone, exactly as the mockup prints them.
+   Contact form — one column of hairline rectangles, email and
+   phone side by side on the desktop, exactly as the reference
+   prints them; one column throughout on the phone.
    ============================================================ */
 
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: clamp(20px, 2.6vw, 42px);
-  row-gap: clamp(16px, 2.8vw, 40px);
+  column-gap: clamp(16px, 1.6vw, 24px);
+  row-gap: clamp(16px, 1.6vw, 24px);
 }
 
 .field {
@@ -16,8 +17,7 @@
   min-width: 0;
 }
 
-/* The six required fields fill three rows of two; the message and the
-   referral run the whole width beneath them. */
+/* Every field runs the whole width but email and phone, which share a row. */
 .fieldFull {
   grid-column: 1 / -1;
 }
@@ -29,7 +29,7 @@
 .input {
   margin-top: clamp(7px, 0.8vw, 11px);
   width: 100%;
-  height: clamp(44px, 4.15vw, 60px);
+  height: clamp(44px, 3.4vw, 50px);
   padding: 0 16px;
   border: 1px solid var(--hairline);
   background: transparent;
@@ -78,7 +78,7 @@
 
 .textarea {
   height: auto;
-  min-height: clamp(110px, 10.5vw, 152px);
+  min-height: clamp(96px, 7vw, 120px);
   padding: 12px 14px;
   resize: vertical;
 }
@@ -95,11 +95,30 @@
   cursor: pointer;
 }
 
+/* The date's own picker is summoned from the calendar mark: the native
+   indicator is laid, invisible, over it. */
+.date {
+  position: relative;
+  padding-right: 42px;
+}
+
+.date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
 .chevron {
   position: absolute;
   right: 15px;
   bottom: 0;
-  height: clamp(44px, 4.15vw, 60px);
+  height: clamp(44px, 3.4vw, 50px);
   display: flex;
   align-items: center;
   color: var(--color-ink);
@@ -109,15 +128,24 @@
 .actions {
   grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  column-gap: clamp(20px, 2.4vw, 38px);
   row-gap: clamp(12px, 1.4vw, 18px);
-  margin-top: clamp(8px, 1.2vw, 18px);
+  margin-top: clamp(4px, 0.6vw, 8px);
 }
 
+/* The site's button, filled with ink across the whole form. */
 .submit {
-  border-bottom-width: 1.5px;
+  width: 100%;
+  border-color: var(--soft-black);
+  background: var(--soft-black);
+  color: var(--warm-white);
+}
+
+.submit:hover,
+.submit:focus-visible {
+  background: transparent;
+  color: var(--color-ink);
 }
 
 /* The site's small-label voice. */
@@ -133,7 +161,7 @@
 }
 
 .status {
-  flex-basis: 100%;
+  align-self: stretch;
   margin-top: 4px;
   font-family: var(--font-display);
   font-size: var(--fs-body);
@@ -172,8 +200,6 @@
 
   .actions {
     grid-column: 1;
-    align-items: flex-start;
-    flex-direction: column;
     margin-top: clamp(10px, 3vw, 16px);
   }
 

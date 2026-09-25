@@ -1,13 +1,14 @@
 /* ============================================================
    ABOUT
 
-   On the site's system (globals.css): the page is one column on
-   the shared measure, every section separated by --gap-section,
-   type from the one scale — display for the opening, title for
-   the section headings, statement in the ivory panel, lead and
-   body for the text, the tracked label for the small caps.
-   Two-column sections split 5 / 7 across --col-gap, as on the
-   home page.
+   On the home page's system (globals.css, app/page.module.css):
+   one column on the shared measure, sections separated by
+   --gap-section. Type from the one scale — display for the
+   page's title, title for the section headings, lead and body
+   for the text, the tracked label for the small caps — and the
+   ivory statement set exactly as the home page sets its own
+   (Bodoni Moda over Montserrat caps). Two-column sections split
+   5 / 7 across --col-gap.
    ============================================================ */
 
 /* A line break the desktop sets and the phone lets wrap. */
@@ -15,180 +16,210 @@
   display: inline;
 }
 
-/* Each half of a two-line statement holds its own line on the desktop and
-   rejoins the flow on the phone — the break is CSS, never a <br>, so the
-   space between the halves can never be lost. */
-.line,
-.bandLine {
-  display: block;
+/* ---------- Type — the home page's steps ---------- */
+
+.display,
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-ink);
 }
 
-/* ---------- The one where ---------- */
-
-/* The title stands alone in the middle of the first screen, centred both
-   ways; the rest of that screen is white. */
-.opening {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100svh - var(--header-h) - var(--step-l) - var(--gap-section));
-  text-align: center;
-}
-
-.openingTitle {
+.display {
   font-size: var(--t-display);
-  line-height: 1.2;
+}
+
+.title {
+  font-size: var(--t-title);
+}
+
+.lead {
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.body {
+  font-family: var(--font-display);
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--color-body);
+  max-width: 44ch;
+}
+
+/* The small label with its short hairline after it. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.eyebrow::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--warm-grey);
+}
+
+.rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin-top: var(--step-m);
+  background: var(--warm-grey);
+}
+
+/* The steps inside a block: label → title → rule → lead → body. */
+.eyebrow + .display {
+  margin-top: var(--step-s);
+}
+
+.rule + .lead,
+.rule + .body {
+  margin-top: var(--step-m);
+}
+
+.lead + .body,
+.body + .body {
+  margin-top: var(--step-s);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* ---------- A quiet eye — text 5, frames 7 ---------- */
 
-.emma,
-.trace {
+.opening {
   display: grid;
   grid-template-columns: 5fr 7fr;
   column-gap: var(--col-gap);
   align-items: center;
 }
 
-.emmaTitle,
-.traceTitle {
-  font-size: var(--t-title);
-  line-height: 1.15;
-}
-
-.emmaTitle {
-  margin-top: var(--step-s);
-}
-
-.emmaIntroLine {
-  margin-top: var(--step-m);
-  font-size: var(--t-lead);
-  text-wrap: balance;
-}
-
-.emmaCopy {
-  margin-top: var(--step-s);
-}
-
-/* The lines the reference prints hold on the desktop. */
-@media (min-width: 861px) {
-  .emmaCopy .line,
-  .traceCopy .line,
-  .stepCopy .line {
-    white-space: nowrap;
-  }
-}
-
-/* One tall frame of Emma, and two smaller frames laid over its right-hand
-   side — one at the top right, one lower and further left — each set off
-   by a narrow border of page, as a collage. */
-.emmaFrames {
+/* One tall frame at the left of the column, a smaller one over its lower
+   right corner, reaching the column's right edge — a margin of page round
+   it, as the home page's hero sets its own. Nothing leaves the measure. */
+.frames {
   position: relative;
-  aspect-ratio: 565 / 762;
+  aspect-ratio: 386 / 448;
 }
 
-.portraitMain,
-.portraitTop,
-.portraitLow {
+.frameMain,
+.frameInset {
   position: absolute;
   /* the placement carries the proportion here, not the figure's own ratio */
   aspect-ratio: auto;
 }
 
-.portraitMain {
+.frameMain {
   left: 0;
-  top: 5.2%;
-  width: 78.4%;
-  height: 90.8%;
+  top: 0;
+  width: 78%;
+  height: 94.6%;
 }
 
-.portraitTop,
-.portraitLow {
+.frameInset {
   z-index: 1;
+  right: 0;
+  bottom: 0;
+  width: 45.3%;
+  height: 59.8%;
   box-shadow: 0 0 0 clamp(6px, 0.7vw, 10px) var(--color-page);
 }
 
-.portraitTop {
-  left: 53.6%;
-  top: 0;
-  width: 42.8%;
-  height: 41.1%;
-}
+/* ---------- More than a record — frame 7, text 5 ---------- */
 
-.portraitLow {
-  left: 47.4%;
-  top: 49.1%;
-  width: 52.6%;
-  height: 50.9%;
-}
-
-/* ---------- More than a record — frame 5, text 7 ---------- */
-
-.traceCopy {
-  margin-top: var(--step-m);
-}
-
-/* ---------- Ivory panel ---------- */
-
-.bandTitle {
-  font-size: var(--t-statement);
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.bandRule {
-  margin: var(--step-m) auto 0;
-}
-
-.bandMeta {
-  margin-top: var(--step-m);
-}
-
-/* ---------- Three frames ---------- */
-
-.verticals {
+.trace {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-img);
+  grid-template-columns: 7fr 5fr;
+  column-gap: var(--col-gap);
+  align-items: center;
+}
+
+/* ---------- Ivory panels — with a hairline round them ---------- */
+
+.framed {
+  border: 1px solid var(--hairline);
+}
+
+/* Set exactly as the home page's ivory statements. */
+.panelQuote {
+  font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
+  font-size: clamp(1.45rem, 2.57vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.24;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.panelMeta {
+  margin-top: clamp(16px, 1.8vw, 28px);
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.625rem, 0.95vw, 0.86rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--color-meta);
+}
+
+.cta {
+  margin-top: var(--step-l);
+}
+
+/* Each half of the invitation holds its own line on the desktop and
+   never splits on the phone. */
+.phrase {
+  display: block;
 }
 
 /* ---------- Observe / Guide / Preserve ---------- */
 
-/* Three columns across the measure, split by the quietest of hairlines. */
+/* Three centred columns across the measure, split by hairlines. */
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  text-align: left;
+  text-align: center;
 }
 
 .step {
-  padding-inline: calc(var(--col-gap) / 2);
-}
-
-.step:first-child {
-  padding-left: 0;
-}
-
-.step:last-child {
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--step-s) calc(var(--col-gap) / 2);
 }
 
 .step + .step {
-  border-left: 1px solid var(--hairline-soft);
-}
-
-.stepRule {
-  margin-top: var(--step-m);
+  border-left: 1px solid var(--hairline);
 }
 
 .stepTitle {
-  margin-top: var(--step-m);
+  margin-top: var(--step-s);
+  font-family: var(--font-display);
   font-size: var(--t-title);
+  font-weight: 400;
   line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.stepRule {
+  display: block;
+  width: 40px;
+  height: 1px;
+  margin-top: var(--step-m);
+  background: var(--warm-grey);
 }
 
 .stepCopy {
-  margin-top: var(--step-s);
+  margin-top: var(--step-m);
+  max-width: 30ch;
+  text-wrap: balance;
 }
 
 /* ============================================================
@@ -200,92 +231,50 @@
     display: none;
   }
 
-  .line,
-  .bandLine {
-    display: inline;
-  }
-
-  .opening {
-    min-height: 0;
-  }
-
-  .openingTitle {
-    max-width: 16ch;
+  .display,
+  .title,
+  .lead {
     text-wrap: balance;
   }
 
+  .phrase {
+    display: inline-block;
+  }
+
   /* Text first, then the photographs. */
-  .emma,
+  .opening,
   .trace {
     grid-template-columns: 1fr;
     row-gap: var(--step-l);
   }
 
-  .traceFigure {
-    grid-row: 2;
-  }
-
-  .traceText {
+  .trace > .text {
     grid-row: 1;
   }
 
-  /* The tall portrait across the top, the two smaller frames side by
-     side beneath it. */
-  .emmaFrames {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gap-img);
-    aspect-ratio: auto;
-  }
-
-  .portraitMain,
-  .portraitTop,
-  .portraitLow {
-    /* relative, never static: `fill` images need their own frame */
-    position: relative;
-    width: 100%;
-    height: auto;
-    left: auto;
-    top: auto;
-    aspect-ratio: var(--fig-ratio-mobile, var(--fig-ratio, 1));
-  }
-
-  .portraitMain {
-    grid-column: 1 / span 2;
-  }
-
-  .portraitTop,
-  .portraitLow {
-    box-shadow: none;
-  }
-
-  .bandTitle {
-    text-wrap: balance;
+  .frameInset {
+    box-shadow: 0 0 0 7px var(--color-page);
   }
 
   .steps {
     grid-template-columns: 1fr;
-    row-gap: var(--step-l);
   }
 
-  .step,
-  .step:first-child,
+  .step {
+    padding: var(--step-l) 0;
+  }
+
+  .step:first-child {
+    padding-top: 0;
+  }
+
   .step:last-child {
-    padding-inline: 0;
+    padding-bottom: 0;
   }
 
   /* Stacked, the hairline goes above each block rather than beside it. */
   .step + .step {
     border-left: 0;
-    border-top: 1px solid var(--hairline-soft);
-    padding-top: var(--step-l);
-  }
-}
-
-/* Three verticals side by side would each be barely 100px wide on a
-   phone, so they become one column. */
-@media (max-width: 600px) {
-  .verticals {
-    grid-template-columns: 1fr;
+    border-top: 1px solid var(--hairline);
   }
 }

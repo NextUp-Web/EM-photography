@@ -1,55 +1,88 @@
 /* ============================================================
    PORTFOLIO
 
-   On the site's system (globals.css): one column on the shared
-   measure, sections separated by --gap-section, type from the
-   one scale. The page opens on its title and one large
-   photograph, a --step-l apart, and closes on the same
-   photograph-with-invitation as the home page.
+   On the home page's system (globals.css, app/page.module.css):
+   one column on the shared measure, sections separated by
+   --gap-section, type from the one scale — display for the
+   page's title, title for the invitation, body for the text,
+   the tracked label for the small caps. The opening splits
+   5 / 7 across --col-gap, as the home page's two-column
+   sections do.
    ============================================================ */
 
-.opening {
-  display: flex;
-  flex-direction: column;
-  gap: var(--step-l);
+/* A line break the desktop sets and the phone lets wrap. */
+.wide {
+  display: inline;
 }
 
-.intro {
-  text-align: center;
+/* The small label with its short hairline after it. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.eyebrow::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--warm-grey);
+}
+
+.body {
+  font-family: var(--font-display);
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--color-body);
+}
+
+/* ---------- Opening — text 5, photograph 7 ---------- */
+
+.opening {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  column-gap: var(--col-gap);
+  align-items: center;
 }
 
 .title {
+  margin-top: var(--step-s);
+  font-family: var(--font-display);
   font-size: var(--t-display);
+  font-weight: 400;
   line-height: 1.15;
+  color: var(--color-ink);
 }
 
-.subtitle {
+.tagline {
   margin-top: var(--step-m);
-  font-size: var(--t-lead);
-  line-height: 1.5;
+  color: var(--color-meta);
+  line-height: 1.9;
 }
 
-/* The desktop sets these on one line; the phone breaks them. */
-.wide {
-  display: none;
+/* ---------- Five frames in a row ---------- */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap-img);
 }
 
 /* ---------- Selected stories ---------- */
 
 .storiesHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--step-s);
   margin-bottom: var(--step-l);
   text-align: center;
 }
 
-.storiesTitle {
-  font-size: var(--t-title);
-  line-height: 1.15;
-}
-
-.storiesCopy {
-  margin-top: var(--step-m);
-  margin-inline: auto;
+.storiesHead .body {
   max-width: 60ch;
+  text-wrap: balance;
 }
 
 /* ---------- The invitation — as on the home page ---------- */
@@ -68,52 +101,91 @@
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(25, 24, 22, 0.5) 0%,
-    rgba(25, 24, 22, 0.3) 38%,
-    rgba(25, 24, 22, 0) 62%
+    rgba(25, 24, 22, 0.55) 0%,
+    rgba(25, 24, 22, 0.3) 36%,
+    rgba(25, 24, 22, 0) 60%
   );
   pointer-events: none;
 }
 
-.closingInner {
+/* On the left, a panel's padding in from the edge, centred on the height. */
+.closingText {
   position: absolute;
   top: 50%;
   left: var(--panel-pad);
   transform: translateY(-50%);
 }
 
+.closingLabel,
 .closingTitle {
-  font-size: var(--t-title);
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
   color: var(--warm-white);
+}
+
+.closingTitle {
+  margin-top: var(--step-s);
+  font-family: var(--font-display);
+  font-size: var(--t-title);
+  font-weight: 400;
+  line-height: 1.15;
 }
 
 .closingCta {
   margin-top: var(--step-l);
 }
 
+/* ============================================================
+   Tablet and phone — one column on the same measure.
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* three to a line: the last two frames would sit alone */
+  .stripFrame:nth-child(n + 4) {
+    display: none;
+  }
+}
+
 @media (max-width: 860px) {
   .wide {
-    display: inline;
+    display: none;
+  }
+
+  .opening {
+    grid-template-columns: 1fr;
+    row-gap: var(--step-l);
   }
 
   .title,
-  .subtitle {
+  .tagline {
     text-wrap: balance;
+  }
+
+  .strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stripFrame:nth-child(n + 4) {
+    display: block;
+  }
+
+  /* two to a line: the fifth frame would sit alone */
+  .stripFrame:nth-child(5) {
+    display: none;
   }
 
   .closingFigure::after {
     background: linear-gradient(
       to bottom,
-      rgba(25, 24, 22, 0.46) 0%,
-      rgba(25, 24, 22, 0.24) 40%,
+      rgba(25, 24, 22, 0.5) 0%,
+      rgba(25, 24, 22, 0.26) 40%,
       rgba(25, 24, 22, 0) 58%
     );
   }
 
-  .closingInner {
+  .closingText {
     top: 28px;
     left: 24px;
     right: 24px;

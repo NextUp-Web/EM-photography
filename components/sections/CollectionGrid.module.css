@@ -1,55 +1,96 @@
 /* ============================================================
-   PORTFOLIO — the reportages.
+   PORTFOLIO — the reportages, as cards.
 
-   Nothing frames the photograph: no card, no rule, no shadow.
-   Frames side by side share --gap-img, as everywhere on the site;
-   the couple's initials and the place sit beneath in the label
-   style, the place a shade quieter.
+   Three to a line on the desktop, sharing --gap-img as every
+   row of frames on the site does. Each card is a cover and a
+   caption inside one hairline: the couple's initials in the
+   tracked serif caps, the place in the small label beneath, an
+   arrow on the right.
    ============================================================ */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: var(--gap-img);
-  row-gap: var(--step-l);
+  gap: var(--gap-img);
 }
 
 .item {
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--hairline-soft);
 }
 
 .cover {
   transition: opacity var(--dur) var(--ease);
 }
 
-/* The only hover on the grid: the cover lifts a shade. Nothing moves. */
+/* Colour, monochrome, colour. */
+.grid > li:nth-child(3n + 2) .cover img {
+  filter: grayscale(1) contrast(1.02);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--step-s);
+  padding: var(--step-s) clamp(16px, 1.4vw, 22px) clamp(14px, 1.2vw, 18px);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.place {
+  color: var(--color-meta);
+}
+
+.arrow {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-ink);
+  transition: transform var(--dur) var(--ease);
+}
+
+/* The cover lifts a shade and the arrow steps forward. */
 .item:hover .cover,
 .item:focus-visible .cover {
   opacity: 0.86;
 }
 
-.name {
-  margin-top: var(--step-m);
-}
-
-.place {
-  margin-top: var(--step-s);
-  color: var(--color-meta);
+.item:hover .arrow,
+.item:focus-visible .arrow {
+  transform: translateX(4px);
 }
 
 /* ============================================================
-   Phone — two to a line, one below 360px.
+   Phone — one card to a line.
    ============================================================ */
 
 @media (max-width: 860px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 359px) {
-  .grid {
     grid-template-columns: 1fr;
+    row-gap: var(--step-m);
+  }
+
+  /* one to a line — colour and monochrome still alternate */
+  .grid > li:nth-child(3n + 2) .cover img {
+    filter: none;
+  }
+
+  .grid > li:nth-child(2n) .cover img {
+    filter: grayscale(1) contrast(1.02);
   }
 }

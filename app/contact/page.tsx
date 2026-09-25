@@ -10,83 +10,59 @@ export const metadata = {
   alternates: { canonical: "/contact" },
 };
 
+/**
+ * On the home page's system: one column on the site's measure, sections
+ * separated by --gap-section, type from the one scale. The photograph runs
+ * the full measure; the words and the form sit on a narrower column
+ * centred inside it, their left edge shared.
+ */
 export default function ContactPage() {
   return (
-    <div className="page page-opening">
-      {/* ---------- Opening — the title and its invitation, then the photograph ---------- */}
-      <section className={styles.opening}>
-        <div className={styles.intro}>
-          <h1 className={`display ${styles.title}`}>
-            Tell me what this day
-            <br />
-            will feel like.
-          </h1>
-          {/* Centred, on the four lines the client's reference breaks it
-              into (document, Contact: "réaligne de la sorte"). */}
-          <p className={`copy ${styles.lede}`}>
-            <span className={styles.line}>
-              I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
-              celebrating
-            </span>{" "}
-            <span className={styles.line}>
-              a wedding, an intimate gathering, or simply a season of life you want
-            </span>{" "}
-            <span className={styles.line}>
-              to remember, tell me a little about it. Your vision. Where it will unfold.
-            </span>{" "}
-            <span className={styles.line}>Who will be there. What matters most to you.</span>
-          </p>
-        </div>
+    <div className="page">
+      {/* ---------- Get in touch ---------- */}
+      <section className={styles.column} aria-labelledby="contact-title">
+        <p className={`label ${styles.eyebrow}`}>Get in touch</p>
+        <h1 className={styles.display} id="contact-title">
+          Tell me what this day
+          <br />
+          will feel like.
+        </h1>
+        <p className={styles.lead}>
+          I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
+          celebrating a wedding, an intimate gathering, or simply a season of life you
+          want to remember, tell me a little about it. Your vision. Where it will
+          unfold. Who will be there. What matters most to you.
+        </p>
+      </section>
 
+      <section aria-label="A couple on the terrace above the lake">
         <Figure
           photo={PHOTOS.contactHero}
-          ratio={1.95}
-          mobileRatio={1.4}
-          sizes="(max-width: 860px) 100vw, 1080px"
+          ratio={1.97}
+          mobileRatio={1.2}
+          sizes="100vw"
           priority
         />
       </section>
 
-      <section className={styles.main} aria-labelledby="enquiry">
-        <div className={styles.aside}>
-          <p className="label" id="enquiry">
-            Share your vision.
-          </p>
-          <h2 className={`display ${styles.asideTitle}`}>
-            Thoughtful <br className={styles.wide} />
-            photography for <br className={styles.wide} />
-            the meaningful <br className={styles.wide} />
-            moments.
-          </h2>
-          <p className={`copy ${styles.asideCopy}`}>
-            Every celebration has its own rhythm, atmosphere and way of unfolding.
-            Tell me a little about what you&rsquo;re planning and what matters most to
-            you, and we can shape the coverage around the way your day is meant to
-            feel.
-          </p>
-        </div>
+      {/* ---------- Inquiry — the words, then the form ---------- */}
+      <section className={styles.column} aria-labelledby="enquiry">
+        <p className={`label ${styles.eyebrow}`}>Inquiry</p>
+        <h2 className={`${styles.title} ${styles.caps}`} id="enquiry">
+          Share your vision.
+        </h2>
+        <p className={styles.subtitle}>
+          Thoughtful photography for the meaningful moments.
+        </p>
+        <p className={styles.body}>
+          Every celebration has its own rhythm, atmosphere and way of unfolding. Tell
+          me a little about what you&rsquo;re planning and what matters most to you,
+          and we can shape the coverage around the way your day is meant to feel.
+        </p>
 
-        <div className={styles.formWrap}>
+        <div className={styles.form}>
           <ContactForm />
         </div>
-
-        <Figure
-          photo={PHOTOS.contactBouquet}
-          ratio={0.98}
-          mobileRatio={2.39}
-          sizes="(max-width: 860px) 100vw, 420px"
-          className={styles.bouquet}
-        />
-      </section>
-
-      {/* The page closes on one monochrome photograph. */}
-      <section aria-label="The lake">
-        <Figure
-          photo={PHOTOS.contactClosing}
-          ratio={2.86}
-          mobileRatio={1.6}
-          sizes="(max-width: 860px) 100vw, 1080px"
-        />
       </section>
     </div>
   );

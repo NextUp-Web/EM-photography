@@ -74,58 +74,42 @@ export const PHOTOS = {
   },
 
 
-  /* ---- About ----
-
-     The page opens on a title and a great deal of white; the two long
-     sections that follow set their photographs beside the text. */
+  /* ---- About ---- */
   aboutHero: {
     src: `${V3}/about/hero.webp`,
     alt: "Emma on a terrace above the lake, the mountains catching the last light",
     position: "center 46%",
   },
-  /* The three frames of the Emma collage. The reference prints all three
-     in warm colour, so none of them carries the monochrome flag, and each
-     object-position below is set for the crop its slot asks for. */
-  aboutPortraitMain: {
+  /* The About opening: one tall frame of Emma at work, and a smaller
+     frame laid over its lower right corner. */
+  aboutLead: {
     src: `${V3}/about/portrait.webp`,
     alt: "Emma, camera in hand, on the shore of the lake",
     position: "center 40%",
   },
-  aboutPortraitTwo: {
+  aboutLeadInset: {
     src: `${V3}/home/emra.webp`,
     alt: "Emma looking out over the lake and the mountains at sunset",
     position: "center 34%",
   },
-  aboutPortraitThree: {
-    src: `${V3}/about/hero.webp`,
-    alt: "Emma on the terrace, the village and the water beyond her",
-    /* a landscape frame in a portrait slot — held on her, not the lake */
-    position: "36% 50%",
-  },
-  /* The tall frame beside "More than a record of the day". */
+  /* The monochrome frame beside "More than a record of the day". */
   aboutTrace: {
-    src: `${V3}/portfolio/pair-veil.webp`,
-    alt: "A bride lifting her veil under a stone loggia",
-    position: "center 42%",
+    src: `${V3}/about/hero.webp`,
+    alt: "Emma seated on the terrace, the lake and the mountains beyond her",
+    position: "30% 50%",
+    bw: true,
+  },
+  /* The wide frame before the closing invitation. */
+  aboutPanorama: {
+    src: "/images/about/hero.jpg",
+    alt: "Emma photographing the lake from a terrace, the mountains behind",
+    position: "center 45%",
   },
   /* ---- Contact ---- */
   contactHero: {
-    src: `${V3}/portfolio/pair-couple.webp`,
-    alt: "The couple seen from behind, her veil falling the length of her dress",
-    position: "center 22%",
-    bw: true,
-  },
-  contactBouquet: {
-    src: `${V3}/about/trip-flowers.webp`,
-    alt: "A bouquet of white roses resting on a stone ledge above the lake",
-    position: "center 55%",
-  },
-  /* The monochrome band that closes the page. */
-  contactClosing: {
-    src: `${V3}/home/closing.webp`,
-    alt: "The lake at the end of the day, cypresses on the shore and the mountains beyond",
-    position: "center 50%",
-    bw: true,
+    src: `${V3}/portfolio/lead.webp`,
+    alt: "The couple on a balustraded terrace above the lake at sunset",
+    position: "center 46%",
   },
 } satisfies Record<string, Photo>;
 
@@ -382,75 +366,64 @@ export const PORTFOLIO_INTRO: Photo = {
   position: "center 48%",
 };
 
-/**
- * A monochrome original, and the darkest of them on its left, which is
- * where "Some stories are / Meant to stay" is set.
- */
+/** The invitation that closes the page — a couple at the balustrade, in
+ *  monochrome, the words set over the open lake on their left. */
 export const PORTFOLIO_CLOSING: Photo = {
-  src: `${V3}/home/story-embrace.webp`,
-  alt: "A couple forehead to forehead as the sun sets behind the mountains",
-  position: "center 10%",
+  src: `${V3}/home/hero.webp`,
+  alt: "A couple at the balustrade, the lake and the mountains behind them",
+  position: "center 58%",
+  bw: true,
 };
 
-/* ------------------------------------------------------------------
-   About — the three vertical frames printed side by side, and the
-   three movements of the work set beneath them.
-   ------------------------------------------------------------------ */
-
-export const ABOUT_VERTICALS: Photo[] = [
+/** The row of five frames under the opening — colour and monochrome. */
+export const PORTFOLIO_STRIP: Photo[] = [
+  {
+    src: `${V3}/portfolio/village.webp`,
+    alt: "A village among cypresses on the shore of the lake",
+    position: "40% 50%",
+  },
   {
     src: `${V3}/about/trip-couple.webp`,
-    alt: "A couple walking away together through the old town",
-    position: "center 40%",
+    alt: "A couple walking away together through a stone loggia",
+    position: "center 55%",
+  },
+  {
+    src: `${V3}/portfolio/detail-note.webp`,
+    alt: "Candlelight, white flowers and cut glass on the dinner table",
+    position: "center 50%",
+  },
+  {
+    src: `${V3}/home/story-flowers.webp`,
+    alt: "A bouquet of white roses and ranunculus",
+    position: "center 50%",
     bw: true,
   },
   {
-    src: `${V3}/about/trip-flowers.webp`,
-    alt: "A bouquet of white roses resting on a stone ledge above the lake",
-    position: "center 52%",
-  },
-  {
-    src: `${V3}/about/trip-lake.webp`,
-    alt: "A wooden boat crossing the lake below the village",
-    position: "center 55%",
+    src: `${V3}/about/villa.webp`,
+    alt: "A villa among cypresses above the lake",
+    position: "30% 50%",
   },
 ];
 
-/* Each paragraph is kept as the lines the client's reference (document,
-   About, the Observe / Guide / Preserve image) breaks it into: the
-   desktop sets exactly those lines, the phone lets them flow. */
+/* ------------------------------------------------------------------
+   About — the three movements of the work.
+   ------------------------------------------------------------------ */
+
 export const APPROACH_STEPS = [
   {
     number: "01",
     title: "Observe",
-    lines: [
-      "I pay attention to what is quietly",
-      "unfolding — the gestures, the",
-      "atmosphere, and the in-between",
-      "moments that give the day",
-      "its feeling.",
-    ],
+    text: "I notice the subtle details that bring depth, texture and feeling to a moment.",
   },
   {
     number: "02",
     title: "Guide",
-    lines: [
-      "With a calm, gentle presence,",
-      "I offer just enough direction for",
-      "you to feel at ease, so the",
-      "photographs remain natural",
-      "and unforced.",
-    ],
+    text: "When needed, I offer refined direction so the experience feels effortless and true.",
   },
   {
     number: "03",
     title: "Preserve",
-    lines: [
-      "What remains is more than",
-      "a record — it is a way back into",
-      "the feeling, a little piece of that",
-      "time kept close.",
-    ],
+    text: "What remains is a body of work that feels timeless, personal and quietly lasting.",
   },
 ];
 
