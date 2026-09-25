@@ -28,16 +28,18 @@
   width: min(var(--measure-max), 100% - 2 * var(--measure-gutter));
   margin-inline: auto;
 
-  --wordmark-size: max(1.3rem, 2.1cqw);
-  --tagline-size: max(0.62rem, 0.89cqw);
+  --wordmark-size: max(1.3rem, 1.8cqw);
 }
 
+/* The desktop sets the name at the left of the bar; the phone centres it,
+   as its mockup does. */
 .brand {
-  grid-column: 2;
+  grid-column: 1;
+  justify-self: start;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   white-space: nowrap;
   transition: opacity var(--dur) var(--ease);
 }
@@ -57,16 +59,14 @@
   color: var(--color-ink);
 }
 
-/* WEDDING & PORTRAIT PHOTOGRAPHER — widely tracked. */
+/* WEDDING & PORTRAIT PHOTOGRAPHER — the site's label, exactly. */
 .tagline {
-  margin-top: 0.7em;
+  margin-top: 8px;
   font-family: var(--font-garamond);
-  font-size: var(--tagline-size);
+  font-size: var(--t-label);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.2em;
-  /* the tracking is added after the last letter too, so the line recentres */
-  text-indent: 0.2em;
+  letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--color-ink);
 }
@@ -93,11 +93,10 @@
 .navLink {
   display: inline-block;
   font-family: var(--font-garamond);
-  font-size: clamp(0.78rem, 1.1vw, 1.2rem);
+  /* the site's navigation style — the footer links are the same */
+  font-size: var(--t-nav);
   font-weight: 600;
-  letter-spacing: 0.09em;
-  /* the tracking is added after the last letter too, so the row reads even */
-  text-indent: 0.09em;
+  letter-spacing: 0.16em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -120,7 +119,26 @@
 @media (max-width: 860px) {
   .inner {
     --wordmark-size: 5.49cqw;
-    --tagline-size: 2.14cqw;
+
+    /* the burger's own width on either side, so the name stays centred and
+       the burger ends exactly on the margin */
+    grid-template-columns: 44px 1fr 44px;
+    column-gap: 8px;
+  }
+
+  /* The name is centred on the whole bar; the burger sits on the same row
+     at the right margin. */
+  .brand {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tagline {
+    /* the tracking is added after the last letter too, so it recentres */
+    text-indent: var(--ls-label);
   }
 
   .nav {
@@ -129,7 +147,10 @@
 
   .toggle {
     grid-column: 3;
+    grid-row: 1;
     justify-self: end;
+    position: relative;
+    z-index: 1;
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;

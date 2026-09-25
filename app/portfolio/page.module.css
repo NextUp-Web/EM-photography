@@ -91,24 +91,7 @@
 }
 
 .closingCta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 150px;
-  min-height: 48px;
   margin-top: var(--step-l);
-  padding: 0 28px;
-  border: 1px solid rgba(250, 249, 246, 0.85);
-  font-family: var(--font-display);
-  font-size: var(--t-lead);
-  letter-spacing: 0.08em;
-  color: var(--warm-white);
-  transition: background-color var(--dur) var(--ease);
-}
-
-.closingCta:hover,
-.closingCta:focus-visible {
-  background: rgba(250, 249, 246, 0.14);
 }
 
 @media (max-width: 860px) {

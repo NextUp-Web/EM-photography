@@ -66,7 +66,7 @@ export default function PortfolioPage() {
             Some stories are <br />
             Meant to stay
           </p>
-          <Link href="/contact" className={styles.closingCta}>
+          <Link href="/contact" className={`btn btn-light ${styles.closingCta}`}>
             Enquire
           </Link>
         </div>

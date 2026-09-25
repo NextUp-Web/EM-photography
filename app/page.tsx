@@ -71,6 +71,9 @@ export default function HomePage() {
             editorial eye&nbsp;&mdash; attentive to the subtle gestures, fleeting
             expressions and details that quietly shape the day.
           </p>
+          <Link href="/portfolio" className={`btn btn-dark ${styles.cta}`}>
+            View portfolio
+          </Link>
         </div>
 
         <div className={styles.pair}>
@@ -88,13 +91,12 @@ export default function HomePage() {
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className={styles.panel}>
-        <p className={`${styles.statement} ${styles.caps}`}>
-          For those drawn to photographs that
-          <br className={styles.desktopBreak} /> reveal more the longer you look.
+      <section className="panel">
+        <p className={styles.statement}>
+          For those drawn to photographs that reveal more the longer you look.
         </p>
         <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
-        <p className={styles.lead}>The art of looking closer.</p>
+        <p className="label">The art of looking closer.</p>
       </section>
 
       {/* ---------- Selected stories ---------- */}
@@ -137,42 +139,41 @@ export default function HomePage() {
             moment. I&rsquo;m interested in photographs that feel honest, instinctive
             and deeply connected to the people within them.
           </p>
+          <Link href="/about" className={`btn btn-dark ${styles.cta}`}>
+            More about me
+          </Link>
         </div>
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className={styles.panel}>
-        <p className={`${styles.statement} ${styles.caps}`}>
-          Documenting love in its softest form.
-        </p>
+      <section className="panel">
+        <p className={styles.statement}>Documenting love in its softest form.</p>
         <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
-        <p className={styles.lead}>
-          Documentary presence. Editorial sensibility. Softly felt.
-        </p>
+        <p className="label">Documentary presence. Editorial sensibility. Softly felt.</p>
       </section>
 
-      {/* ---------- The invitation — one large monochrome photograph ---------- */}
-      <section className={styles.banner} aria-label="Get in touch">
+      {/* ---------- The invitation — a photograph, the words beside it ---------- */}
+      <section className={styles.invite} aria-labelledby="invite">
         <Figure
-          photo={PHOTOS.homeBanner}
-          ratio={1.78}
-          mobileRatio={0.8}
-          sizes="(max-width: 860px) 100vw, 1080px"
-          className={styles.bannerFigure}
+          photo={PHOTOS.homeInvite}
+          ratio={1.5}
+          mobileRatio={1.2}
+          sizes="(max-width: 860px) 100vw, 620px"
         />
-        <div className={styles.bannerInner}>
-          <p className={`${styles.title} ${styles.caps} ${styles.bannerTitle}`}>
+        <div>
+          <h2 className={`${styles.title} ${styles.caps}`} id="invite">
             Let&rsquo;s create
             <br />
             something
             <br />
-            <em>meaningful.</em>
+            meaningful.
+          </h2>
+          <p className={`label ${styles.inviteTags}`}>
+            <span>Weddings</span>
+            <span>Portraits</span>
+            <span>Love stories</span>
           </p>
-          <p className={`label ${styles.bannerTags}`}>
-            Weddings<span aria-hidden="true"> &middot; </span>Couples
-            <span aria-hidden="true"> &middot; </span>Love stories
-          </p>
-          <Link href="/contact" className={styles.bannerCta}>
+          <Link href="/contact" className={`btn btn-dark ${styles.cta}`}>
             Enquire
           </Link>
         </div>

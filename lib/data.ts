@@ -64,16 +64,14 @@ export const PHOTOS = {
     position: "center 55%",
     bw: true,
   },
-  /* The very large monochrome band that closes the home page, with
-     "Let's create something meaningful." printed over it. The couple
-     stands right of centre, water and balustrade to their left, which is
-     where the type goes — as in the client's reference. */
-  homeBanner: {
+  /* The invitation that closes the home page: the couple at the
+     balustrade in the warm evening light, in colour. */
+  homeInvite: {
     src: `${V3}/portfolio/lead.webp`,
     alt: "The couple on the balustraded terrace, the lake and the mountains behind them",
     position: "center 58%",
-    bw: true,
   },
+
 
   /* ---- About ----
 

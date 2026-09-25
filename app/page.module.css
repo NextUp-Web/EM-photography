@@ -51,7 +51,7 @@
 .statement {
   font-family: var(--font-display);
   font-size: var(--t-statement);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.3;
   color: var(--color-ink);
 }
@@ -107,9 +107,10 @@
 
 /* The monochrome frame holds the left edge, the colour frame the right
    edge and laps over its lower corner, a margin of page round it. */
+/* The colour frame runs down past the monochrome one, to the level of
+   the Philosophy label below — no further. */
 .hero {
   position: relative;
-  padding-bottom: var(--step-l);
 }
 
 .heroMain {
@@ -119,7 +120,7 @@
 .heroSide {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: calc(-1 * var(--home-gap));
   width: 36%;
   box-shadow: 0 0 0 clamp(6px, 0.7vw, 10px) var(--color-page);
 }
@@ -139,13 +140,10 @@
   gap: var(--gap-img);
 }
 
-/* ---------- Ivory panels ---------- */
+/* ---------- Buttons under a block of text ---------- */
 
-.panel {
-  padding: var(--panel-pad) var(--home-gutter);
-  border: 1px solid var(--hairline-soft);
-  background: var(--ivory);
-  text-align: center;
+.cta {
+  margin-top: var(--step-l);
 }
 
 /* ---------- Selected stories ---------- */
@@ -163,79 +161,20 @@
   max-width: 60ch;
 }
 
-/* ---------- The invitation ---------- */
+/* ---------- The invitation — photograph 7, text 5 ---------- */
 
-.banner {
-  position: relative;
-}
-
-/* The couple is drawn to the right half; the left takes the type, with
-   a soft shade on that side only. */
-.bannerFigure {
-  background: var(--soft-black);
-}
-
-.bannerFigure img {
-  transform: scale(1.28);
-  transform-origin: 0% 62%;
-}
-
-.bannerFigure::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(25, 24, 22, 0.5) 0%,
-    rgba(25, 24, 22, 0.3) 38%,
-    rgba(25, 24, 22, 0) 62%
-  );
-  pointer-events: none;
-}
-
-.bannerInner {
-  position: absolute;
-  top: 50%;
-  left: var(--panel-pad);
-  transform: translateY(-50%);
-}
-
-.bannerTitle,
-.home .bannerTags {
-  color: var(--warm-white);
-}
-
-.bannerTitle {
-  line-height: 1.1;
-}
-
-.bannerTitle em {
-  font-style: italic;
-}
-
-.home .bannerTags {
-  margin-top: var(--step-m);
-}
-
-.bannerCta {
-  display: inline-flex;
+.invite {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  column-gap: var(--col-gap);
   align-items: center;
-  justify-content: center;
-  min-width: 150px;
-  min-height: 48px;
-  margin-top: var(--step-l);
-  padding: 0 28px;
-  border: 1px solid rgba(250, 249, 246, 0.85);
-  font-family: var(--font-display);
-  font-size: var(--t-lead);
-  letter-spacing: 0.08em;
-  color: var(--warm-white);
-  transition: background-color var(--dur) var(--ease);
 }
 
-.bannerCta:hover,
-.bannerCta:focus-visible {
-  background: rgba(250, 249, 246, 0.14);
+.inviteTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.4em;
+  margin-top: var(--step-m);
 }
 
 /* ============================================================
@@ -253,11 +192,6 @@
     display: none;
   }
 
-  /* The phone mockup: the colour frame steps well below the other. */
-  .hero {
-    padding-bottom: 14.7%;
-  }
-
   .heroMain {
     width: 87.8%;
   }
@@ -272,10 +206,6 @@
     row-gap: var(--step-l);
   }
 
-  .panel {
-    padding-inline: 24px;
-  }
-
   .statement {
     text-wrap: balance;
   }
@@ -284,26 +214,8 @@
     text-wrap: balance;
   }
 
-  /* The type goes above the couple on the phone. */
-  .bannerFigure img {
-    object-position: 58% 0% !important;
-    transform: scale(1.34);
-    transform-origin: 58% 0%;
-  }
-
-  .bannerFigure::after {
-    background: linear-gradient(
-      to bottom,
-      rgba(25, 24, 22, 0.46) 0%,
-      rgba(25, 24, 22, 0.24) 40%,
-      rgba(25, 24, 22, 0) 58%
-    );
-  }
-
-  .bannerInner {
-    top: 28px;
-    left: 24px;
-    right: 24px;
-    transform: none;
+  .invite {
+    grid-template-columns: 1fr;
+    row-gap: var(--step-l);
   }
 }

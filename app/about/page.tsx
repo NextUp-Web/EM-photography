@@ -126,7 +126,7 @@ export default function AboutPage() {
           <span className={styles.bandLine}>kept close enough to feel again.</span>
         </p>
         <span className={`rule ${styles.bandRule}`} aria-hidden="true" />
-        <p className={`copy ${styles.bandMeta}`}>
+        <p className={`label ${styles.bandMeta}`}>
           Observed with intention. Shaped with sensitivity. Made to remain.
         </p>
       </section>
