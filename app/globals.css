@@ -93,9 +93,9 @@
   /* ---- Layout ---- */
   --frame-max: 1760px;
   --shell-pad: clamp(24px, 5vw, 96px);
-  /* The site's measure: the page runs the full width of the screen with
-     the same 2cm margin (76px) left and right — the header, every section
-     and the footer alike. */
+  /* The site's measure: the page runs the full width of the screen, at
+     every screen width, with the same 2cm margin (76px) left and right —
+     the header, every section and the footer alike. */
   --measure-max: 100%;
   --measure-gutter: 76px;
   --gap-img: clamp(8px, 1.1vw, 16px);
@@ -172,8 +172,7 @@
   }
 
   body {
-    margin: 0 auto;
-    max-width: var(--frame-max);
+    margin: 0;
     background: var(--color-page);
     color: var(--color-ink);
     font-family: var(--font-display);

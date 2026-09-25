@@ -46,23 +46,9 @@
 }
 
 .nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: clamp(28px, 4vw, 56px);
-  width: 100%;
-}
-
-.navHalf {
   display: flex;
+  justify-content: center;
   gap: clamp(28px, 4vw, 56px);
-}
-
-.navHalf:first-child {
-  justify-content: flex-end;
-}
-
-.navHalf:last-child {
-  justify-content: flex-start;
 }
 
 /* The bar's navigation style, exactly. The tracking is added before the
@@ -130,8 +116,35 @@
   padding-inline: 0.7em;
 }
 
-/* The copyright: the site's label, its tracking balanced on both sides so
-   the line is centred on the page. */
+/* The copyright: the links' face, size and tracking exactly, in lining
+   figures, its tracking balanced on both sides so the line is centred on
+   the page. */
 .legal {
-  text-indent: var(--ls-label);
+  font-family: var(--font-garamond);
+  font-size: var(--t-nav);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+/* © — a capital C in a hairline circle, the circle centred on the height
+   of the capitals and a word-space from the year. */
+.copyMark {
+  display: inline-block;
+  overflow: hidden;
+  width: 1.64em;
+  height: 1.64em;
+  margin-right: 0.8em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  vertical-align: -0.3em;
+  font-size: 0.6em;
+  letter-spacing: 0;
+  text-indent: 0;
+  line-height: 1.64em;
+  text-align: center;
 }

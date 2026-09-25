@@ -92,10 +92,13 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        <p className={styles.panelQuote}>
-          For those drawn to photographs that reveal more the longer you look.
+        {/* Set exactly as main sets its first ivory band: two lines on the
+            desktop, one flowing measure on the phone. */}
+        <p className={styles.bandTitle}>
+          <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
+          <span className={styles.bandLine}>reveal more the longer you look.</span>
         </p>
-        <p className={styles.panelMeta}>The art of looking closer.</p>
+        <p className={styles.bandMeta}>The art of looking closer.</p>
       </section>
 
       {/* ---------- Selected stories ---------- */}

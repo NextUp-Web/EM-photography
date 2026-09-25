@@ -25,19 +25,17 @@ export default function Footer() {
           <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
         </Link>
 
-        {/* Two links either side of the page's centre line. */}
-        <nav aria-label="Footer" className={styles.nav}>
-          {[NAV.slice(0, 2), NAV.slice(2)].map((half, index) => (
-            <ul key={index} className={styles.navHalf}>
-              {half.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={styles.navLink}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ))}
+        {/* One line, centred on the page as a whole. */}
+        <nav aria-label="Footer">
+          <ul className={styles.nav}>
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={styles.navLink}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         <div className={styles.socials}>
@@ -70,8 +68,14 @@ export default function Footer() {
           <span className={styles.placeEnd}>Available across Europe</span>
         </p>
 
-        <p className={`label ${styles.legal}`}>
-          &copy; {COPYRIGHT_YEAR} EM Photography
+        {/* The copyright in the links' own face and size. Cormorant draws its
+            © as a small low swirl, so the mark is its own capital C in a
+            fine circle, centred on the height of the capitals. */}
+        <p className={styles.legal}>
+          <span className={styles.copyMark} role="img" aria-label="Copyright">
+            C
+          </span>
+          {COPYRIGHT_YEAR} EM Photography
         </p>
       </div>
     </footer>
