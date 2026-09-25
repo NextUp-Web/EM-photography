@@ -22,17 +22,17 @@ export default function HomePage() {
       <section className={styles.hero} aria-label="EM Photography">
         <Figure
           photo={PHOTOS.homeHeroMain}
-          ratio={1.6}
+          ratio={1.05}
           mobileRatio={0.71}
-          sizes="(max-width: 860px) 80vw, 72vw"
+          sizes="(max-width: 860px) 80vw, 800px"
           priority
           className={styles.heroMain}
         />
         <Figure
           photo={PHOTOS.homeHeroSide}
-          ratio={1.3}
+          ratio={0.652}
           mobileRatio={0.63}
-          sizes="(max-width: 860px) 40vw, 36vw"
+          sizes="(max-width: 860px) 40vw, 380px"
           priority
           className={styles.heroSide}
         />
@@ -80,25 +80,23 @@ export default function HomePage() {
           <Figure
             photo={PHOTOS.approachOne}
             ratio={0.72}
-            sizes="(max-width: 860px) 50vw, 30vw"
+            sizes="(max-width: 860px) 50vw, 300px"
           />
           <Figure
             photo={PHOTOS.approachTwo}
             ratio={0.72}
-            sizes="(max-width: 860px) 50vw, 30vw"
+            sizes="(max-width: 860px) 50vw, 300px"
           />
         </div>
       </section>
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        {/* Set exactly as main sets its first ivory band: two lines on the
-            desktop, one flowing measure on the phone. */}
-        <p className={styles.bandTitle}>
-          <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
-          <span className={styles.bandLine}>reveal more the longer you look.</span>
+        <p className={styles.statement}>
+          For those drawn to photographs that reveal more the longer you look.
         </p>
-        <p className={styles.bandMeta}>The art of looking closer.</p>
+        <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
+        <p className="label">The art of looking closer.</p>
       </section>
 
       {/* ---------- Selected stories ---------- */}
@@ -122,7 +120,7 @@ export default function HomePage() {
         <Figure
           photo={PHOTOS.aboutPortrait}
           ratio={1.2}
-          sizes="(max-width: 860px) 100vw, 40vw"
+          sizes="(max-width: 860px) 100vw, 440px"
         />
 
         <div className={styles.text}>
@@ -149,23 +147,20 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        <p className={styles.panelQuote}>Documenting love in its softest form.</p>
-        <p className={styles.panelMeta}>
-          Documentary presence. Editorial sensibility. Softly felt.
-        </p>
+        <p className={styles.statement}>Documenting love in its softest form.</p>
+        <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
+        <p className="label">Documentary presence. Editorial sensibility. Softly felt.</p>
       </section>
 
-      {/* ---------- The invitation — one monochrome photograph across the
-          page, the words over its left side, centred on its height ---------- */}
+      {/* ---------- The invitation — a photograph, the words beside it ---------- */}
       <section className={styles.invite} aria-labelledby="invite">
         <Figure
           photo={PHOTOS.homeInvite}
-          ratio={2.2}
-          mobileRatio={0.8}
-          sizes="100vw"
-          className={styles.inviteFigure}
+          ratio={1.5}
+          mobileRatio={1.2}
+          sizes="(max-width: 860px) 100vw, 620px"
         />
-        <div className={styles.inviteText}>
+        <div>
           <h2 className={`${styles.title} ${styles.caps}`} id="invite">
             Let&rsquo;s create
             <br />
@@ -174,17 +169,11 @@ export default function HomePage() {
             meaningful.
           </h2>
           <p className={`label ${styles.inviteTags}`}>
-            Weddings
-            <span className={styles.inviteDot} aria-hidden="true">
-              &middot;
-            </span>
-            Love stories
-            <span className={styles.inviteDot} aria-hidden="true">
-              &middot;
-            </span>
-            Portraits
+            <span>Weddings</span>
+            <span>Portraits</span>
+            <span>Love stories</span>
           </p>
-          <Link href="/contact" className={`btn btn-light ${styles.inviteCta}`}>
+          <Link href="/contact" className={`btn btn-dark ${styles.cta}`}>
             Enquire
           </Link>
         </div>

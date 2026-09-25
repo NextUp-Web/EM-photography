@@ -25,7 +25,6 @@ export default function Footer() {
           <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
         </Link>
 
-        {/* One line, centred on the page as a whole. */}
         <nav aria-label="Footer">
           <ul className={styles.nav}>
             {NAV.map((item) => (
@@ -59,23 +58,16 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* The dot sits on the page's centre line, the two places either side. */}
         <p className={styles.place}>
-          <span className={styles.placeStart}>Switzerland based</span>
+          Switzerland based
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          <span className={styles.placeEnd}>Available across Europe</span>
+          Available across Europe
         </p>
 
-        {/* The copyright in the links' own face and size. Cormorant draws its
-            © as a small low swirl, so the mark is its own capital C in a
-            fine circle, centred on the height of the capitals. */}
-        <p className={styles.legal}>
-          <span className={styles.copyMark} role="img" aria-label="Copyright">
-            C
-          </span>
-          {COPYRIGHT_YEAR} EM Photography
+        <p className={`label ${styles.legal}`}>
+          &copy; {COPYRIGHT_YEAR} EM Photography
         </p>
       </div>
     </footer>

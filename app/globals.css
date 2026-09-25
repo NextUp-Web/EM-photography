@@ -93,11 +93,10 @@
   /* ---- Layout ---- */
   --frame-max: 1760px;
   --shell-pad: clamp(24px, 5vw, 96px);
-  /* The site's measure: the page runs the full width of the screen, at
-     every screen width, with the same 2cm margin (76px) left and right —
-     the header, every section and the footer alike. */
-  --measure-max: 100%;
-  --measure-gutter: 76px;
+  /* The site's measure: the home page, the header and the footer all sit
+     on this one column — nothing runs outside its margins. */
+  --measure-max: 1080px;
+  --measure-gutter: clamp(20px, 5vw, 80px);
   --gap-img: clamp(8px, 1.1vw, 16px);
 
   --header-h: 80px;
@@ -172,16 +171,14 @@
   }
 
   body {
-    margin: 0;
+    margin: 0 auto;
+    max-width: var(--frame-max);
     background: var(--color-page);
     color: var(--color-ink);
     font-family: var(--font-display);
     font-size: var(--fs-body);
     font-weight: 400;
     font-optical-sizing: auto;
-    /* Cormorant sets old-style figures by default (2026 with descending
-       digits); every number on the site is set in lining figures. */
-    font-variant-numeric: lining-nums;
     line-height: var(--lh-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
