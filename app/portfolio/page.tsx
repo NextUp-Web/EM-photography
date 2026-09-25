@@ -17,34 +17,32 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <>
-      <section className={`shell ${styles.intro}`}>
-        <h1 className={`display ${styles.title}`}>
-          Documenting love <br className={styles.wide} />
-          in the softest way.
-        </h1>
-        <p className={`copy ${styles.subtitle}`}>
-          Where emotion, atmosphere <br className={styles.wide} />
-          and a refined eye meet.
-        </p>
-      </section>
+    <div className="page page-opening">
+      {/* ---------- Opening — the title, then one large photograph ---------- */}
+      <div className={styles.opening}>
+        <section className={styles.intro}>
+          <h1 className={`display ${styles.title}`}>
+            Documenting love <br className={styles.wide} />
+            in the softest way.
+          </h1>
+          <p className={`copy ${styles.subtitle}`}>
+            Where emotion, atmosphere <br className={styles.wide} />
+            and a refined eye meet.
+          </p>
+        </section>
 
-      {/* One very large photograph opening the page under the title. */}
-      <div className={styles.lead}>
         <Figure
           photo={PORTFOLIO_INTRO}
           ratio={2.04}
           mobileRatio={1.12}
-          sizes="100vw"
+          sizes="(max-width: 860px) 100vw, 1080px"
           priority
         />
       </div>
 
-      {/* ---------- Selected stories ----------
-          A full section's worth of white between the photograph above and
-          this heading, so the reportages open on their own page of air. */}
-      <section className={styles.stories} aria-labelledby="selected-stories">
-        <div className={`shell ${styles.storiesHead}`}>
+      {/* ---------- Selected stories ---------- */}
+      <section aria-labelledby="selected-stories">
+        <div className={styles.storiesHead}>
           <h2 className={`display ${styles.storiesTitle}`} id="selected-stories">
             Selected stories
           </h2>
@@ -54,12 +52,13 @@ export default function PortfolioPage() {
         <CollectionGrid />
       </section>
 
+      {/* ---------- The invitation — one large monochrome photograph ---------- */}
       <section className={styles.closing} aria-label="Some stories are meant to stay">
         <Figure
           photo={PORTFOLIO_CLOSING}
           ratio={1.9}
-          mobileRatio={1.18}
-          sizes="100vw"
+          mobileRatio={0.8}
+          sizes="(max-width: 860px) 100vw, 1080px"
           className={styles.closingFigure}
         />
         <div className={styles.closingInner}>
@@ -72,6 +71,6 @@ export default function PortfolioPage() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

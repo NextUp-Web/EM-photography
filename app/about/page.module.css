@@ -1,10 +1,13 @@
 /* ============================================================
    ABOUT
 
-   The page opens on one centred title and a great deal of white,
-   then reads as a spread: text one side, photography the other.
-   Type sizes are the home page's, so the two pages read as one
-   voice.
+   On the site's system (globals.css): the page is one column on
+   the shared measure, every section separated by --gap-section,
+   type from the one scale — display for the opening, title for
+   the section headings, statement in the ivory panel, lead and
+   body for the text, the tracked label for the small caps.
+   Two-column sections split 5 / 7 across --col-gap, as on the
+   home page.
    ============================================================ */
 
 /* A line break the desktop sets and the phone lets wrap. */
@@ -22,69 +25,49 @@
 
 /* ---------- The one where ---------- */
 
-/* The document: "Grand titre centré au milieu", then "Grand espace
-   blanc". The title stands alone in the middle of the first screen —
-   centred both ways — and the rest of that screen is the white space. */
+/* The title stands alone in the middle of the first screen, centred both
+   ways; the rest of that screen is white. */
 .opening {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - var(--header-h));
-  min-height: calc(100svh - var(--header-h));
-  padding-block: var(--section);
+  min-height: calc(100svh - var(--header-h) - var(--step-l) - var(--gap-section));
   text-align: center;
 }
 
-/* The page's opening statement, and so its largest type — a step above
-   the Emma heading that follows it. The two lines the document prints
-   are the two lines the page sets: the break is the one in the markup,
-   never a wrap. */
 .openingTitle {
-  font-size: clamp(1.9rem, 5.6vw, 5.2rem);
-  line-height: 1.22;
-  max-width: 34ch;
-  margin-inline: auto;
+  font-size: var(--t-display);
+  line-height: 1.2;
 }
 
-/* ---------- A quiet eye ---------- */
+/* ---------- A quiet eye — text 5, frames 7 ---------- */
 
-/* Columns measured off the reference, where "A quiet eye for" fills the
-   text column exactly: at this size that is 42 parts of the spread
-   against the frames' 51. A narrower column breaks the heading onto a
-   fourth line the reference does not have. */
-.emma {
+.emma,
+.trace {
   display: grid;
-  grid-template-columns: 42fr 5fr 53fr;
+  grid-template-columns: 5fr 7fr;
+  column-gap: var(--col-gap);
   align-items: center;
-  padding-bottom: var(--section);
 }
 
-.emmaText {
-  grid-column: 1;
-}
-
-/* The page's dominant heading. The reference sets it larger than a
-   section title, at ~5.4% of the frame, on three lines. */
-.emmaTitle {
-  margin-top: var(--sp-xs);
-  font-size: clamp(1.9rem, 5.45vw, 5rem);
+.emmaTitle,
+.traceTitle {
+  font-size: var(--t-title);
   line-height: 1.15;
 }
 
-/* "Une ligne indépendante avec la même police que le reste du texte":
-   the paragraph's own face, size and colour, on a line of its own. */
+.emmaTitle {
+  margin-top: var(--step-s);
+}
+
 .emmaIntroLine {
-  margin-top: var(--sp-md);
-  font-size: clamp(1rem, 2vw, 1.85rem);
-  /* where the column is too short for it, the break falls evenly rather
-     than leaving one word alone */
+  margin-top: var(--step-m);
+  font-size: var(--t-lead);
   text-wrap: balance;
 }
 
-/* The reference sets this paragraph larger than the home page's. */
 .emmaCopy {
-  margin-top: var(--sp-sm);
-  font-size: clamp(1rem, 2vw, 1.85rem);
+  margin-top: var(--step-s);
 }
 
 /* The lines the reference prints hold on the desktop. */
@@ -96,14 +79,11 @@
   }
 }
 
-/* The block the three frames are placed inside. Every position below is
-   read off the client's reference (document, About, first image): one
-   wide, tall frame of Emma walking, and two smaller frames laid OVER its
-   right-hand side — one at the top right, one lower and further left —
-   each set off by a narrow border of page, as a collage. */
+/* One tall frame of Emma, and two smaller frames laid over its right-hand
+   side — one at the top right, one lower and further left — each set off
+   by a narrow border of page, as a collage. */
 .emmaFrames {
   position: relative;
-  grid-column: 3;
   aspect-ratio: 565 / 762;
 }
 
@@ -122,12 +102,10 @@
   height: 90.8%;
 }
 
-/* The two frames laid over it carry a border of page colour, which is
-   what lets them read as placed on top — no shadow, no radius. */
 .portraitTop,
 .portraitLow {
   z-index: 1;
-  box-shadow: 0 0 0 clamp(3px, 0.42vw, 7px) var(--color-page);
+  box-shadow: 0 0 0 clamp(6px, 0.7vw, 10px) var(--color-page);
 }
 
 .portraitTop {
@@ -144,100 +122,50 @@
   height: 50.9%;
 }
 
-/* ---------- More than a record ---------- */
+/* ---------- More than a record — frame 5, text 7 ---------- */
 
-.trace {
-  display: grid;
-  grid-template-columns: 42fr 8fr 50fr;
-  align-items: center;
-  padding-bottom: var(--section);
-}
-
-.traceFigure {
-  grid-column: 1;
-}
-
-.traceText {
-  grid-column: 3;
-}
-
-.traceTitle {
-  font-size: var(--fs-display);
-}
-
-/* The reference leaves a full blank line between the two paragraphs. */
 .traceCopy {
-  margin-top: clamp(20px, 2.2vw, 32px);
+  margin-top: var(--step-m);
 }
 
-.traceCopy :global(.copy) + :global(.copy) {
-  margin-top: 1.5em;
-}
+/* ---------- Ivory panel ---------- */
 
-/* ---------- Ivory statement ---------- */
-
-/* The reference crop is 41.5% as tall as it is wide, with the statement
-   centred in it on both axes. */
-.band {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: clamp(300px, 41vw, 640px);
-  padding-block: var(--sp-xl);
-  text-align: center;
-}
-
-/* Measured off the reference: the statement sets at ~4.44% of the frame's
-   width, the line under it at ~1.23%, a little over a quarter of it. */
 .bandTitle {
-  font-size: clamp(1.55rem, 3.87vw, 3.6rem);
-  line-height: 1.18;
-  max-width: none;
-  margin-inline: auto;
+  font-size: var(--t-statement);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-/* Measured off the reference: the line under the statement runs to 81%
-   of the frame, in darker ink, 3.6% under it. */
+.bandRule {
+  margin: var(--step-m) auto 0;
+}
+
 .bandMeta {
-  margin-top: clamp(14px, 1.9vw, 34px);
-  margin-inline: auto;
-  font-weight: 500;
-  font-size: clamp(0.66rem, 1.38vw, 1.3rem);
-  letter-spacing: var(--ls-wide);
-  color: var(--color-ink);
+  margin-top: var(--step-m);
+  font-size: var(--t-lead);
+  line-height: 1.5;
 }
 
-/* ---------- Three frames, then the three movements ---------- */
+/* ---------- Three frames ---------- */
 
-/* The photographs never touch the ivory band above them. */
-.approach {
-  padding-top: var(--section);
-  padding-bottom: var(--section);
-}
-
-/* Three verticals of the same proportion, evenly spaced. */
 .verticals {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 1.7vw, 30px);
-  width: min(100%, 1240px);
-  margin-inline: auto;
+  gap: var(--gap-img);
 }
 
-/* 01 / 02 / 03 — three movements, separated by the quietest of vertical
-   hairlines, exactly as the reference prints them. */
+/* ---------- Observe / Guide / Preserve ---------- */
+
+/* Three columns across the measure, split by the quietest of hairlines. */
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: var(--section);
-  width: 100%;
   text-align: left;
 }
 
-/* The reference spreads the three columns across the whole measure, each
-   hairline with a little air either side of it. */
 .step {
-  padding-inline: clamp(18px, 2.6vw, 48px);
+  padding-inline: calc(var(--col-gap) / 2);
 }
 
 .step:first-child {
@@ -252,49 +180,23 @@
   border-left: 1px solid var(--hairline-soft);
 }
 
-.stepNumber {
-  font-weight: 400;
-  font-size: var(--fs-ui);
-  letter-spacing: var(--ls-wide);
-  color: var(--color-quiet);
-}
-
-/* The short dash the reference sets under the number — ~3.2% of the
-   frame long, dropped ~1.9% below the figure. */
 .stepRule {
-  display: block;
-  width: clamp(26px, 3.2vw, 52px);
-  height: 1px;
-  margin-top: clamp(14px, 1.9vw, 30px);
-  background: var(--hairline);
+  margin-top: var(--step-m);
 }
 
-/* Measured off the reference, where "Observe" sets at ~3.9% of the
-   frame's width — the serif word is the column, not the number above it. */
 .stepTitle {
-  margin-top: clamp(14px, 1.85vw, 30px);
-  font-size: clamp(1.45rem, 3.56vw, 3.3rem);
-  font-weight: 400;
-  line-height: 1.1;
+  margin-top: var(--step-m);
+  font-size: var(--t-title);
+  line-height: 1.15;
 }
 
 .stepCopy {
-  margin-top: clamp(12px, 2.1vw, 34px);
+  margin-top: var(--step-s);
 }
 
 /* ============================================================
-   Tablet and phone
+   Phone — one column on the same measure.
    ============================================================ */
-
-@media (max-width: 1080px) {
-  .emmaTitle {
-    font-size: var(--fs-display);
-  }
-
-  .step {
-    padding-inline: clamp(16px, 2.2vw, 28px);
-  }
-}
 
 @media (max-width: 860px) {
   .wide {
@@ -307,37 +209,21 @@
   }
 
   .opening {
-    padding-block: var(--sp-xl);
+    min-height: 0;
   }
 
   .openingTitle {
     max-width: 16ch;
+    text-wrap: balance;
   }
 
-  /* Text first, then the photographs — both sections read as one column. */
+  /* Text first, then the photographs. */
   .emma,
   .trace {
     grid-template-columns: 1fr;
-    row-gap: var(--sp-lg);
+    row-gap: var(--step-l);
   }
 
-  .emmaText,
-  .emmaFrames,
-  .traceText,
-  .traceFigure {
-    grid-column: 1;
-    width: 100%;
-  }
-
-  .emmaText {
-    grid-row: 1;
-  }
-
-  .emmaFrames {
-    grid-row: 2;
-  }
-
-  /* The photograph follows the text here too. */
   .traceFigure {
     grid-row: 2;
   }
@@ -346,15 +232,8 @@
     grid-row: 1;
   }
 
-  .emmaCopy,
-  .traceCopy {
-    max-width: none;
-  }
-
-
-
-  /* The phone drops the placed block for a grid: the tall portrait across
-     the top, the two smaller frames side by side beneath it. */
+  /* The tall portrait across the top, the two smaller frames side by
+     side beneath it. */
   .emmaFrames {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -365,9 +244,7 @@
   .portraitMain,
   .portraitTop,
   .portraitLow {
-    /* relative, never static: `fill` images are absolute, so a static
-       frame would hand them the collage as their containing block and
-       every photograph would stretch across the whole block. */
+    /* relative, never static: `fill` images need their own frame */
     position: relative;
     width: 100%;
     height: auto;
@@ -385,27 +262,13 @@
     box-shadow: none;
   }
 
-  .band {
-    min-height: 0;
-  }
-
   .bandTitle {
-    max-width: 20ch;
-  }
-
-  .bandMeta {
-    max-width: 30ch;
-  }
-
-  /* Still three across on a tablet — never three thumbnails. */
-  .verticals {
-    gap: var(--gap-img);
+    text-wrap: balance;
   }
 
   .steps {
     grid-template-columns: 1fr;
-    row-gap: var(--sp-md);
-    margin-top: var(--sp-xl);
+    row-gap: var(--step-l);
   }
 
   .step,
@@ -418,19 +281,14 @@
   .step + .step {
     border-left: 0;
     border-top: 1px solid var(--hairline-soft);
-    padding-top: var(--sp-sm);
+    padding-top: var(--step-l);
   }
 }
 
-/* ============================================================
-   Phone only — three verticals side by side would each be barely
-   100px wide, so they become one column at full measure.
-   ============================================================ */
-
+/* Three verticals side by side would each be barely 100px wide on a
+   phone, so they become one column. */
 @media (max-width: 600px) {
   .verticals {
     grid-template-columns: 1fr;
-    gap: var(--sp-sm);
-    width: min(100%, 420px);
   }
 }

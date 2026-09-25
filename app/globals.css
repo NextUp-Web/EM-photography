@@ -42,43 +42,51 @@
   --font-display: var(--font-garamond);
   --font-ui: var(--font-garamond);
 
-  /* Display scale. */
-  /* Hero sub-lines. Measured off the client's hero reference, where the
-     two tracked lines set at ~1.5% of the frame's width. */
-  --fs-hero-tag: clamp(0.72rem, 1.57vw, 1.45rem);
-  --fs-xl: clamp(2.3rem, 4.35vw, 4rem); /* About headline */
-  --fs-page-title: clamp(2.1rem, 4.8vw, 4.4rem); /* Portfolio, Contact */
-  --fs-lg: clamp(2rem, 4.3vw, 3.9rem); /* About statements */
-  --fs-display-lg: clamp(1.9rem, 3.75vw, 3.4rem); /* Contact column */
-  /* Section titles. The client's Philosophy and "More than a record"
-     references both set these at ~4.2% of the frame's width. */
-  --fs-display: clamp(1.9rem, 3.75vw, 3.6rem);
-  /* Kept in the same proportion to --fs-display as before, so the home
-     page's About block still reads a step under its neighbours rather
-     than half their size. */
-  --fs-display-sm: clamp(1.8rem, 3.44vw, 3.3rem);
-  --fs-band: clamp(1.55rem, 2.45vw, 2.3rem); /* ivory statements */
-  --fs-banner: clamp(1.6rem, 2.92vw, 2.65rem); /* text on photography */
-  --fs-divider: clamp(1.4rem, 2.68vw, 2.4rem);
-  --fs-story-name: clamp(1.15rem, 1.9vw, 1.72rem);
+  /* ---- Type scale — one for the whole site ----
 
-  /* Sub-heads and body copy, both measured off the references: the
-     Philosophy sub-lines set at ~2.15% of the frame, its paragraph and
-     the Observe / Guide / Preserve paragraphs at ~1.55%. */
-  --fs-lede: clamp(1rem, 1.9vw, 1.72rem);
-  --fs-body: clamp(0.95rem, 1.55vw, 1.4rem);
-  --fs-ui: clamp(0.6875rem, 1.02vw, 0.92rem); /* labels, form, filters */
-  --fs-nav: clamp(0.6875rem, 0.93vw, 0.85rem); /* navigation */
-  --fs-ui-sm: clamp(0.625rem, 0.95vw, 0.86rem); /* footer metadata */
-  --fs-btn: clamp(0.72rem, 1.02vw, 0.92rem); /* buttons — tracked caps */
+     Five sizes and nothing else, from the page's opening line down:
+       display    the one title a page opens on (About, Portfolio,
+                  Contact, a story)
+       title      section titles
+       statement  the lines set in the ivory panels
+       lead       the short lines under a title, introductions
+       body       paragraphs, form fields
+     plus the small tracked label. Only weight and italic vary. */
+  --t-display: clamp(2rem, 3vw, 2.8rem);
+  --t-title: clamp(1.7rem, 2.3vw, 2.2rem);
+  --t-statement: clamp(1.3rem, 1.65vw, 1.6rem);
+  --t-lead: clamp(1.08rem, 1.2vw, 1.2rem);
+  --t-body: clamp(1rem, 1.08vw, 1.08rem);
+  --t-label: 0.72rem;
 
-  --ls-ui: 0.16em;
-  --ls-label: 0.22em;
-  --ls-wide: 0.3em;
+  /* The older size names, each pointed at its step of the scale so every
+     rule written against them lands on the same five sizes. */
+  --fs-xl: var(--t-display);
+  --fs-page-title: var(--t-display);
+  --fs-lg: var(--t-display);
+  --fs-display-lg: var(--t-display);
+  --fs-display: var(--t-title);
+  --fs-display-sm: var(--t-title);
+  --fs-banner: var(--t-title);
+  --fs-band: var(--t-statement);
+  --fs-divider: var(--t-statement);
+  --fs-story-name: var(--t-statement);
+  --fs-lede: var(--t-lead);
+  --fs-body: var(--t-body);
+  --fs-hero-tag: var(--t-label);
+  --fs-ui: var(--t-label);
+  --fs-nav: var(--t-label);
+  --fs-ui-sm: var(--t-label);
+  --fs-btn: var(--t-label);
+
+  /* One tracking for every label. */
+  --ls-ui: 0.28em;
+  --ls-label: 0.28em;
+  --ls-wide: 0.28em;
   --ls-btn: 0.26em;
 
-  --lh-display: 1.14;
-  --lh-body: 1.68;
+  --lh-display: 1.15;
+  --lh-body: 1.7;
 
   /* ---- Layout ---- */
   --frame-max: 1760px;
@@ -103,6 +111,18 @@
   /* The distance between two sections — the site's main breath. */
   --section: clamp(96px, 11.5vw, 190px);
 
+  /* ---- Rhythm — the same on every page ----
+     --gap-section between two sections, always; inside a block only
+     three steps: label → title (s), title → rule → text (m), a block
+     → what belongs to it (l). Ivory panels carry --panel-pad above and
+     below alike. Two-column sections split 5 / 7 across --col-gap. */
+  --gap-section: clamp(72px, 7vw, 104px);
+  --step-s: 12px;
+  --step-m: 22px;
+  --step-l: 34px;
+  --col-gap: clamp(40px, 5vw, 72px);
+  --panel-pad: clamp(44px, 4.6vw, 64px);
+
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur: 420ms;
 }
@@ -115,29 +135,20 @@
     --shell-pad: 26px;
     --measure-gutter: 20px;
 
-    --fs-hero-tag: 0.72rem;
-    --fs-xl: clamp(2rem, 10.2vw, 2.7rem);
-    --fs-page-title: clamp(1.9rem, 9.4vw, 2.6rem);
-    --fs-lg: clamp(1.6rem, 7.6vw, 2.1rem);
-    --fs-display-lg: clamp(1.7rem, 8.5vw, 2.25rem);
-    /* The section titles come down a notch and the ivory statements go up,
-       so the statement carries the page and the titles sit under it. */
-    --fs-display: clamp(1.5rem, 7.1vw, 1.95rem);
-    --fs-display-sm: clamp(1.45rem, 6.9vw, 1.9rem);
-    --fs-band: clamp(1.2rem, 6.6vw, 1.9rem);
-    --fs-banner: clamp(1.5rem, 7.6vw, 2rem);
-    --fs-divider: clamp(1.15rem, 6vw, 1.5rem);
-    --fs-story-name: clamp(1rem, 5vw, 1.3rem);
+    --t-display: 1.75rem;
+    --t-title: 1.45rem;
+    --t-statement: 1.2rem;
+    --t-lead: 1.05rem;
+    --t-body: 1rem;
+    --t-label: 0.62rem;
 
-    --fs-lede: 1.075rem;
-    --fs-body: 0.98rem;
-    --fs-ui: 0.6875rem;
-    --fs-nav: 0.6875rem;
-    --fs-ui-sm: 0.65rem;
-    --fs-btn: 0.7rem;
+    --ls-ui: 0.26em;
+    --ls-label: 0.26em;
+    --ls-wide: 0.26em;
 
-    --ls-ui: 0.14em;
-    --ls-btn: 0.22em;
+    --gap-section: 64px;
+    --step-l: 28px;
+    --panel-pad: 40px;
     --lh-body: 1.7;
 
     --section: clamp(76px, 19vw, 112px);
@@ -240,9 +251,41 @@
 @layer base {
   /* ---------- Layout primitives ---------- */
 
-  .shell {
-    width: 100%;
-    padding-inline: var(--shell-pad);
+  /* The site's measure: one column, the same margins on every page. */
+  .shell,
+  .page {
+    width: min(var(--measure-max), 100% - 2 * var(--measure-gutter));
+    margin-inline: auto;
+  }
+
+  /* A page is a column of sections on that measure, each separated from
+     the next by the same distance. */
+  .page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+    padding-top: var(--step-l);
+  }
+
+  /* A page that opens on its title sets it one section below the bar. */
+  .page-opening {
+    padding-top: var(--gap-section);
+  }
+
+  /* The ivory panel — the same object on every page. */
+  .panel {
+    padding: var(--panel-pad) var(--measure-gutter);
+    border: 1px solid var(--hairline-soft);
+    background: var(--ivory);
+    text-align: center;
+  }
+
+  /* The short rule under a title. */
+  .rule {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--warm-grey);
   }
 
   .band-ivory {
@@ -263,12 +306,12 @@
   /* Small tracked sans — nav, section labels, form labels. */
   .label {
     font-family: var(--font-ui);
-    font-size: var(--fs-ui);
+    font-size: var(--t-label);
     font-weight: 600;
     letter-spacing: var(--ls-label);
-    line-height: 1.6;
+    line-height: 1.5;
     text-transform: uppercase;
-    color: var(--color-meta);
+    color: var(--color-ink);
   }
 
   /* Small tracked serif — story names, venues, filters, footer. */
@@ -281,13 +324,13 @@
 
   .copy {
     font-family: var(--font-display);
-    font-size: var(--fs-body);
+    font-size: var(--t-body);
     line-height: var(--lh-body);
     color: var(--color-body);
   }
 
   .copy + .copy {
-    margin-top: 1.05em;
+    margin-top: var(--step-s);
   }
 
   /* ---------- Calls to action ----------
@@ -306,11 +349,12 @@
     border: 1px solid currentColor;
     background: transparent;
     font-family: var(--font-display);
-    font-size: var(--fs-btn);
-    font-weight: 400;
-    letter-spacing: var(--ls-btn);
+    font-size: var(--t-label);
+    /* the label's own weight and tracking — one small-caps voice */
+    font-weight: 600;
+    letter-spacing: var(--ls-label);
     /* the tracking is added on the right of the last letter too */
-    text-indent: var(--ls-btn);
+    text-indent: var(--ls-label);
     line-height: 1;
     text-transform: uppercase;
     cursor: pointer;

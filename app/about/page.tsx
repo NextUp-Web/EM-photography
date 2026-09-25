@@ -11,11 +11,11 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="page">
       {/* ---------- The one where ----------
           One centred title and a great deal of white around it, exactly as
           the brief asks — this opening is not compressed. */}
-      <section className={`shell ${styles.opening}`}>
+      <section className={styles.opening}>
         <h1 className={`display ${styles.openingTitle}`}>
           The one where
           <br />
@@ -26,8 +26,8 @@ export default function AboutPage() {
       {/* ---------- A quiet eye ----------
           Text on the left, three frames of Emma on the right, set off one
           another rather than in a row. */}
-      <section className={`shell ${styles.emma}`} aria-labelledby="about-emma">
-        <div className={styles.emmaText}>
+      <section className={styles.emma} aria-labelledby="about-emma">
+        <div>
           <p className="label" id="about-emma">
             About
           </p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- More than a record ---------- */}
-      <section className={`shell ${styles.trace}`} aria-labelledby="about-trace">
+      <section className={styles.trace} aria-labelledby="about-trace">
         <Figure
           photo={PHOTOS.aboutTrace}
           ratio={0.78}
@@ -120,39 +120,36 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className={`band-ivory ${styles.band}`}>
-        <div className="shell">
-          <p className={`display ${styles.bandTitle}`}>
-            <span className={styles.bandLine}>A little piece of that time,</span>{" "}
-            <span className={styles.bandLine}>
-              kept close enough to feel again.
-            </span>
-          </p>
-          <p className={`label ${styles.bandMeta}`}>
-            Observed with intention. Shaped with sensitivity. Made to remain.
-          </p>
-        </div>
+      <section className="panel">
+        <p className={`display ${styles.bandTitle}`}>
+          <span className={styles.bandLine}>A little piece of that time,</span>{" "}
+          <span className={styles.bandLine}>kept close enough to feel again.</span>
+        </p>
+        <span className={`rule ${styles.bandRule}`} aria-hidden="true" />
+        <p className={`copy ${styles.bandMeta}`}>
+          Observed with intention. Shaped with sensitivity. Made to remain.
+        </p>
       </section>
 
       {/* ---------- Three frames, then the three movements ---------- */}
-      <section className={`shell ${styles.approach}`}>
-        <div className={styles.verticals}>
-          {ABOUT_VERTICALS.map((photo) => (
-            <Figure
-              key={photo.src}
-              photo={photo}
-              ratio={0.66}
-              mobileRatio={0.72}
-              sizes="(max-width: 860px) 92vw, 30vw"
-            />
-          ))}
-        </div>
+      <section className={styles.verticals}>
+        {ABOUT_VERTICALS.map((photo) => (
+          <Figure
+            key={photo.src}
+            photo={photo}
+            ratio={0.66}
+            mobileRatio={0.72}
+            sizes="(max-width: 860px) 92vw, 360px"
+          />
+        ))}
+      </section>
 
+      <section aria-label="Observe, guide, preserve">
         <ol className={styles.steps}>
           {APPROACH_STEPS.map((step) => (
             <li key={step.number} className={styles.step}>
-              <p className={`label ${styles.stepNumber}`}>{step.number}</p>
-              <span className={styles.stepRule} aria-hidden="true" />
+              <p className="label">{step.number}</p>
+              <span className={`rule ${styles.stepRule}`} aria-hidden="true" />
               <h3 className={`display ${styles.stepTitle}`}>{step.title}</h3>
               <p className={`copy ${styles.stepCopy}`}>
                 {step.lines.map((line, index) => (
@@ -166,6 +163,6 @@ export default function AboutPage() {
           ))}
         </ol>
       </section>
-    </>
+    </div>
   );
 }

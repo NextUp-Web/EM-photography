@@ -62,7 +62,7 @@
   margin-top: clamp(6px, 0.7vw, 9px);
   font-family: var(--font-ui);
   font-size: var(--fs-ui-sm);
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: var(--ls-ui);
   text-transform: uppercase;
   line-height: 1.6;
@@ -120,9 +120,9 @@
   border-bottom-width: 1.5px;
 }
 
-/* Montserrat caps, widely tracked — the site's small-label voice. */
+/* The site's small-label voice. */
 .responseTime {
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: var(--ls-label);
   color: var(--color-meta);
 }

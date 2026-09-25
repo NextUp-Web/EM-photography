@@ -1,69 +1,48 @@
 /* ============================================================
    CONTACT
 
-   The title and its invitation centred on a short measure with a
-   great deal of white around them, then a full-width photograph,
-   then two columns — the written invitation and the form — and a
-   monochrome frame closing the page.
+   On the site's system (globals.css): one column on the shared
+   measure, sections separated by --gap-section, type from the
+   one scale. The page opens on its title and invitation and one
+   photograph a --step-l apart, then the written invitation and
+   the form split 5 / 7, then one monochrome frame.
    ============================================================ */
 
-.top {
-  display: grid;
-  grid-template-columns: 1fr;
+.opening {
+  display: flex;
+  flex-direction: column;
+  gap: var(--step-l);
 }
 
 .intro {
-  grid-row: 1;
-  padding: var(--section) var(--shell-pad) var(--sp-xl);
   text-align: center;
 }
 
-/* The reference sets this title a little over three times the size of
-   the paragraph beneath it; at the body size this page uses, that is
-   ~4.8% of the frame. */
 .title {
-  font-size: clamp(1.95rem, 4.8vw, 4.4rem);
-  line-height: 1.16;
+  font-size: var(--t-display);
+  line-height: 1.15;
 }
 
-/* Narrow on purpose: the paragraph should never run the width of the
-   page, and it keeps a whole section of air around it. */
-/* The reference sets the paragraph on four given lines, the longest a
-   little wider than the title's first line. */
 .lede {
-  margin-top: clamp(20px, 2.4vw, 38px);
-  margin-inline: auto;
-  font-size: clamp(0.98rem, 1.62vw, 1.5rem);
+  margin-top: var(--step-m);
+  font-size: var(--t-lead);
   line-height: 1.6;
-  text-align: center;
 }
 
-/* Each of those lines holds on its own on the desktop; the phone lets the
-   paragraph flow, still centred. */
+/* Each of the reference's four lines holds on its own on the desktop; the
+   phone lets the paragraph flow, still centred. */
 .line {
   display: block;
   white-space: nowrap;
 }
 
-@media (max-width: 860px) {
-  .line {
-    display: inline;
-    white-space: normal;
-  }
-}
-
-.heroFigure {
-  grid-row: 2;
-  background: var(--soft-black);
-}
-
-/* ---------- Invitation + form ---------- */
+/* ---------- Invitation + form — 5 / 7 ---------- */
 
 .main {
   display: grid;
-  grid-template-columns: 34.7fr 4.3fr 61fr;
+  grid-template-columns: 5fr 7fr;
+  column-gap: var(--col-gap);
   align-items: start;
-  padding: var(--section) var(--shell-pad);
 }
 
 .aside {
@@ -72,23 +51,24 @@
 }
 
 .asideTitle {
-  margin-top: clamp(14px, 1.6vw, 24px);
-  font-size: var(--fs-display-lg);
+  margin-top: var(--step-s);
+  font-size: var(--t-title);
+  line-height: 1.15;
 }
 
 .asideCopy {
-  margin-top: clamp(16px, 1.9vw, 28px);
+  margin-top: var(--step-m);
 }
 
 .formWrap {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1 / span 2;
 }
 
 .bouquet {
   grid-column: 1;
   grid-row: 2;
-  margin-top: clamp(20px, 2.6vw, 40px);
+  margin-top: var(--step-l);
   align-self: end;
 }
 
@@ -96,63 +76,36 @@
   display: inline;
 }
 
-/* ---------- Closing frame ---------- */
-
-.closing {
-  margin-top: var(--section);
-}
-
 /* ============================================================
-   Phone
+   Phone — one column on the same measure.
    ============================================================ */
 
 @media (max-width: 860px) {
-  /* The reference sets the title first on the phone too, with the
-     photograph beneath it. */
-  .intro {
-    grid-row: 1;
-    padding: var(--section) var(--shell-pad) var(--sp-lg);
-  }
-
-  .heroFigure {
-    grid-row: 2;
-  }
-
-  .lede {
-    width: 100%;
-    max-width: none;
+  .line {
+    display: inline;
+    white-space: normal;
   }
 
   .main {
     grid-template-columns: 1fr;
-    padding: var(--section) var(--shell-pad) 0;
   }
 
   .aside,
-  .formWrap {
+  .formWrap,
+  .bouquet {
     grid-column: 1;
-  }
-
-  .aside {
-    grid-row: 1;
   }
 
   .formWrap {
     grid-row: 2;
-    margin-top: clamp(18px, 5vw, 26px);
+    margin-top: var(--step-l);
+  }
+
+  .bouquet {
+    grid-row: 3;
   }
 
   .wide {
     display: none;
-  }
-
-  /* The bouquet closes the form, edge to edge, beneath it. */
-  .bouquet {
-    grid-column: 1;
-    grid-row: 3;
-    width: calc(100% + var(--shell-pad) * 2);
-    max-width: none;
-    margin-inline: calc(var(--shell-pad) * -1);
-    margin-top: clamp(22px, 6vw, 32px);
   }
 }

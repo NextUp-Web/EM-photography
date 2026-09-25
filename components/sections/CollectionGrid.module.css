@@ -1,20 +1,22 @@
 /* ============================================================
    PORTFOLIO — the reportages.
 
-   Nothing frames the photograph: no card, no rule, no shadow, no
-   rounded corner. The cover carries the block, the initials and the
-   place sit quietly beneath it.
+   Nothing frames the photograph: no card, no rule, no shadow.
+   Frames side by side share --gap-img, as everywhere on the site;
+   the couple's initials and the place sit beneath in the label
+   style, the place a shade quieter.
    ============================================================ */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: clamp(20px, 2.6vw, 44px);
-  row-gap: var(--section);
+  column-gap: var(--gap-img);
+  row-gap: var(--step-l);
 }
 
 .item {
   display: block;
+  text-align: center;
 }
 
 .cover {
@@ -27,65 +29,27 @@
   opacity: 0.86;
 }
 
-/* The photographs are the page; the names beneath them are deliberately
-   small, light and widely tracked, so they never compete with the frame
-   above. */
 .name {
-  margin-top: clamp(14px, 1.5vw, 22px);
-  font-family: var(--font-display);
-  font-size: var(--fs-ui);
-  font-weight: 400;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
-  color: var(--color-ink);
-  text-align: center;
+  margin-top: var(--step-m);
 }
 
 .place {
-  margin-top: clamp(5px, 0.6vw, 9px);
-  font-size: var(--fs-ui-sm);
-  font-weight: 400;
-  letter-spacing: var(--ls-ui);
-  color: var(--color-quiet);
-  text-align: center;
+  margin-top: var(--step-s);
+  color: var(--color-meta);
 }
 
 /* ============================================================
-   Phone and small tablet — two to a line.
+   Phone — two to a line, one below 360px.
    ============================================================ */
-
-@media (max-width: 1080px) {
-  .grid {
-    column-gap: clamp(16px, 2.4vw, 32px);
-    row-gap: var(--sp-xl);
-  }
-}
 
 @media (max-width: 860px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--gap-img);
-    row-gap: var(--sp-lg);
-  }
-
-  .name {
-    margin-top: clamp(10px, 3vw, 16px);
-    letter-spacing: 0.22em;
-    text-indent: 0.22em;
-  }
-
-  .place {
-    letter-spacing: 0.12em;
   }
 }
 
-/* Below 360px two columns would make the photographs insignificant —
-   one to a line, full measure, keeps them photographic. */
 @media (max-width: 359px) {
   .grid {
     grid-template-columns: 1fr;
-    row-gap: var(--sp-lg);
   }
 }

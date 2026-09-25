@@ -1,70 +1,61 @@
 /* ============================================================
-   PORTFOLIO — intro, the opening photograph and the closing band.
+   PORTFOLIO
+
+   On the site's system (globals.css): one column on the shared
+   measure, sections separated by --gap-section, type from the
+   one scale. The page opens on its title and one large
+   photograph, a --step-l apart, and closes on the same
+   photograph-with-invitation as the home page.
    ============================================================ */
 
+.opening {
+  display: flex;
+  flex-direction: column;
+  gap: var(--step-l);
+}
+
 .intro {
-  padding-top: var(--section);
-  padding-bottom: var(--sp-lg);
   text-align: center;
 }
 
-/* Reduced from the 4.8% of the frame it used to set at, as the document
-   asks, while staying above the section titles beneath it — it is still
-   the page's heading, just no longer a slab over the photograph. */
 .title {
-  font-size: clamp(1.95rem, 4.2vw, 3.9rem);
-  line-height: 1.16;
+  font-size: var(--t-display);
+  line-height: 1.15;
 }
 
 .subtitle {
-  margin-top: clamp(10px, 1.1vw, 18px);
-  font-size: var(--fs-lede);
-  line-height: 1.35;
-  color: var(--color-ink);
+  margin-top: var(--step-m);
+  font-size: var(--t-lead);
+  line-height: 1.5;
 }
 
-/* The desktop mockup sets these on one line; the phone breaks them. */
+/* The desktop sets these on one line; the phone breaks them. */
 .wide {
   display: none;
 }
 
-/* ---------- The opening photograph ---------- */
-
-.lead {
-  margin-top: var(--sp-lg);
-  padding-inline: var(--shell-pad);
-}
-
 /* ---------- Selected stories ---------- */
 
-/* A whole section of white opens this block, as the brief asks. */
-.stories {
-  padding-top: var(--section);
-}
-
 .storiesHead {
+  margin-bottom: var(--step-l);
   text-align: center;
-  padding-bottom: var(--sp-xl);
 }
 
 .storiesTitle {
-  font-size: var(--fs-display);
+  font-size: var(--t-title);
+  line-height: 1.15;
 }
 
-/* The paragraph keeps a short measure so it reads as a caption, not a
-   column of text. */
 .storiesCopy {
-  margin-top: clamp(16px, 1.8vw, 26px);
+  margin-top: var(--step-m);
   margin-inline: auto;
-  max-width: 62ch;
+  max-width: 60ch;
 }
 
-/* ---------- Closing banner ---------- */
+/* ---------- The invitation — as on the home page ---------- */
 
 .closing {
   position: relative;
-  margin-top: var(--section);
-  padding-inline: var(--shell-pad);
 }
 
 .closingFigure {
@@ -78,44 +69,39 @@
   background: linear-gradient(
     to right,
     rgba(25, 24, 22, 0.5) 0%,
-    rgba(25, 24, 22, 0.28) 42%,
-    rgba(25, 24, 22, 0) 70%
+    rgba(25, 24, 22, 0.3) 38%,
+    rgba(25, 24, 22, 0) 62%
   );
   pointer-events: none;
 }
 
 .closingInner {
   position: absolute;
-  left: calc(var(--shell-pad) + clamp(22px, 4vw, 66px));
   top: 50%;
+  left: var(--panel-pad);
   transform: translateY(-50%);
-  max-width: min(46%, 560px);
 }
 
 .closingTitle {
-  font-size: var(--fs-banner);
-  line-height: 1.18;
+  font-size: var(--t-title);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--warm-white);
-  text-shadow: 0 1px 24px rgba(25, 24, 22, 0.36);
 }
 
-/* "Une case transparente en blanc Enquire": a transparent rectangle with
-   a white hairline and the word as the document writes it — the same
-   object as the Enquire on the home page's closing photograph. */
 .closingCta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: clamp(20px, 2.2vw, 34px);
-  width: clamp(132px, 12vw, 220px);
-  height: clamp(40px, 3.3vw, 60px);
+  min-width: 150px;
+  min-height: 48px;
+  margin-top: var(--step-l);
+  padding: 0 28px;
   border: 1px solid rgba(250, 249, 246, 0.85);
-  background: transparent;
   font-family: var(--font-display);
-  font-size: clamp(0.92rem, 1.3vw, 1.25rem);
+  font-size: var(--t-lead);
   letter-spacing: 0.08em;
-  text-indent: 0.08em;
-  line-height: 1;
   color: var(--warm-white);
   transition: background-color var(--dur) var(--ease);
 }
@@ -126,61 +112,28 @@
 }
 
 @media (max-width: 860px) {
-  .intro {
-    padding-top: var(--section);
-    padding-bottom: var(--sp-md);
-  }
-
-  .title {
-    max-width: 14ch;
-    margin-inline: auto;
-  }
-
-  .subtitle {
-    max-width: 22ch;
-    margin-inline: auto;
-  }
-
   .wide {
     display: inline;
   }
 
-  /* The opening photograph runs edge to edge on a phone. */
-  .lead {
-    margin-top: var(--sp-md);
-    padding-inline: 0;
+  .title,
+  .subtitle {
+    text-wrap: balance;
   }
 
-  .stories {
-    padding-top: var(--section);
+  .closingFigure::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 24, 22, 0.46) 0%,
+      rgba(25, 24, 22, 0.24) 40%,
+      rgba(25, 24, 22, 0) 58%
+    );
   }
 
-  .storiesHead {
-    padding-bottom: var(--sp-lg);
-  }
-
-  .storiesCopy {
-    max-width: none;
-  }
-
-  .closing {
-    margin-top: var(--section);
-    padding-inline: 0;
-  }
-
-  /* The phone keeps the same left-weighted shade as the desktop rather
-     than switching to a vertical one, because the document puts this text
-     on the left of the frame and it stays there. */
-
-  /* Left and vertically centred on the phone too, set into the page
-     margin — never dropped to the foot, never centred. */
   .closingInner {
-    left: var(--shell-pad);
-    right: var(--shell-pad);
-    max-width: none;
-  }
-
-  .closingCta {
-    margin-top: clamp(16px, 4.5vw, 24px);
+    top: 28px;
+    left: 24px;
+    right: 24px;
+    transform: none;
   }
 }

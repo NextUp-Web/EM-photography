@@ -12,10 +12,9 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <>
-      {/* The title and its invitation, centred on a short measure with a
-          great deal of room around them, then the photograph. */}
-      <section className={styles.top}>
+    <div className="page page-opening">
+      {/* ---------- Opening — the title and its invitation, then the photograph ---------- */}
+      <section className={styles.opening}>
         <div className={styles.intro}>
           <h1 className={`display ${styles.title}`}>
             Tell me what this day
@@ -43,9 +42,8 @@ export default function ContactPage() {
           photo={PHOTOS.contactHero}
           ratio={1.95}
           mobileRatio={1.4}
-          sizes="100vw"
+          sizes="(max-width: 860px) 100vw, 1080px"
           priority
-          className={styles.heroFigure}
         />
       </section>
 
@@ -76,20 +74,20 @@ export default function ContactPage() {
           photo={PHOTOS.contactBouquet}
           ratio={0.98}
           mobileRatio={2.39}
-          sizes="(max-width: 860px) 100vw, 32vw"
+          sizes="(max-width: 860px) 100vw, 420px"
           className={styles.bouquet}
         />
       </section>
 
-      {/* The page closes on one monochrome photograph, edge to edge. */}
-      <div className={styles.closing}>
+      {/* The page closes on one monochrome photograph. */}
+      <section aria-label="The lake">
         <Figure
           photo={PHOTOS.contactClosing}
           ratio={2.86}
           mobileRatio={1.6}
-          sizes="100vw"
+          sizes="(max-width: 860px) 100vw, 1080px"
         />
-      </div>
-    </>
+      </section>
+    </div>
   );
 }

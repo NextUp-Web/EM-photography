@@ -1,14 +1,19 @@
 /* ============================================================
    PORTFOLIO — one reportage.
 
-   The same editorial grammar as the rest of the site: a quiet
-   title block, one wide lead, then the photographs two to a line
-   with nothing drawn around them.
+   On the site's system (globals.css): one column on the shared
+   measure, sections separated by --gap-section, type from the
+   one scale. The title block and the photographs sit a --step-l
+   apart; frames share --gap-img.
    ============================================================ */
 
+.opening {
+  display: flex;
+  flex-direction: column;
+  gap: var(--step-l);
+}
+
 .head {
-  padding-top: var(--section);
-  padding-bottom: var(--sp-xl);
   text-align: center;
 }
 
@@ -16,8 +21,6 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-weight: 500;
-  letter-spacing: var(--ls-ui);
   color: var(--color-meta);
   transition: color var(--dur) var(--ease);
 }
@@ -33,41 +36,37 @@
 }
 
 .name {
-  margin-top: clamp(22px, 2.6vw, 40px);
-  font-size: var(--fs-page-title);
-  letter-spacing: 0.06em;
+  margin-top: var(--step-m);
+  font-size: var(--t-display);
+  line-height: 1.15;
 }
 
 .place {
-  margin-top: clamp(10px, 1.1vw, 16px);
-  font-weight: 400;
-  letter-spacing: var(--ls-label);
+  margin-top: var(--step-s);
   color: var(--color-meta);
 }
 
 .date {
-  margin-top: 4px;
-  font-weight: 400;
-  letter-spacing: var(--ls-ui);
   color: var(--color-quiet);
 }
 
 .intro {
-  margin-top: clamp(20px, 2.2vw, 32px);
+  margin-top: var(--step-m);
   margin-inline: auto;
   max-width: 58ch;
 }
 
 /* ---------- The photographs ---------- */
 
-.leadWrap {
-  display: block;
+.photos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-img);
 }
 
 .gallery {
   columns: 2;
   column-gap: var(--gap-img);
-  margin-top: var(--gap-img);
 }
 
 .frame {
@@ -78,14 +77,12 @@
 /* ---------- On to the next story ---------- */
 
 .next {
-  padding-top: var(--section);
-  padding-bottom: var(--section);
   text-align: center;
 }
 
 .nextLink {
   display: block;
-  margin-top: clamp(14px, 1.6vw, 24px);
+  margin-top: var(--step-s);
   transition: opacity var(--dur) var(--ease);
 }
 
@@ -96,41 +93,21 @@
 
 .nextName {
   display: block;
-  font-size: var(--fs-display);
-  letter-spacing: 0.06em;
+  font-size: var(--t-title);
+  line-height: 1.15;
 }
 
 .nextPlace {
   display: block;
-  margin-top: clamp(6px, 0.7vw, 10px);
-  font-weight: 400;
-  letter-spacing: var(--ls-ui);
+  margin-top: var(--step-s);
   color: var(--color-meta);
 }
 
 .nextCta {
-  margin-top: var(--sp-md);
+  margin-top: var(--step-l);
 }
 
-/* ============================================================
-   Phone
-   ============================================================ */
-
 @media (max-width: 860px) {
-  .head {
-    padding-bottom: var(--sp-lg);
-  }
-
-  .intro {
-    max-width: none;
-  }
-
-  /* The photographs run edge to edge on the phone, as everywhere else. */
-  .leadWrap,
-  .gallery {
-    padding-inline: 0;
-  }
-
   .gallery {
     columns: 1;
   }

@@ -11,7 +11,7 @@ import styles from "./CollectionGrid.module.css";
  */
 export default function CollectionGrid() {
   return (
-    <ul className={`shell ${styles.grid}`}>
+    <ul className={styles.grid}>
       {COLLECTIONS.map((collection) => (
         <li key={collection.slug}>
           <Link href={`/portfolio/${collection.slug}`} className={styles.item}>
@@ -19,10 +19,10 @@ export default function CollectionGrid() {
               photo={collection.cover}
               ratio={1.28}
               mobileRatio={1.05}
-              sizes="(max-width: 860px) 46vw, 31vw"
+              sizes="(max-width: 860px) 46vw, 360px"
               className={styles.cover}
             />
-            <p className={styles.name}>{collection.name}</p>
+            <p className={`label ${styles.name}`}>{collection.name}</p>
             <p className={`label ${styles.place}`}>{collection.place}</p>
           </Link>
         </li>
