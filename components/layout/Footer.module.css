@@ -10,7 +10,7 @@
 .footer {
   /* Measured off the reference, where the lockup stands 14% of the
      frame's width tall — it is meant to dominate the foot of the page. */
-  --footer-logo-h: clamp(96px, 14vw, 220px);
+  --footer-logo-h: clamp(64px, 6vw, 96px);
   background: var(--color-page);
 }
 
@@ -177,7 +177,7 @@
 
 @media (max-width: 860px) {
   .footer {
-    --footer-logo-h: clamp(62px, 17vw, 86px);
+    --footer-logo-h: clamp(52px, 13vw, 64px);
   }
 
   .rule {

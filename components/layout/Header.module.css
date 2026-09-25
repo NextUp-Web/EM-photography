@@ -27,8 +27,8 @@
   /* The reference sets the last link 2.5% of the width from the edge. */
   padding-inline: clamp(24px, 2.5vw, 48px);
 
-  --wordmark-size: 2.58cqw;
-  --tagline-size: 1.09cqw;
+  --wordmark-size: max(1.3rem, 2.1cqw);
+  --tagline-size: max(0.62rem, 0.89cqw);
 }
 
 .brand {

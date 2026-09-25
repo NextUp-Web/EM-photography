@@ -1,13 +1,12 @@
 /* ============================================================
    Selected stories — three frames side by side, stepped one at
-   a time. Sizes are in cqw of the page container (see the home
-   page), measured off the client's mockup.
+   a time, on the home page's measure and spacing.
    ============================================================ */
 
 .frames {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.8cqw;
+  gap: var(--gap-img);
 }
 
 .figure {
@@ -27,13 +26,13 @@
 .controls {
   display: flex;
   align-items: center;
-  margin-top: 1cqw;
+  margin-top: 16px;
 }
 
 .counter {
   flex: none;
   font-family: var(--font-ui);
-  font-size: max(0.625rem, 1cqw);
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   line-height: 1;
@@ -44,7 +43,7 @@
   position: relative;
   flex: 1;
   height: 1px;
-  margin-inline: 4cqw 13.6cqw;
+  margin-inline: 32px;
   background: var(--hairline);
 }
 
@@ -59,7 +58,7 @@
 .arrows {
   display: flex;
   flex: none;
-  gap: 1.4cqw;
+  gap: 10px;
 }
 
 /* Two small squares, a hairline round each arrow. */
@@ -67,13 +66,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: max(44px, 4.6cqw);
-  height: max(44px, 4.4cqw);
+  width: 44px;
+  height: 44px;
   border: 1px solid rgba(25, 24, 22, 0.45);
   background: transparent;
   padding: 0;
   font-family: var(--font-ui);
-  font-size: max(0.875rem, 1.35cqw);
+  font-size: 0.9rem;
   line-height: 1;
   color: var(--color-ink);
   cursor: pointer;
