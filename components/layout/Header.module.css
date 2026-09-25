@@ -28,7 +28,9 @@
   width: min(var(--measure-max), 100% - 2 * var(--measure-gutter));
   margin-inline: auto;
 
-  --wordmark-size: max(1.3rem, 1.8cqw);
+  /* capped at the size it had when the page stopped at 1760px, so the
+     name never grows past it on a wider screen */
+  --wordmark-size: max(1.3rem, min(1.8cqw, 31.68px));
 }
 
 /* The desktop sets the name at the left of the bar; the phone centres it,

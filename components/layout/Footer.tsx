@@ -58,16 +58,23 @@ export default function Footer() {
           </a>
         </div>
 
+        {/* The dot sits on the page's centre line, the two places either side. */}
         <p className={styles.place}>
-          Switzerland based
+          <span className={styles.placeStart}>Switzerland based</span>
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          Available across Europe
+          <span className={styles.placeEnd}>Available across Europe</span>
         </p>
 
-        <p className={`label ${styles.legal}`}>
-          &copy; {COPYRIGHT_YEAR} EM Photography
+        {/* The copyright in the links' own face and size. Cormorant draws its
+            © as a small low swirl, so the mark is its own capital C in a
+            fine circle, centred on the height of the capitals. */}
+        <p className={styles.legal}>
+          <span className={styles.copyMark} role="img" aria-label="Copyright">
+            C
+          </span>
+          {COPYRIGHT_YEAR} EM Photography
         </p>
       </div>
     </footer>

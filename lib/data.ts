@@ -65,11 +65,12 @@ export const PHOTOS = {
     bw: true,
   },
   /* The invitation that closes the home page: the couple at the
-     balustrade in the warm evening light, in colour. */
+     balustrade, in monochrome, the type over the open lake to their left. */
   homeInvite: {
     src: `${V3}/portfolio/lead.webp`,
     alt: "The couple on the balustraded terrace, the lake and the mountains behind them",
-    position: "center 58%",
+    position: "center 52%",
+    bw: true,
   },
 
 

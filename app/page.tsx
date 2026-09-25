@@ -12,8 +12,9 @@ export const metadata = {
 /**
  * The home page is one column of sections on one measure: every section
  * shares the same left and right edges and the same distance to the next.
- * Text uses four sizes only — title, statement, lead and body — plus the
- * small tracked label (see page.module.css).
+ * Text uses three sizes only — title, lead and body — plus the small
+ * tracked label; the two ivory panels are set as main sets them (see
+ * page.module.css).
  */
 export default function HomePage() {
   return (
@@ -92,11 +93,13 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        <p className={styles.statement}>
-          For those drawn to photographs that reveal more the longer you look.
+        {/* Set exactly as main sets its first ivory band: two lines on the
+            desktop, one flowing measure on the phone. */}
+        <p className={styles.bandTitle}>
+          <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
+          <span className={styles.bandLine}>reveal more the longer you look.</span>
         </p>
-        <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
-        <p className="label">The art of looking closer.</p>
+        <p className={styles.bandMeta}>The art of looking closer.</p>
       </section>
 
       {/* ---------- Selected stories ---------- */}
@@ -147,20 +150,24 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        <p className={styles.statement}>Documenting love in its softest form.</p>
-        <span className={`${styles.rule} ${styles.ruleCentred}`} aria-hidden="true" />
-        <p className="label">Documentary presence. Editorial sensibility. Softly felt.</p>
+        {/* Set exactly as main sets "Documenting love in its softest form." */}
+        <p className={styles.quoteText}>Documenting love in its softest form.</p>
+        <p className={styles.quoteMeta}>
+          Documentary presence. Editorial sensibility. Softly felt.
+        </p>
       </section>
 
-      {/* ---------- The invitation — a photograph, the words beside it ---------- */}
+      {/* ---------- The invitation — one monochrome photograph from margin
+          to margin, the words over its left side, centred on its height ---------- */}
       <section className={styles.invite} aria-labelledby="invite">
         <Figure
           photo={PHOTOS.homeInvite}
-          ratio={1.5}
-          mobileRatio={1.2}
-          sizes="(max-width: 860px) 100vw, 620px"
+          ratio={2.2}
+          mobileRatio={0.8}
+          sizes="100vw"
+          className={styles.inviteFigure}
         />
-        <div>
+        <div className={styles.inviteText}>
           <h2 className={`${styles.title} ${styles.caps}`} id="invite">
             Let&rsquo;s create
             <br />
@@ -169,11 +176,17 @@ export default function HomePage() {
             meaningful.
           </h2>
           <p className={`label ${styles.inviteTags}`}>
-            <span>Weddings</span>
-            <span>Portraits</span>
-            <span>Love stories</span>
+            Weddings
+            <span className={styles.inviteDot} aria-hidden="true">
+              &middot;
+            </span>
+            Love stories
+            <span className={styles.inviteDot} aria-hidden="true">
+              &middot;
+            </span>
+            Portraits
           </p>
-          <Link href="/contact" className={`btn btn-dark ${styles.cta}`}>
+          <Link href="/contact" className={`btn btn-light ${styles.inviteCta}`}>
             Enquire
           </Link>
         </div>

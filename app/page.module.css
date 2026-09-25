@@ -13,12 +13,13 @@
      always the same three: --step-s, --step-m, --step-l. The two
      ivory panels carry equal padding above and below.
 
-   · TYPE — one family (Cormorant Garamond), four sizes:
+   · TYPE — one family (Cormorant Garamond), three sizes:
        title      section titles and the Philosophy headline
-       statement  the lines set in the ivory panels
        lead       the short lines under a title
        body       paragraphs
      plus the small tracked label. Only weight and italic vary.
+     The two ivory panels alone are set as main sets them, in
+     Bodoni Moda and Montserrat.
 
    · GRID — the two-column sections split 5 / 7 with the same
      column gap; frames that sit side by side share --gap-img.
@@ -48,12 +49,58 @@
   color: var(--color-ink);
 }
 
-.statement {
-  font-family: var(--font-display);
-  font-size: var(--t-statement);
-  font-weight: 700;
-  line-height: 1.3;
+/* The first ivory panel — set exactly as main sets its first band: the
+   sentence in Bodoni Moda on two lines, the line beneath it in Montserrat
+   caps, widely tracked, in the meta grey. */
+.bandTitle {
+  font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
+  font-size: clamp(1.75rem, 4.47vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.15;
   color: var(--color-ink);
+}
+
+.bandLine {
+  display: block;
+}
+
+.bandMeta {
+  margin-top: clamp(22px, 4.9vw, 86px);
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.72rem, 1.66vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  /* the tracking follows the last letter; the same before the first keeps
+     the line on the centre of the panel */
+  padding-left: 0.3em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--color-meta);
+}
+
+/* The second ivory panel — set exactly as main sets "Documenting love in
+   its softest form.": the sentence in Bodoni Moda, the line beneath it in
+   Montserrat caps, widely tracked, in the meta grey. */
+.quoteText {
+  font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
+  font-size: clamp(1.45rem, 2.57vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.24;
+  color: var(--color-ink);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+.quoteMeta {
+  margin-top: clamp(16px, 1.8vw, 28px);
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.625rem, 0.95vw, 0.86rem);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--color-meta);
 }
 
 .lead {
@@ -87,10 +134,6 @@
   height: 1px;
   margin-top: var(--step-m);
   background: var(--warm-grey);
-}
-
-.ruleCentred {
-  margin-inline: auto;
 }
 
 .rule + .lead,
@@ -131,7 +174,30 @@
   display: grid;
   grid-template-columns: 5fr 7fr;
   column-gap: var(--col-gap);
-  align-items: center;
+  align-items: stretch;
+}
+
+/* The photographs sit on the foot of the row… */
+.split > :not(.text) {
+  align-self: end;
+}
+
+/* …and the text column runs the row's full height with the button at its
+   foot, so the button's lower edge is on the same line as the lower edge
+   of the photographs. */
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.text > .cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* the least space above the button, when the text is the taller column */
+.text > :nth-last-child(2) {
+  margin-bottom: var(--step-l);
 }
 
 .pair {
@@ -161,20 +227,60 @@
   max-width: 60ch;
 }
 
-/* ---------- The invitation — photograph 7, text 5 ---------- */
+/* ---------- The invitation — one monochrome photograph from margin to margin ---------- */
 
 .invite {
-  display: grid;
-  grid-template-columns: 7fr 5fr;
-  column-gap: var(--col-gap);
-  align-items: center;
+  position: relative;
+}
+
+/* The couple is drawn to the right half; the left takes the type, with a
+   soft shade on that side only. */
+.inviteFigure {
+  background: var(--soft-black);
+}
+
+.inviteFigure img {
+  transform: scale(1.28);
+  transform-origin: 0% 62%;
+}
+
+.inviteFigure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(25, 24, 22, 0.55) 0%,
+    rgba(25, 24, 22, 0.3) 36%,
+    rgba(25, 24, 22, 0) 60%
+  );
+  pointer-events: none;
+}
+
+/* On the left, a panel's padding in from the edge, centred on the height. */
+.inviteText {
+  position: absolute;
+  top: 50%;
+  left: var(--panel-pad);
+  transform: translateY(-50%);
+}
+
+.inviteText .title,
+.home .inviteTags {
+  color: var(--warm-white);
+}
+
+.inviteCta {
+  margin-top: var(--step-l);
 }
 
 .inviteTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.4em;
   margin-top: var(--step-m);
+}
+
+/* the middle dot between two words, the same space either side */
+.inviteDot {
+  padding-inline: 0.9em;
 }
 
 /* ============================================================
@@ -206,16 +312,64 @@
     row-gap: var(--step-l);
   }
 
-  .statement {
-    text-wrap: balance;
+  /* one column: the button simply follows the text */
+  .text > :nth-last-child(2) {
+    margin-bottom: 0;
+  }
+
+  .text > .cta {
+    margin-top: var(--step-l);
+  }
+
+  /* main's first band on the phone: the sentence wraps on its own measure */
+  .bandTitle {
+    max-width: 20ch;
+    margin-inline: auto;
+  }
+
+  .bandLine {
+    display: inline;
+  }
+
+  /* main's second band on the phone */
+  .quoteText {
+    max-width: 18ch;
+  }
+
+  .quoteMeta {
+    max-width: 30ch;
+    margin-inline: auto;
+    font-size: 0.65rem;
   }
 
   .storiesHead .body {
     text-wrap: balance;
   }
 
-  .invite {
-    grid-template-columns: 1fr;
-    row-gap: var(--step-l);
+  /* The type goes above the couple on the phone. */
+  .inviteFigure img {
+    object-position: 58% 0% !important;
+    transform: scale(1.34);
+    transform-origin: 58% 0%;
+  }
+
+  .inviteFigure::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 24, 22, 0.5) 0%,
+      rgba(25, 24, 22, 0.26) 40%,
+      rgba(25, 24, 22, 0) 58%
+    );
+  }
+
+  .inviteText {
+    top: 28px;
+    left: 24px;
+    right: 24px;
+    transform: none;
+  }
+
+  .inviteDot {
+    padding-inline: 0.5em;
   }
 }

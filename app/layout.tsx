@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond } from "next/font/google";
+import { Bodoni_Moda, Cormorant_Garamond, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/data";
@@ -14,6 +14,23 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
   display: "swap",
   variable: "--font-cormorant",
+});
+
+/* The two ivory statements on the home page are set in the faces main
+   sets them in, at the client's request: Bodoni Moda for the sentence,
+   Montserrat for the tracked line beneath it. Nothing else uses them. */
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  variable: "--font-bodoni",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
+  variable: "--font-montserrat",
 });
 
 const FAVICON = "/brand/em-logo-black.png";
@@ -44,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={cormorant.variable}
+      className={`${cormorant.variable} ${bodoni.variable} ${montserrat.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">
