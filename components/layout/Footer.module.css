@@ -154,23 +154,13 @@
   text-align: center;
 }
 
-/* On the phone the capitals no longer fit either side of the dot: the two
-   places stack, centred, one line each. */
+/* On the phone the line stays whole: the two places and the dot centred
+   together on one line, the size following the width of the screen. */
 @media (max-width: 860px) {
   .place {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    row-gap: 6px;
-    text-indent: 0.16em;
-  }
-
-  .placeStart,
-  .placeEnd {
-    justify-self: center;
+    display: flex;
+    justify-content: center;
     white-space: nowrap;
-  }
-
-  .dot {
-    display: none;
+    font-size: min(var(--t-nav), (100vw - 40px) / 33);
   }
 }
