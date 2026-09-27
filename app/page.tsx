@@ -160,7 +160,8 @@ export default function HomePage() {
           Documenting love in its softest form.
         </p>
         <p className={`${styles.quoteMeta} ${styles.quoteMetaOne} ${styles.quoteMetaTwo}`}>
-          Documentary presence. Editorial sensibility. Deeply felt.
+          <span className={styles.metaLine}>Documentary presence. Editorial sensibility.</span>{" "}
+          <span className={styles.metaLine}>Deeply felt.</span>
         </p>
       </section>
 

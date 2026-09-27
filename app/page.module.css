@@ -400,11 +400,15 @@
     letter-spacing: min(0.3em, (100vw - 280px) / 29);
   }
 
-  /* the second panel's longer line holds one line on the phone by
-     setting smaller, its tracking unchanged */
+  /* the second panel's longer line breaks before "Deeply felt." on the
+     phone, both lines centred, the first sized to hold its line */
   .quoteMetaTwo {
-    font-size: min(0.585rem, (100vw - 80px) / 53);
+    font-size: min(0.585rem, (100vw - 80px) / 41);
     letter-spacing: 0.3em;
+  }
+
+  .metaLine {
+    display: block;
   }
 
   .storiesHead .body {
