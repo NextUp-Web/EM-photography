@@ -136,9 +136,9 @@
 
 /* ---------- Ivory panels — no outline, as on the home page ---------- */
 
-/* Set exactly as the home page's ivory panels (.quoteText.quoteTextOne
-   and .quoteMeta.quoteMetaOne there): the sentence, and the lines beneath
-   it darker than the meta grey, each held on one line. */
+/* Set as the home page's ivory panels (.quoteText.quoteTextOne and
+   .quoteMeta.quoteMetaOne there): the sentence, and the lines beneath it
+   darker than the meta grey — a tenth smaller here. */
 .panelQuote {
   font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
   font-size: clamp(1.305rem, 2.313vw, 2.16rem);
@@ -150,7 +150,8 @@
 .panelMeta {
   margin-top: clamp(16px, 1.8vw, 28px);
   font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
-  font-size: clamp(0.5625rem, 0.855vw, 0.774rem);
+  /* a tenth smaller than the home page's line */
+  font-size: clamp(0.50625rem, 0.7695vw, 0.6966rem);
   font-weight: 500;
   letter-spacing: 0.3em;
   padding-left: 0.3em;
@@ -179,6 +180,8 @@
 
 /* the note under the invitation's title, before the button */
 .inviteNote {
+  font-size: calc(var(--t-body) * 1.05);
+  color: #33302c;
   max-width: 46ch;
   margin: var(--step-m) auto 0;
   text-wrap: balance;
@@ -221,7 +224,7 @@
   /* the lines beneath keep the home panel's size on the phone and wrap,
      centred, where they no longer fit */
   .panelMeta {
-    font-size: 0.585rem;
+    font-size: 0.5265rem;
     white-space: normal;
     text-wrap: balance;
   }
