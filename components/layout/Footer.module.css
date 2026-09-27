@@ -161,6 +161,6 @@
     display: flex;
     justify-content: center;
     white-space: nowrap;
-    font-size: min(var(--t-nav), (100vw - 40px) / 33);
+    font-size: calc(min(var(--t-nav), (100vw - 40px) / 33) * 0.9);
   }
 }
