@@ -3,6 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import TopLink from "@/components/ui/TopLink";
 import NavPanel from "./MobileMenu";
 import { NAV } from "@/lib/data";
 import styles from "./Header.module.css";
@@ -28,10 +29,15 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <Link href="/" className={styles.brand} aria-label="EM Photography — home">
+          {/* The name takes the visitor back to the top of the page they are on. */}
+          <TopLink
+            className={styles.brand}
+            label="EM Photography — back to the top of the page"
+            onClick={() => setOpen(false)}
+          >
             <span className={styles.wordmark}>EM Photography</span>
             <span className={styles.tagline}>Wedding &amp; Portrait Photographer</span>
-          </Link>
+          </TopLink>
 
           {/* Desktop — the four links themselves, widely spaced and thin. */}
           <nav className={styles.nav} aria-label="Primary">

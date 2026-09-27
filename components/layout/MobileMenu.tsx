@@ -67,7 +67,7 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
         {/* The place-line, on one line, directly above the two marks. */}
         <p className={styles.note}>
           <span>Switzerland based</span>
-          <span className={styles.dot} aria-hidden="true">
+          <span aria-hidden="true">
             &bull;
           </span>
           <span>Europe</span>

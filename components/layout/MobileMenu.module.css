@@ -69,11 +69,8 @@
   align-items: baseline;
   justify-content: center;
   gap: 0 0.6em;
-  color: var(--color-meta);
-}
-
-.dot {
-  color: var(--color-quiet);
+  /* the whole line, dot included, a shade darker than the meta grey */
+  color: #33302c;
 }
 
 /* Instagram and WhatsApp, side by side beneath the place-line — small,

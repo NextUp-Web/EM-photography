@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
+import TopLink from "@/components/ui/TopLink";
 import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
 import {
   COPYRIGHT_YEAR,
@@ -21,9 +22,12 @@ export default function Footer() {
       <hr className={styles.rule} />
 
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand} aria-label="EM Photography — home">
+        <TopLink
+          className={styles.brand}
+          label="EM Photography — back to the top of the page"
+        >
           <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
-        </Link>
+        </TopLink>
 
         <nav aria-label="Footer">
           <ul className={styles.nav}>
