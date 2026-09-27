@@ -231,6 +231,11 @@
     width: 100%;
   }
 
+  /* the invitation's note, 5% smaller on the phone */
+  .inviteNote {
+    font-size: calc(var(--t-body) * 1.05 * 0.95);
+  }
+
   /* Text first, then the photographs. */
   .opening,
   .trace {
