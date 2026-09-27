@@ -1,12 +1,11 @@
 /* ============================================================
-   Header — the name set as type in the middle of the bar; the
+   Header — the name lockup at the left of the bar; the
    four links themselves on the right on the desktop, one burger
    on the phone. It sits on warm white, stays put while the page
    scrolls, and never draws a rule beneath itself.
 
-   The name is sized in cqw — a share of the bar's own width —
-   so it keeps the proportions of the client's mockups at any
-   width and stops growing with the page frame.
+   The name is the client's lockup, sized in cqw — a share of the
+   bar's own width — and capped so it stops growing with the frame.
    ============================================================ */
 
 .header {
@@ -27,10 +26,6 @@
   /* On the site's measure: the links end where the page's content ends. */
   width: min(var(--measure-max), 100% - 2 * var(--measure-gutter));
   margin-inline: auto;
-
-  /* capped at the size it had when the page stopped at 1760px, so the
-     name never grows past it on a wider screen */
-  --wordmark-size: max(1.3rem, min(1.8cqw, 31.68px));
 }
 
 /* The desktop sets the name at the left of the bar; the phone centres it,
@@ -51,26 +46,13 @@
   opacity: 0.7;
 }
 
-/* EM PHOTOGRAPHY */
-.wordmark {
-  font-family: var(--font-garamond);
-  font-size: var(--wordmark-size);
-  font-weight: 500;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--color-ink);
-}
-
-/* WEDDING & PORTRAIT PHOTOGRAPHER — the site's label, exactly. */
-.tagline {
-  margin-top: 8px;
-  font-family: var(--font-garamond);
-  font-size: var(--t-label);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--color-ink);
+/* EM PHOTOGRAPHY over WEDDING & PORTRAIT PHOTOGRAPHER — the supplied
+   lockup, as wide as the typed name was on the desktop, growing a little
+   with the bar and never past 340px. */
+.wordmarkImage {
+  display: block;
+  width: clamp(260px, 21cqw, 340px);
+  height: auto;
 }
 
 /* ---------- Desktop navigation ----------
@@ -120,8 +102,6 @@
 
 @media (max-width: 860px) {
   .inner {
-    --wordmark-size: 5.49cqw;
-
     /* the burger's own width on either side, so the name stays centred and
        the burger ends exactly on the margin */
     grid-template-columns: 44px 1fr 44px;
@@ -138,9 +118,9 @@
     text-align: center;
   }
 
-  .tagline {
-    /* the tracking is added after the last letter too, so it recentres */
-    text-indent: var(--ls-label);
+  /* centred, and always clear of the burger at the right margin */
+  .wordmarkImage {
+    width: min(272px, 100cqw - 140px);
   }
 
   .nav {

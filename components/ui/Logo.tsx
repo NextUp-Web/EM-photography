@@ -3,8 +3,8 @@ import styles from "./Logo.module.css";
 
 /** Intrinsic sizes of the supplied lockup and of the monogram cut from it. */
 const SIZES = {
-  lockup: { width: 691, height: 647 },
-  mark: { width: 455, height: 538 },
+  lockup: { width: 697, height: 661 },
+  mark: { width: 480, height: 560 },
 };
 
 type LogoProps = {

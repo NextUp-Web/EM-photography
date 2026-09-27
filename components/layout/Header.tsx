@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import TopLink from "@/components/ui/TopLink";
@@ -9,8 +10,9 @@ import { NAV } from "@/lib/data";
 import styles from "./Header.module.css";
 
 /**
- * The name set as type in the middle of the bar — EM PHOTOGRAPHY over
- * WEDDING & PORTRAIT PHOTOGRAPHER — with, on the right, the four links
+ * The supplied name lockup — EM PHOTOGRAPHY over WEDDING & PORTRAIT
+ * PHOTOGRAPHER — at the left of the bar (centred on the phone), with, on
+ * the right, the four links
  * printed in full on the desktop — Home, Portfolio, About, Contact — and,
  * on the phone, the burger that opens the same four full screen.
  *
@@ -35,8 +37,17 @@ export default function Header() {
             label="EM Photography — back to the top of the page"
             onClick={() => setOpen(false)}
           >
-            <span className={styles.wordmark}>EM Photography</span>
-            <span className={styles.tagline}>Wedding &amp; Portrait Photographer</span>
+            {/* The supplied lockup — EM PHOTOGRAPHY over WEDDING & PORTRAIT
+                PHOTOGRAPHER — never re-typed with a font. */}
+            <Image
+              src="/brand/em-wordmark-black.png"
+              alt="EM Photography — Wedding & Portrait Photographer"
+              width={1219}
+              height={174}
+              priority
+              sizes="(max-width: 860px) 272px, 340px"
+              className={styles.wordmarkImage}
+            />
           </TopLink>
 
           {/* Desktop — the four links themselves, widely spaced and thin. */}
