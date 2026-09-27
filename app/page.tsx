@@ -155,10 +155,12 @@ export default function HomePage() {
 
       {/* ---------- Ivory statement ---------- */}
       <section className="panel">
-        {/* Set exactly as main sets "Documenting love in its softest form." */}
-        <p className={styles.quoteText}>Documenting love in its softest form.</p>
-        <p className={styles.quoteMeta}>
-          Documentary presence. Editorial sensibility. Softly felt.
+        {/* Set exactly as the first ivory panel above. */}
+        <p className={`${styles.quoteText} ${styles.quoteTextOne}`}>
+          Documenting love in its softest form.
+        </p>
+        <p className={`${styles.quoteMeta} ${styles.quoteMetaOne} ${styles.quoteMetaTwo}`}>
+          Documentary presence. Editorial sensibility. Deeply felt.
         </p>
       </section>
 
