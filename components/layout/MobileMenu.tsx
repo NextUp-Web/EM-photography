@@ -15,7 +15,8 @@ type NavPanelProps = {
 
 /**
  * The full-screen navigation the burger opens, on every platform:
- * four links centred on warm white, the place-line beneath them.
+ * four links centred on warm white, the place-line and the two marks
+ * beneath them.
  */
 export default function NavPanel({ id, open, onClose }: NavPanelProps) {
   const pathname = usePathname();
@@ -63,15 +64,14 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
       </nav>
 
       <div className={styles.foot}>
-        {/* The same place-line as the foot of the site, on two lines. */}
+        {/* The place-line, on one line, directly above the two marks. */}
         <p className={styles.note}>
-          <span>Wedding &amp; couple photographer</span>
+          <span>Switzerland based</span>
           <span className={styles.dot} aria-hidden="true">
-            &middot;
+            &bull;
           </span>
-          <span>Based in Switzerland</span>
+          <span>Europe</span>
         </p>
-        <p className={styles.availability}>Available across Europe</p>
 
         {/* The two marks sit directly under the place-line, at the same
             weight as everything else on the panel. */}

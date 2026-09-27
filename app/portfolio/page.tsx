@@ -1,11 +1,10 @@
 import Link from "next/link";
-import CollectionGrid from "@/components/sections/CollectionGrid";
+import SelectedStories from "@/components/sections/SelectedStories";
 import Figure from "@/components/ui/Figure";
 import {
   PORTFOLIO_CLOSING,
   PORTFOLIO_INTRO,
   PORTFOLIO_STRIP,
-  SELECTED_STORIES_INTRO,
 } from "@/lib/data";
 import styles from "./page.module.css";
 
@@ -20,7 +19,7 @@ export const metadata = {
  * On the home page's system: one column on the site's measure, sections
  * separated by --gap-section, type from the one scale. The page opens on
  * its title beside one large photograph (5 / 7, as the home page splits),
- * then a row of five frames, the selected stories as cards, and the
+ * then a row of five frames, the selected stories as a gliding strip, and the
  * photograph-with-invitation that closes it.
  */
 export default function PortfolioPage() {
@@ -29,12 +28,11 @@ export default function PortfolioPage() {
       {/* ---------- Opening — the title, then one large photograph ---------- */}
       <section className={styles.opening} aria-labelledby="portfolio-title">
         <div className={styles.intro}>
-          <p className={`label ${styles.eyebrow}`}>Portfolio</p>
+          <p className="label">Portfolio</p>
           <h1 className={styles.title} id="portfolio-title">
-            Documenting love
-            <br />
-            in the softest way.
+            Love, documented.
           </h1>
+          <span className={styles.rule} aria-hidden="true" />
           <p className={`label ${styles.tagline}`}>
             Where emotion, atmosphere
             <br className={styles.wide} /> and a refined eye meet.
@@ -70,10 +68,9 @@ export default function PortfolioPage() {
           <p className={`label ${styles.eyebrow}`} id="selected-stories">
             Selected stories
           </p>
-          <p className={styles.body}>{SELECTED_STORIES_INTRO}</p>
         </div>
 
-        <CollectionGrid />
+        <SelectedStories />
       </section>
 
       {/* ---------- The invitation — one monochrome photograph ---------- */}
@@ -90,9 +87,9 @@ export default function PortfolioPage() {
             Let&rsquo;s create something timeless
           </p>
           <h2 className={styles.closingTitle} id="portfolio-invite">
-            Some stories
+            Some moments
             <br />
-            are meant to stay.
+            are meant to remain.
           </h2>
           <Link href="/contact" className={`btn btn-light ${styles.closingCta}`}>
             Enquire

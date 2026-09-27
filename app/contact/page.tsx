@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export const metadata = {
   title: "Contact | EM Photography",
   description:
-    "Tell me what this day will feel like — enquiries for weddings, couples and intimate celebrations in Switzerland and across Europe.",
+    "Tell me what you want to remember — enquiries for weddings, couples and intimate celebrations in Switzerland and across Europe.",
   alternates: { canonical: "/contact" },
 };
 
@@ -23,15 +23,15 @@ export default function ContactPage() {
       <section className={styles.column} aria-labelledby="contact-title">
         <p className={`label ${styles.eyebrow}`}>Get in touch</p>
         <h1 className={styles.display} id="contact-title">
-          Tell me what this day
+          Tell me what you
           <br />
-          will feel like.
+          want to remember.
         </h1>
         <p className={styles.lead}>
-          I&rsquo;d love to hear what you&rsquo;re planning. Whether you&rsquo;re
-          celebrating a wedding, an intimate gathering, or simply a season of life you
-          want to remember, tell me a little about it. Your vision. Where it will
-          unfold. Who will be there. What matters most to you.
+          I&rsquo;d love to hear what you&rsquo;re imagining&nbsp;&mdash; where it
+          will unfold, who will be there, and what matters most to you, whether
+          it&rsquo;s a wedding, an intimate gathering or simply a chapter of life you
+          want to preserve.
         </p>
       </section>
 
@@ -47,17 +47,14 @@ export default function ContactPage() {
 
       {/* ---------- Inquiry — the words, then the form ---------- */}
       <section className={styles.column} aria-labelledby="enquiry">
-        <p className={`label ${styles.eyebrow}`}>Inquiry</p>
+        <p className={`label ${styles.eyebrow}`}>Share your vision</p>
         <h2 className={`${styles.title} ${styles.caps}`} id="enquiry">
-          Share your vision.
-        </h2>
-        <p className={styles.subtitle}>
           Thoughtful photography for the meaningful moments.
-        </p>
+        </h2>
         <p className={styles.body}>
-          Every celebration has its own rhythm, atmosphere and way of unfolding. Tell
-          me a little about what you&rsquo;re planning and what matters most to you,
-          and we can shape the coverage around the way your day is meant to feel.
+          Every celebration has its own rhythm. Tell me what you&rsquo;re planning,
+          what feels important to you, and the atmosphere you&rsquo;re drawn to. From
+          there, I&rsquo;ll shape the coverage with care and intention.
         </p>
 
         <div className={styles.form}>

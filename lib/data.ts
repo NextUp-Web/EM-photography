@@ -387,9 +387,6 @@ export function getNextCollection(slug: string): Collection {
   return COLLECTIONS[(index + 1) % COLLECTIONS.length];
 }
 
-export const SELECTED_STORIES_INTRO =
-  "A collection of love stories documented with softness, depth and intention — from quiet moments between two souls to intimate weddings and elopements shaped by meaningful places.";
-
 /** The very large photograph that opens the page, under the title. */
 export const PORTFOLIO_INTRO: Photo = {
   src: `${V3}/portfolio/lead.webp`,
@@ -437,28 +434,6 @@ export const PORTFOLIO_STRIP: Photo[] = [
 ];
 
 /* ------------------------------------------------------------------
-   About — the three movements of the work.
-   ------------------------------------------------------------------ */
-
-export const APPROACH_STEPS = [
-  {
-    number: "01",
-    title: "Observe",
-    text: "I notice the subtle details that bring depth, texture and feeling to a moment.",
-  },
-  {
-    number: "02",
-    title: "Guide",
-    text: "When needed, I offer refined direction so the experience feels effortless and true.",
-  },
-  {
-    number: "03",
-    title: "Preserve",
-    text: "What remains is a body of work that feels timeless, personal and quietly lasting.",
-  },
-];
-
-/* ------------------------------------------------------------------
    Contact form
    ------------------------------------------------------------------ */
 
@@ -470,18 +445,6 @@ export const INTERESTS = [
   "Intimate celebration",
   "Other",
 ];
-
-/** The five answers offered under “How did you hear about me?”. */
-export const REFERRAL_SOURCES = [
-  "Instagram",
-  "Google",
-  "A friend or family recommendation",
-  "A wedding planner or venue",
-  "Somewhere else",
-];
-
-/** The shortest message the form accepts, in words. */
-export const MESSAGE_MIN_WORDS = 6;
 
 export const CONTACT_EMAIL = "contact@em-photography.ch";
 export const SITE_URL = "https://em-photography.ch";

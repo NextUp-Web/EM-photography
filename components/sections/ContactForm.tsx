@@ -1,49 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import {
-  CONTACT_EMAIL,
-  INTERESTS,
-  MESSAGE_MIN_WORDS,
-  REFERRAL_SOURCES,
-} from "@/lib/data";
+import { CONTACT_EMAIL, INTERESTS } from "@/lib/data";
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-/** Words, as a reader would count them — runs of non-whitespace. */
-function countWords(value: string) {
-  return value.trim().split(/\s+/).filter(Boolean).length;
-}
-
 /**
  * Six required fields on the grid — full name, email, phone, date, place and
- * interest — then the message and the referral, both required as well. The
- * message must run to at least six words; the check is real, it blocks the
- * submission and it prints a quiet line beneath the field.
+ * interest — then the message, required as well.
  */
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [dateFocused, setDateFocused] = useState(false);
-  const [message, setMessage] = useState("");
-  const [messageTouched, setMessageTouched] = useState(false);
-
-  const messageWords = countWords(message);
-  const messageTooShort = messageWords < MESSAGE_MIN_WORDS;
-  /* The line only appears once the field has been left, or once a
-     submission has been attempted — never while the visitor is typing
-     their first word. */
-  const showMessageError = messageTouched && messageTooShort;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-
-    if (messageTooShort) {
-      setMessageTouched(true);
-      form.querySelector<HTMLTextAreaElement>("#message")?.focus();
-      return;
-    }
 
     setStatus("sending");
 
@@ -56,8 +29,6 @@ export default function ContactForm() {
 
       if (!response.ok) throw new Error(String(response.status));
       form.reset();
-      setMessage("");
-      setMessageTouched(false);
       setDateFocused(false);
       setStatus("sent");
     } catch {
@@ -188,63 +159,12 @@ export default function ContactForm() {
           Tell me a little about your story *
         </label>
         <textarea
-          className={`${styles.input} ${styles.textarea} ${
-            showMessageError ? styles.inputError : ""
-          }`}
+          className={`${styles.input} ${styles.textarea}`}
           id="message"
           name="message"
           rows={5}
           required
-          value={message}
-          aria-invalid={showMessageError || undefined}
-          aria-describedby="message-hint"
-          onChange={(event) => setMessage(event.target.value)}
-          onBlur={() => setMessageTouched(true)}
         />
-        <p className={styles.hint} id="message-hint">
-          {showMessageError ? (
-            <span className={styles.hintError}>
-              A few words more, please — at least {MESSAGE_MIN_WORDS}.
-            </span>
-          ) : (
-            <span className={styles.hintQuiet}>
-              At least {MESSAGE_MIN_WORDS} words.
-            </span>
-          )}
-        </p>
-      </div>
-
-      <div className={`${styles.field} ${styles.fieldFull}`}>
-        <label className={`label ${styles.label}`} htmlFor="referral">
-          How did you hear about me? *
-        </label>
-        <div className={styles.selectWrap}>
-          <select
-            className={`${styles.input} ${styles.select}`}
-            id="referral"
-            name="referral"
-            defaultValue=""
-            required
-          >
-            <option value="" disabled>
-              Please select
-            </option>
-            {REFERRAL_SOURCES.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          <span className={styles.chevron} aria-hidden="true">
-            <svg viewBox="0 0 14 9" width="13" height="8" fill="none">
-              <path
-                d="M1 1.2 7 7.4l6-6.2"
-                stroke="currentColor"
-                strokeWidth="1.4"
-              />
-            </svg>
-          </span>
-        </div>
       </div>
 
       <div className={styles.actions}>
@@ -255,8 +175,6 @@ export default function ContactForm() {
         >
           {status === "sending" ? "Sending" : "Send inquiry"}
         </button>
-
-        <p className={`label ${styles.responseTime}`}>Responses within 24 hours</p>
 
         <p className={styles.status} role="status" aria-live="polite">
           {status === "sent"

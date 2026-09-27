@@ -42,22 +42,13 @@
   letter-spacing: 0.02em;
 }
 
-.lead,
-.subtitle {
+.lead {
   font-family: var(--font-display);
   font-size: var(--t-lead);
   line-height: 1.5;
-}
-
-.lead {
   margin-top: var(--step-m);
   max-width: 52ch;
   color: var(--color-body);
-}
-
-.subtitle {
-  margin-top: var(--step-s);
-  color: var(--color-ink);
 }
 
 .body {
@@ -92,8 +83,7 @@
 
 @media (max-width: 860px) {
   .display,
-  .title,
-  .subtitle {
+  .title {
     text-wrap: balance;
   }
 }

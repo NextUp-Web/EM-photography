@@ -56,8 +56,7 @@
 }
 
 /* The site's label, exactly. */
-.note,
-.availability {
+.note {
   font-family: var(--font-ui);
   font-size: var(--t-label);
   font-weight: 600;
@@ -65,10 +64,6 @@
   line-height: 1.7;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--color-quiet);
-}
-
-.note {
   display: flex;
   flex-wrap: nowrap;
   align-items: baseline;
@@ -77,27 +72,8 @@
   color: var(--color-meta);
 }
 
-.availability {
-  margin-top: 0.45em;
-}
-
 .dot {
   color: var(--color-quiet);
-}
-
-/* Phone. The line used to shrink to whatever held it on one row, which
-   on a 375px screen meant 8px type. It keeps a legible size instead and
-   is allowed to break onto a second line when it no longer fits. */
-@media (max-width: 860px) {
-  .note,
-  .availability {
-    white-space: normal;
-  }
-
-  .note {
-    flex-wrap: wrap;
-    gap: 0 0.5em;
-  }
 }
 
 /* Instagram and WhatsApp, side by side beneath the place-line — small,

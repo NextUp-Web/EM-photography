@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Figure from "@/components/ui/Figure";
-import { APPROACH_STEPS, PHOTOS } from "@/lib/data";
+import { PHOTOS } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -35,10 +35,10 @@ export default function AboutPage() {
             <br className={styles.wide} /> behind EM Photography.
           </p>
           <p className={styles.body}>
-            I&rsquo;m drawn to the beauty of what is felt rather than staged. To the
-            subtle gestures, the fleeting details that shape a moment. I&rsquo;m
-            inspired by natural light, honest in-between moments and a love that feels
-            honest, instinctive and quietly meaningful.
+            Based in Lausanne and working throughout Switzerland, I&rsquo;m drawn to
+            what feels natural, understated and deeply human&nbsp;&mdash; subtle
+            gestures, fleeting expressions and the quiet details that give a moment
+            its meaning.
           </p>
         </div>
 
@@ -81,13 +81,13 @@ export default function AboutPage() {
           </h2>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.body}>
-            Inspired by genuine connection, natural beauty and the in-between moments
-            of real interaction &mdash; nuance and true presence that feel effortless,
-            timeless and deeply personal.
+            Inspired by natural light, genuine connection and the beauty of what often
+            goes unnoticed, I photograph with a sensitivity to atmosphere, rhythm and
+            presence.
           </p>
           <p className={styles.body}>
-            I work quietly and intuitively, allowing moments to unfold naturally while
-            offering gentle direction when needed.
+            I work intuitively and with a light touch&nbsp;&mdash; observing closely,
+            guiding gently when needed, and preserving what feels true to you.
           </p>
         </div>
       </section>
@@ -98,20 +98,6 @@ export default function AboutPage() {
         <p className={styles.panelMeta}>
           Observed with intention. Shaped with sensitivity. Made to remain.
         </p>
-      </section>
-
-      {/* ---------- Observe / Guide / Preserve ---------- */}
-      <section aria-label="Observe, guide, preserve">
-        <ol className={styles.steps}>
-          {APPROACH_STEPS.map((step) => (
-            <li key={step.number} className={styles.step}>
-              <p className="label">{step.number}</p>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <span className={styles.stepRule} aria-hidden="true" />
-              <p className={`${styles.body} ${styles.stepCopy}`}>{step.text}</p>
-            </li>
-          ))}
-        </ol>
       </section>
 
       {/* ---------- One wide frame ---------- */}

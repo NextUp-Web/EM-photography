@@ -148,28 +148,28 @@
   border: 1px solid var(--hairline);
 }
 
-/* Set exactly as the home page's ivory statements (.quoteText and
-   .quoteMeta there). */
+/* Set exactly as the home page's ivory panels (.quoteText.quoteTextOne
+   and .quoteMeta.quoteMetaOne there): the sentence, and the line beneath
+   it darker than the meta grey and always on one line. */
 .panelQuote {
   font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
-  font-size: clamp(1.45rem, 2.57vw, 2.4rem);
+  font-size: clamp(1.305rem, 2.313vw, 2.16rem);
   font-weight: 400;
   line-height: 1.24;
   color: var(--color-ink);
-  max-width: 46ch;
-  margin-inline: auto;
 }
 
 .panelMeta {
   margin-top: clamp(16px, 1.8vw, 28px);
   font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
-  font-size: clamp(0.625rem, 0.95vw, 0.86rem);
+  font-size: clamp(0.5625rem, 0.855vw, 0.774rem);
   font-weight: 500;
   letter-spacing: 0.3em;
   padding-left: 0.3em;
   line-height: 1.6;
   text-transform: uppercase;
-  color: var(--color-meta);
+  white-space: nowrap;
+  color: #45413c;
 }
 
 .cta {
@@ -180,49 +180,6 @@
    never splits on the phone. */
 .phrase {
   display: block;
-}
-
-/* ---------- Observe / Guide / Preserve ---------- */
-
-/* Three centred columns across the measure, split by hairlines. */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--step-s) calc(var(--col-gap) / 2);
-}
-
-.step + .step {
-  border-left: 1px solid var(--hairline);
-}
-
-.stepTitle {
-  margin-top: var(--step-s);
-  font-family: var(--font-display);
-  font-size: var(--t-title);
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--color-ink);
-}
-
-.stepRule {
-  display: block;
-  width: 40px;
-  height: 1px;
-  margin-top: var(--step-m);
-  background: var(--warm-grey);
-}
-
-.stepCopy {
-  margin-top: var(--step-m);
-  max-width: 30ch;
-  text-wrap: balance;
 }
 
 /* ============================================================
@@ -244,15 +201,14 @@
     display: inline-block;
   }
 
-  /* the home page's ivory panel on the phone */
+  /* the home page's ivory panels on the phone; the longer line beneath
+     holds one line by setting smaller, its tracking unchanged */
   .panelQuote {
-    max-width: 18ch;
+    font-size: min(1.305rem, (100vw - 80px) / 17.4);
   }
 
   .panelMeta {
-    max-width: 30ch;
-    margin-inline: auto;
-    font-size: 0.65rem;
+    font-size: min(0.585rem, (100vw - 80px) / 59);
   }
 
   /* Text first, then the photographs. */
@@ -268,27 +224,5 @@
 
   .frameInset {
     box-shadow: 0 0 0 7px var(--color-page);
-  }
-
-  .steps {
-    grid-template-columns: 1fr;
-  }
-
-  .step {
-    padding: var(--step-l) 0;
-  }
-
-  .step:first-child {
-    padding-top: 0;
-  }
-
-  .step:last-child {
-    padding-bottom: 0;
-  }
-
-  /* Stacked, the hairline goes above each block rather than beside it. */
-  .step + .step {
-    border-left: 0;
-    border-top: 1px solid var(--hairline);
   }
 }

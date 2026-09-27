@@ -45,35 +45,10 @@
   border-color: var(--warm-grey);
 }
 
-/* A field the visitor still has to attend to — a hairline, nothing red
-   and nothing loud. */
-.inputError,
-.inputError:hover,
-.inputError:focus {
-  border-color: var(--color-ink);
-}
 
 /* An empty select reads as a placeholder, not as an answer. */
 .select:invalid {
   color: var(--color-quiet);
-}
-
-.hint {
-  margin-top: clamp(6px, 0.7vw, 9px);
-  font-family: var(--font-ui);
-  font-size: var(--fs-ui-sm);
-  font-weight: 600;
-  letter-spacing: var(--ls-ui);
-  text-transform: uppercase;
-  line-height: 1.6;
-}
-
-.hintQuiet {
-  color: var(--color-quiet);
-}
-
-.hintError {
-  color: var(--color-ink);
 }
 
 .textarea {
@@ -146,13 +121,6 @@
 .submit:focus-visible {
   background: transparent;
   color: var(--color-ink);
-}
-
-/* The site's small-label voice. */
-.responseTime {
-  font-weight: 600;
-  letter-spacing: var(--ls-label);
-  color: var(--color-meta);
 }
 
 .submit[disabled] {

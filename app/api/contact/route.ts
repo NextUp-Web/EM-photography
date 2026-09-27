@@ -13,11 +13,7 @@ const REQUIRED = [
   "location",
   "interest",
   "message",
-  "referral",
 ] as const;
-
-/** The form's own minimum, enforced here too. */
-const MESSAGE_MIN_WORDS = 6;
 
 export async function POST(request: Request) {
   let payload: Record<string, unknown>;
@@ -39,15 +35,6 @@ export async function POST(request: Request) {
 
   if (typeof payload.email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
     return NextResponse.json({ error: "invalid_email" }, { status: 400 });
-  }
-
-  const words = String(payload.message).trim().split(/\s+/).filter(Boolean).length;
-
-  if (words < MESSAGE_MIN_WORDS) {
-    return NextResponse.json(
-      { error: "message_too_short", minWords: MESSAGE_MIN_WORDS },
-      { status: 400 },
-    );
   }
 
   const enquiry = Object.fromEntries(
