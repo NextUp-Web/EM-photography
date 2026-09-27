@@ -84,7 +84,8 @@
 }
 
 /* The first panel: its sentence a tenth smaller and always on two lines,
-   the line beneath it darker than the meta grey and always on one. */
+   the line beneath it a tenth smaller, darker than the meta grey and
+   always on one line. */
 .quoteTextOne {
   font-size: clamp(1.305rem, 2.313vw, 2.16rem);
   max-width: none;
@@ -95,6 +96,7 @@
 }
 
 .quoteMetaOne {
+  font-size: clamp(0.5625rem, 0.855vw, 0.774rem);
   color: #45413c;
   white-space: nowrap;
 }
@@ -371,6 +373,7 @@
   /* on the narrowest phones the tracking closes a little, never the size */
   .quoteMetaOne {
     max-width: none;
+    font-size: 0.585rem;
     letter-spacing: min(0.3em, (100vw - 280px) / 29);
   }
 
