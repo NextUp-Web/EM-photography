@@ -68,8 +68,9 @@ export default function Footer() {
         </p>
 
         {/* The copyright in the links' own face and size. Cormorant draws its
-            © as a small low swirl, so the mark is its own capital C in a
-            fine circle, centred on the height of the capitals. */}
+            © as a small low swirl, so the mark is the links' own capital C —
+            same face and weight — in a fine circle, centred on the height of
+            the capitals. */}
         <p className={styles.legal}>
           <span className={styles.copyMark} role="img" aria-label="Copyright">
             C
