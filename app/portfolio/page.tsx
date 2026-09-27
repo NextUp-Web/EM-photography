@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Figure from "@/components/ui/Figure";
-import { PORTFOLIO_CLOSING, PORTFOLIO_GRID } from "@/lib/data";
+import { PORTFOLIO_CLOSING, PORTFOLIO_GRID, PORTFOLIO_GRID_PHONE } from "@/lib/data";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -13,9 +13,14 @@ export const metadata = {
 /**
  * On the home page's system: one column on the site's measure, sections
  * separated by --gap-section, type from the one scale. The page opens on
- * its title, centred, then a grid of photographs in two staggered columns
- * on a narrower measure, and the photograph-with-invitation that closes it.
+ * its title, centred, then a cascade of photographs from margin to margin,
+ * and one tall photograph with the invitation that closes it.
  */
+/* on the desktop, item i goes to column i mod 3 */
+const desktopColumns = [0, 1, 2].map((column) =>
+  PORTFOLIO_GRID.flatMap((_, index) => (index % 3 === column ? [index] : [])),
+);
+
 export default function PortfolioPage() {
   return (
     <div className="page">
@@ -32,28 +37,37 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      {/* ---------- The grid — two staggered columns ---------- */}
-      <section className={styles.grid} aria-label="Photographs">
-        {[PORTFOLIO_GRID.left, PORTFOLIO_GRID.right].map((column, side) => (
-          <div key={side} className={styles.column}>
-            {column.map((photo) => (
-              <Figure
-                key={photo.src}
-                photo={photo}
-                ratio={photo.ratio ?? 1}
-                sizes="(max-width: 860px) 50vw, 460px"
-              />
-            ))}
-          </div>
-        ))}
-      </section>
+      {/* ---------- The cascade — three columns on the desktop, two on the
+          phone, from margin to margin ---------- */}
+      {[desktopColumns, PORTFOLIO_GRID_PHONE].map((columns, layout) => (
+        <section
+          key={layout}
+          className={`${styles.grid} ${layout === 0 ? styles.gridWide : styles.gridNarrow}`}
+          aria-label="Photographs"
+        >
+          {columns.map((indices, column) => (
+            <div key={column} className={styles.column}>
+              {indices.map((index) => {
+                const photo = PORTFOLIO_GRID[index];
+                return (
+                  <Figure
+                    key={photo.src}
+                    photo={photo}
+                    ratio={photo.ratio ?? 1}
+                    sizes={layout === 0 ? "33vw" : "50vw"}
+                  />
+                );
+              })}
+            </div>
+          ))}
+        </section>
+      ))}
 
-      {/* ---------- The invitation — one monochrome photograph ---------- */}
+      {/* ---------- The invitation — one tall photograph, margin to margin ---------- */}
       <section className={styles.closing} aria-labelledby="portfolio-invite">
         <Figure
           photo={PORTFOLIO_CLOSING}
-          ratio={2.8}
-          mobileRatio={0.62}
+          ratio={0.618}
           sizes="100vw"
           className={styles.closingFigure}
         />
@@ -62,9 +76,9 @@ export default function PortfolioPage() {
             Let&rsquo;s create something timeless
           </p>
           <h2 className={styles.closingTitle} id="portfolio-invite">
-            Some moments
+            For the moments
             <br />
-            are meant to remain.
+            that remain.
           </h2>
           <Link href="/contact" className={`btn btn-light ${styles.closingCta}`}>
             Enquire

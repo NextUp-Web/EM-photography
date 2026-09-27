@@ -47,19 +47,26 @@
   line-height: 1.9;
 }
 
-/* ---------- The grid — two staggered columns ----------
+/* ---------- The cascade — margin to margin ----------
 
-   Each column stacks its own frames; their ratios are chosen so both
-   columns end level. On the desktop the grid keeps a narrower measure so
-   the photographs never grow too large. */
+   Each column stacks its own frames; every column holds the same shapes,
+   so they end level. Three columns on the desktop, two on the phone — the
+   page carries both and shows one. */
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--grid-gap);
-  width: min(100%, 940px);
-  margin-inline: auto;
   --grid-gap: 12px;
+
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.gridWide {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gridNarrow {
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .column {
@@ -68,12 +75,14 @@
   gap: var(--grid-gap);
 }
 
-/* ---------- The invitation — as on the home page ---------- */
+/* ---------- The invitation — one tall photograph, margin to margin ----------
+
+   As the client's board draws it on every screen: a long portrait frame,
+   the words centred near its foot, each a share of the frame's width
+   (100cqw). */
 
 .closing {
   position: relative;
-  /* cqw below is a share of the photograph's width — the measure — as on
-     the home page */
   container-type: inline-size;
 }
 
@@ -81,25 +90,29 @@
   background: var(--soft-black);
 }
 
+/* a soft shade rising from the foot, under the words */
 .closingFigure::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
+    to top,
     rgba(25, 24, 22, 0.55) 0%,
-    rgba(25, 24, 22, 0.3) 36%,
-    rgba(25, 24, 22, 0) 60%
+    rgba(25, 24, 22, 0.28) 22%,
+    rgba(25, 24, 22, 0) 42%
   );
   pointer-events: none;
 }
 
-/* On the left, a panel's padding in from the edge, centred on the height. */
 .closingText {
   position: absolute;
-  top: 50%;
-  left: var(--panel-pad);
-  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  bottom: 8.4cqw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .closingLabel,
@@ -107,47 +120,30 @@
   color: var(--warm-white);
 }
 
+.closingLabel {
+  font-size: max(0.5rem, 1.9cqw);
+}
+
 .closingTitle {
-  margin-top: var(--step-s);
+  margin-top: 3.4cqw;
   font-family: var(--font-display);
-  font-size: var(--t-title);
+  font-size: 6.7cqw;
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 0.97;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 }
 
 .closingCta {
-  margin-top: var(--step-l);
-}
-
-/* On the desktop, the home page's invitation proportions: the title at
-   5.72% of the photograph's width, the label and the Enquire rectangle
-   scaled with it — never smaller than the site's own steps. */
-@media (min-width: 861px) {
-  /* the couple drawn to the right half, as the home page draws its own */
-  .closingFigure img {
-    transform: scale(1.32);
-    transform-origin: 0% 0%;
-  }
-
-  .closingLabel {
-    font-size: max(var(--t-label), min(1.3cqw, 1.2rem));
-  }
-
-  .closingTitle {
-    margin-top: max(var(--step-s), min(1.6cqw, 28px));
-    font-size: max(var(--t-title), min(5.72cqw, 5.3rem));
-  }
-
-  .closingCta {
-    margin-top: max(var(--step-l), min(3.2cqw, 58px));
-    min-width: min(15.7cqw, 280px);
-    min-height: max(clamp(48px, 3.6vw, 58px), min(4cqw, 72px));
-    font-size: max(var(--t-label), min(1.1cqw, 1.225rem));
-  }
+  margin-top: 4.5cqw;
+  min-width: 27.7cqw;
+  min-height: 7.8cqw;
+  padding: 0;
+  font-size: max(0.55rem, 2.6cqw);
 }
 
 /* ============================================================
-   Phone — the same measure; the grid keeps its two columns.
+   Phone — the same measure; the cascade takes two columns.
    ============================================================ */
 
 @media (max-width: 860px) {
@@ -164,25 +160,11 @@
     --grid-gap: 8px;
   }
 
-  /* The type goes above the couple on the phone, as on the home page. */
-  .closingFigure img {
-    transform: scale(1.4);
-    transform-origin: 45% 0%;
+  .gridWide {
+    display: none;
   }
 
-  .closingFigure::after {
-    background: linear-gradient(
-      to bottom,
-      rgba(25, 24, 22, 0.5) 0%,
-      rgba(25, 24, 22, 0.26) 40%,
-      rgba(25, 24, 22, 0) 58%
-    );
-  }
-
-  .closingText {
-    top: 28px;
-    left: 24px;
-    right: 24px;
-    transform: none;
+  .gridNarrow {
+    display: grid;
   }
 }

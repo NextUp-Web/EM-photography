@@ -20,6 +20,7 @@ export type Photo = {
 };
 
 const V3 = "/images/v3";
+const IMG = "/images";
 
 /* ------------------------------------------------------------------
    Photography
@@ -387,89 +388,156 @@ export function getNextCollection(slug: string): Collection {
   return COLLECTIONS[(index + 1) % COLLECTIONS.length];
 }
 
-/** The invitation that closes the page — a couple at the balustrade, in
- *  monochrome, the words set over the open lake on their left. */
+/** The invitation that closes the page — one tall monochrome frame from
+ *  margin to margin, the words centred near its foot.
+ *  >>> Stand-in until the client's own terrace photograph arrives: drop the
+ *  >>> file in public/images/v3/portfolio/ and point `src` at it. */
 export const PORTFOLIO_CLOSING: Photo = {
-  src: `${V3}/home/hero.webp`,
-  alt: "A couple at the balustrade, the lake and the mountains behind them",
-  position: "center 34%",
+  src: `${V3}/about/trip-flowers.webp`,
+  alt: "White roses on a stone ledge above the lake",
+  position: "center 50%",
   bw: true,
 };
 
+const TALL = 0.75;
+const SQUARE = 1;
+const WIDE = 1.33;
+
 /**
- * The grid under the title — two columns, each frame cropped to its own
- * `ratio` (width / height), staggered so the columns end level: a square
- * beside a landscape, then the landscape beside the square, then three
- * wide frames side by side.
+ * The cascade under the title, in reading order. Three shapes — tall,
+ * square, wide — repeat in a rotating pattern (tall · square · wide, then
+ * wide · tall · square, then square · wide · tall) and colour alternates
+ * with monochrome. On the desktop item i goes to column i mod 3, so every
+ * column receives the same shapes and the columns end level.
  */
-export const PORTFOLIO_GRID: { left: Photo[]; right: Photo[] } = {
-  left: [
-    {
-      src: `${V3}/home/story-lead.webp`,
-      alt: "A bride at the balustrade looking out over the lake",
-      position: "38% center",
-      ratio: 1,
-    },
-    {
-      src: `${V3}/portfolio/lead.webp`,
-      alt: "A couple on a balustraded terrace above the lake at sunset",
-      position: "center 55%",
-      ratio: 1.34,
-    },
-    {
-      src: `${V3}/portfolio/detail-note.webp`,
-      alt: "Candlelight, white flowers and cut glass on the dinner table",
-      position: "center 50%",
-      ratio: 1.6,
-    },
-    {
-      src: `${V3}/about/villa.webp`,
-      alt: "A villa among cypresses above the lake",
-      position: "30% 50%",
-      ratio: 1.6,
-    },
-    {
-      src: `${V3}/portfolio/closing.webp`,
-      alt: "The lake at sunset, mountains on either shore",
-      position: "center 60%",
-      ratio: 1.6,
-    },
-  ],
-  right: [
-    {
-      src: `${V3}/home/story-flowers.webp`,
-      alt: "A bouquet of white roses and ranunculus",
-      position: "center 50%",
-      ratio: 1.34,
-    },
-    {
-      src: `${V3}/about/trip-couple.webp`,
-      alt: "A couple walking away together through a stone loggia",
-      position: "center 55%",
-      bw: true,
-      ratio: 1,
-    },
-    {
-      src: `${V3}/portfolio/village.webp`,
-      alt: "A village among cypresses on the shore of the lake",
-      position: "40% 50%",
-      ratio: 1.6,
-    },
-    {
-      src: `${V3}/home/story-embrace.webp`,
-      alt: "The couple forehead to forehead, the lake behind them",
-      position: "center 40%",
-      bw: true,
-      ratio: 1.6,
-    },
-    {
-      src: `${V3}/contact/closing.webp`,
-      alt: "A table laid under an olive tree above the lake at sunset",
-      position: "center 55%",
-      ratio: 1.6,
-    },
-  ],
-};
+export const PORTFOLIO_GRID: Photo[] = [
+  // tall · square · wide
+  {
+    src: `${V3}/home/story-lead.webp`,
+    alt: "A bride at the balustrade looking out over the lake",
+    position: "38% center",
+    ratio: TALL,
+  },
+  {
+    src: `${IMG}/weddings/gallery-03.jpg`,
+    alt: "The couple close, her hand on his cheek",
+    position: "center 30%",
+    ratio: SQUARE,
+  },
+  {
+    src: `${V3}/portfolio/lead.webp`,
+    alt: "A couple on a balustraded terrace above the lake at sunset",
+    position: "center 55%",
+    ratio: WIDE,
+  },
+  // wide · tall · square
+  {
+    src: `${V3}/home/story-embrace.webp`,
+    alt: "The couple forehead to forehead, the lake behind them",
+    position: "center 40%",
+    bw: true,
+    ratio: WIDE,
+  },
+  {
+    src: `${V3}/portfolio/vivid-hydrangeas.webp`,
+    alt: "A bride in a strapless gown before a wall of blue and pink hydrangeas",
+    position: "70% center",
+    ratio: TALL,
+  },
+  {
+    src: `${IMG}/weddings/gallery-02.jpg`,
+    alt: "Two wedding rings resting on a card",
+    position: "center 50%",
+    ratio: SQUARE,
+  },
+  // square · wide · tall
+  {
+    src: `${V3}/portfolio/vivid-ceremony.webp`,
+    alt: "A ceremony on a terrace above the sea, the guests applauding",
+    position: "center 60%",
+    ratio: SQUARE,
+  },
+  {
+    src: `${IMG}/portfolio/ceremonies-civiles.jpg`,
+    alt: "His hand over hers, the wedding ring on her finger",
+    position: "center 50%",
+    ratio: WIDE,
+  },
+  {
+    src: `${V3}/about/trip-lake.webp`,
+    alt: "A wooden boat below the village on the lake",
+    position: "center 55%",
+    ratio: TALL,
+  },
+  // tall · square · wide
+  {
+    src: `${IMG}/weddings/gallery-01.jpg`,
+    alt: "A bride from behind, her veil falling towards the lake",
+    position: "center 30%",
+    ratio: TALL,
+  },
+  {
+    src: `${V3}/home/story-flowers.webp`,
+    alt: "A bouquet of white roses and ranunculus",
+    position: "center 50%",
+    ratio: SQUARE,
+  },
+  {
+    src: `${IMG}/home/mariages.jpg`,
+    alt: "The couple embracing, the mountains behind them",
+    position: "center 40%",
+    ratio: WIDE,
+  },
+  // wide · tall · square
+  {
+    src: `${V3}/portfolio/detail-note.webp`,
+    alt: "Candlelight, white flowers and cut glass on the dinner table",
+    position: "center 50%",
+    ratio: WIDE,
+  },
+  {
+    src: `${V3}/about/trip-couple.webp`,
+    alt: "A couple walking away together through a stone loggia",
+    position: "center 55%",
+    bw: true,
+    ratio: TALL,
+  },
+  {
+    src: `${V3}/contact/closing.webp`,
+    alt: "A table laid under an olive tree above the lake at sunset",
+    position: "center 55%",
+    ratio: SQUARE,
+  },
+  // square · wide · tall
+  {
+    src: `${IMG}/weddings/gallery-04.jpg`,
+    alt: "Candles and white roses along the dinner table",
+    position: "center 45%",
+    ratio: SQUARE,
+  },
+  {
+    src: `${V3}/about/villa.webp`,
+    alt: "A villa among cypresses above the lake",
+    position: "30% 50%",
+    ratio: WIDE,
+  },
+  {
+    src: `${IMG}/civil/gallery-03.jpg`,
+    alt: "Her hand holding the bouquet against her dress",
+    position: "center 50%",
+    ratio: TALL,
+  },
+];
+
+/**
+ * The same photographs on the phone, in two columns (indices into
+ * PORTFOLIO_GRID). Each column holds three of each shape, so they end
+ * level, and colour and monochrome alternate down each column.
+ */
+export const PORTFOLIO_GRID_PHONE: number[][] = [
+  [0, 3, 6, 9, 12, 15, 8, 7, 10],
+  [1, 4, 11, 14, 13, 2, 5, 17, 16],
+];
 
 /* ------------------------------------------------------------------
    Contact form
