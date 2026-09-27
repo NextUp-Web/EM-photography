@@ -49,19 +49,11 @@
   max-width: 44ch;
 }
 
-/* The small label with its short hairline after it. */
+/* The small label above the title. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 18px;
-}
-
-.eyebrow::after {
-  content: "";
-  display: block;
-  width: 48px;
-  height: 1px;
-  background: var(--warm-grey);
 }
 
 .rule {
@@ -180,6 +172,11 @@
   margin-inline: auto;
 }
 
+/* the invitation's title, a tenth larger than the section titles */
+.inviteTitle {
+  font-size: calc(var(--t-title) * 1.1);
+}
+
 /* the note under the invitation's title, before the button */
 .inviteNote {
   max-width: 46ch;
@@ -216,14 +213,17 @@
     display: inline-block;
   }
 
-  /* the home page's ivory panels on the phone; the longer line beneath
-     holds one line by setting smaller, its tracking unchanged */
+  /* the home page's ivory panels on the phone */
   .panelQuote {
     font-size: min(1.305rem, (100vw - 80px) / 17.4);
   }
 
+  /* the lines beneath keep the home panel's size on the phone and wrap,
+     centred, where they no longer fit */
   .panelMeta {
-    font-size: min(0.585rem, (100vw - 80px) / 45);
+    font-size: 0.585rem;
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .portrait {

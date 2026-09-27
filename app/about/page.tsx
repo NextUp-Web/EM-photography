@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       {/* ---------- The invitation ---------- */}
       <section className="panel" aria-labelledby="about-invite">
-        <h2 className={styles.title} id="about-invite">
+        <h2 className={`${styles.title} ${styles.inviteTitle}`} id="about-invite">
           <span className={styles.phrase}>If my approach feels like you,</span>{" "}
           <span className={styles.phrase}>I would love to hear your story.</span>
         </h2>
