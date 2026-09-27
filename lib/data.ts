@@ -116,8 +116,8 @@ export const PHOTOS = {
 /* ------------------------------------------------------------------
    Home — Selected stories
 
-   The mockup prints three frames side by side and a 01 / 06 counter,
-   so the gallery holds six photographs and steps one at a time.
+   The mockup prints three frames side by side and a 01 / 06 counter;
+   the gallery now holds twelve photographs and steps one at a time.
    ------------------------------------------------------------------ */
 
 export const SELECTED_STORIES: Photo[] = [
@@ -152,6 +152,37 @@ export const SELECTED_STORIES: Photo[] = [
   {
     src: `${V3}/about/villa.webp`,
     alt: "A villa among cypresses above the lake",
+    position: "center 50%",
+  },
+  {
+    src: `${V3}/home/story-lead.webp`,
+    alt: "A bride at the balustrade looking out over the lake",
+    position: "center 45%",
+  },
+  {
+    src: `${V3}/portfolio/detail-note.webp`,
+    alt: "Candlelight along the dinner table, white roses and cut glass",
+    position: "center 50%",
+  },
+  {
+    src: `${V3}/portfolio/lead.webp`,
+    alt: "The couple on a balustraded terrace above the lake at sunset",
+    position: "center 48%",
+    bw: true,
+  },
+  {
+    src: `${V3}/about/trip-flowers.webp`,
+    alt: "A bouquet of white roses on a stone ledge",
+    position: "center 52%",
+  },
+  {
+    src: `${V3}/portfolio/village.webp`,
+    alt: "A village among cypresses on the shore of the lake",
+    position: "center 50%",
+  },
+  {
+    src: `${V3}/contact/closing.webp`,
+    alt: "A table laid under an olive tree above the lake at sunset",
     position: "center 50%",
   },
 ];

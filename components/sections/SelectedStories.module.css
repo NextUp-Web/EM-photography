@@ -4,21 +4,40 @@
    ============================================================ */
 
 .frames {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  --in-view: 3;
+  overflow: hidden;
+}
+
+/* The strip glides by a frame and a gap at a time. */
+.strip {
+  display: flex;
   gap: var(--gap-img);
+  transform: translate3d(
+    calc(var(--position) * (100% + var(--gap-img)) / var(--in-view) * -1),
+    0,
+    0
+  );
+  will-change: transform;
 }
 
-.figure {
-  animation: fade var(--dur) var(--ease) both;
+.gliding {
+  transition: transform var(--glide-dur) var(--glide-ease);
 }
 
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+.slide {
+  flex: none;
+  width: calc((100% - (var(--in-view) - 1) * var(--gap-img)) / var(--in-view));
+}
+
+.stories {
+  /* a long, soft glide — slow to leave, slower to arrive */
+  --glide-dur: 900ms;
+  --glide-ease: cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stories {
+    --glide-dur: 1ms;
   }
 }
 
@@ -53,7 +72,7 @@
   top: -0.5px;
   height: 2px;
   background: var(--color-quiet);
-  transition: left var(--dur) var(--ease);
+  transition: left var(--glide-dur) var(--glide-ease);
 }
 
 .arrows {
@@ -90,11 +109,7 @@
 /* The phone keeps one frame in view, the controls on one line beneath. */
 @media (max-width: 860px) {
   .frames {
-    grid-template-columns: 1fr;
-  }
-
-  .frames > :not(:first-child) {
-    display: none;
+    --in-view: 1;
   }
 
   .controls {
