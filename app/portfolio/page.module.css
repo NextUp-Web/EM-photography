@@ -5,9 +5,8 @@
    one column on the shared measure, sections separated by
    --gap-section, type from the one scale — display for the
    page's title, title for the invitation, body for the text,
-   the tracked label for the small caps. The opening splits
-   5 / 7 across --col-gap, as the home page's two-column
-   sections do.
+   the tracked label for the small caps. The title is centred
+   over a two-column grid of photographs.
    ============================================================ */
 
 /* A line break the desktop sets and the phone lets wrap. */
@@ -15,28 +14,13 @@
   display: inline;
 }
 
-/* The small label with its short hairline after it. */
-.eyebrow {
-  display: inline-flex;
+/* ---------- Opening — the title, centred ---------- */
+
+.intro {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 18px;
-}
-
-.eyebrow::after {
-  content: "";
-  display: block;
-  width: 48px;
-  height: 1px;
-  background: var(--warm-grey);
-}
-
-/* ---------- Opening — text 5, photograph 7 ---------- */
-
-.opening {
-  display: grid;
-  grid-template-columns: 5fr 7fr;
-  column-gap: var(--col-gap);
-  align-items: center;
+  text-align: center;
 }
 
 .title {
@@ -63,23 +47,25 @@
   line-height: 1.9;
 }
 
-/* ---------- Five frames in a row ---------- */
+/* ---------- The grid — two staggered columns ----------
 
-.strip {
+   Each column stacks its own frames; their ratios are chosen so both
+   columns end level. On the desktop the grid keeps a narrower measure so
+   the photographs never grow too large. */
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--gap-img);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap);
+  width: min(100%, 940px);
+  margin-inline: auto;
+  --grid-gap: 12px;
 }
 
-/* ---------- Selected stories ---------- */
-
-.storiesHead {
+.column {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--step-s);
-  margin-bottom: var(--step-l);
-  text-align: center;
+  gap: var(--grid-gap);
 }
 
 /* ---------- The invitation — as on the home page ---------- */
@@ -161,28 +147,12 @@
 }
 
 /* ============================================================
-   Tablet and phone — one column on the same measure.
+   Phone — the same measure; the grid keeps its two columns.
    ============================================================ */
-
-@media (max-width: 1100px) {
-  .strip {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* three to a line: the last two frames would sit alone */
-  .stripFrame:nth-child(n + 4) {
-    display: none;
-  }
-}
 
 @media (max-width: 860px) {
   .wide {
     display: none;
-  }
-
-  .opening {
-    grid-template-columns: 1fr;
-    row-gap: var(--step-l);
   }
 
   .title,
@@ -190,17 +160,8 @@
     text-wrap: balance;
   }
 
-  .strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .stripFrame:nth-child(n + 4) {
-    display: block;
-  }
-
-  /* two to a line: the fifth frame would sit alone */
-  .stripFrame:nth-child(5) {
-    display: none;
+  .grid {
+    --grid-gap: 8px;
   }
 
   /* The type goes above the couple on the phone, as on the home page. */

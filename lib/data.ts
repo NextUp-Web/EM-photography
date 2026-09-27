@@ -387,13 +387,6 @@ export function getNextCollection(slug: string): Collection {
   return COLLECTIONS[(index + 1) % COLLECTIONS.length];
 }
 
-/** The very large photograph that opens the page, under the title. */
-export const PORTFOLIO_INTRO: Photo = {
-  src: `${V3}/portfolio/lead.webp`,
-  alt: "A couple on a balustraded terrace above the lake at sunset",
-  position: "center 48%",
-};
-
 /** The invitation that closes the page — a couple at the balustrade, in
  *  monochrome, the words set over the open lake on their left. */
 export const PORTFOLIO_CLOSING: Photo = {
@@ -403,35 +396,80 @@ export const PORTFOLIO_CLOSING: Photo = {
   bw: true,
 };
 
-/** The row of five frames under the opening — colour and monochrome. */
-export const PORTFOLIO_STRIP: Photo[] = [
-  {
-    src: `${V3}/portfolio/village.webp`,
-    alt: "A village among cypresses on the shore of the lake",
-    position: "40% 50%",
-  },
-  {
-    src: `${V3}/about/trip-couple.webp`,
-    alt: "A couple walking away together through a stone loggia",
-    position: "center 55%",
-  },
-  {
-    src: `${V3}/portfolio/detail-note.webp`,
-    alt: "Candlelight, white flowers and cut glass on the dinner table",
-    position: "center 50%",
-  },
-  {
-    src: `${V3}/home/story-flowers.webp`,
-    alt: "A bouquet of white roses and ranunculus",
-    position: "center 50%",
-    bw: true,
-  },
-  {
-    src: `${V3}/about/villa.webp`,
-    alt: "A villa among cypresses above the lake",
-    position: "30% 50%",
-  },
-];
+/**
+ * The grid under the title — two columns, each frame cropped to its own
+ * `ratio` (width / height), staggered so the columns end level: a square
+ * beside a landscape, then the landscape beside the square, then three
+ * wide frames side by side.
+ */
+export const PORTFOLIO_GRID: { left: Photo[]; right: Photo[] } = {
+  left: [
+    {
+      src: `${V3}/home/story-lead.webp`,
+      alt: "A bride at the balustrade looking out over the lake",
+      position: "38% center",
+      ratio: 1,
+    },
+    {
+      src: `${V3}/portfolio/lead.webp`,
+      alt: "A couple on a balustraded terrace above the lake at sunset",
+      position: "center 55%",
+      ratio: 1.34,
+    },
+    {
+      src: `${V3}/portfolio/detail-note.webp`,
+      alt: "Candlelight, white flowers and cut glass on the dinner table",
+      position: "center 50%",
+      ratio: 1.6,
+    },
+    {
+      src: `${V3}/about/villa.webp`,
+      alt: "A villa among cypresses above the lake",
+      position: "30% 50%",
+      ratio: 1.6,
+    },
+    {
+      src: `${V3}/portfolio/closing.webp`,
+      alt: "The lake at sunset, mountains on either shore",
+      position: "center 60%",
+      ratio: 1.6,
+    },
+  ],
+  right: [
+    {
+      src: `${V3}/home/story-flowers.webp`,
+      alt: "A bouquet of white roses and ranunculus",
+      position: "center 50%",
+      ratio: 1.34,
+    },
+    {
+      src: `${V3}/about/trip-couple.webp`,
+      alt: "A couple walking away together through a stone loggia",
+      position: "center 55%",
+      bw: true,
+      ratio: 1,
+    },
+    {
+      src: `${V3}/portfolio/village.webp`,
+      alt: "A village among cypresses on the shore of the lake",
+      position: "40% 50%",
+      ratio: 1.6,
+    },
+    {
+      src: `${V3}/home/story-embrace.webp`,
+      alt: "The couple forehead to forehead, the lake behind them",
+      position: "center 40%",
+      bw: true,
+      ratio: 1.6,
+    },
+    {
+      src: `${V3}/contact/closing.webp`,
+      alt: "A table laid under an olive tree above the lake at sunset",
+      position: "center 55%",
+      ratio: 1.6,
+    },
+  ],
+};
 
 /* ------------------------------------------------------------------
    Contact form
