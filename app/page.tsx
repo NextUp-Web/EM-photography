@@ -136,16 +136,16 @@ export default function HomePage() {
             About
           </p>
           <h2 className={styles.title}>
-            A quiet eye for what
+            A quiet attention to
             <br />
-            unfolds naturally.
+            what remains.
           </h2>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.body}>
-            Drawn to the beauty of what is felt rather than staged. To subtle gestures,
-            fleeting expressions, and the details that shape the atmosphere of a
-            moment. I&rsquo;m interested in photographs that feel honest, instinctive
-            and deeply connected to the people within them.
+            Drawn to the beauty of what is felt rather than staged&nbsp;&mdash; to
+            subtle gestures, fleeting expressions, and the details that shape the
+            atmosphere of a moment. I&rsquo;m drawn to photographs that feel honest,
+            instinctive, and deeply connected to the people within them.
           </p>
           <Link href="/about" className={`btn btn-dark ${styles.cta}`}>
             More about me
