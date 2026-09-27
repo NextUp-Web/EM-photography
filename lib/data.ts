@@ -389,14 +389,16 @@ export function getNextCollection(slug: string): Collection {
   return COLLECTIONS[(index + 1) % COLLECTIONS.length];
 }
 
-/** The invitation that closes the page — one monochrome rectangle from
- *  margin to margin, the words centred on it.
- *  >>> Stand-in until the client's own terrace photograph arrives: drop the
- *  >>> file in public/images/v3/portfolio/ and point `src` at it. */
+/** The invitation that closes the page — the terrace above the lake, in
+ *  monochrome, one rectangle from margin to margin with the words centred
+ *  on it: the desktop frames the lake and the balustrade, the phone the
+ *  whole scene.
+ *  >>> This file is cropped from the client's board (656 px wide): replace
+ *  >>> it with the original photograph, same name, for a sharp print. */
 export const PORTFOLIO_CLOSING: Photo = {
-  src: `${V3}/about/trip-flowers.webp`,
-  alt: "White roses on a stone ledge above the lake",
-  position: "center 72%",
+  src: `${V3}/portfolio/terrace.webp`,
+  alt: "A flowered terrace and its balustrade above the lake, the mountains beyond",
+  position: "center 74%",
   bw: true,
 };
 
