@@ -102,7 +102,7 @@ export default function HomePage() {
           <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
           <span className={styles.bandLine}>reveal more the longer you look.</span>
         </p>
-        <p className={`${styles.quoteMeta} ${styles.quoteMetaOne}`}>
+        <p className={`${styles.quoteMeta} ${styles.quoteMetaOne} ${styles.quoteMetaFirst}`}>
           The beauty of looking closer.
         </p>
       </section>

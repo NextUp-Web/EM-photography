@@ -101,6 +101,11 @@
   white-space: nowrap;
 }
 
+/* the first panel's line, a further 5% smaller */
+.quoteMetaFirst {
+  font-size: clamp(0.534rem, 0.812vw, 0.735rem);
+}
+
 .lead {
   font-family: var(--font-display);
   font-size: var(--t-lead);
@@ -398,6 +403,10 @@
     max-width: none;
     font-size: 0.585rem;
     letter-spacing: min(0.3em, (100vw - 280px) / 29);
+  }
+
+  .quoteMetaFirst {
+    font-size: 0.556rem;
   }
 
   /* the second panel's longer line breaks before "Deeply felt." on the
