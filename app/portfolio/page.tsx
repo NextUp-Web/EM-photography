@@ -14,7 +14,7 @@ export const metadata = {
  * On the home page's system: one column on the site's measure, sections
  * separated by --gap-section, type from the one scale. The page opens on
  * its title, centred, then a cascade of photographs from margin to margin,
- * and one tall photograph with the invitation that closes it.
+ * and one photograph with the invitation that closes it.
  */
 /* on the desktop, item i goes to column i mod 3 */
 const desktopColumns = [0, 1, 2].map((column) =>
@@ -63,11 +63,12 @@ export default function PortfolioPage() {
         </section>
       ))}
 
-      {/* ---------- The invitation — one tall photograph, margin to margin ---------- */}
+      {/* ---------- The invitation — one rectangle, margin to margin ---------- */}
       <section className={styles.closing} aria-labelledby="portfolio-invite">
         <Figure
           photo={PORTFOLIO_CLOSING}
-          ratio={0.618}
+          ratio={2.2}
+          mobileRatio={0.8}
           sizes="100vw"
           className={styles.closingFigure}
         />

@@ -388,14 +388,14 @@ export function getNextCollection(slug: string): Collection {
   return COLLECTIONS[(index + 1) % COLLECTIONS.length];
 }
 
-/** The invitation that closes the page — one tall monochrome frame from
- *  margin to margin, the words centred near its foot.
+/** The invitation that closes the page — one monochrome rectangle from
+ *  margin to margin, the words centred on it.
  *  >>> Stand-in until the client's own terrace photograph arrives: drop the
  *  >>> file in public/images/v3/portfolio/ and point `src` at it. */
 export const PORTFOLIO_CLOSING: Photo = {
   src: `${V3}/about/trip-flowers.webp`,
   alt: "White roses on a stone ledge above the lake",
-  position: "center 50%",
+  position: "center 72%",
   bw: true,
 };
 
@@ -439,9 +439,9 @@ export const PORTFOLIO_GRID: Photo[] = [
     ratio: WIDE,
   },
   {
-    src: `${V3}/portfolio/vivid-hydrangeas.webp`,
-    alt: "A bride in a strapless gown before a wall of blue and pink hydrangeas",
-    position: "70% center",
+    src: `${V3}/portfolio/village.webp`,
+    alt: "A village among cypresses on the shore of the lake",
+    position: "40% 50%",
     ratio: TALL,
   },
   {
@@ -452,8 +452,8 @@ export const PORTFOLIO_GRID: Photo[] = [
   },
   // square · wide · tall
   {
-    src: `${V3}/portfolio/vivid-ceremony.webp`,
-    alt: "A ceremony on a terrace above the sea, the guests applauding",
+    src: `${V3}/portfolio/closing.webp`,
+    alt: "The lake at sunset, mountains on either shore",
     position: "center 60%",
     ratio: SQUARE,
   },

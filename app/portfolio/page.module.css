@@ -75,43 +75,36 @@
   gap: var(--grid-gap);
 }
 
-/* ---------- The invitation — one tall photograph, margin to margin ----------
+/* ---------- The invitation — one rectangle, margin to margin ----------
 
-   As the client's board draws it on every screen: a long portrait frame,
-   the words centred near its foot, each a share of the frame's width
-   (100cqw). */
+   The words centred on the photograph, in the site's own steps: the
+   label, a display title in capitals, the standard button. */
 
 .closing {
   position: relative;
-  container-type: inline-size;
 }
 
 .closingFigure {
   background: var(--soft-black);
 }
 
-/* a soft shade rising from the foot, under the words */
+/* an even shade, so the words read anywhere on the frame */
 .closingFigure::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(25, 24, 22, 0.55) 0%,
-    rgba(25, 24, 22, 0.28) 22%,
-    rgba(25, 24, 22, 0) 42%
-  );
+  background: rgba(25, 24, 22, 0.38);
   pointer-events: none;
 }
 
 .closingText {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 8.4cqw;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: var(--panel-pad) var(--measure-gutter);
   text-align: center;
 }
 
@@ -120,26 +113,18 @@
   color: var(--warm-white);
 }
 
-.closingLabel {
-  font-size: max(0.5rem, 1.9cqw);
-}
-
 .closingTitle {
-  margin-top: 3.4cqw;
+  margin-top: var(--step-s);
   font-family: var(--font-display);
-  font-size: 6.7cqw;
+  font-size: var(--t-display);
   font-weight: 400;
-  line-height: 0.97;
-  letter-spacing: 0.01em;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .closingCta {
-  margin-top: 4.5cqw;
-  min-width: 27.7cqw;
-  min-height: 7.8cqw;
-  padding: 0;
-  font-size: max(0.55rem, 2.6cqw);
+  margin-top: var(--step-l);
 }
 
 /* ============================================================
