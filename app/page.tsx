@@ -50,8 +50,24 @@ export default function HomePage() {
         <span className={styles.rule} aria-hidden="true" />
       </section>
 
-      {/* ---------- Approach — text, then two frames ---------- */}
-      <section className={styles.split} aria-labelledby="approach">
+      {/* ---------- Approach — two frames, then text ---------- */}
+      <section
+        className={`${styles.split} ${styles.splitReverse}`}
+        aria-labelledby="approach"
+      >
+        <div className={styles.pair}>
+          <Figure
+            photo={PHOTOS.approachOne}
+            ratio={0.72}
+            sizes="(max-width: 860px) 50vw, 300px"
+          />
+          <Figure
+            photo={PHOTOS.approachTwo}
+            ratio={0.72}
+            sizes="(max-width: 860px) 50vw, 300px"
+          />
+        </div>
+
         <div className={styles.text}>
           <p className="label" id="approach">
             Approach
@@ -75,19 +91,6 @@ export default function HomePage() {
           <Link href="/portfolio" className={`btn btn-dark ${styles.cta}`}>
             View portfolio
           </Link>
-        </div>
-
-        <div className={styles.pair}>
-          <Figure
-            photo={PHOTOS.approachOne}
-            ratio={0.72}
-            sizes="(max-width: 860px) 50vw, 300px"
-          />
-          <Figure
-            photo={PHOTOS.approachTwo}
-            ratio={0.72}
-            sizes="(max-width: 860px) 50vw, 300px"
-          />
         </div>
       </section>
 

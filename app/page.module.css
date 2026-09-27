@@ -157,6 +157,11 @@
   align-items: stretch;
 }
 
+/* the same row, photographs first */
+.splitReverse {
+  grid-template-columns: 7fr 5fr;
+}
+
 /* The photographs sit on the foot of the row… */
 .split > :not(.text) {
   align-self: end;
@@ -315,7 +320,8 @@
     box-shadow: 0 0 0 7px var(--color-page);
   }
 
-  .split {
+  .split,
+  .splitReverse {
     grid-template-columns: 1fr;
     row-gap: var(--step-l);
   }
