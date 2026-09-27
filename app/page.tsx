@@ -170,7 +170,7 @@ export default function HomePage() {
         <Figure
           photo={PHOTOS.homeInvite}
           ratio={2.2}
-          mobileRatio={0.8}
+          mobileRatio={0.818}
           sizes="100vw"
           className={styles.inviteFigure}
         />
@@ -197,6 +197,17 @@ export default function HomePage() {
             Enquire
           </Link>
         </div>
+        <p className={`label ${styles.inviteLocation}`}>
+          Lausanne
+          <span className={styles.inviteDot} aria-hidden="true">
+            &middot;
+          </span>
+          Switzerland
+          <span className={styles.inviteDot} aria-hidden="true">
+            &middot;
+          </span>
+          Europe
+        </p>
       </section>
     </div>
   );
