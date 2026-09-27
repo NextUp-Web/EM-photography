@@ -60,19 +60,13 @@
   color: var(--color-body);
 }
 
-/* The small label with its short hairline after it. */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
+/* The opening block — label, title and lead — centred. */
+.centred {
+  text-align: center;
 }
 
-.eyebrow::after {
-  content: "";
-  display: block;
-  width: 48px;
-  height: 1px;
-  background: var(--warm-grey);
+.centred .lead {
+  margin-inline: auto;
 }
 
 /* ---------- The form ---------- */

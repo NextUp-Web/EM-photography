@@ -1,0 +1,189 @@
+/* ============================================================
+   Date picker — the field matches the form's hairline
+   rectangles; the calendar opens beneath it, large, on warm
+   white, in the site's faces.
+   ============================================================ */
+
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(7px, 0.8vw, 11px);
+  width: 100%;
+  height: clamp(44px, 3.4vw, 50px);
+  padding: 0 15px 0 16px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  text-align: left;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.trigger:hover,
+.trigger:focus-visible,
+.trigger[aria-expanded="true"] {
+  border-color: var(--warm-grey);
+}
+
+.invalid,
+.invalid:hover {
+  border-color: var(--color-ink);
+}
+
+.icon {
+  display: flex;
+  color: var(--color-ink);
+}
+
+/* ---------- The calendar ---------- */
+
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  width: min(100%, 420px);
+  padding: 22px 22px 18px;
+  border: 1px solid var(--hairline);
+  background: var(--warm-white);
+  box-shadow: 0 18px 40px rgba(25, 24, 22, 0.1);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.month {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+/* the two squared arrows of the site's galleries */
+.nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(25, 24, 22, 0.45);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.nav:hover:not(:disabled),
+.nav:focus-visible {
+  background: var(--soft-black);
+  color: var(--warm-white);
+}
+
+.nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.weekdays {
+  margin-top: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-ui);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  text-align: center;
+  color: #45413c;
+}
+
+.days {
+  margin-top: 10px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.day:hover:not(:disabled) {
+  background: var(--ivory);
+}
+
+.day:focus-visible {
+  outline: none;
+  border-color: var(--color-ink);
+}
+
+/* the days either side of the month, a shade quieter */
+.outside {
+  color: var(--color-meta);
+}
+
+.day:disabled {
+  color: var(--warm-grey);
+  cursor: default;
+}
+
+.today {
+  border-color: var(--warm-grey);
+}
+
+.selected,
+.selected:hover:not(:disabled) {
+  border-color: var(--soft-black);
+  background: var(--soft-black);
+  color: var(--warm-white);
+}
+
+@media (max-width: 860px) {
+  .trigger {
+    /* 16px keeps iOS from zooming the page when a field takes focus */
+    font-size: max(16px, var(--fs-body));
+    height: 50px;
+  }
+
+  .popover {
+    width: 100%;
+    padding: 18px 14px 14px;
+  }
+
+  .day {
+    font-size: 1.05rem;
+  }
+}

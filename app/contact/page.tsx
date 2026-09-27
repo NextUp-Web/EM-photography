@@ -20,8 +20,11 @@ export default function ContactPage() {
   return (
     <div className="page">
       {/* ---------- Get in touch ---------- */}
-      <section className={styles.column} aria-labelledby="contact-title">
-        <p className={`label ${styles.eyebrow}`}>Get in touch</p>
+      <section
+        className={`${styles.column} ${styles.centred}`}
+        aria-labelledby="contact-title"
+      >
+        <p className="label">Get in touch</p>
         <h1 className={styles.display} id="contact-title">
           Tell me what you
           <br />
@@ -47,7 +50,7 @@ export default function ContactPage() {
 
       {/* ---------- Inquiry — the words, then the form ---------- */}
       <section className={styles.column} aria-labelledby="enquiry">
-        <p className={`label ${styles.eyebrow}`}>Share your vision</p>
+        <p className="label">Share your vision</p>
         <h2 className={`${styles.title} ${styles.caps}`} id="enquiry">
           Thoughtful photography for the meaningful moments.
         </h2>

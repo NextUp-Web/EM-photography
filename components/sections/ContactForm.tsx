@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CONTACT_EMAIL, INTERESTS } from "@/lib/data";
+import DatePicker from "./DatePicker";
 import styles from "./ContactForm.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -12,11 +13,19 @@ type Status = "idle" | "sending" | "sent" | "error";
  */
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const [dateFocused, setDateFocused] = useState(false);
+  const [date, setDate] = useState("");
+  const [dateMissing, setDateMissing] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
+
+    /* the calendar is not a native field, so its requirement is checked here */
+    if (!date) {
+      setDateMissing(true);
+      form.querySelector<HTMLButtonElement>("#date")?.focus();
+      return;
+    }
 
     setStatus("sending");
 
@@ -29,7 +38,7 @@ export default function ContactForm() {
 
       if (!response.ok) throw new Error(String(response.status));
       form.reset();
-      setDateFocused(false);
+      setDate("");
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -85,27 +94,22 @@ export default function ContactForm() {
         <label className={`label ${styles.label}`} htmlFor="date">
           Wedding / session date *
         </label>
-        {/* An empty rule rather than mm/dd/yyyy — the native picker is only
-            summoned once the field is actually being filled in. */}
-        <div className={styles.selectWrap}>
-          <input
-            className={`${styles.input} ${styles.date}`}
-            id="date"
-            name="date"
-            type={dateFocused ? "date" : "text"}
-            required
-            onFocus={() => setDateFocused(true)}
-            onBlur={(event) => {
-              if (!event.currentTarget.value) setDateFocused(false);
-            }}
-          />
-          <span className={styles.chevron} aria-hidden="true">
-            <svg viewBox="0 0 16 16" width="15" height="15" fill="none">
-              <rect x="1.5" y="2.5" width="13" height="12" stroke="currentColor" />
-              <path d="M1.5 6h13M5 1v3M11 1v3" stroke="currentColor" />
-            </svg>
-          </span>
-        </div>
+        <DatePicker
+          id="date"
+          name="date"
+          value={date}
+          onChange={(value) => {
+            setDate(value);
+            setDateMissing(false);
+          }}
+          invalid={dateMissing}
+          describedBy={dateMissing ? "date-note" : undefined}
+        />
+        {dateMissing ? (
+          <p className={`label ${styles.note}`} id="date-note">
+            Please choose a date
+          </p>
+        ) : null}
       </div>
 
       <div className={`${styles.field} ${styles.fieldFull}`}>

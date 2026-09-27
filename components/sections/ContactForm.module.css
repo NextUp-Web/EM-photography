@@ -22,8 +22,10 @@
   grid-column: 1 / -1;
 }
 
+/* labels, placeholders and notes a shade darker than the meta grey,
+   lighter than the ink */
 .label {
-  color: var(--color-meta);
+  color: #45413c;
 }
 
 .input {
@@ -48,13 +50,13 @@
 
 /* An empty select reads as a placeholder, not as an answer. */
 .select:invalid {
-  color: var(--color-quiet);
+  color: #45413c;
 }
 
 /* the quiet line beneath the message field, in the site's small label */
 .note {
   margin-top: clamp(6px, 0.7vw, 9px);
-  color: var(--color-meta);
+  color: #45413c;
 }
 
 .textarea {
@@ -73,25 +75,6 @@
 .select {
   appearance: none;
   padding-right: 42px;
-  cursor: pointer;
-}
-
-/* The date's own picker is summoned from the calendar mark: the native
-   indicator is laid, invisible, over it. */
-.date {
-  position: relative;
-  padding-right: 42px;
-}
-
-.date::-webkit-calendar-picker-indicator {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 44px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
   cursor: pointer;
 }
 
