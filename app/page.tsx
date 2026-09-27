@@ -98,11 +98,13 @@ export default function HomePage() {
       <section className="panel">
         {/* Set in the second panel's face and size exactly: two lines on the
             desktop, one flowing measure on the phone. */}
-        <p className={styles.quoteText}>
+        <p className={`${styles.quoteText} ${styles.quoteTextOne}`}>
           <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
           <span className={styles.bandLine}>reveal more the longer you look.</span>
         </p>
-        <p className={styles.quoteMeta}>The art of looking closer.</p>
+        <p className={`${styles.quoteMeta} ${styles.quoteMetaOne}`}>
+          The beauty of looking closer.
+        </p>
       </section>
 
       {/* ---------- Selected stories ---------- */}

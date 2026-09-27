@@ -83,6 +83,22 @@
   color: var(--color-meta);
 }
 
+/* The first panel: its sentence a tenth smaller and always on two lines,
+   the line beneath it darker than the meta grey and always on one. */
+.quoteTextOne {
+  font-size: clamp(1.305rem, 2.313vw, 2.16rem);
+  max-width: none;
+}
+
+.bandLine {
+  white-space: nowrap;
+}
+
+.quoteMetaOne {
+  color: #45413c;
+  white-space: nowrap;
+}
+
 .lead {
   font-family: var(--font-display);
   font-size: var(--t-lead);
@@ -335,11 +351,6 @@
     margin-top: var(--step-l);
   }
 
-  /* the first panel's sentence wraps on its own measure on the phone */
-  .bandLine {
-    display: inline;
-  }
-
   /* main's second band on the phone */
   .quoteText {
     max-width: 18ch;
@@ -349,6 +360,18 @@
     max-width: 30ch;
     margin-inline: auto;
     font-size: 0.65rem;
+  }
+
+  /* the first panel keeps its two lines and its one line on the phone */
+  .quoteTextOne {
+    max-width: none;
+    font-size: min(1.305rem, (100vw - 80px) / 17.4);
+  }
+
+  /* on the narrowest phones the tracking closes a little, never the size */
+  .quoteMetaOne {
+    max-width: none;
+    letter-spacing: min(0.3em, (100vw - 280px) / 29);
   }
 
   .storiesHead .body {
