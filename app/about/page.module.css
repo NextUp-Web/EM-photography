@@ -142,15 +142,11 @@
   align-items: center;
 }
 
-/* ---------- Ivory panels — with a hairline round them ---------- */
-
-.framed {
-  border: 1px solid var(--hairline);
-}
+/* ---------- Ivory panels — no outline, as on the home page ---------- */
 
 /* Set exactly as the home page's ivory panels (.quoteText.quoteTextOne
-   and .quoteMeta.quoteMetaOne there): the sentence, and the line beneath
-   it darker than the meta grey and always on one line. */
+   and .quoteMeta.quoteMetaOne there): the sentence, and the lines beneath
+   it darker than the meta grey, each held on one line. */
 .panelQuote {
   font-family: var(--font-bodoni), "Bodoni Moda", Georgia, serif;
   font-size: clamp(1.305rem, 2.313vw, 2.16rem);
@@ -170,6 +166,25 @@
   text-transform: uppercase;
   white-space: nowrap;
   color: #45413c;
+}
+
+/* "Made to remain." on a line of its own, both lines centred */
+.metaLine {
+  display: block;
+}
+
+/* ---------- One large vertical frame, centred ---------- */
+
+.portrait {
+  width: 50%;
+  margin-inline: auto;
+}
+
+/* the note under the invitation's title, before the button */
+.inviteNote {
+  max-width: 46ch;
+  margin: var(--step-m) auto 0;
+  text-wrap: balance;
 }
 
 .cta {
@@ -208,7 +223,11 @@
   }
 
   .panelMeta {
-    font-size: min(0.585rem, (100vw - 80px) / 59);
+    font-size: min(0.585rem, (100vw - 80px) / 45);
+  }
+
+  .portrait {
+    width: 100%;
   }
 
   /* Text first, then the photographs. */

@@ -51,6 +51,12 @@
   color: var(--color-quiet);
 }
 
+/* the quiet line beneath the message field, in the site's small label */
+.note {
+  margin-top: clamp(6px, 0.7vw, 9px);
+  color: var(--color-meta);
+}
+
 .textarea {
   height: auto;
   min-height: clamp(96px, 7vw, 120px);

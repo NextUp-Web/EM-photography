@@ -100,11 +100,12 @@ export const PHOTOS = {
     position: "30% 50%",
     bw: true,
   },
-  /* The wide frame before the closing invitation. */
-  aboutPanorama: {
-    src: "/images/about/hero.jpg",
-    alt: "Emma photographing the lake from a terrace, the mountains behind",
-    position: "center 45%",
+  /* The large vertical frame before the closing invitation. */
+  aboutVertical: {
+    src: `${V3}/about/trip-couple.webp`,
+    alt: "A couple walking away together through a stone loggia",
+    position: "center 55%",
+    bw: true,
   },
   /* ---- Contact ---- */
   contactHero: {
@@ -548,7 +549,7 @@ export const INTERESTS = [
   "Wedding",
   "Couples",
   "Engagement",
-  "Intimate celebration",
+  "Portrait",
   "Other",
 ];
 

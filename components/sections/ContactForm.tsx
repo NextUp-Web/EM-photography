@@ -164,7 +164,11 @@ export default function ContactForm() {
           name="message"
           rows={5}
           required
+          aria-describedby="message-note"
         />
+        <p className={`label ${styles.note}`} id="message-note">
+          Response within 24 hours
+        </p>
       </div>
 
       <div className={styles.actions}>

@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export const metadata = {
   title: "About Emma | EM Photography",
   description:
-    "Emma, the photographer behind EM Photography — a quiet eye for what unfolds naturally.",
+    "Emma, the photographer behind EM Photography — a quiet attention to what remains.",
   alternates: { canonical: "/about" },
 };
 
@@ -18,16 +18,14 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="page">
-      {/* ---------- A quiet eye — text 5, frames 7 ---------- */}
+      {/* ---------- A quiet attention — text 5, frames 7 ---------- */}
       <section className={styles.opening} aria-labelledby="about-title">
         <div className={styles.text}>
           <p className={`label ${styles.eyebrow}`}>About</p>
           <h1 className={styles.display} id="about-title">
-            A quiet eye for
+            A quiet attention to
             <br />
-            what unfolds
-            <br />
-            naturally.
+            what remains.
           </h1>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.lead}>
@@ -76,8 +74,12 @@ export default function AboutPage() {
         <div className={styles.text}>
           <h2 className={styles.title} id="about-trace">
             More than a record
-            <br className={styles.wide} /> of the day &mdash; a trace
-            <br className={styles.wide} /> of what it felt like.
+            <br />
+            of the day,
+            <br />
+            a trace of what
+            <br />
+            it felt like.
           </h2>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.body}>
@@ -93,29 +95,35 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- Ivory statement ---------- */}
-      <section className={`panel ${styles.framed}`}>
+      <section className="panel">
         <p className={styles.panelQuote}>Capturing how it felt.</p>
         <p className={styles.panelMeta}>
-          Observed with intention. Shaped with sensitivity. Made to remain.
+          <span className={styles.metaLine}>
+            Observed with intention. Shaped with sensitivity.
+          </span>{" "}
+          <span className={styles.metaLine}>Made to remain.</span>
         </p>
       </section>
 
-      {/* ---------- One wide frame ---------- */}
-      <section aria-label="Emma at work">
+      {/* ---------- One large vertical frame, centred ---------- */}
+      <section className={styles.portrait} aria-label="A couple walking through a stone loggia">
         <Figure
-          photo={PHOTOS.aboutPanorama}
-          ratio={3.2}
-          mobileRatio={1.3}
-          sizes="100vw"
+          photo={PHOTOS.aboutVertical}
+          ratio={0.75}
+          sizes="(max-width: 860px) 100vw, 50vw"
         />
       </section>
 
       {/* ---------- The invitation ---------- */}
-      <section className={`panel ${styles.framed}`} aria-labelledby="about-invite">
+      <section className="panel" aria-labelledby="about-invite">
         <h2 className={styles.title} id="about-invite">
           <span className={styles.phrase}>If my approach feels like you,</span>{" "}
           <span className={styles.phrase}>I would love to hear your story.</span>
         </h2>
+        <p className={`${styles.body} ${styles.inviteNote}`}>
+          Share your date, location and plans, and I&rsquo;ll be in touch with
+          availability and next steps.
+        </p>
         <Link href="/contact" className={`btn btn-dark ${styles.cta}`}>
           Enquire
         </Link>
