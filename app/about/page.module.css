@@ -221,12 +221,10 @@
     font-size: min(1.305rem, (100vw - 80px) / 17.4);
   }
 
-  /* the lines beneath keep the home panel's size on the phone and wrap,
-     centred, where they no longer fit */
+  /* the two lines beneath stay two lines on the phone: the longer one
+     sets its size to fit the width */
   .panelMeta {
-    font-size: 0.5265rem;
-    white-space: normal;
-    text-wrap: balance;
+    font-size: min(0.5265rem, (100vw - 80px) / 45);
   }
 
   .portrait {
