@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { Dictionary } from "@/lib/i18n";
 import styles from "./DatePicker.module.css";
 
 type DatePickerProps = {
@@ -11,9 +12,9 @@ type DatePickerProps = {
   onChange: (value: string) => void;
   invalid?: boolean;
   describedBy?: string;
+  /** the calendar's words and date formats in the page's language */
+  labels: Dictionary["datePicker"];
 };
-
-const WEEKDAYS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
 const pad = (value: number) => String(value).padStart(2, "0");
 const toISO = (date: Date) =>
@@ -29,12 +30,8 @@ const startOfToday = () => {
 const addDays = (date: Date, days: number) =>
   new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 
-const longDate = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
-const monthYear = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric" });
+/* the month's name capitalised, as it heads the calendar */
+const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /**
  * The wedding or session date, in the site's own hand rather than the
@@ -50,7 +47,15 @@ export default function DatePicker({
   onChange,
   invalid = false,
   describedBy,
+  labels,
 }: DatePickerProps) {
+  const longDate = new Intl.DateTimeFormat(labels.intl, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const monthYear = new Intl.DateTimeFormat(labels.intl, { month: "long", year: "numeric" });
+
   const [open, setOpen] = useState(false);
   /* the first day of the month on show */
   const [month, setMonth] = useState(() => {
@@ -172,32 +177,32 @@ export default function DatePicker({
       </button>
 
       {open ? (
-        <div className={styles.popover} role="dialog" aria-label="Choose a date">
+        <div className={styles.popover} role="dialog" aria-label={labels.dialog}>
           <div className={styles.head}>
             <button
               type="button"
               className={styles.nav}
               onClick={() => showMonth(-1)}
               disabled={!canGoBack}
-              aria-label="Previous month"
+              aria-label={labels.previousMonth}
             >
               &#8592;
             </button>
             <p className={styles.month} aria-live="polite">
-              {monthYear.format(month)}
+              {capitalise(monthYear.format(month))}
             </p>
             <button
               type="button"
               className={styles.nav}
               onClick={() => showMonth(1)}
-              aria-label="Next month"
+              aria-label={labels.nextMonth}
             >
               &#8594;
             </button>
           </div>
 
           <div className={styles.weekdays} aria-hidden="true">
-            {WEEKDAYS.map((day) => (
+            {labels.weekdays.map((day) => (
               <span key={day}>{day}</span>
             ))}
           </div>

@@ -9,6 +9,7 @@ import {
   NAV,
   WHATSAPP_URL,
 } from "@/lib/data";
+import { localizePath, type Dictionary, type Locale } from "@/lib/i18n";
 import styles from "./Footer.module.css";
 
 /**
@@ -16,7 +17,9 @@ import styles from "./Footer.module.css";
  * the two social marks, the place-line and the copyright — each a line of
  * its own, the same distance apart.
  */
-export default function Footer() {
+type FooterProps = { lang: Locale; common: Dictionary["common"] };
+
+export default function Footer({ lang, common }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <hr className={styles.rule} />
@@ -24,17 +27,17 @@ export default function Footer() {
       <div className={styles.inner}>
         <TopLink
           className={styles.brand}
-          label="EM Photography — back to the top of the page"
+          label={common.backToTop}
         >
           <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
         </TopLink>
 
-        <nav aria-label="Footer">
+        <nav aria-label={common.footerNav}>
           <ul className={styles.nav}>
             {NAV.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={styles.navLink}>
-                  {item.label}
+                <Link href={localizePath(item.href, lang)} className={styles.navLink}>
+                  {common.nav[item.key]}
                 </Link>
               </li>
             ))}
@@ -47,7 +50,7 @@ export default function Footer() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
+            aria-label={`${common.instagram} — @${INSTAGRAM_HANDLE}`}
           >
             <InstagramGlyph size={22} />
           </a>
@@ -56,7 +59,7 @@ export default function Footer() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label="EM Photography on WhatsApp"
+            aria-label={common.whatsapp}
           >
             <WhatsAppGlyph size={22} />
           </a>
@@ -64,11 +67,11 @@ export default function Footer() {
 
         {/* The dot sits on the page's centre line, the two places either side. */}
         <p className={styles.place}>
-          <span className={styles.placeStart}>Switzerland based</span>
+          <span className={styles.placeStart}>{common.placeStart}</span>
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          <span className={styles.placeEnd}>Available across Europe</span>
+          <span className={styles.placeEnd}>{common.placeEnd}</span>
         </p>
 
         {/* The copyright in the links' own face and size. Cormorant draws its
@@ -76,7 +79,7 @@ export default function Footer() {
             same face and weight — in a fine circle, centred on the height of
             the capitals. */}
         <p className={styles.legal}>
-          <span className={styles.copyMark} role="img" aria-label="Copyright">
+          <span className={styles.copyMark} role="img" aria-label={common.copyright}>
             C
           </span>
           {COPYRIGHT_YEAR} EM Photography

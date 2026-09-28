@@ -1,11 +1,12 @@
-export type NavItem = { label: string; href: string };
+export type NavItem = { key: "home" | "portfolio" | "about" | "contact"; href: string };
 
-/** Public navigation — Home / Portfolio / About / Contact, in that order. */
+/** Public navigation — Home / Portfolio / About / Contact, in that order.
+ *  The labels are in each language's dictionary (lib/i18n). */
 export const NAV: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { key: "home", href: "/" },
+  { key: "portfolio", href: "/portfolio" },
+  { key: "about", href: "/about" },
+  { key: "contact", href: "/contact" },
 ];
 
 export type Photo = {

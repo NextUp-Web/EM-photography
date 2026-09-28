@@ -202,6 +202,11 @@
    ============================================================ */
 
 @media (max-width: 860px) {
+  /* French on the phone: the statement breaks in balanced lines */
+  :global(html[lang="fr-CH"]) .panelQuote {
+    text-wrap: balance;
+  }
+
   .wide {
     display: none;
   }

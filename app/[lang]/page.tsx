@@ -1,13 +1,28 @@
 import Link from "next/link";
 import Figure from "@/components/ui/Figure";
 import SelectedStories from "@/components/sections/SelectedStories";
-import { PHOTOS } from "@/lib/data";
+import Lines from "@/components/ui/Lines";
+import { PHOTOS, SELECTED_STORIES } from "@/lib/data";
+import {
+  alternatesFor,
+  getDictionary,
+  isLocale,
+  localizePath,
+  localizePhoto,
+  type Locale,
+} from "@/lib/i18n";
 import styles from "./page.module.css";
 
-export const metadata = {
-  title: "EM Photography | Wedding Photographer in Switzerland",
-  alternates: { canonical: "/" },
-};
+type PageParams = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: PageParams) {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  return {
+    title: getDictionary(lang).meta.siteTitle,
+    alternates: alternatesFor("/", lang),
+  };
+}
 
 /**
  * The home page is one column of sections on one measure: every section
@@ -16,13 +31,18 @@ export const metadata = {
  * tracked label; the two ivory panels are set as main sets them (see
  * page.module.css).
  */
-export default function HomePage() {
+export default async function HomePage({ params }: PageParams) {
+  const lang = (await params).lang as Locale;
+  const dict = getDictionary(lang);
+  const t = dict.home;
+  const photo = <P extends Parameters<typeof localizePhoto>[0]>(p: P) => localizePhoto(p, dict);
+
   return (
     <div className={styles.home}>
       {/* ---------- Hero — a tall monochrome frame, a colour frame over its corner ---------- */}
-      <section className={styles.hero} aria-label="EM Photography">
+      <section className={styles.hero} aria-label={t.heroLabel}>
         <Figure
-          photo={PHOTOS.homeHeroMain}
+          photo={photo(PHOTOS.homeHeroMain)}
           ratio={1.05}
           mobileRatio={0.71}
           sizes="(max-width: 860px) 80vw, 800px"
@@ -30,7 +50,7 @@ export default function HomePage() {
           className={styles.heroMain}
         />
         <Figure
-          photo={PHOTOS.homeHeroSide}
+          photo={photo(PHOTOS.homeHeroSide)}
           ratio={0.652}
           mobileRatio={0.63}
           sizes="(max-width: 860px) 40vw, 380px"
@@ -41,11 +61,9 @@ export default function HomePage() {
 
       {/* ---------- Philosophy ---------- */}
       <section className={styles.intro} aria-labelledby="philosophy">
-        <p className="label">Philosophy</p>
+        <p className="label">{t.philosophyLabel}</p>
         <h1 className={`${styles.title} ${styles.caps}`} id="philosophy">
-          Where refined imagery
-          <br />
-          meets genuine emotion.
+          <Lines lines={t.philosophyTitle} />
         </h1>
         <span className={styles.rule} aria-hidden="true" />
       </section>
@@ -57,12 +75,12 @@ export default function HomePage() {
       >
         <div className={styles.pair}>
           <Figure
-            photo={PHOTOS.approachOne}
+            photo={photo(PHOTOS.approachOne)}
             ratio={0.72}
             sizes="(max-width: 860px) 50vw, 300px"
           />
           <Figure
-            photo={PHOTOS.approachTwo}
+            photo={photo(PHOTOS.approachTwo)}
             ratio={0.72}
             sizes="(max-width: 860px) 50vw, 300px"
           />
@@ -70,26 +88,18 @@ export default function HomePage() {
 
         <div className={styles.text}>
           <p className="label" id="approach">
-            Approach
+            {t.approachLabel}
           </p>
           <h2 className={styles.title}>
-            For all that words
-            <br />
-            cannot hold.
+            <Lines lines={t.approachTitle} />
           </h2>
           <span className={styles.rule} aria-hidden="true" />
           <p className={styles.lead}>
-            The quiet details.
-            <br />
-            The moments in between.
+            <Lines lines={t.approachLead} />
           </p>
-          <p className={styles.body}>
-            I photograph stories with a documentary sensitivity and a refined
-            editorial eye&nbsp;&mdash; attentive to the subtle gestures, fleeting
-            expressions and details that quietly shape the day.
-          </p>
-          <Link href="/portfolio" className={`btn btn-dark ${styles.cta}`}>
-            View portfolio
+          <p className={styles.body}>{t.approachBody}</p>
+          <Link href={localizePath("/portfolio", lang)} className={`btn btn-dark ${styles.cta}`}>
+            {t.viewPortfolio}
           </Link>
         </div>
       </section>
@@ -99,11 +109,11 @@ export default function HomePage() {
         {/* Set in the second panel's face and size exactly: two lines on the
             desktop, one flowing measure on the phone. */}
         <p className={`${styles.quoteText} ${styles.quoteTextOne}`}>
-          <span className={styles.bandLine}>For those drawn to photographs that</span>{" "}
-          <span className={styles.bandLine}>reveal more the longer you look.</span>
+          <span className={styles.bandLine}>{t.panelOneLines[0]}</span>{" "}
+          <span className={styles.bandLine}>{t.panelOneLines[1]}</span>
         </p>
         <p className={`${styles.quoteMeta} ${styles.quoteMetaOne} ${styles.quoteMetaFirst}`}>
-          The beauty of looking closer.
+          {t.panelOneMeta}
         </p>
       </section>
 
@@ -111,44 +121,36 @@ export default function HomePage() {
       <section className={styles.stories} aria-labelledby="stories">
         <div className={styles.storiesHead}>
           <p className="label" id="stories">
-            Selected stories
+            {t.storiesLabel}
           </p>
-          <p className={styles.body}>
-            A collection that feels natural, considered and deeply connected to the
-            atmosphere of your celebration&nbsp;&mdash; unfolding chapter by chapter,
-            each with its own rhythm and feeling.
-          </p>
+          <p className={styles.body}>{t.storiesBody}</p>
         </div>
 
-        <SelectedStories />
+        <SelectedStories
+          photos={SELECTED_STORIES.map(photo)}
+          labels={dict.gallery}
+        />
       </section>
 
       {/* ---------- About — a frame, then the text ---------- */}
       <section className={styles.split} aria-labelledby="about-preview">
         <Figure
-          photo={PHOTOS.aboutPortrait}
+          photo={photo(PHOTOS.aboutPortrait)}
           ratio={1.2}
           sizes="(max-width: 860px) 100vw, 440px"
         />
 
         <div className={styles.text}>
           <p className="label" id="about-preview">
-            About
+            {t.aboutLabel}
           </p>
           <h2 className={styles.title}>
-            A quiet attention to
-            <br />
-            what remains.
+            <Lines lines={t.aboutTitle} />
           </h2>
           <span className={styles.rule} aria-hidden="true" />
-          <p className={styles.body}>
-            Drawn to the beauty of what is felt rather than staged&nbsp;&mdash; to
-            subtle gestures, fleeting expressions, and the details that shape the
-            atmosphere of a moment. I&rsquo;m drawn to photographs that feel honest,
-            instinctive, and deeply connected to the people within them.
-          </p>
-          <Link href="/about" className={`btn btn-dark ${styles.cta}`}>
-            More about me
+          <p className={styles.body}>{t.aboutBody}</p>
+          <Link href={localizePath("/about", lang)} className={`btn btn-dark ${styles.cta}`}>
+            {t.moreAboutMe}
           </Link>
         </div>
       </section>
@@ -157,11 +159,11 @@ export default function HomePage() {
       <section className="panel">
         {/* Set exactly as the first ivory panel above. */}
         <p className={`${styles.quoteText} ${styles.quoteTextOne}`}>
-          Documenting love in its softest form.
+          {t.panelTwoText}
         </p>
         <p className={`${styles.quoteMeta} ${styles.quoteMetaOne} ${styles.quoteMetaTwo}`}>
-          <span className={styles.metaLine}>Documentary presence. Editorial sensibility.</span>{" "}
-          <span className={styles.metaLine}>Deeply felt.</span>
+          <span className={styles.metaLine}>{t.panelTwoMeta[0]}</span>{" "}
+          <span className={styles.metaLine}>{t.panelTwoMeta[1]}</span>
         </p>
       </section>
 
@@ -169,7 +171,7 @@ export default function HomePage() {
           to margin, the words over its left side, centred on its height ---------- */}
       <section className={styles.invite} aria-labelledby="invite">
         <Figure
-          photo={PHOTOS.homeInvite}
+          photo={photo(PHOTOS.homeInvite)}
           ratio={2.2}
           mobileRatio={0.818}
           sizes="100vw"
@@ -177,39 +179,35 @@ export default function HomePage() {
         />
         <div className={styles.inviteText}>
           <h2 className={`${styles.title} ${styles.caps}`} id="invite">
-            Let&rsquo;s create
+            <Lines lines={t.inviteTitle} />
             <br />
-            something
-            <br />
-            <em className={styles.inviteEm}>meaningful.</em>
+            <em className={styles.inviteEm}>{t.inviteTitleEm}</em>
           </h2>
           <p className={`label ${styles.inviteTags}`}>
-            Weddings
-            <span className={styles.inviteDot} aria-hidden="true">
-              &middot;
-            </span>
-            Love stories
-            <span className={styles.inviteDot} aria-hidden="true">
-              &middot;
-            </span>
-            Portraits
+            <Dotted items={t.inviteTags} dotClass={styles.inviteDot} />
           </p>
-          <Link href="/contact" className={`btn btn-light ${styles.inviteCta}`}>
-            Enquire
+          <Link href={localizePath("/contact", lang)} className={`btn btn-light ${styles.inviteCta}`}>
+            {dict.common.enquire}
           </Link>
         </div>
         <p className={`label ${styles.inviteLocation}`}>
-          Lausanne
-          <span className={styles.inviteDot} aria-hidden="true">
-            &middot;
-          </span>
-          Switzerland
-          <span className={styles.inviteDot} aria-hidden="true">
-            &middot;
-          </span>
-          Europe
+          <Dotted items={t.inviteLocation} dotClass={styles.inviteDot} />
         </p>
       </section>
     </div>
   );
+}
+
+/** Words set in a line with a middle dot between each. */
+function Dotted({ items, dotClass }: { items: readonly string[]; dotClass: string }) {
+  return items.map((item, index) => (
+    <span key={item}>
+      {index > 0 ? (
+        <span className={dotClass} aria-hidden="true">
+          &middot;
+        </span>
+      ) : null}
+      {item}
+    </span>
+  ));
 }

@@ -7,24 +7,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The French routes of the previous site keep working.
-      { source: "/a-propos", destination: "/about", permanent: true },
-      { source: "/mariages", destination: "/portfolio#weddings", permanent: true },
-      {
-        source: "/ceremonies-civiles",
-        destination: "/portfolio#intimate-celebrations",
-        permanent: true,
-      },
-      {
-        source: "/anniversaires",
-        destination: "/portfolio#intimate-celebrations",
-        permanent: true,
-      },
-      {
-        source: "/maternite-naissance",
-        destination: "/portfolio#intimate-celebrations",
-        permanent: true,
-      },
+      // The French routes of the previous site lead to the French pages.
+      { source: "/a-propos", destination: "/fr/about", permanent: true },
+      { source: "/mariages", destination: "/fr/portfolio", permanent: true },
+      { source: "/ceremonies-civiles", destination: "/fr/portfolio", permanent: true },
+      { source: "/anniversaires", destination: "/fr/portfolio", permanent: true },
+      { source: "/maternite-naissance", destination: "/fr/portfolio", permanent: true },
     ];
   },
 };

@@ -2,26 +2,33 @@
 
 import { useEffect, useState } from "react";
 import Figure from "@/components/ui/Figure";
-import { SELECTED_STORIES } from "@/lib/data";
+import type { Photo } from "@/lib/data";
 import styles from "./SelectedStories.module.css";
 
-const COUNT = SELECTED_STORIES.length;
 /** frames in view on the desktop; the phone shows the first of them only */
 const IN_VIEW = 3;
 
-/* The strip carries the gallery three times over so it can glide past
-   either end; once a glide settles outside the middle copy, it is moved
-   back into it without a transition, where it looks exactly the same. */
-const SLIDES = [...SELECTED_STORIES, ...SELECTED_STORIES, ...SELECTED_STORIES];
-
 const pad = (value: number) => String(value).padStart(2, "0");
+
+type SelectedStoriesProps = {
+  /** the gallery, its descriptions already in the page's language */
+  photos: Photo[];
+  labels: { previous: string; next: string };
+  className?: string;
+};
 
 /**
  * Three frames side by side, stepped one at a time by the two squared
  * arrows; the strip glides from one frame to the next. The counter and
  * the hairline beneath follow the first frame.
  */
-export default function SelectedStories({ className }: { className?: string }) {
+export default function SelectedStories({ photos, labels, className }: SelectedStoriesProps) {
+  const COUNT = photos.length;
+  /* The strip carries the gallery three times over so it can glide past
+     either end; once a glide settles outside the middle copy, it is moved
+     back into it without a transition, where it looks exactly the same. */
+  const SLIDES = [...photos, ...photos, ...photos];
+
   /* the first frame in view, as a place on the strip */
   const [position, setPosition] = useState(COUNT);
   const [gliding, setGliding] = useState(true);
@@ -102,7 +109,7 @@ export default function SelectedStories({ className }: { className?: string }) {
             type="button"
             className={styles.arrow}
             onClick={() => step(-1)}
-            aria-label="Previous photograph"
+            aria-label={labels.previous}
           >
             &#8592;
           </button>
@@ -110,7 +117,7 @@ export default function SelectedStories({ className }: { className?: string }) {
             type="button"
             className={styles.arrow}
             onClick={() => step(1)}
-            aria-label="Next photograph"
+            aria-label={labels.next}
           >
             &#8594;
           </button>

@@ -5,12 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { InstagramGlyph, WhatsAppGlyph } from "@/components/ui/SocialIcons";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, NAV, WHATSAPP_URL } from "@/lib/data";
+import { localizePath, stripLocale, type Dictionary, type Locale } from "@/lib/i18n";
+import LanguageSwitch from "./LanguageSwitch";
 import styles from "./MobileMenu.module.css";
 
 type NavPanelProps = {
   id: string;
   open: boolean;
   onClose: () => void;
+  lang: Locale;
+  common: Dictionary["common"];
 };
 
 /**
@@ -18,8 +22,8 @@ type NavPanelProps = {
  * four links centred on warm white, the place-line and the two marks
  * beneath them.
  */
-export default function NavPanel({ id, open, onClose }: NavPanelProps) {
-  const pathname = usePathname();
+export default function NavPanel({ id, open, onClose, lang, common }: NavPanelProps) {
+  const path = stripLocale(usePathname());
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,20 +46,20 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
 
   return (
     <div id={id} ref={panelRef} className={styles.panel} hidden={!open}>
-      <nav aria-label="Primary">
+      <nav aria-label={common.primaryNav}>
         <ul className={styles.list}>
           {NAV.map((item) => {
             const active =
-              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+              item.href === "/" ? path === "/" : path.startsWith(item.href);
             return (
               <li key={item.href}>
                 <Link
-                  href={item.href}
+                  href={localizePath(item.href, lang)}
                   className={`${styles.link} ${active ? styles.linkActive : ""}`}
                   aria-current={active ? "page" : undefined}
                   onClick={onClose}
                 >
-                  {item.label}
+                  {common.nav[item.key]}
                 </Link>
               </li>
             );
@@ -64,13 +68,21 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
       </nav>
 
       <div className={styles.foot}>
+        {/* EN / FR, then the place-line on one line, then the two marks. */}
+        <LanguageSwitch
+          lang={lang}
+          label={common.language}
+          names={common.languageNames}
+          className={styles.lang}
+          onNavigate={onClose}
+        />
         {/* The place-line, on one line, directly above the two marks. */}
         <p className={styles.note}>
-          <span>Switzerland based</span>
+          <span>{common.menuPlace[0]}</span>
           <span aria-hidden="true">
             &bull;
           </span>
-          <span>Europe</span>
+          <span>{common.menuPlace[1]}</span>
         </p>
 
         {/* The two marks sit directly under the place-line, at the same
@@ -81,7 +93,7 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label={`EM Photography on Instagram — @${INSTAGRAM_HANDLE}`}
+            aria-label={`${common.instagram} — @${INSTAGRAM_HANDLE}`}
             onClick={onClose}
           >
             <InstagramGlyph size={18} />
@@ -91,7 +103,7 @@ export default function NavPanel({ id, open, onClose }: NavPanelProps) {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label="EM Photography on WhatsApp"
+            aria-label={common.whatsapp}
             onClick={onClose}
           >
             <WhatsAppGlyph size={18} />

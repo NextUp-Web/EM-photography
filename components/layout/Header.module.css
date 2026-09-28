@@ -64,6 +64,17 @@
 .nav {
   grid-column: 3;
   justify-self: end;
+  display: flex;
+  align-items: center;
+}
+
+/* EN / FR after the four links, set off by the same distance */
+.langDesktop {
+  margin-left: clamp(24px, 2.7vw, 50px);
+}
+
+.langPhone {
+  display: none;
 }
 
 /* Measured off the reference: caps 0.76% of the frame's width tall,
@@ -125,6 +136,20 @@
 
   .nav {
     display: none;
+  }
+
+  /* EN / FR on the left margin, level with the burger on the right */
+  .langPhone {
+    display: inline-flex;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .langPhone a {
+    color: var(--color-ink);
   }
 
   .toggle {

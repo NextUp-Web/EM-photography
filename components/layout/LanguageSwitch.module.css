@@ -1,0 +1,36 @@
+/* EN / FR — in the navigation's own face and tracking, a touch smaller. */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-garamond);
+  font-size: calc(var(--t-nav) * 0.92);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.divider {
+  padding-inline: 0.45em;
+  color: var(--warm-grey);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-meta);
+  transition: color var(--dur) var(--ease);
+}
+
+.link:hover,
+.link:focus-visible,
+.current {
+  color: var(--color-ink);
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CONTACT_EMAIL, INTERESTS } from "@/lib/data";
+import type { Dictionary } from "@/lib/i18n";
 import DatePicker from "./DatePicker";
 import styles from "./ContactForm.module.css";
 
@@ -11,7 +12,12 @@ type Status = "idle" | "sending" | "sent" | "error";
  * Six required fields on the grid — full name, email, phone, date, place and
  * interest — then the message, required as well.
  */
-export default function ContactForm() {
+type ContactFormProps = {
+  labels: Dictionary["form"];
+  calendar: Dictionary["datePicker"];
+};
+
+export default function ContactForm({ labels, calendar }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [date, setDate] = useState("");
   const [dateMissing, setDateMissing] = useState(false);
@@ -49,7 +55,7 @@ export default function ContactForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="fullName">
-          Full name *
+          {labels.fullName}
         </label>
         <input
           className={styles.input}
@@ -63,7 +69,7 @@ export default function ContactForm() {
 
       <div className={styles.field}>
         <label className={`label ${styles.label}`} htmlFor="email">
-          Email *
+          {labels.email}
         </label>
         <input
           className={styles.input}
@@ -77,7 +83,7 @@ export default function ContactForm() {
 
       <div className={styles.field}>
         <label className={`label ${styles.label}`} htmlFor="phone">
-          Phone *
+          {labels.phone}
         </label>
         <input
           className={styles.input}
@@ -92,7 +98,7 @@ export default function ContactForm() {
 
       <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="date">
-          Wedding / session date *
+          {labels.date}
         </label>
         <DatePicker
           id="date"
@@ -103,18 +109,19 @@ export default function ContactForm() {
             setDateMissing(false);
           }}
           invalid={dateMissing}
+          labels={calendar}
           describedBy={dateMissing ? "date-note" : undefined}
         />
         {dateMissing ? (
           <p className={`label ${styles.note}`} id="date-note">
-            Please choose a date
+            {labels.dateMissing}
           </p>
         ) : null}
       </div>
 
       <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="location">
-          Location / venue *
+          {labels.location}
         </label>
         <input
           className={styles.input}
@@ -127,7 +134,7 @@ export default function ContactForm() {
 
       <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="interest">
-          Interest *
+          {labels.interest}
         </label>
         <div className={styles.selectWrap}>
           <select
@@ -138,11 +145,11 @@ export default function ContactForm() {
             required
           >
             <option value="" disabled>
-              Please select
+              {labels.pleaseSelect}
             </option>
             {INTERESTS.map((option) => (
               <option key={option} value={option}>
-                {option}
+                {labels.interests[option] ?? option}
               </option>
             ))}
           </select>
@@ -160,7 +167,7 @@ export default function ContactForm() {
 
       <div className={`${styles.field} ${styles.fieldFull}`}>
         <label className={`label ${styles.label}`} htmlFor="message">
-          Tell me a little about your story *
+          {labels.message}
         </label>
         <textarea
           className={`${styles.input} ${styles.textarea}`}
@@ -171,7 +178,7 @@ export default function ContactForm() {
           aria-describedby="message-note"
         />
         <p className={`label ${styles.note}`} id="message-note">
-          Response within 24 hours
+          {labels.responseTime}
         </p>
       </div>
 
@@ -181,16 +188,16 @@ export default function ContactForm() {
           className={`btn ${styles.submit}`}
           disabled={status === "sending"}
         >
-          {status === "sending" ? "Sending" : "Send inquiry"}
+          {status === "sending" ? labels.sending : labels.send}
         </button>
 
         <p className={styles.status} role="status" aria-live="polite">
           {status === "sent"
-            ? "Thank you — your message is on its way. I answer every enquiry personally, within 24 hours."
+            ? labels.sent
             : null}
           {status === "error" ? (
             <>
-              The message could not be sent. Please write to me directly at{" "}
+              {labels.failed}{" "}
               <a className={styles.mail} href={`mailto:${CONTACT_EMAIL}`}>
                 {CONTACT_EMAIL}
               </a>

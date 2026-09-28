@@ -6,7 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import TopLink from "@/components/ui/TopLink";
 import NavPanel from "./MobileMenu";
+import LanguageSwitch from "./LanguageSwitch";
 import { NAV } from "@/lib/data";
+import { localizePath, stripLocale, type Dictionary, type Locale } from "@/lib/i18n";
 import styles from "./Header.module.css";
 
 /**
@@ -19,8 +21,11 @@ import styles from "./Header.module.css";
  * The bar sits on warm white on every page and stays put while scrolling.
  * It carries no rule of its own at any point.
  */
-export default function Header() {
+type HeaderProps = { lang: Locale; common: Dictionary["common"] };
+
+export default function Header({ lang, common }: HeaderProps) {
   const pathname = usePathname();
+  const path = stripLocale(pathname);
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -34,14 +39,14 @@ export default function Header() {
           {/* The name takes the visitor back to the top of the page they are on. */}
           <TopLink
             className={styles.brand}
-            label="EM Photography — back to the top of the page"
+            label={common.backToTop}
             onClick={() => setOpen(false)}
           >
             {/* The supplied lockup — EM PHOTOGRAPHY over WEDDING & PORTRAIT
                 PHOTOGRAPHER — never re-typed with a font. */}
             <Image
               src="/brand/em-wordmark-black.png"
-              alt="EM Photography — Wedding & Portrait Photographer"
+              alt={common.logoAlt}
               width={1219}
               height={174}
               priority
@@ -51,27 +56,41 @@ export default function Header() {
           </TopLink>
 
           {/* Desktop — the four links themselves, widely spaced and thin. */}
-          <nav className={styles.nav} aria-label="Primary">
+          <nav className={styles.nav} aria-label={common.primaryNav}>
             <ul className={styles.navList}>
               {NAV.map((item) => {
                 const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
+                  item.href === "/" ? path === "/" : path.startsWith(item.href);
                 return (
                   <li key={item.href}>
                     <Link
-                      href={item.href}
+                      href={localizePath(item.href, lang)}
                       className={styles.navLink}
                       aria-current={active ? "page" : undefined}
                     >
-                      {item.label}
+                      {common.nav[item.key]}
                     </Link>
                   </li>
                 );
               })}
             </ul>
+            <LanguageSwitch
+              lang={lang}
+              label={common.language}
+              names={common.languageNames}
+              className={styles.langDesktop}
+            />
           </nav>
+
+          {/* Phone — the language on the left, balancing the burger on the right. */}
+          <LanguageSwitch
+            lang={lang}
+            label={common.language}
+            names={common.languageNames}
+            className={styles.langPhone}
+            compact
+            onNavigate={() => setOpen(false)}
+          />
 
           {/* Phone — the same four, behind one burger. */}
           <button
@@ -79,7 +98,7 @@ export default function Header() {
             className={styles.toggle}
             aria-expanded={open}
             aria-controls={panelId}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? common.closeMenu : common.openMenu}
             onClick={() => setOpen((value) => !value)}
           >
             <span
@@ -94,7 +113,13 @@ export default function Header() {
         </div>
       </header>
 
-      <NavPanel id={panelId} open={open} onClose={() => setOpen(false)} />
+      <NavPanel
+        id={panelId}
+        open={open}
+        onClose={() => setOpen(false)}
+        lang={lang}
+        common={common}
+      />
     </>
   );
 }

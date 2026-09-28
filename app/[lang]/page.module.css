@@ -101,6 +101,12 @@
   white-space: nowrap;
 }
 
+/* In French the second panel's line runs longer: on the narrowest
+   desktops it sets just small enough to stay on one line. */
+:global(html[lang="fr-CH"]) .quoteMetaTwo {
+  font-size: min(clamp(0.5625rem, 0.855vw, 0.774rem), (100vw - 304px) / 65);
+}
+
 /* the first panel's line, a further 5% smaller */
 .quoteMetaFirst {
   font-size: clamp(0.534rem, 0.812vw, 0.735rem);
@@ -316,6 +322,11 @@
     font-size: calc(max(var(--t-title), min(5.72cqw, 5.3rem)) * 0.9);
   }
 
+  /* the French title runs a little wider: a touch smaller, clear of the couple */
+  :global(html[lang="fr-CH"]) .inviteText .title {
+    font-size: calc(max(var(--t-title), min(5.72cqw, 5.3rem)) * 0.84);
+  }
+
   .home .inviteTags {
     margin-top: max(var(--step-m), min(3cqw, 54px));
     font-size: calc(max(var(--t-label), min(1.3cqw, 1.2rem)) * 0.9);
@@ -348,6 +359,17 @@
    ============================================================ */
 
 @media (max-width: 860px) {
+  /* French on the phone: the longer titles and sentences find their own,
+     balanced line breaks rather than leaving a word alone */
+  :global(html[lang="fr-CH"]) .intro .title br {
+    display: none;
+  }
+
+  :global(html[lang="fr-CH"]) .intro .title,
+  :global(html[lang="fr-CH"]) .quoteTextOne {
+    text-wrap: balance;
+  }
+
   /* the hero starts where the phone mockup starts it */
   .home {
     padding-top: 13px;
@@ -420,6 +442,11 @@
     display: block;
   }
 
+  /* the French line is a little longer: it sets a touch smaller to hold */
+  :global(html[lang="fr-CH"]) .quoteMetaTwo {
+    font-size: min(0.585rem, (100vw - 80px) / 43.5);
+  }
+
   .storiesHead .body {
     text-wrap: balance;
   }
@@ -465,7 +492,8 @@
     margin-top: 3.65cqw;
     min-width: 28.5cqw;
     min-height: 10.45cqw;
-    padding: 1.05cqw 0 0;
+    /* room either side for a longer word, as in French */
+    padding: 1.05cqw 4cqw 0;
     font-size: 2.67cqw;
   }
 

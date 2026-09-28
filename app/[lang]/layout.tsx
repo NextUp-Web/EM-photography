@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Bodoni_Moda, Cormorant_Garamond, Montserrat } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { notFound } from "next/navigation";
 import { SITE_URL } from "@/lib/data";
-import "./globals.css";
+import { LOCALES, alternatesFor, getDictionary, isLocale } from "@/lib/i18n";
+import "../globals.css";
 
 /* One family for the whole site — Cormorant Garamond, the face of the
    navigation and the footer — in its regular, semibold and bold weights,
@@ -35,41 +37,57 @@ const montserrat = Montserrat({
 
 const FAVICON = "/brand/em-logo-black.png";
 
-const DESCRIPTION =
-  "Editorial documentary wedding photography in Switzerland and across Europe. Honest, intimate and timeless imagery for modern love stories.";
+/* Both languages are built ahead of time; any other prefix is a 404. */
+export const dynamicParams = false;
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "EM Photography | Wedding Photographer in Switzerland",
-    template: "%s",
-  },
-  description: DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "en_GB",
-    url: SITE_URL,
-    siteName: "EM Photography",
-    title: "EM Photography | Wedding Photographer in Switzerland",
-    description: DESCRIPTION,
-  },
-  icons: { icon: FAVICON },
-};
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type LayoutParams = { params: Promise<{ lang: string }> };
+
+export async function generateMetadata({ params }: LayoutParams): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const { meta } = getDictionary(lang);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: meta.siteTitle, template: "%s" },
+    description: meta.siteDescription,
+    alternates: alternatesFor("/", lang),
+    openGraph: {
+      type: "website",
+      locale: meta.ogLocale,
+      url: SITE_URL,
+      siteName: "EM Photography",
+      title: meta.siteTitle,
+      description: meta.siteDescription,
+    },
+    icons: { icon: FAVICON },
+  };
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: LayoutParams & { children: React.ReactNode }) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const dict = getDictionary(lang);
+
   return (
     <html
-      lang="en"
+      lang={dict.htmlLang}
       className={`${cormorant.variable} ${bodoni.variable} ${montserrat.variable}`}
     >
       <body>
         <a className="skip-link" href="#main">
-          Skip to content
+          {dict.common.skipToContent}
         </a>
-        <Header />
+        <Header lang={lang} common={dict.common} />
         <main id="main">{children}</main>
-        <Footer />
+        <Footer lang={lang} common={dict.common} />
       </body>
     </html>
   );

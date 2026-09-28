@@ -157,6 +157,11 @@
 /* On the phone the line stays whole: the two places and the dot centred
    together on one line, the size following the width of the screen. */
 @media (max-width: 860px) {
+  /* the French links run longer: a little closer, still on one line */
+  :global(html[lang="fr-CH"]) .nav {
+    column-gap: 14px;
+  }
+
   .place {
     display: flex;
     justify-content: center;
