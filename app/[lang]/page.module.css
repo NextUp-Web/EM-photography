@@ -359,15 +359,16 @@
    ============================================================ */
 
 @media (max-width: 860px) {
-  /* French on the phone: the longer titles and sentences find their own,
-     balanced line breaks rather than leaving a word alone */
-  :global(html[lang="fr-CH"]) .intro .title br {
-    display: none;
-  }
-
-  :global(html[lang="fr-CH"]) .intro .title,
+  /* French on the phone: the first panel's sentence runs much longer
+     than the English, so it finds its own balanced line breaks rather
+     than holding two lines wider than the screen */
   :global(html[lang="fr-CH"]) .quoteTextOne {
     text-wrap: balance;
+  }
+
+  :global(html[lang="fr-CH"]) .quoteTextOne .bandLine {
+    display: inline;
+    white-space: normal;
   }
 
   /* the hero starts where the phone mockup starts it */

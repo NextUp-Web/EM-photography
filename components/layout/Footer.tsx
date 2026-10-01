@@ -65,13 +65,13 @@ export default function Footer({ lang, common }: FooterProps) {
           </a>
         </div>
 
-        {/* The dot sits on the page's centre line, the two places either side. */}
+        {/* The whole line centred on the page, the dot between the two places. */}
         <p className={styles.place}>
-          <span className={styles.placeStart}>{common.placeStart}</span>
+          <span>{common.placeStart}</span>
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          <span className={styles.placeEnd}>{common.placeEnd}</span>
+          <span>{common.placeEnd}</span>
         </p>
 
         {/* The copyright in the links' own face and size. Cormorant draws its

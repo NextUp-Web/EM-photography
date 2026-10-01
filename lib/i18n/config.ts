@@ -20,10 +20,13 @@ export function localizePath(path: string, locale: Locale): string {
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
 }
 
-/** The path without its language prefix: "/fr/about" → "/about". */
+/**
+ * The path without its language prefix: "/fr/about" → "/about". The
+ * English pages are rendered at /en/… behind the scenes, so that prefix
+ * is taken off as well.
+ */
 export function stripLocale(pathname: string): string {
   for (const locale of LOCALES) {
-    if (locale === DEFAULT_LOCALE) continue;
     if (pathname === `/${locale}`) return "/";
     if (pathname.startsWith(`/${locale}/`)) return pathname.slice(locale.length + 1);
   }

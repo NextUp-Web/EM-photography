@@ -47,10 +47,10 @@ export default function Header({ lang, common }: HeaderProps) {
             <Image
               src="/brand/em-wordmark-black.png"
               alt={common.logoAlt}
-              width={1219}
-              height={174}
+              width={1119}
+              height={171}
               priority
-              sizes="(max-width: 860px) 272px, 340px"
+              sizes="(max-width: 860px) 250px, 312px"
               className={styles.wordmarkImage}
             />
           </TopLink>

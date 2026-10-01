@@ -47,11 +47,11 @@
 }
 
 /* EM PHOTOGRAPHY over WEDDING & PORTRAIT PHOTOGRAPHER — the supplied
-   lockup, as wide as the typed name was on the desktop, growing a little
-   with the bar and never past 340px. */
+   lockup, its tagline narrower than the name and centred beneath it,
+   growing a little with the bar and never past 312px. */
 .wordmarkImage {
   display: block;
-  width: clamp(260px, 21cqw, 340px);
+  width: clamp(239px, 19.3cqw, 312px);
   height: auto;
 }
 
@@ -131,7 +131,7 @@
 
   /* centred, and always clear of the burger at the right margin */
   .wordmarkImage {
-    width: min(272px, 100cqw - 140px);
+    width: min(250px, 100cqw - 140px);
   }
 
   .nav {

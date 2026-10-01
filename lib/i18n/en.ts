@@ -16,9 +16,9 @@ export const en = {
     portfolioTitle: "Portfolio | EM Photography",
     portfolioDescription:
       "Documenting love in the softest way — selected wedding and couple stories in Switzerland, Italy and across Europe.",
-    aboutTitle: "About Emma | EM Photography",
+    aboutTitle: "About Emra | EM Photography",
     aboutDescription:
-      "Emma, the photographer behind EM Photography — a quiet attention to what remains.",
+      "Emra, the photographer behind EM Photography — a quiet attention to what remains.",
     contactTitle: "Contact | EM Photography",
     contactDescription:
       "Tell me what you want to remember — enquiries for weddings, couples and intimate celebrations in Switzerland and across Europe.",
@@ -64,7 +64,7 @@ export const en = {
     aboutLabel: "About",
     aboutTitle: ["A quiet attention to", "what remains."],
     aboutBody:
-      "Drawn to the beauty of what is felt rather than staged — to subtle gestures, fleeting expressions, and the details that shape the atmosphere of a moment. I’m drawn to photographs that feel honest, instinctive, and deeply connected to the people within them.",
+      "Drawn to photographs that carry something beyond the moment — a sense of connection, presence, and the way people are with one another. I capture images that feel honest and natural, true to the people within them and to what mattered most in that moment.",
     moreAboutMe: "More about me",
     panelTwoText: "Documenting love in its softest form.",
     panelTwoMeta: ["Documentary presence. Editorial sensibility.", "Deeply felt."],
@@ -96,10 +96,10 @@ export const en = {
   about: {
     label: "About",
     title: ["A quiet attention to", "what remains."],
-    lead: ["I’m Emma, the photographer", "behind EM Photography."],
+    lead: ["I’m Emra, the photographer", "behind EM PHOTOGRAPHY."],
     body:
-      "Based in Lausanne and working throughout Switzerland, I’m drawn to what feels natural, understated and deeply human — subtle gestures, fleeting expressions and the quiet details that give a moment its meaning.",
-    traceTitle: ["More than a record", "of the day,", "a trace of what", "it felt like."],
+      "Based in Lausanne and working throughout Switzerland, I’m drawn to photographs that carry something beyond the moment — a sense of connection, presence, and the way people are with one another.",
+    traceTitle: ["More than a record", "of the day –", "a trace of what", "it felt like."],
     traceBody: [
       "Inspired by natural light, genuine connection and the beauty of what often goes unnoticed, I photograph with a sensitivity to atmosphere, rhythm and presence.",
       "I work intuitively and with a light touch — observing closely, guiding gently when needed, and preserving what feels true to you.",
@@ -141,10 +141,12 @@ export const en = {
     failed: "The message could not be sent. Please write to me directly at",
     interests: {
       Wedding: "Wedding",
-      Couples: "Couples",
       Engagement: "Engagement",
+      Couple: "Couple",
+      Maternity: "Maternity",
+      Family: "Family",
       Portrait: "Portrait",
-      Other: "Other",
+      Others: "Others",
     } as Record<string, string>,
   },
 

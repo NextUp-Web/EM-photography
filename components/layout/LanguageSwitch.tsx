@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LOCALES, localizePath, stripLocale, type Locale } from "@/lib/i18n/config";
@@ -20,7 +21,12 @@ type LanguageSwitchProps = {
  * set in ink, the other a shade quieter; each link names its language in
  * that language for screen readers. Compact, only the other language
  * shows, as a toggle.
+ *
+ * Switching keeps the reader where they were: the share of the page
+ * already scrolled is noted on the way out and restored on the same page
+ * in the other language, rather than starting again at the top.
  */
+const KEPT_SCROLL = "em:language-scroll";
 export default function LanguageSwitch({
   lang,
   label,
@@ -29,8 +35,35 @@ export default function LanguageSwitch({
   compact = false,
   onNavigate,
 }: LanguageSwitchProps) {
-  const path = stripLocale(usePathname());
+  const pathname = usePathname();
+  const path = stripLocale(pathname);
   const shown = compact ? LOCALES.filter((locale) => locale !== lang) : LOCALES;
+
+  useEffect(() => {
+    let kept: { to: string; share: number } | null = null;
+    try {
+      kept = JSON.parse(sessionStorage.getItem(KEPT_SCROLL) ?? "null");
+      if (kept?.to !== localizePath(path, lang)) return;
+      sessionStorage.removeItem(KEPT_SCROLL);
+    } catch {
+      return;
+    }
+    const share = kept.share;
+    requestAnimationFrame(() => {
+      const room = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: Math.round(share * room), behavior: "instant" });
+    });
+  }, [path, lang]);
+
+  function keepScroll(to: string) {
+    const room = document.documentElement.scrollHeight - window.innerHeight;
+    const share = room > 0 ? window.scrollY / room : 0;
+    try {
+      sessionStorage.setItem(KEPT_SCROLL, JSON.stringify({ to, share }));
+    } catch {
+      /* without storage the page simply opens at the top */
+    }
+  }
 
   return (
     <nav aria-label={label} className={[styles.switch, className].filter(Boolean).join(" ")}>
@@ -48,7 +81,11 @@ export default function LanguageSwitch({
             aria-label={names[locale]}
             aria-current={locale === lang ? "true" : undefined}
             className={`${styles.link} ${locale === lang ? styles.current : ""}`}
-            onClick={onNavigate}
+            scroll={false}
+            onClick={() => {
+              if (locale !== lang) keepScroll(localizePath(path, locale));
+              onNavigate?.();
+            }}
           >
             {locale.toUpperCase()}
           </Link>
