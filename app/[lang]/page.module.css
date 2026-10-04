@@ -366,17 +366,11 @@
 @media (max-width: 860px) {
   /* French on the phone: the longer titles and sentences find their own,
      balanced line breaks rather than leaving a word alone */
-  /* French keeps the English's line count everywhere: the first panel's
-     two longer lines set just small enough to hold, as the English does */
-  :global(html[lang="fr-CH"]) .quoteTextOne {
-    font-size: min(1.305rem, (100vw - 80px) / 25.7);
-  }
-
-  /* and the second panel's sentence holds one line, as the English does */
-  :global(html[lang="fr-CH"]) .quoteText:not(.quoteTextOne) {
-    max-width: none;
-    white-space: nowrap;
-    font-size: min(clamp(1.45rem, 2.57vw, 2.4rem), (100vw - 80px) / 24.4);
+  /* French, same face and size as the English: the first panel's two
+     longer lines simply wrap on the phone */
+  :global(html[lang="fr-CH"]) .bandLine {
+    display: inline;
+    white-space: normal;
   }
 
   /* the hero starts where the phone mockup starts it */
