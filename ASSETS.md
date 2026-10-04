@@ -7,11 +7,12 @@ document is now the source of truth**: where it gives a text, a composition or
 a reference screenshot, it wins over the original mockups and over the older
 copy on the page.
 
-Two of its wordings are deliberate and must not be "corrected": the Home
-About block reads *A quiet eve for what unfolds naturally.* and the About page
-line reads *I'm Emma, the photograph behind EM Photography.* The About page's
-own headline keeps *A quiet eye for what unfolds naturally*, as its reference
-screenshot prints it. The photographer is **Emma**.
+A later document, *Modifications_site.docx*, revises it again and wins
+where they differ: the photographer is **Emra** (*I'm Emra, the
+photographer behind EM PHOTOGRAPHY.*), the French copy follows its red
+text word for word, and two French lines stay in English on purpose —
+*Where refined imagery meets genuine emotion.* and *Documentary presence.
+Editorial sensibility. Deeply felt.*
 
 ## Reading the revision document
 
@@ -94,11 +95,14 @@ else.
 
 ## The logo
 
-`public/brand/em-logo-black.png` is the client's own artwork — the interlocked
-EM monogram over PHOTOGRAPHY. It is used in the header, the footer, the home
-page's closing sign-off and as the favicon, never re-typed with a font.
-`em-logo-white.png` is the same lockup in white: it sets the home hero and the
-header while the header rides over that hero.
+The site draws the client's own artwork as vector tracings (SVG) of the
+two files they supplied, so it stays sharp at any size and is never
+re-typed with a font: `public/brand/em-logo-black.svg` — the interlocked
+EM monogram over PHOTOGRAPHY — in the footer and as the favicon, and
+`em-wordmark-black.svg` — EM PHOTOGRAPHY over WEDDING & PORTRAIT
+PHOTOGRAPHER — in the bar. `em-logo-white.svg` and `em-mark-*.svg` (the
+monogram alone) are the same drawing in white and cropped. The older PNGs
+beside them are kept only for the extraction scripts.
 
 Navigation splits by platform, as the revision document asks. Above 860px the
 four links are printed in the bar itself — Home, Portfolio, About, Contact —

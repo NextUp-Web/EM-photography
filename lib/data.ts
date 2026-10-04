@@ -62,7 +62,7 @@ export const PHOTOS = {
   },
   aboutPortrait: {
     src: `${V3}/about/portrait.webp`,
-    alt: "Emma, camera in hand, on a terrace above the lake",
+    alt: "Emra, camera in hand, on a terrace above the lake",
     position: "center 55%",
     bw: true,
   },
@@ -79,25 +79,25 @@ export const PHOTOS = {
   /* ---- About ---- */
   aboutHero: {
     src: `${V3}/about/hero.webp`,
-    alt: "Emma on a terrace above the lake, the mountains catching the last light",
+    alt: "Emra on a terrace above the lake, the mountains catching the last light",
     position: "center 46%",
   },
-  /* The About opening: one tall frame of Emma at work, and a smaller
+  /* The About opening: one tall frame of Emra at work, and a smaller
      frame laid over its lower right corner. */
   aboutLead: {
     src: `${V3}/about/portrait.webp`,
-    alt: "Emma, camera in hand, on the shore of the lake",
+    alt: "Emra, camera in hand, on the shore of the lake",
     position: "center 40%",
   },
   aboutLeadInset: {
     src: `${V3}/home/emra.webp`,
-    alt: "Emma looking out over the lake and the mountains at sunset",
+    alt: "Emra looking out over the lake and the mountains at sunset",
     position: "center 34%",
   },
   /* The monochrome frame beside "More than a record of the day". */
   aboutTrace: {
     src: `${V3}/about/hero.webp`,
-    alt: "Emma seated on the terrace, the lake and the mountains beyond her",
+    alt: "Emra seated on the terrace, the lake and the mountains beyond her",
     position: "30% 50%",
     bw: true,
   },
@@ -547,13 +547,15 @@ export const PORTFOLIO_GRID_PHONE: number[][] = [
    Contact form
    ------------------------------------------------------------------ */
 
-/** Maternity and Anniversary are deliberately not offered. */
+/** In the client's own order. */
 export const INTERESTS = [
   "Wedding",
-  "Couples",
   "Engagement",
+  "Couple",
+  "Maternity",
+  "Family",
   "Portrait",
-  "Other",
+  "Others",
 ];
 
 export const CONTACT_EMAIL = "contact@em-photography.ch";

@@ -36,21 +36,21 @@ export default function Header({ lang, common }: HeaderProps) {
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          {/* The name takes the visitor back to the top of the page they are on. */}
+          {/* The name leads home — or, on the home page, back to its top. */}
           <TopLink
+            href={localizePath("/", lang)}
             className={styles.brand}
-            label={common.backToTop}
+            label={common.homeLink}
             onClick={() => setOpen(false)}
           >
             {/* The supplied lockup — EM PHOTOGRAPHY over WEDDING & PORTRAIT
                 PHOTOGRAPHER — never re-typed with a font. */}
             <Image
-              src="/brand/em-wordmark-black.png"
+              src="/brand/em-wordmark-black.svg"
               alt={common.logoAlt}
-              width={1219}
-              height={174}
+              width={1482}
+              height={217}
               priority
-              sizes="(max-width: 860px) 272px, 340px"
               className={styles.wordmarkImage}
             />
           </TopLink>

@@ -324,12 +324,17 @@
 
   /* the French title runs a little wider: a touch smaller, clear of the couple */
   :global(html[lang="fr-CH"]) .inviteText .title {
-    font-size: calc(max(var(--t-title), min(5.72cqw, 5.3rem)) * 0.84);
+    font-size: calc(max(var(--t-title), min(5.72cqw, 5.3rem)) * 0.72);
   }
 
   .home .inviteTags {
     margin-top: max(var(--step-m), min(3cqw, 54px));
     font-size: calc(max(var(--t-label), min(1.3cqw, 1.2rem)) * 0.9);
+  }
+
+  /* "Histoires d'amour" makes the French line longer: a touch smaller */
+  :global(html[lang="fr-CH"]) .home .inviteTags {
+    font-size: calc(max(var(--t-label), min(1.3cqw, 1.2rem)) * 0.8);
   }
 
   .home .inviteLocation {
@@ -368,6 +373,12 @@
   :global(html[lang="fr-CH"]) .intro .title,
   :global(html[lang="fr-CH"]) .quoteTextOne {
     text-wrap: balance;
+  }
+
+  /* its two French lines are too long to hold whole on a phone */
+  :global(html[lang="fr-CH"]) .bandLine {
+    display: inline;
+    white-space: normal;
   }
 
   /* the hero starts where the phone mockup starts it */

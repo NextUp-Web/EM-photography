@@ -1,7 +1,10 @@
 import Image from "next/image";
 import styles from "./Logo.module.css";
 
-/** Intrinsic sizes of the supplied lockup and of the monogram cut from it. */
+/**
+ * Intrinsic sizes of the supplied lockup and of the monogram cut from it —
+ * both vector tracings of the client's artwork, sharp at any size.
+ */
 const SIZES = {
   lockup: { width: 697, height: 661 },
   mark: { width: 480, height: 560 },
@@ -13,12 +16,6 @@ type LogoProps = {
   shape?: "lockup" | "mark";
   /** CSS height; defaults to the header token */
   height?: string;
-  /**
-   * The width the lockup is actually drawn at, for the browser to pick a
-   * source from. The footer prints it several times larger than the bar
-   * does, and the default would leave it soft there.
-   */
-  sizes?: string;
   priority?: boolean;
   className?: string;
 };
@@ -30,7 +27,6 @@ export default function Logo({
   variant = "black",
   shape = "lockup",
   height,
-  sizes = "120px",
   priority = false,
   className,
 }: LogoProps) {
@@ -41,12 +37,11 @@ export default function Logo({
   return (
     <span className={[styles.logo, className].filter(Boolean).join(" ")} style={style}>
       <Image
-        src={`/brand/${file}-${variant}.png`}
+        src={`/brand/${file}-${variant}.svg`}
         alt="EM Photography"
         width={width}
         height={intrinsicHeight}
         priority={priority}
-        sizes={sizes}
         className={styles.image}
       />
     </span>

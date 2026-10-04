@@ -35,7 +35,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-const FAVICON = "/brand/em-logo-black.png";
+const FAVICON = "/brand/em-logo-black.svg";
 
 /* Both languages are built ahead of time; any other prefix is a 404. */
 export const dynamicParams = false;

@@ -19,7 +19,8 @@ type LanguageSwitchProps = {
  * EN / FR — the same page in the other language. The current language is
  * set in ink, the other a shade quieter; each link names its language in
  * that language for screen readers. Compact, only the other language
- * shows, as a toggle.
+ * shows, as a toggle. Switching keeps the reader where they are on the
+ * page rather than sending them back to its top.
  */
 export default function LanguageSwitch({
   lang,
@@ -48,6 +49,7 @@ export default function LanguageSwitch({
             aria-label={names[locale]}
             aria-current={locale === lang ? "true" : undefined}
             className={`${styles.link} ${locale === lang ? styles.current : ""}`}
+            scroll={false}
             onClick={onNavigate}
           >
             {locale.toUpperCase()}

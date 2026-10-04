@@ -26,10 +26,11 @@ export default function Footer({ lang, common }: FooterProps) {
 
       <div className={styles.inner}>
         <TopLink
+          href={localizePath("/", lang)}
           className={styles.brand}
-          label={common.backToTop}
+          label={common.homeLink}
         >
-          <Logo height="var(--footer-logo-h)" sizes="(max-width: 860px) 96px, 160px" />
+          <Logo height="var(--footer-logo-h)" />
         </TopLink>
 
         <nav aria-label={common.footerNav}>
@@ -65,13 +66,13 @@ export default function Footer({ lang, common }: FooterProps) {
           </a>
         </div>
 
-        {/* The dot sits on the page's centre line, the two places either side. */}
+        {/* The two places and their dot, centred together under the links. */}
         <p className={styles.place}>
-          <span className={styles.placeStart}>{common.placeStart}</span>
+          <span>{common.placeStart}</span>
           <span className={styles.dot} aria-hidden="true">
             &bull;
           </span>
-          <span className={styles.placeEnd}>{common.placeEnd}</span>
+          <span>{common.placeEnd}</span>
         </p>
 
         {/* The copyright in the links' own face and size. Cormorant draws its

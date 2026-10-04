@@ -3,7 +3,7 @@ import type { Dictionary } from "./en";
 /* ------------------------------------------------------------------
    Français — written for the page rather than word for word: the
    register a Swiss wedding photographer uses with her couples
-   ("vous", first person, Emma writing as a woman), the words the
+   ("vous", first person, Emra writing as a woman), the words the
    trade uses in French (reportage, élopement, prestation), and the
    same quiet, understated voice as the English.
    ------------------------------------------------------------------ */
@@ -19,13 +19,13 @@ export const fr: Dictionary = {
     ogLocale: "fr_CH",
     portfolioTitle: "Portfolio | EM Photography",
     portfolioDescription:
-      "L’amour, en images — une sélection de mariages et d’histoires de couples en Suisse, en Italie et dans toute l’Europe.",
-    aboutTitle: "À propos d’Emma | EM Photography",
+      "L’amour, tel qu’il est — une sélection de mariages et d’histoires de couples en Suisse, en Italie et dans toute l’Europe.",
+    aboutTitle: "À propos d’Emra | EM Photography",
     aboutDescription:
-      "Emma, la photographe derrière EM Photography — une attention discrète à ce qui demeure.",
+      "Emra, la photographe derrière EM Photography — une attention discrète à ce qui demeure.",
     contactTitle: "Contact | EM Photography",
     contactDescription:
-      "Dites-moi ce que vous voulez garder en mémoire — demandes pour mariages, séances couple et célébrations intimes, en Suisse et dans toute l’Europe.",
+      "Dites-moi ce que vous souhaitez garder en mémoire — demandes pour mariages, séances couple et célébrations intimes, en Suisse et dans toute l’Europe.",
     storyDescription: (name: string, place: string) =>
       `${name} — ${place}. Une histoire d’amour racontée avec douceur, profondeur et intention.`,
   },
@@ -37,7 +37,7 @@ export const fr: Dictionary = {
     footerNav: "Navigation du pied de page",
     openMenu: "Ouvrir le menu",
     closeMenu: "Fermer le menu",
-    backToTop: "EM Photography — retour en haut de la page",
+    homeLink: "EM Photography — accueil",
     logoAlt: "EM Photography — photographe de mariage et de portrait",
     instagram: "EM Photography sur Instagram",
     whatsapp: "EM Photography sur WhatsApp",
@@ -53,28 +53,28 @@ export const fr: Dictionary = {
   home: {
     heroLabel: "EM Photography",
     philosophyLabel: "Philosophie",
-    philosophyTitle: ["Là où l’image raffinée", "rencontre l’émotion sincère."],
+    philosophyTitle: ["Where refined imagery", "meets genuine emotion."],
     approachLabel: "Approche",
     approachTitle: ["Pour tout ce que les mots", "ne sauraient dire."],
-    approachLead: ["Les détails discrets.", "Les instants suspendus."],
+    approachLead: ["Les détails discrets.", "Les instants qui se jouent entre deux."],
     approachBody:
-      "Je raconte des histoires avec une sensibilité documentaire et un regard éditorial raffiné — attentive aux gestes subtils, aux expressions fugaces et aux détails qui, en silence, façonnent la journée.",
+      "Je photographie les histoires avec une sensibilité documentaire et un regard éditorial raffiné — attentive aux gestes subtils, aux expressions fugaces et aux détails qui façonnent discrètement la journée.",
     viewPortfolio: "Voir le portfolio",
-    panelOneLines: ["Pour ceux qu’attirent les images", "qui se révèlent au fil du regard."],
-    panelOneMeta: "La beauté du regard attentif.",
-    storiesLabel: "Histoires choisies",
+    panelOneLines: ["Pour celles et ceux qui aiment les photographies", "qui en révèlent davantage à mesure qu’on les regarde."],
+    panelOneMeta: "La beauté de regarder de plus près.",
+    storiesLabel: "Sélection d’histoires",
     storiesBody:
-      "Une collection naturelle, réfléchie et profondément liée à l’atmosphère de votre célébration — qui se déploie chapitre après chapitre, chacun avec son rythme et son émotion.",
+      "Une collection d’images naturelle, pensée avec soin et profondément liée à l’atmosphère de votre célébration — qui se dévoile chapitre après chapitre, chacun avec son propre rythme et sa propre émotion.",
     aboutLabel: "À propos",
     aboutTitle: ["Une attention discrète", "à ce qui demeure."],
     aboutBody:
-      "Sensible à la beauté de ce qui se ressent plutôt que de ce qui se met en scène — aux gestes subtils, aux expressions fugaces et aux détails qui donnent à un moment son atmosphère. J’aime les photographies sincères, instinctives, profondément liées à celles et ceux qu’elles racontent.",
-    moreAboutMe: "Mieux me connaître",
-    panelTwoText: "Raconter l’amour dans ce qu’il a de plus doux.",
-    panelTwoMeta: ["Présence documentaire. Sensibilité éditoriale.", "Profondément ressenti."],
-    inviteTitle: ["Créons", "ensemble"],
-    inviteTitleEm: "ce qui compte.",
-    inviteTags: ["Mariages", "Couples", "Portraits"],
+      "Sensible aux photographies qui portent quelque chose au-delà de l’instant — un lien, une présence, une manière d’être ensemble. Je cherche à créer des images sincères et naturelles, fidèles aux personnes qu’elles montrent et à ce qui comptait vraiment à cet instant.",
+    moreAboutMe: "Quelques mots sur moi",
+    panelTwoText: "Photographier l’amour dans ce qu’il a de plus doux.",
+    panelTwoMeta: ["Documentary presence. Editorial sensibility.", "Deeply felt."],
+    inviteTitle: ["Créons ensemble", "quelque chose"],
+    inviteTitleEm: "qui compte.",
+    inviteTags: ["Mariages", "Histoires d’amour", "Portraits"],
     inviteLocation: ["Lausanne", "Suisse", "Europe"],
   },
 
@@ -85,10 +85,10 @@ export const fr: Dictionary = {
 
   portfolio: {
     label: "Portfolio",
-    title: "L’amour, en images.",
+    title: "L’amour, tel qu’il est.",
     tagline: ["Là où se rencontrent l’émotion,", "l’atmosphère et un regard raffiné."],
     photographs: "Photographies",
-    closingLabel: "Créons quelque chose d’intemporel",
+    closingLabel: "Créons ensemble quelque chose d’intemporel",
     closingTitle: ["Pour les instants", "qui demeurent."],
   },
 
@@ -100,16 +100,16 @@ export const fr: Dictionary = {
   about: {
     label: "À propos",
     title: ["Une attention discrète", "à ce qui demeure."],
-    lead: ["Je suis Emma, la photographe", "derrière EM Photography."],
+    lead: ["Je suis Emra, la photographe", "derrière EM PHOTOGRAPHY."],
     body:
-      "Basée à Lausanne, je travaille dans toute la Suisse, attirée par ce qui est naturel, sobre et profondément humain — les gestes subtils, les expressions fugaces et les détails discrets qui donnent à un moment tout son sens.",
-    traceTitle: ["Plus qu’un souvenir", "de la journée,", "la trace de ce", "que vous avez ressenti."],
+      "Basée à Lausanne et travaillant dans toute la Suisse, je suis sensible aux photographies qui portent quelque chose au-delà de l’instant — un lien, une présence, une manière d’être ensemble.",
+    traceTitle: ["Plus qu’un souvenir", "de la journée –", "une trace de ce qu’elle", "vous a fait ressentir."],
     traceBody: [
-      "Inspirée par la lumière naturelle, les liens sincères et la beauté de ce qui passe souvent inaperçu, je photographie avec une sensibilité à l’atmosphère, au rythme et à la présence.",
-      "Je travaille de manière intuitive, avec légèreté — j’observe attentivement, je guide avec douceur quand il le faut, et je préserve ce qui vous ressemble vraiment.",
+      "Inspirée par la lumière naturelle, les liens sincères et la beauté de ce qui passe souvent inaperçu, je photographie avec une attention particulière à l’atmosphère, au rythme et à la présence.",
+      "Je travaille de manière intuitive et avec discrétion — en observant attentivement, en guidant avec douceur lorsque c’est nécessaire et en préservant ce qui vous ressemble.",
     ],
     panelText: "Saisir l’émotion, telle qu’elle a été vécue.",
-    panelMeta: ["Un regard attentif. Une écriture sensible.", "Des images faites pour durer."],
+    panelMeta: ["Intention dans le regard. Une approche sensible.", "Des images faites pour durer."],
     verticalLabel: "Un couple marchant sous une loggia de pierre",
     inviteTitle: ["Si mon approche vous ressemble,", "je serais ravie de découvrir votre histoire."],
     inviteNote:
@@ -118,14 +118,14 @@ export const fr: Dictionary = {
 
   contact: {
     label: "Prendre contact",
-    title: ["Dites-moi ce que vous", "voulez garder en mémoire."],
+    title: ["Dites-moi ce que vous", "souhaitez garder en mémoire."],
     lead:
-      "J’aimerais beaucoup savoir ce que vous imaginez — où tout se déroulera, qui sera présent et ce qui compte le plus pour vous, qu’il s’agisse d’un mariage, d’une fête intime ou simplement d’un chapitre de vie que vous souhaitez préserver.",
+      "J’aimerais découvrir ce que vous imaginez — où cela se déroulera, qui sera présent et ce qui compte le plus pour vous, qu’il s’agisse d’un mariage, d’une célébration intime ou simplement d’un chapitre de votre vie que vous souhaitez préserver.",
     photoLabel: "Un couple sur la terrasse au-dessus du lac",
     formLabel: "Parlez-moi de votre projet",
-    formTitle: "Une photographie attentive pour les moments qui comptent.",
+    formTitle: "Une photographie pensée avec soin pour les moments qui comptent.",
     formBody:
-      "Chaque célébration a son propre rythme. Racontez-moi ce que vous préparez, ce qui compte pour vous et l’atmosphère qui vous attire. À partir de là, je construirai le reportage avec soin et intention.",
+      "Chaque célébration a son propre rythme. Parlez-moi de ce que vous préparez, de ce qui compte pour vous et de l’atmosphère qui vous attire. À partir de là, je construirai le reportage avec soin et intention.",
   },
 
   form: {
@@ -145,10 +145,12 @@ export const fr: Dictionary = {
     failed: "Le message n’a pas pu être envoyé. Écrivez-moi directement à",
     interests: {
       Wedding: "Mariage",
-      Couples: "Séance couple",
       Engagement: "Fiançailles",
+      Couple: "Couple",
+      Maternity: "Maternité",
+      Family: "Famille",
       Portrait: "Portrait",
-      Other: "Autre",
+      Others: "Autres",
     },
   },
 
@@ -215,18 +217,18 @@ export const fr: Dictionary = {
     "Candlelight, white flowers and cut glass on the dinner table":
       "Bougies, fleurs blanches et verres en cristal sur la table du dîner",
     "Candles and white roses along the dinner table": "Des bougies et des roses blanches le long de la table du dîner",
-    "Emma looking out over the lake and the mountains at sunset":
-      "Emma contemplant le lac et les montagnes au coucher du soleil",
-    "Emma on a terrace above the lake, the mountains catching the last light":
-      "Emma sur une terrasse au-dessus du lac, les montagnes dans la dernière lumière",
-    "Emma seated on the terrace, the lake and the mountains beyond her":
-      "Emma assise sur la terrasse, le lac et les montagnes devant elle",
-    "Emma, camera in hand, on a terrace above the lake": "Emma, appareil photo à la main, sur une terrasse au-dessus du lac",
-    "Emma, camera in hand, on the shore of the lake": "Emma, appareil photo à la main, au bord du lac",
+    "Emra looking out over the lake and the mountains at sunset":
+      "Emra contemplant le lac et les montagnes au coucher du soleil",
+    "Emra on a terrace above the lake, the mountains catching the last light":
+      "Emra sur une terrasse au-dessus du lac, les montagnes dans la dernière lumière",
+    "Emra seated on the terrace, the lake and the mountains beyond her":
+      "Emra assise sur la terrasse, le lac et les montagnes devant elle",
+    "Emra, camera in hand, on a terrace above the lake": "Emra, appareil photo à la main, sur une terrasse au-dessus du lac",
+    "Emra, camera in hand, on the shore of the lake": "Emra, appareil photo à la main, au bord du lac",
     "Emra looking out over the lake and the mountains in the early light":
-      "Emma contemplant le lac et les montagnes dans la lumière du matin",
+      "Emra contemplant le lac et les montagnes dans la lumière du matin",
     "Emra on the hillside above the lake, the mountains catching the first light":
-      "Emma sur la colline au-dessus du lac, les montagnes dans la première lumière",
+      "Emra sur la colline au-dessus du lac, les montagnes dans la première lumière",
     "Her hand holding the bouquet against her dress": "Sa main tenant le bouquet contre sa robe",
     "His hand over hers, the wedding ring on her finger": "Sa main sur la sienne, l’alliance à son doigt",
     "M & J on the terrace of the château, the lake and mountains behind them":

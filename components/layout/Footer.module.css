@@ -5,8 +5,8 @@
    between the page and its foot, one section below the last
    block — then one centred column, every line the same step
    apart: the monogram, the four links (the bar's own style),
-   the social marks, the place-line (the links' style, its dot on the page's
-   centre line) and the copyright (the links' style).
+   the social marks, the place-line (the links' style, a shade smaller,
+   centred under them) and the copyright (the links' style).
    ============================================================ */
 
 .footer {
@@ -94,27 +94,21 @@
   opacity: 0.55;
 }
 
-/* The place-line in the links' face, size and tracking exactly. */
+/* The place-line in the links' face and tracking, a shade smaller, and
+   centred as a whole line so it sits within the width of the links above
+   it — EUROPE never reaches past CONTACT. */
 .place {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: center;
   align-items: baseline;
   width: 100%;
   font-family: var(--font-garamond);
-  font-size: var(--t-nav);
+  font-size: calc(var(--t-nav) * 0.9);
   font-weight: 600;
   letter-spacing: 0.16em;
   line-height: 1.5;
   text-transform: uppercase;
   color: var(--color-ink);
-}
-
-.placeStart {
-  justify-self: end;
-}
-
-.placeEnd {
-  justify-self: start;
 }
 
 .dot {
