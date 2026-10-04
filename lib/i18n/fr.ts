@@ -103,7 +103,7 @@ export const fr: Dictionary = {
     lead: ["Je suis Emra, la photographe", "derrière EM PHOTOGRAPHY."],
     body:
       "Basée à Lausanne et travaillant dans toute la Suisse, je suis sensible aux photographies qui portent quelque chose au-delà de l’instant — un lien, une présence, une manière d’être ensemble.",
-    traceTitle: ["Plus qu’un souvenir", "de la journée –", "une trace de ce qu’elle", "vous a fait ressentir."],
+    traceTitle: ["Plus qu’un souvenir", "de la journée,", "une trace de ce qu’elle", "vous a fait ressentir."],
     traceBody: [
       "Inspirée par la lumière naturelle, les liens sincères et la beauté de ce qui passe souvent inaperçu, je photographie avec une attention particulière à l’atmosphère, au rythme et à la présence.",
       "Je travaille de manière intuitive et avec discrétion — en observant attentivement, en guidant avec douceur lorsque c’est nécessaire et en préservant ce qui vous ressemble.",

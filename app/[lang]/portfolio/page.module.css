@@ -158,4 +158,10 @@
   .gridNarrow {
     display: grid;
   }
+
+  /* the French label holds one line, as the English does */
+  :global(html[lang="fr-CH"]) .closingLabel {
+    white-space: nowrap;
+    font-size: min(var(--t-label), (100vw - 80px) / 37);
+  }
 }

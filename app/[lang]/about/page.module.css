@@ -187,6 +187,11 @@
   text-wrap: balance;
 }
 
+/* the French note runs longer: a wider measure keeps the English's lines */
+:global(html[lang="fr-CH"]) .inviteNote {
+  max-width: 59ch;
+}
+
 .cta {
   margin-top: var(--step-l);
 }
@@ -202,9 +207,24 @@
    ============================================================ */
 
 @media (max-width: 860px) {
-  /* French on the phone: the statement breaks in balanced lines */
+  /* French keeps the English's line count: the statement on one line,
+     the lead, the invitation and its note a touch smaller to break where
+     the English does */
   :global(html[lang="fr-CH"]) .panelQuote {
-    text-wrap: balance;
+    white-space: nowrap;
+    font-size: min(1.305rem, (100vw - 80px) / 19.2);
+  }
+
+  :global(html[lang="fr-CH"]) .lead {
+    font-size: calc(var(--t-lead) / 1.04);
+  }
+
+  :global(html[lang="fr-CH"]) .inviteTitle {
+    font-size: calc(var(--t-title) * 1.1 / 1.36);
+  }
+
+  :global(html[lang="fr-CH"]) .inviteNote {
+    font-size: calc(var(--t-body) * 1.05 * 0.95 / 1.29);
   }
 
   .wide {

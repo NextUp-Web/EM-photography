@@ -40,7 +40,12 @@
 .caps {
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  text-wrap: balance;
+}
+
+/* the French title runs a fifth longer: set that much smaller, it breaks
+   where the English does */
+:global(html[lang="fr-CH"]) .caps {
+  font-size: calc(var(--t-title) / 1.19);
 }
 
 .lead {
