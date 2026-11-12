@@ -41,6 +41,7 @@ export const en = {
     placeEnd: "Available across Europe",
     menuPlace: ["Switzerland based", "Europe"],
     copyright: "Copyright",
+    credit: "Website by",
     enquire: "Enquire",
     language: "Language",
     languageNames: { en: "English", fr: "Français" },

@@ -85,6 +85,14 @@ export default function Footer({ lang, common }: FooterProps) {
           </span>
           {COPYRIGHT_YEAR} EM Photography
         </p>
+
+        {/* The studio that built the site — a quiet line, last of all. */}
+        <p className={styles.credit}>
+          {common.credit}{" "}
+          <a href="https://nextupweb.ch" rel="noopener" target="_blank">
+            NextUp Web
+          </a>
+        </p>
       </div>
     </footer>
   );

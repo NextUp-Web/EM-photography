@@ -45,6 +45,7 @@ export const fr: Dictionary = {
     placeEnd: "Disponible dans toute l’Europe",
     menuPlace: ["Basée en Suisse", "Europe"],
     copyright: "Copyright",
+    credit: "Site créé par",
     enquire: "Me contacter",
     language: "Langue",
     languageNames: { en: "English", fr: "Français" },
